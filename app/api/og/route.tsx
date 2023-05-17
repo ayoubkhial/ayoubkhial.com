@@ -1,9 +1,8 @@
 import fs from 'fs';
 import { ImageResponse, NextRequest } from 'next/server';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const openSans = fs.promises.readFile(path.join(fileURLToPath(import.meta.url), '../../../../public/fonts/OpenSans-Bold.ttf'));
+const openSans = fs.promises.readFile(path.join(process.cwd(), '/public/fonts/OpenSans-Bold.ttf'));
 
 const GET = async (req: NextRequest) => {
 	const title = req.nextUrl.searchParams.get('title');
