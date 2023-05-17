@@ -1,0 +1,8 @@
+{
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true
+	},
+	"cSpell.words": ["coldark", "contentlayer", "rehype", "tailwindcss", "zustand"]
+}
