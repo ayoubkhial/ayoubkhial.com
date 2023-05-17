@@ -146,10 +146,6 @@ aside p:not(:last-child) {
 	@apply mb-3 marker:text-gray-700 dark:marker:text-gray-200;
 }
 
-.blog-content hr {
-	@apply my-8 h-[1.5px] border-t-[1.5px]  border-gray-100 dark:border-gray-700;
-}
-
 [data-rehype-pretty-code-title] + pre {
 	@apply mt-0 rounded-t-none;
 }
