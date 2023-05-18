@@ -1,4 +1,5 @@
 import Callout from '@components/callout';
+import Comments from '@components/comments';
 import Like from '@components/like';
 import { LinkedinButton, TwitterButton } from '@components/share';
 import { getPostLikes, getPostViews, incrementPostLikes, incrementPostViews } from '@lib/requests';
@@ -41,6 +42,8 @@ export function generateMetadata({ params }: Props): Metadata {
 		},
 		twitter: {
 			card: 'summary_large_image',
+			site: '@ayoubkhial',
+			creator: '@ayoubkhial',
 			title,
 			description,
 			images: [
@@ -107,8 +110,23 @@ export default async function Post({ params }: Props) {
 					<Component components={{ Callout, Image, a: CustomLink }} />
 				</div>
 			</article>
-			<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100" />
-			<div className="flex flex-col gap-4">
+			<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100 px-4 dark:border-gray-700" />
+			<div className="flex flex-col gap-4 px-4">
+				<a
+					href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
+					target="_blank"
+					rel="noopener noreferrer"
+					className="mb-4 flex items-center  gap-2"
+					style={{ inlineSize: 'max-content' }}
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						<path
+							fill="currentColor"
+							d="M3 6v2h11V6H3m0 4v2h11v-2H3m17 .1c-.1 0-.3.1-.4.2l-1 1l2.1 2.1l1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8l-6.1 6V20h2.1l6.1-6.1l-2.1-2M3 14v2h7v-2H3Z"
+						/>
+					</svg>
+					<span className="underline underline-offset-2">Submit an edit request on GitHub</span>
+				</a>
 				<div className="flex items-center justify-between">
 					<div className="flex items-center justify-start">
 						<form action={incrementLikes} className="leading-none">
@@ -122,22 +140,33 @@ export default async function Post({ params }: Props) {
 						<LinkedinButton url={`www.ayoubkhial.com/blog/${post.slug}`} />
 					</div>
 				</div>
-				<a
-					href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="mb-4 flex gap-2"
-				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-						<path
-							fill="currentColor"
-							d="M3 6v2h11V6H3m0 4v2h11v-2H3m17 .1c-.1 0-.3.1-.4.2l-1 1l2.1 2.1l1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8l-6.1 6V20h2.1l6.1-6.1l-2.1-2M3 14v2h7v-2H3Z"
-						/>
-					</svg>
-					<span className="underline underline-offset-2">submit an edit request on GitHub</span>
-				</a>
 
-				<p className="text-[15px]">
+				<section
+					id="contact"
+					className="my-6
+				flex flex-col rounded-xl border-[0.2px] border-[#cc9dfb] bg-[#f2e6fe] p-5 text-[#26034a] dark:border-[#e1d8f3] dark:bg-[#53319b] dark:text-[#f0ecf9] md:my-8"
+				>
+					<h2 className="mb-6 font-heading text-lg font-extrabold tracking-wider md:text-xl">Subscribe to my newsletter</h2>
+					<p className="mb-5 text-sm leading-6 md:text-base md:leading-7">
+						If you liked this post, sign up to get updates in your email when I write something new! No spam ever.
+					</p>
+					<div className="flex items-center gap-3">
+						<a
+							className=" rounded-md bg-[#993af8] px-3 py-2 text-[15px] font-medium tracking-wide text-white
+							dark:bg-[#993af8]"
+							href="https://ayoubkhial.substack.com/"
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							Subscribe
+						</a>
+						<span className="text-xs font-medium underline">
+							No spam. I only send you relevant content. Unsubscribe at any time.
+						</span>
+					</div>
+				</section>
+				<Comments />
+				{/* <p className="text-[15px]">
 					If you have found this article useful, kindly consider sharing it with other fellow developers. Your support will help
 					me create more helpful content in the future. Additionally, if you have any questions or suggestions, feel free to reach
 					out to me{' '}
@@ -150,32 +179,8 @@ export default async function Post({ params }: Props) {
 						on Twitter
 					</a>
 					.
-				</p>
+				</p> */}
 			</div>
-			<section
-				id="contact"
-				className=" mb-12 mt-10
-				flex flex-col rounded-xl border-[0.2px] border-[#cc9dfb] bg-[#f2e6fe] p-5 text-[#26034a] dark:border-[#e1d8f3] dark:bg-[#53319b] dark:text-[#f0ecf9] md:mb-20"
-			>
-				<h2 className="mb-6 font-heading text-lg font-extrabold tracking-wider md:text-xl">Subscribe to my newsletter</h2>
-				<p className="mb-5 text-sm leading-6 md:text-base md:leading-7">
-					If you liked this post, sign up to get updates in your email when I write something new! No spam ever.
-				</p>
-				<div className="flex items-center gap-3">
-					<a
-						className=" rounded-md bg-[#993af8] px-3 py-2 text-[15px] font-medium tracking-wide text-white
-							dark:bg-[#993af8]"
-						href="https://ayoubkhial.substack.com/"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						Subscribe
-					</a>
-					<span className="text-xs font-medium underline">
-						No spam. I only send you relevant content. Unsubscribe at any time.
-					</span>
-				</div>
-			</section>
 		</>
 	);
 }
