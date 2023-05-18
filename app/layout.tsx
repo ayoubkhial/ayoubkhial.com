@@ -43,6 +43,7 @@ export const metadata = {
 		title: 'Ayoub Khial',
 		card: 'summary_large_image',
 		creator: '@ayoubkhial',
+		site: '@ayoubkhial',
 		images: [
 			{
 				url: `${process.env.API_URL}/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,

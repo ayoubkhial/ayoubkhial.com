@@ -173,11 +173,11 @@ aside strong + ul {
 
 .anchor {
 	@apply absolute mt-[14px] !no-underline;
-	margin-left: -1em;
+	margin-left: 10px;
 	cursor: pointer;
 }
 
-.anchor:after {
+.anchor:before {
 	@apply text-gray-300 dark:text-gray-500;
 	content: '#';
 }

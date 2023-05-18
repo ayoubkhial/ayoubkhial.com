@@ -74,6 +74,7 @@ export default makeSource({
 			[
 				rehypeAutolinkHeadings,
 				{
+					behavior: 'append',
 					properties: {
 						className: ['anchor']
 					}
