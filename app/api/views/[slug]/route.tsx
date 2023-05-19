@@ -5,7 +5,7 @@ const GET = async (_: NextRequest, context: { params: { slug: string } }) => {
 	const { slug } = context.params;
 	const postInfo = await prisma.postInfo.findFirst({ where: { slug } });
 	let views = 1;
-	if (!postInfo) await prisma.postInfo.create({ data: { slug, views: 1, likes: 0 } });
+	if (!postInfo) await prisma.postInfo.create({ data: { slug, views: 1 } });
 	else views = postInfo.views;
 	return NextResponse.json({ views });
 };

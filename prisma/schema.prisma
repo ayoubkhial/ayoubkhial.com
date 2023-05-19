@@ -15,5 +15,4 @@ model PostInfo {
   id Int @id @default(autoincrement())
   slug String @unique
   views Int @default(1)
-  likes Int @default(0)
 }

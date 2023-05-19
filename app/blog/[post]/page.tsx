@@ -1,14 +1,14 @@
 import Callout from '@components/callout';
 import Comments from '@components/comments';
-import Like from '@components/like';
 import { LinkedinButton, TwitterButton } from '@components/share';
-import { getPostLikes, getPostViews, incrementPostLikes, incrementPostViews } from '@lib/requests';
+import { getPostViews, incrementPostViews } from '@lib/requests';
 import { getShortDate } from '@lib/shared';
 import { allPosts, type Post } from 'contentlayer/generated';
 import { Metadata } from 'next';
 import { getMDXComponent } from 'next-contentlayer/hooks';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 type Props = {
 	params: { post: string };
@@ -69,19 +69,17 @@ const CustomLink = (props: any) => {
 	return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
+const Views = async ({ slug }: { slug: string }) => {
+	const views = getPostViews(slug);
+	return views;
+};
+
 export default async function Post({ params }: Props) {
 	const { post: slug } = params;
 	const post = getPost(slug);
 	if (!post) throw new Error('This post is not exist.');
-	let [views, likes] = await Promise.all([getPostViews(slug), getPostLikes(slug), incrementPostViews(slug)]);
+	incrementPostViews(slug);
 	const Component = getMDXComponent(post.body.code!);
-
-	const incrementLikes = async (): Promise<void> => {
-		'use server';
-		likes++;
-		await incrementPostLikes(slug);
-	};
-
 	return (
 		<>
 			<article className="mt-28 px-4 md:mt-24">
@@ -94,9 +92,13 @@ export default async function Post({ params }: Props) {
 					<div className="flex items-center gap-2">
 						<span className="flex">{post.readingTime.text}</span>
 						<div className="font-black">•</div>
-						<span className="flex">{views} views</span>
-						<div className="font-black">•</div>
-						<span className="flex">{likes} likes</span>
+						<span className="flex">
+							<Suspense fallback={'. .. '}>
+								{/*@ts-ignore*/}
+								<Views slug={slug} />
+							</Suspense>{' '}
+							views
+						</span>
 					</div>
 				</div>
 				<ul className="mb-8 flex gap-2 text-sm">
@@ -112,29 +114,22 @@ export default async function Post({ params }: Props) {
 			</article>
 			<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100 px-4 dark:border-gray-700" />
 			<div className="flex flex-col gap-4 px-4">
-				<a
-					href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="mb-4 flex items-center  gap-2"
-					style={{ inlineSize: 'max-content' }}
-				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-						<path
-							fill="currentColor"
-							d="M3 6v2h11V6H3m0 4v2h11v-2H3m17 .1c-.1 0-.3.1-.4.2l-1 1l2.1 2.1l1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8l-6.1 6V20h2.1l6.1-6.1l-2.1-2M3 14v2h7v-2H3Z"
-						/>
-					</svg>
-					<span className="underline underline-offset-2">Submit an edit request on GitHub</span>
-				</a>
 				<div className="flex items-center justify-between">
-					<div className="flex items-center justify-start">
-						<form action={incrementLikes} className="leading-none">
-							<button type="submit">
-								<Like slug={slug} likes={likes} />
-							</button>
-						</form>
-					</div>
+					<a
+						href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="mb-4 flex items-center  gap-2"
+						style={{ inlineSize: 'max-content' }}
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path
+								fill="currentColor"
+								d="M3 6v2h11V6H3m0 4v2h11v-2H3m17 .1c-.1 0-.3.1-.4.2l-1 1l2.1 2.1l1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8l-6.1 6V20h2.1l6.1-6.1l-2.1-2M3 14v2h7v-2H3Z"
+							/>
+						</svg>
+						<span className="underline underline-offset-2">Submit an edit request on GitHub</span>
+					</a>
 					<div className="flex items-center gap-2">
 						<TwitterButton url={`www.ayoubkhial.com/blog/${post.slug}`} title={post.title} />
 						<LinkedinButton url={`www.ayoubkhial.com/blog/${post.slug}`} />

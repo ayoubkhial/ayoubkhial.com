@@ -3,8 +3,9 @@ const { withContentlayer } = require('next-contentlayer');
 
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
-    default-src 'self' vercel.live vitals.vercel-insights.com utteranc.es;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com vitals.vercel-insights.com utteranc.es;
+    default-src 'self' vercel.live;
+	frame-src giscus.app;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com vitals.vercel-insights.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src 'none';

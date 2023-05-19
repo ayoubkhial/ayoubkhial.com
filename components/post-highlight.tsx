@@ -1,15 +1,19 @@
-import { getPostLikes, getPostViews } from '@lib/requests';
+import { getPostViews } from '@lib/requests';
 import { getShortDate } from '@lib/shared';
 import { type Post } from 'contentlayer/generated';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 type Props = {
 	post: Partial<Post>;
 };
 
+const Views = async ({ slug }: { slug: string }) => {
+	const views = getPostViews(slug);
+	return views;
+};
+
 export default (async function PostHighlight({ post }: Props) {
-	const views = await getPostViews(post?.slug!);
-	const likes = await getPostLikes(post?.slug!);
 	return (
 		<Link
 			className="w-full rounded-lg bg-gray-50 p-5 duration-300 hover:bg-gray-100 dark:bg-[#212736] dark:hover:bg-[#262d40]"
@@ -22,9 +26,13 @@ export default (async function PostHighlight({ post }: Props) {
 					<div className="font-black">•</div>
 					<span className="flex">{post.readingTime.text}</span>
 					<div className="font-black">•</div>
-					<span className="flex">{views} views</span>
-					<div className="font-black">•</div>
-					<span className="flex">{likes} likes</span>
+					<span className="flex">
+						<Suspense fallback={'. . .'}>
+							{/*@ts-ignore*/}
+							<Views slug={post.slug} />
+						</Suspense>{' '}
+						views
+					</span>
 				</div>
 				<p className="text-sm leading-6 tracking-small text-gray-500 dark:text-gray-300 md:text-base">{post.description}</p>
 			</div>
