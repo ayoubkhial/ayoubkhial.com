@@ -11,7 +11,7 @@ const InfoIcon = () => {
 
 const ResourcesIcon = () => {
 	return (
-		<svg className="w-7 text-[#993af8] dark:text-[#f0ecf9]" viewBox="0 0 24 24">
+		<svg className="w-7 text-[#993af8] dark:text-[#edf0f8]" viewBox="0 0 24 24">
 			<path
 				fill="currentColor"
 				d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm.2-9l-.9.9q-.275.275-.275.7t.275.7q.275.275.7.275t.7-.275l2.6-2.6q.3-.3.3-.7t-.3-.7l-2.6-2.6q-.275-.275-.7-.275t-.7.275q-.275.275-.275.7t.275.7l.9.9H9q-.425 0-.713.288T8 12q0 .425.288.713T9 13h3.2Z"
@@ -22,7 +22,7 @@ const ResourcesIcon = () => {
 
 const WarningIcon = () => {
 	return (
-		<svg className="w-7 text-[#ff3366] dark:text-[#ffe5e5]" viewBox="0 0 256 256">
+		<svg className="w-7 text-[#ff3366] dark:text-[#fce9ea]" viewBox="0 0 256 256">
 			<path
 				fill="currentColor"
 				d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm-8 56a8 8 0 0 1 16 0v56a8 8 0 0 1-16 0Zm8 104a12 12 0 1 1 12-12a12 12 0 0 1-12 12Z"

@@ -167,6 +167,10 @@ aside li:before {
 	margin-left: -20px;
 }
 
+.warning code {
+	@apply dark:!bg-gray-800 dark:!text-red-500;
+}
+
 aside strong + ul {
 	color: white !important;
 }

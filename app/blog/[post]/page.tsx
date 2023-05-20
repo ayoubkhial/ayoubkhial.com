@@ -119,8 +119,7 @@ export default async function Post({ params }: Props) {
 						href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="mb-4 flex items-center  gap-2"
-						style={{ inlineSize: 'max-content' }}
+						className="flex items-center gap-2"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 							<path
@@ -138,8 +137,7 @@ export default async function Post({ params }: Props) {
 
 				<section
 					id="contact"
-					className="my-6
-				flex flex-col rounded-xl border-[0.2px] border-[#cc9dfb] bg-[#f2e6fe] p-5 text-[#26034a] dark:border-[#e1d8f3] dark:bg-[#53319b] dark:text-[#f0ecf9] md:my-8"
+					className="mb-6 mt-2 flex flex-col rounded-xl border-[0.2px] border-[#cc9dfb] bg-[#f2e6fe] p-5 text-[#26034a] dark:border-[#e1d8f3] dark:bg-[#53319b] dark:text-[#f0ecf9] md:mb-8 md:mt-4"
 				>
 					<h2 className="mb-6 font-heading text-lg font-extrabold tracking-wider md:text-xl">Subscribe to my newsletter</h2>
 					<p className="mb-5 text-sm leading-6 md:text-base md:leading-7">
@@ -160,21 +158,9 @@ export default async function Post({ params }: Props) {
 						</span>
 					</div>
 				</section>
-				<Comments />
-				{/* <p className="text-[15px]">
-					If you have found this article useful, kindly consider sharing it with other fellow developers. Your support will help
-					me create more helpful content in the future. Additionally, if you have any questions or suggestions, feel free to reach
-					out to me{' '}
-					<a
-						href="https://www.twitter.com/ayoubkhial"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="font-medium underline underline-offset-2"
-					>
-						on Twitter
-					</a>
-					.
-				</p> */}
+				<section className="mb-6">
+					<Comments />
+				</section>
 			</div>
 		</>
 	);
