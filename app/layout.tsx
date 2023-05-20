@@ -54,7 +54,7 @@ export const metadata = {
 	alternates: {
 		types: {
 			// See the RSS Feed section for more details
-			'application/rss+xml': 'https://ayoubkhial.com/feed.xml'
+			'application/rss+xml': 'https://ayoubkhial.com/rss.xml'
 		}
 	}
 };
