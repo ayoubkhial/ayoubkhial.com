@@ -17,6 +17,7 @@
 		"esbuild": "^0.17.17",
 		"eslint": "^8.38.0",
 		"eslint-config-next": "^13.3.0",
+		"feed": "^4.2.2",
 		"next": "^13.3.2",
 		"next-contentlayer": "^0.3.2",
 		"next-share": "^0.20.0",
