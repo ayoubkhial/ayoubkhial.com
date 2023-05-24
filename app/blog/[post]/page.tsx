@@ -70,12 +70,12 @@ const CustomLink = (props: any) => {
 	return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-const Views = async ({ slug }: { slug: string }) => {
+const Views = ({ slug }: { slug: string }) => {
 	const views = getPostViews(slug);
 	return views;
 };
 
-export default async function Post({ params }: Props) {
+export default function Post({ params }: Props) {
 	const { post: slug } = params;
 	const post = getPost(slug);
 	if (!post) throw new Error('This post is not exist.');
