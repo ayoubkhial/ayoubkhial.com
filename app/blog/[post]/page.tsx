@@ -94,7 +94,7 @@ export default function Post({ params }: Props) {
 						<span className="flex">{post.readingTime.text}</span>
 						<div className="font-black">•</div>
 						<span className="flex">
-							<Suspense fallback={'. .. '}>
+							<Suspense fallback={'. . . '}>
 								{/*@ts-ignore*/}
 								<Views slug={slug} />
 							</Suspense>{' '}
