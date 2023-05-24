@@ -1,0 +1,381 @@
+---
+title: 'Add reactivity to your Next.js blog using giscus'
+publishedAt: '2023-05-23'
+description: 'Learn how to add A comments & reactions system to your Next.js blog powered by GitHub Discussions using giscus.'
+keywords: "Next.js,giscus,GitHub"
+published: true
+---
+When you're in the process of blog development, it's really important to include a comment section that enables interaction with your visitors and encourages receiving feedback. This becomes even more crucial
+if you're a beginner in writing - just like me - as such feedback can significantly contribute to your progress.
+
+When creating [my blog-centric personal portfolio](https://www.ayoubkhial.com), I had a goal of launching it as soon as possible. However, considering including a comment feature, the implementation process could be
+time-consuming. That's when I started looking for a solution that was easy to set up yet provided essential commenting functionalities. It was during this search that I stumbled upon [Giscus](https://github.com/giscus/giscus).
+
+## What is Giscus?
+An open-source comments widget that harnesses the power of [GitHub Discussions](https://docs.github.com/en/discussions). giscus integrates seamlessly with GitHub repositories, making it convenient for developers who prefer
+using GitHub as a platform for managing their code and projects. In addition, it provides features such as thread-based discussions, Markdown support, reactions, and user authentication through GitHub accounts. Feel free to
+explore and experience it firsthand in the comment section below this post 👇.
+
+Giscus drew significant inspiration from [utterances](https://github.com/utterance/utterances), which utilize an issue-based comment system instead of discussions. I experimented with utterances initially, but I found it less
+convenient due to its reliance on an issue tracker for conversational purposes.
+
+Opting for GitHub Discussions over issues offered numerous benefits:
+
+* Enables organized and separated discussions in a dedicated space.
+* Streamline conversations, promoting more transparent communication and reducing confusion compared to issue-based systems.
+* Come with built-in features tailored for collaborative discussions, enabling a richer and more interactive commenting experience for content creators and visitors.
+
+As a result, Giscus offers numerous advantages compared to other services:
+
+* The visitors can react to a post.
+* The visitors can reply and react to a comment.
+* Have a dozen of built-in themes (including '[preferred_color_scheme](https://github.com/giscus/giscus/blob/main/styles/themes/preferred_color_scheme.css)', which can be very useful if you have a dark/light theme on your website)
+and supports custom themes.
+
+## How does it work?
+When Giscus loads, it utilizes the GitHub Discussions Search API to find the corresponding Discussion associated with the current page, using various mappings like **URL**, **pathname**, **title**, etc.
+
+<Callout type="INFO">
+Giscus bot will automatically create a discussion on the first comment or reaction if a matching discussion cannot be found.
+</Callout>
+
+For commenting, visitors need to authorize the Giscus app via the GitHub OAuth flow to post on their behalf. Alternatively, they can directly comment on the linked GitHub Discussion. Comment moderation can be managed on GitHub,
+giving you control over the comments.
+
+## When to use it?
+* Giscus is an ideal solution for static websites as it utilizes GitHub Discussions as the backend, eliminating the need to manage a separate backend. However, it can also be used for a backend website, making it adaptable
+for both scenarios.
+* If your project is open-source, Giscus will function exclusively on public repositories. However, you do have the option to create a separate repository solely for discussions.
+* giscus is particularly suitable for tech-related blogs where visitors are likelier to have a GitHub account.
+
+<Callout type="INFO">
+Creating a separate repository for discussions is often recommended, as it allows you the flexibility to direct your website to a different repository without the need to relocate your discussions.
+</Callout>
+
+## Setting up your github account
+
+By default, GitHub discussions are disabled. To enable them, navigate to your repository's **Settings** tab and ensure the **Discussions** box is checked under the **Features** section.
+
+<AdaptiveImage alt={'Enable GitHub Discussions'} src={'/img/blog/2/1.webp'} width={768} height={719.06} />
+
+<Callout type="INFO">
+To inform your community about the intended use of Discussions, you can create a welcome page by clicking **Set up discussions**.
+</Callout>
+
+
+Once Discussions are enabled, installing the Giscus application is next. You can either click here to visit the app page or search for "**giscus**" on the [GitHub Marketplace](https://github.com/marketplace).
+
+Since I've already installed it, I have the **configure** button; if you didn't install it before, you should see a green **Install** button; click on it as the process is straightforward.
+
+<AdaptiveImage alt={'Giscus app page in GitHub Marketplace'} src={'/img/blog/2/2.webp'} width={768} height={391.06} />
+
+Choose the repository in which you wish to utilize GitHub Discussions. In my case, it's [nextjs-giscus-blog.](https://github.com/ayoubkhial/nextjs-giscus-blog)
+
+<AdaptiveImage alt={'Giscus app repository access in GitHub Marketplace'} src={'/img/blog/2/3.webp'} width={768} height={427.76} />
+
+<Callout type="WARNING">
+I highly recommend granting access only to the repositories that require **Giscus**.
+</Callout>
+
+## Giscus configuration
+With our repository ready for use, the next step is configuring Giscus according to our requirements. To accomplish this, visit the [official Giscus app](https://giscus.app/) and fill out the provided form.
+
+* **Repository**: Select the repository to which Giscus will connect, ensuring you provide the username and the repo name like this **ayoubkhial/nextjs-giscus-blog**.
+
+<Callout type="INFO">
+If all criteria are met, you will see the message "**Success! This repository meets all of the above criteria.**" under the repository input. If you see an error message, re-check all the steps above.
+</Callout>
+
+* **Page &harr; Discussions Mapping**: Select the mapping method that connects the embedding page with the embedded Discussion. This mapping can be accomplished through the **pathname**, **URL**, **title**, and more. I will opt
+for the pathname in our particular setup as it guarantees uniqueness.
+
+* **Discussion Category**: When GitHub Discussions are enabled, the repository will have default categories created. However, you can create your own categories according to your preferences.
+
+* **Features**: You have the freedom to choose which features to enable. In our setup, I will allow reactions for the main post and prefer to position the comment box above the comments. This will allow visitors to write a
+comment without scrolling through previous comments.
+
+<Callout type="WARNING">
+Make sure to enable the "**Load the comments lazily**" option. This ensures that Giscus widget is loaded only when the visitor scrolls down to the section where the Giscus instance is located on the page, typically near the bottom.
+Enabling this option can enhance the visitor experience.
+</Callout>
+
+* **Theme**: Select a theme that complements the design of your website. If your website already supports dark/light mode, leaving it as the "preferred color scheme" may be convenient.
+
+Based on your preferences, the `script` tag will be automatically populated further down the Giscus configuration page. It will be similar to the following example. (Keep it close; we'll use it later in our Next.js app)
+
+```js
+<script src="https://giscus.app/client.js"
+    data-repo="ayoubkhial/nextjs-giscus-blog"
+    data-repo-id="R_kgDOJlwoBA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOJlwoBM4CWpCu"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+</script>
+```
+
+<Callout type="INFO">
+Alternatively, You can retrieve your repository information, such as `repoId` and `categoryId`, using the [GitHub GraphQL API Explorer](https://docs.github.com/en/graphql/overview/explorer) instead.
+```graphql
+query {
+    repository(owner: "ayoubkhial", name: "nextjs-giscus-blog") {
+        id
+        discussionCategories(first:10) {
+            edges {
+                node {
+                    id
+                    name
+                }
+            }
+        }
+    }
+}
+```
+Basically, what we're doing is sending a GraphQL query request to the **GitHub API** to obtain our repository ID and the Discussions details.
+</Callout>
+
+## Setup Giscus in your next.js blog
+
+Before creating the `Comments` component, let's add some environment variables that store some of the repository data. If you're using one repository for each environment, you may consider adding the following variables to your
+`next.config.js` file:
+```js
+const nextConfig = {
+	env: {
+		COMMENTS_REPO: 'ayoubkhial/nextjs-giscus-blog',
+		COMMENTS_REPO_ID: 'R_kgDOJlwoBA',
+		COMMENTS_CATEGORY: 'Announcements',
+		COMMENT_CATEGORY_ID: 'DIC_kwDOJlwoBM4CWpCu',
+	},
+};
+
+module.exports = nextConfig;
+```
+
+Update the values with your repository information. Feel free to add any variables you require to be dynamic based on your environments. If you prefer a single repository for all your environments, you can directly utilize the
+variables in your component without storing them.
+
+Now, let's create a `Comments` component where we wrap the script provided by Giscus. First, create a new file `comments.js` (or `.jsx`, `.tsx` if you're using Typescript) under the `components` folder (or any folder you use to
+store your shared components).
+
+In fact, there are two methods to inject the `script` into the HTML. Let's begin with the more generic **DOM** approach.
+
+```jsx title="components/comments.js"
+'use client';
+
+import { useEffect } from 'react';
+
+const Comments = ({ repo, repoId, category, categoryId }) => {
+	useEffect(() => {
+		const script = document.createElement('script');
+		const commentsDiv = document.getElementById('post-comments');
+		script.async = true;
+		script.setAttribute('src', 'https://giscus.app/client.js');
+		script.setAttribute('data-repo', repo);
+		script.setAttribute('data-repo-id', repoId);
+		script.setAttribute('data-category', category);
+		script.setAttribute('data-category-id', categoryId);
+		script.setAttribute('data-mapping', 'pathname');
+		script.setAttribute('data-strict', '0');
+		script.setAttribute('data-reactions-enabled', '1');
+		script.setAttribute('data-emit-metadata', '0');
+		script.setAttribute('data-input-position', 'top');
+		script.setAttribute('data-theme', 'preferred_color_scheme');
+		script.setAttribute('data-lang', 'en');
+		script.setAttribute('data-loading', 'lazy');
+		script.setAttribute('crossorigin', 'anonymous');
+		try {
+			commentsDiv.appendChild(script);
+		} catch (error) {
+			console.error('Error while rendering giscus widget.', error);
+		}
+	}, []);
+
+	return (
+		<div id="post-comments">
+			<h2>Comments</h2>
+		</div>
+	);
+};
+
+export default Comments;
+```
+
+<Callout type="WARNING">
+Since we use browser features like **React Hooks** and **DOM**, you must mark the component as a **client** component.
+</Callout>
+
+We can obtain the same outcome by utilizing the [Giscus React component](https://github.com/giscus/giscus-component), a wrapper for the identical script. This approach appears more streamlined and seamlessly integrates with the
+React ecosystem.
+
+First, you need to install `@giscus/react` package:
+
+```bash
+# Replace "npm" with your preferred package manager.
+npm i @giscus/react
+```
+
+Then change the `Comments` component to use this package instead:
+```jsx
+'use client';
+
+import Giscus from '@giscus/react';
+
+const Comments = ({ repo, repoId, category, categoryId }) => {
+	return (
+		<Giscus
+			repo={repo}
+			repoId={repoId}
+			category={category}
+			categoryId={categoryId}
+			mapping="pathname"
+			reactionsEnabled="1"
+			emitMetadata="0"
+			inputPosition="top"
+			theme="preferred_color_scheme"
+			lang="en"
+			loading="lazy"
+		/>
+	);
+};
+
+export default Comments;
+```
+
+The `Comments` component accepts our environment variables as parameters. Since we're using a client component, we don't have direct access to those variables; therefore, we need to pass them when invoking this component from
+the `BlogPost` component, which is a server component. You can access the environment variables in a server component through `process.env`. Here's an example of what it may look like:
+
+```jsx
+import Comment from '@/components/comment';
+import dynamic from 'next/dynamic';
+
+export default function BlogPost({ params }) {
+	const { slug } = params;
+
+	const Article = dynamic(() => import(`../../../content/${slug}.js`), {
+		loading: () => <p>Loading...</p>,
+	});
+	const repo = process.env.COMMENTS_REPO;
+	const repoId = process.env.COMMENTS_REPO_ID;
+	const category = process.env.COMMENTS_CATEGORY;
+	const categoryId = process.env.COMMENTS_CATEGORY_ID;
+	return (
+		<main>
+			<div className="container">
+				<article className="blog__content">
+					<Article />
+				</article>
+				<Comment repo={repo} repoId={repoId} category={category} categoryId={categoryId} />
+			</div>
+		</main>
+	);
+}
+```
+
+<Callout type="INFO">
+Instead of using **jsx** files to store the post content in the content folder, it is generally preferred and customary to utilize **MDX** format for storing your content. I'm using the **jsx** here for simplicity.
+</Callout>
+
+<Callout type="WARNING">
+During the build time, **Next.js** will inject values into the variables. However, it is important to note that you cannot utilize destructuring to access them due to the nature of **Webpack**. If you opt for the traditional
+approach of storing environment variables in a ``.env`` file, you can utilize destructuring to access them.
+
+[Read more on next.js documentation](https://nextjs.org/docs/app/api-reference/next-config-js/env).
+</Callout>
+
+Based on your system's theme, the final result will be displayed in either dark or light mode.
+
+<AdaptiveImage alt={'Comment section using giscus and GitHub Discussions'} src={'/img/blog/2/4.webp'} width={768} height={427.76} />
+
+
+Feel free to experience it live in the comment section of this article.
+
+## Advanced configuration
+### Content Security Policy
+
+If you have a strict [Content Security Policy](https://nextjs.org/docs/pages/api-reference/next-config-js/headers#content-security-policy), you will encounter a "**violation of Content Security Policy**" error in your browser.
+To fix that, you must modify it to include `giscus.app` within your policy's `frame-src` section.
+
+```jsx /giscus.app/
+const ContentSecurityPolicy = `
+    default-src 'self' vercel.live;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' vercel.live vitals.vercel-insights.com;
+    style-src 'self' 'unsafe-inline';
+    img-src * blob: data:;
+    media-src 'none';
+    frame-src giscus.app;
+    connect-src *;
+    font-src 'self';
+`;
+
+const securityHeaders = [
+	{
+		key: 'Content-Security-Policy',
+		value: ContentSecurityPolicy.replace(/\n/g, ''),
+	},
+	// Other security headers
+	// ...
+];
+
+const nextConfig = {
+	env: {
+		COMMENTS_REPO: 'ayoubkhial/nextjs-giscus-blog',
+		COMMENTS_REPO_ID: 'R_kgDOJlwoBA',
+		COMMENTS_CATEGORY: 'Announcements',
+		COMMENTS_CATEGORY_ID: 'DIC_kwDOJlwoBM4CWpCu',
+	},
+	headers() {
+		return [
+			{
+				source: '/(.*)',
+				headers: securityHeaders,
+			},
+		];
+	},
+};
+
+module.exports = nextConfig;
+```
+
+Alternatively, you can add it as a fallback within the `default-src` section.
+
+### Giscus configuration file
+
+You can configure two more options for your **giscus.app**. For that, create a `giscus.json` file under the root directory.
+
+```json
+{
+	// Change the default comment ordering by configuring giscus.app
+	// default: oldest
+    "defaultCommentOrder": "newest",
+
+	// restrict from which websites people can load your comments (a security layer)
+	"origins": ["https://www.ayoubkhial.com"],
+	// or use a regular expression instead
+	"originsRegex": ["https?://([a-z0-9]+[.])ayoubkhial[.]com"]
+}
+```
+
+Read more about Giscus advanced features in the [Adavnced Usage page](https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md).
+
+## Conclusion
+
+Giscus provides a neat and reliable solution for managing your blog comments, eliminating the need to maintain your commenting system. It's a perfect fit, particularly for tech blogs 💎.
+
+You can find the complete code source in [this repository](https://github.com/ayoubkhial/nextjs-giscus-blog); feel free to give it a star ⭐️.
+
+<Callout type="RESOURCES">
+* [Giscus GitHub repo](https://github.com/giscus/giscus).
+* [GitHub Discussions Documentation](https://docs.github.com/en/discussions).
+* [The official Giscus app](https://giscus.app/).
+* [GitHub GraphQL API Explorer playground](https://docs.github.com/en/graphql/overview/explorer).
+* [Giscus React component repository](https://github.com/giscus/giscus-component).
+* [Giscus working example repository](https://github.com/ayoubkhial/nextjs-giscus-blog).
+</Callout>

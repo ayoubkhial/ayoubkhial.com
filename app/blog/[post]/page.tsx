@@ -1,3 +1,4 @@
+import AdaptiveImage from '@components/adaptive-image';
 import Callout from '@components/callout';
 import Comments from '@components/comments';
 import { LinkedinButton, TwitterButton } from '@components/share';
@@ -109,7 +110,7 @@ export default async function Post({ params }: Props) {
 					))}
 				</ul>
 				<div className="blog-content">
-					<Component components={{ Callout, Image, a: CustomLink }} />
+					<Component components={{ Callout, Image, a: CustomLink, AdaptiveImage }} />
 				</div>
 			</article>
 			<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100 px-4 dark:border-gray-700" />
