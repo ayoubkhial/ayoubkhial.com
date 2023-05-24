@@ -61,7 +61,7 @@ const rehypeOptions = {
 		node.properties.className.push('highlighted');
 	},
 	onVisitHighlightedWord(node: any, id: any) {
-		node.properties.className = ['word'];
+		node.properties.className = ['word-highlighted'];
 	}
 };
 export default makeSource({

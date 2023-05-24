@@ -25,7 +25,7 @@ export default function callout({ type, children }: Props) {
 		>
 			<div>{type === 'INFO' ? <InfoIcon /> : type === 'WARNING' ? <WarningIcon /> : <ResourcesIcon />}</div>
 			<div className={`${textColorVariants[color]} pt-[2px]`}>
-				{type === 'RESOURCES' && <h3 className="mb-4 text-base font-semibold tracking-small">Read more</h3>}
+				{type === 'RESOURCES' && <h4 className="mb-4 text-base font-semibold tracking-small">Read more</h4>}
 				{children}
 			</div>
 		</aside>

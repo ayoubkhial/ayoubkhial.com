@@ -87,6 +87,10 @@ html.dark [data-rehype-pretty-code-title][data-theme='light'] {
 	@apply bg-gray-500 bg-opacity-10 dark:bg-gray-800;
 }
 
+[data-rehype-pretty-code-fragment] .word-highlighted {
+	@apply rounded-[4px] bg-gray-500 bg-opacity-30 px-1 py-[3px] dark:bg-gray-800;
+}
+
 code > .line::before {
 	counter-increment: line;
 	content: counter(line);
@@ -120,6 +124,10 @@ aside p:not(:last-child) {
 
 .blog-content h2 {
 	@apply mb-5 mt-10 border-b border-gray-100 text-[1.2rem] font-semibold leading-loose tracking-small dark:border-gray-800 md:text-[1.4rem];
+}
+
+.blog-content h3 {
+	@apply mb-5 mt-6 text-[1rem] font-medium leading-loose tracking-small md:text-[1.1rem];
 }
 
 .blog-content p code {
@@ -181,6 +189,10 @@ aside strong + ul {
 	cursor: pointer;
 }
 
+h3 .anchor {
+	@apply mt-[10px];
+}
+
 .anchor:before {
 	@apply text-gray-300 dark:text-gray-500;
 	content: '#';
@@ -214,4 +226,38 @@ pre::-webkit-scrollbar {
 pre::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	@apply bg-gray-200 dark:bg-gray-600;
+}
+
+.blog-content ul {
+	@apply mb-3 !list-none !pl-8;
+}
+
+.blog-content li {
+	@apply !mb-[6px] leading-6 marker:text-gray-700 dark:marker:text-gray-200;
+}
+
+.blog-content li:before {
+	content: '\2013';
+	position: absolute;
+	margin-left: -20px;
+}
+
+.info a,
+.info strong {
+	@apply text-[#002342] dark:text-[#f0f8ff];
+}
+
+.warning a,
+.warning strong {
+	@apply text-[#4d0013] dark:text-[#fefafb];
+}
+
+.warning [data-rehype-pretty-code-fragment],
+.info [data-rehype-pretty-code-fragment] {
+	@apply my-4;
+}
+
+.warning [data-rehype-pretty-code-fragment] pre,
+.info [data-rehype-pretty-code-fragment] pre {
+	@apply my-0;
 }
