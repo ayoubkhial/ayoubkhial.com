@@ -9,16 +9,18 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata = {
+	metadataBase: new URL(process.env.API_URL || 'https://ayoubkhial.com'),
+
 	title: 'Ayoub Khial',
 	description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
 	openGraph: {
 		title: 'Ayoub Khial',
 		description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
 		siteName: 'Ayoub Khial portfolio',
-		url: `https://ayoubkhial.com`,
+		url: `/`,
 		images: [
 			{
-				url: `${process.env.API_URL}/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,
+				url: `/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,
 				alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
 			}
 		],
@@ -44,17 +46,15 @@ export const metadata = {
 		card: 'summary_large_image',
 		creator: '@ayoubkhial',
 		site: '@ayoubkhial',
-		images: [
-			{
-				url: `${process.env.API_URL}/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,
-				alt: 'Ayoub Khial'
-			}
-		]
+		images: {
+			url: `/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,
+			alt: 'Ayoub Khial'
+		}
 	},
 	alternates: {
 		types: {
 			// See the RSS Feed section for more details
-			'application/rss+xml': 'https://ayoubkhial.com/rss.xml'
+			'application/rss+xml': '/rss.xml'
 		}
 	}
 };

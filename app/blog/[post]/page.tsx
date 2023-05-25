@@ -25,6 +25,7 @@ export function generateMetadata({ params }: Props): Metadata {
 	if (!post) return { title: slug };
 	const { title, description, publishedAt, keywords } = post!;
 	return {
+		metadataBase: new URL(process.env.API_URL || 'https://ayoubkhial.com'),
 		title,
 		description,
 		keywords: keywords,
@@ -33,10 +34,10 @@ export function generateMetadata({ params }: Props): Metadata {
 			description,
 			publishedTime: publishedAt,
 			type: 'article',
-			url: `https://www.ayoubkhial.com/blog/${slug}`,
+			url: `/blog/${slug}`,
 			images: [
 				{
-					url: `${process.env.API_URL}/og?title=${title}&keywords=${keywords}`,
+					url: `/og?title=${title}&keywords=${keywords}`,
 					alt: title
 				}
 			]
@@ -47,12 +48,10 @@ export function generateMetadata({ params }: Props): Metadata {
 			creator: '@ayoubkhial',
 			title,
 			description,
-			images: [
-				{
-					url: `${process.env.API_URL}/og?title=${title}&keywords=${keywords}`,
-					alt: title
-				}
-			]
+			images: {
+				url: `/og?title=${title}&keywords=${keywords}`,
+				alt: title
+			}
 		}
 	};
 }
