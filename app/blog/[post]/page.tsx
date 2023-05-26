@@ -1,14 +1,12 @@
-import AdaptiveImage from '@components/adaptive-image';
-import Callout from '@components/callout';
 import Comments from '@components/comments';
+import MDXComponents from '@components/mdx';
 import { LinkedinButton, TwitterButton } from '@components/share';
+
 import { getPostViews, incrementPostViews } from '@lib/requests';
 import { getShortDate } from '@lib/shared';
 import { allPosts, type Post } from 'contentlayer/generated';
 import { Metadata } from 'next';
 import { getMDXComponent } from 'next-contentlayer/hooks';
-import Image from 'next/image';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 type Props = {
@@ -56,19 +54,6 @@ export function generateMetadata({ params }: Props): Metadata {
 	};
 }
 
-const CustomLink = (props: any) => {
-	const href = props.href;
-	if (href.startsWith('/')) {
-		return (
-			<Link href={href} {...props}>
-				{props.children}
-			</Link>
-		);
-	}
-	if (href.startsWith('#')) return <a {...props} />;
-	return <a target="_blank" rel="noopener noreferrer" {...props} />;
-};
-
 const Views = ({ slug }: { slug: string }) => {
 	const views = getPostViews(slug);
 	return views;
@@ -108,8 +93,8 @@ export default function Post({ params }: Props) {
 						</li>
 					))}
 				</ul>
-				<div className="blog-content">
-					<Component components={{ Callout, Image, a: CustomLink, AdaptiveImage }} />
+				<div className="blog-content text-[0.95rem]">
+					<Component components={MDXComponents} />
 				</div>
 			</article>
 			<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100 px-4 dark:border-gray-700" />

@@ -52,150 +52,131 @@ a {
 	display: inline-block;
 }
 
+/* Code block style */
+html.dark [data-theme='light'],
+html.light [data-theme='dark'] {
+	display: none;
+}
+
 [data-rehype-pretty-code-title] {
-	@apply rounded-t-lg border-b border-gray-50 bg-[#dde6ee] px-4 py-2 font-code text-base font-medium text-text dark:border-gray-500 dark:bg-gray-800;
-}
-
-html.light pre[data-theme='dark'],
-html.light [data-rehype-pretty-code-title][data-theme='dark'] {
-	display: none;
-}
-
-html.dark pre[data-theme='light'],
-html.dark [data-rehype-pretty-code-title][data-theme='light'] {
-	display: none;
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	padding: 0.5rem 1rem;
+	font-weight: 500;
+	@apply border-b border-gray-50 bg-[#dde6ee] font-code text-base text-text dark:border-gray-500 dark:bg-gray-800;
 }
 
 [data-rehype-pretty-code-fragment] {
-	@apply my-6;
+	margin: 1.5rem 0;
 }
 
 [data-rehype-pretty-code-fragment] pre {
-	@apply my-8 rounded-lg !bg-[#f5f8fa] py-4 dark:!bg-gray-700;
-	/*scrollbar-thin scrollbar-track-gray-500 scrollbar-thumb-gray-800 scrollbar-thumb-rounded-md*/
+	padding: 1rem 0;
+	margin: 2rem 0;
+	border-radius: 0.5rem;
 	overflow: auto;
+	@apply !bg-[#f5f8fa] dark:!bg-gray-700;
 }
 
 [data-rehype-pretty-code-fragment] code {
-	@apply grid min-w-full break-words bg-transparent p-0 font-code text-[15px] font-medium leading-[22px] text-black;
 	counter-reset: line;
+	display: grid;
+	min-width: 100%;
+	overflow-wrap: break-word;
+	background: transparent;
+	padding: 0;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 22px;
+	color: #000;
+	@apply font-code;
 }
-.line {
-	@apply pl-4;
+
+[data-rehype-pretty-code-fragment] .line {
+	padding-left: 1rem;
 }
+
 [data-rehype-pretty-code-fragment] .line.highlighted {
 	@apply bg-gray-500 bg-opacity-10 dark:bg-gray-800;
 }
 
 [data-rehype-pretty-code-fragment] .word-highlighted {
-	@apply rounded-[4px] bg-gray-500 bg-opacity-30 px-1 py-[3px] dark:bg-gray-800;
+	border-radius: 4px;
+	padding: 3px 4px;
+	@apply bg-gray-500 bg-opacity-30 dark:bg-gray-800;
 }
 
-code > .line::before {
+[data-rehype-pretty-code-fragment] code > .line::before {
 	counter-increment: line;
 	content: counter(line);
-	@apply mr-8 inline-block w-4 text-right font-code text-gray-500 dark:text-gray-300;
 	display: inline-block;
 	width: 1rem;
-	margin-right: 1rem;
+	margin-right: 2rem;
 	text-align: right;
-	color: gray;
-}
-
-code .line {
-	@apply pl-4;
-}
-
-.blog-content {
-	@apply text-[0.95rem];
-}
-
-.blog-content p {
-	@apply mb-3 leading-6;
-}
-
-aside p {
-	@apply !mb-0;
-}
-
-aside p:not(:last-child) {
-	@apply !mb-2;
-}
-
-.blog-content h2 {
-	@apply mb-5 mt-10 border-b border-gray-100 text-[1.2rem] font-semibold leading-loose tracking-small dark:border-gray-800 md:text-[1.4rem];
-}
-
-.blog-content h3 {
-	@apply mb-5 mt-6 text-[1rem] font-medium leading-loose tracking-small md:text-[1.1rem];
-}
-
-.blog-content p code {
-	@apply inline-block rounded-md bg-gray-100 px-1 text-[13px] font-semibold tracking-small text-red-500 dark:bg-gray-700 dark:text-red-400;
-}
-
-.blog-content a code {
-	@apply inline-block rounded-md bg-gray-100 px-1 text-[13px] font-semibold tracking-small text-red-500 dark:bg-gray-700 dark:text-red-400;
-}
-
-.blog-content a {
-	@apply font-medium leading-4 text-black underline underline-offset-2 dark:text-white;
-}
-
-.blog-content strong {
-	@apply font-medium text-black dark:text-white;
-}
-
-.blog-content ul {
-	@apply list-inside list-disc pl-4 leading-6;
-}
-
-.blog-content li {
-	@apply mb-3 marker:text-gray-700 dark:marker:text-gray-200;
+	@apply font-code text-gray-500 dark:text-gray-300;
 }
 
 [data-rehype-pretty-code-title] + pre {
-	@apply mt-0 rounded-t-none;
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
-aside ul {
-	@apply !list-none pl-4;
+aside p {
+	margin-bottom: 0 !important;
 }
 
-aside li {
-	@apply !mb-0 marker:text-gray-700 dark:marker:text-gray-200;
-}
-aside li:not(:last-child) {
-	@apply !mb-2;
+aside p:not(:last-child) {
+	margin-bottom: 0.5rem !important;
 }
 
-aside li:before {
-	content: '\2013';
-	position: absolute;
-	margin-left: -20px;
+.blog-content p code,
+.blog-content a code {
+	display: inline-block;
+	border-radius: 0.375rem;
+	padding: 0 4px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.025rem;
+	@apply bg-gray-100 text-red-500 dark:bg-gray-700 dark:text-red-400;
 }
 
 .warning code {
 	@apply dark:!bg-gray-800 dark:!text-red-500;
 }
 
-aside strong + ul {
-	color: white !important;
-}
-
 .anchor {
-	@apply absolute mt-[14px] !no-underline;
+	position: absolute;
+	text-decoration-line: none;
 	margin-left: 10px;
 	cursor: pointer;
 }
 
-h3 .anchor {
-	@apply mt-[10px];
+.anchor:before {
+	content: '#';
+	@apply text-gray-300 dark:text-gray-500;
 }
 
-.anchor:before {
-	@apply text-gray-300 dark:text-gray-500;
-	content: '#';
+.info a,
+.info strong {
+	@apply text-[#002342] dark:text-[#f0f8ff];
+}
+
+.warning a,
+.warning strong {
+	@apply text-[#4d0013] dark:text-[#fefafb];
+}
+
+.warning [data-rehype-pretty-code-fragment],
+.info [data-rehype-pretty-code-fragment],
+.resources [data-rehype-pretty-code-fragment] {
+	margin: 1rem 0;
+}
+
+.warning [data-rehype-pretty-code-fragment] pre,
+.info [data-rehype-pretty-code-fragment] pre,
+.resources [data-rehype-pretty-code-fragment] pre {
+	margin: 0;
 }
 
 body::-webkit-scrollbar-track {
@@ -226,38 +207,4 @@ pre::-webkit-scrollbar {
 pre::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	@apply bg-gray-200 dark:bg-gray-600;
-}
-
-.blog-content ul {
-	@apply mb-3 !list-none !pl-8;
-}
-
-.blog-content li {
-	@apply !mb-[6px] leading-6 marker:text-gray-700 dark:marker:text-gray-200;
-}
-
-.blog-content li:before {
-	content: '\2013';
-	position: absolute;
-	margin-left: -20px;
-}
-
-.info a,
-.info strong {
-	@apply text-[#002342] dark:text-[#f0f8ff];
-}
-
-.warning a,
-.warning strong {
-	@apply text-[#4d0013] dark:text-[#fefafb];
-}
-
-.warning [data-rehype-pretty-code-fragment],
-.info [data-rehype-pretty-code-fragment] {
-	@apply my-4;
-}
-
-.warning [data-rehype-pretty-code-fragment] pre,
-.info [data-rehype-pretty-code-fragment] pre {
-	@apply my-0;
 }
