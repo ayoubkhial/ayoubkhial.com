@@ -14,7 +14,7 @@ type Props = {
 };
 
 const getPost = (slug: string): Post | undefined => {
-	return allPosts.find(post => post._raw.flattenedPath === slug);
+	return allPosts.find(post => post._raw.flattenedPath.toLowerCase() === slug.toLowerCase());
 };
 
 export function generateMetadata({ params }: Props): Metadata {
