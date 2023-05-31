@@ -1,4 +1,4 @@
-import { MDXIcon, NextIcon, TailwindIcon, VercelIcon } from '@components/icons';
+import { EmailIcon, GithubIcon, RSSIcon, TwitterIcon } from '@components/icons';
 import Theme from '@components/theme';
 import Logo from '@public/img/logo.svg';
 import { Analytics } from '@vercel/analytics/react';
@@ -99,42 +99,17 @@ const Footer = () => {
 	return (
 		<footer className="flex flex-col items-center justify-center gap-4 py-4">
 			<div className="flex items-center justify-center gap-6 font-medium leading-none">
-				<a
-					href="https://nextjs.org/"
-					target="_blank"
-					rel="noopener noreferrer"
-					aria-label="Next.js"
-					className="fill-[#555] hover:fill-black dark:fill-[#999] dark:hover:fill-black"
-				>
-					<NextIcon />
+				<a href="https://www.github.com/ayoubkhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+					<GithubIcon />
 				</a>
-
-				<a
-					href="https://vercel.com/"
-					target="_blank"
-					rel="noopener noreferrer"
-					aria-label="Vercel"
-					className="fill-[#555] hover:fill-black dark:fill-[#999] dark:hover:fill-black"
-				>
-					<VercelIcon />
+				<a href="https://www.twitter.com/ayoubkhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+					<TwitterIcon />
 				</a>
-				<a
-					href="https://tailwindcss.com/"
-					target="_blank"
-					rel="noopener noreferrer"
-					aria-label="Tailwind"
-					className="fill-[#555] hover:fill-[#44a8b3] dark:fill-[#999] dark:hover:fill-[#44a8b3]"
-				>
-					<TailwindIcon />
+				<a href="mailto:ayouub.khial@gmail.com" rel="noopener noreferrer" target="_blank" className="flex items-center gap-2">
+					<EmailIcon />
 				</a>
-				<a
-					href="https://mdxjs.com/"
-					target="_blank"
-					rel="noopener noreferrer"
-					aria-label="MDX"
-					className="group/icon fill-[#555] hover:fill-black dark:fill-[#999] dark:hover:fill-white"
-				>
-					<MDXIcon />
+				<a href="/rss.xml" rel="noopener noreferrer" target="_blank" className="flex items-center gap-2">
+					<RSSIcon />
 				</a>
 			</div>
 			<div>
