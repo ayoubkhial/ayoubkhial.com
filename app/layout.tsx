@@ -1,4 +1,5 @@
 import { EmailIcon, GithubIcon, RSSIcon, TwitterIcon } from '@components/icons';
+import NavLink from '@components/nav-link';
 import Theme from '@components/theme';
 import Logo from '@public/img/logo.svg';
 import { Analytics } from '@vercel/analytics/react';
@@ -78,6 +79,11 @@ const inconsolata = Inconsolata({
 	variable: '--font-code'
 });
 
+const links = [
+	{ num: '01', label: 'Home', path: '/', targetSegment: null },
+	{ num: '02', label: 'Writing', path: '/blog', targetSegment: 'blog' }
+];
+
 const Header = () => {
 	return (
 		<header
@@ -85,10 +91,19 @@ const Header = () => {
 			bg-background pl-4 pr-7 md:static md:h-auto md:w-auto md:px-4 md:pt-6"
 		>
 			<div className="flex h-full items-center justify-between">
-				<div className="flex flex-col gap-9">
+				<div className="flex items-center gap-12">
 					<Link href="/" className="md:block" prefetch={false}>
 						<Image src={Logo} alt="Ayoub khial logo" width="40" height="40" />
 					</Link>
+					<nav>
+						<ul className="flex items-center gap-8 md:text-sm">
+							{links?.map((link, index) => (
+								<li key={index}>
+									<NavLink {...link} />
+								</li>
+							))}
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</header>
