@@ -18,6 +18,7 @@ export default (async function PostHighlight({ post }: Props) {
 		<Link
 			className="w-full rounded-lg bg-gray-50 p-5 duration-300 hover:bg-gray-100 dark:bg-[#212736] dark:hover:bg-[#262d40]"
 			href={`/blog/${post.slug}`}
+			prefetch={false}
 		>
 			<div className="flex flex-col gap-[0.6rem]">
 				<h3 className="font-heading text-sm font-medium tracking-wider md:text-[1.1rem]">{post.title}</h3>

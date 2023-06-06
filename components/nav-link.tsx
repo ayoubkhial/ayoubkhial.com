@@ -33,6 +33,7 @@ export default function NavLink(props: Props) {
 				md:text-sm ${activeSegment === targetSegment ? 'text-primary' : ''}
 			`}
 			onClick={samePage ? scrollTo : undefined}
+			prefetch={false}
 		>
 			<span className="font-heading text-sm font-bold tracking-wider md:text-base md:font-extrabold">{num}.</span> {label}
 		</Link>

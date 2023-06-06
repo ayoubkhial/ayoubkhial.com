@@ -58,7 +58,7 @@ export default function Home() {
 						<LinkedinIcon />
 						<span className="text-[#0d65c2] hover:underline hover:underline-offset-2">Linkedin</span>
 					</a>
-					<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+					<a href="/resume.pdf" className="flex items-center gap-2" download>
 						<ResumeIcon />
 						<span className="text-primary hover:underline hover:underline-offset-2">Resume</span>
 					</a>
