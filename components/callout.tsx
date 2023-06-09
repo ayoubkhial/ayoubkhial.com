@@ -24,7 +24,7 @@ export default function callout({ type, children }: Props) {
 			} px-5 py-4 `}
 		>
 			<div>{type === 'INFO' ? <InfoIcon /> : type === 'WARNING' ? <WarningIcon /> : <ResourcesIcon />}</div>
-			<div className={`${textColorVariants[color]} pt-[2px]`}>
+			<div className={`${textColorVariants[color]} overflow-x-auto pt-[2px]`}>
 				{type === 'RESOURCES' && <h4 className="mb-4 text-base font-semibold tracking-small">Read more</h4>}
 				{children}
 			</div>

@@ -141,6 +141,10 @@ aside p:not(:last-child) {
 	@apply bg-gray-100 text-red-500 dark:bg-gray-700 dark:text-red-400;
 }
 
+.blog-content aside a {
+	display: inline;
+}
+
 .warning code {
 	@apply dark:!bg-gray-800 dark:!text-red-500;
 }

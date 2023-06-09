@@ -28,14 +28,13 @@ export default function NavLink(props: Props) {
 		<Link
 			href={path}
 			className={`
-				text-xs font-semibold tracking-normal after:block after:scale-x-0 after:border-b-[1.5px] after:border-solid after:border-primary after:transition-transform
-				after:duration-300 after:ease-in-out after:content-[''] hover:after:scale-x-100
-				md:text-sm ${activeSegment === targetSegment ? 'text-primary' : ''}
+				text-sm font-normal tracking-wider underline decoration-transparent decoration-[1.5px] underline-offset-4 transition-colors duration-300 hover:decoration-inherit
+				md:text-base ${activeSegment === targetSegment ? 'text-primary' : ''}
 			`}
 			onClick={samePage ? scrollTo : undefined}
 			prefetch={false}
 		>
-			<span className="font-heading text-sm font-bold tracking-wider md:text-base md:font-extrabold">{num}.</span> {label}
+			<span className="font-heading text-base font-bold tracking-wider md:text-[17px] md:font-extrabold">{num}.</span> {label}
 		</Link>
 	);
 }

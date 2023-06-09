@@ -21,7 +21,7 @@ export default function Home() {
 					I’m a full-stack engineer specializing in building beautiful and minimalist web experiences. Currently, I’m helping
 					build a centered business solution as a MEAN stack developer at{' '}
 					<a
-						className="text-primary hover:underline hover:underline-offset-2"
+						className="text-primary underline decoration-transparent decoration-[1.2px] underline-offset-[3px] transition-colors duration-300 hover:decoration-inherit"
 						href="https://www.irevolution.com"
 						target="_blank"
 						rel="noopener noreferrer"
