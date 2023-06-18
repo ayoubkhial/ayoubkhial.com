@@ -64,7 +64,7 @@ export default function Post({ params }: Props) {
 	const post = getPost(slug);
 	if (!post) throw new Error('This post is not exist.');
 	incrementPostViews(slug);
-	const Component = getMDXComponent(post.body.code!);
+	const Component: any = getMDXComponent(post.body.code!);
 	return (
 		<>
 			<article className="mt-28 px-4 md:mt-24">
