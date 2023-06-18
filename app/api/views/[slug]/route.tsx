@@ -1,4 +1,5 @@
 import { queryBuilder } from '@lib/planetscale';
+import { UpdateResult } from 'kysely';
 import { NextRequest, NextResponse } from 'next/server';
 
 const GET = async (_: NextRequest, context: { params: { slug: string } }) => {
@@ -12,12 +13,14 @@ const GET = async (_: NextRequest, context: { params: { slug: string } }) => {
 
 const PUT = async (_: NextRequest, context: { params: { slug: string } }) => {
 	const { slug } = context.params;
-	const data = await queryBuilder
+	console.log(slug);
+	const data: UpdateResult = await queryBuilder
 		.updateTable('PostInfo')
 		.set(eb => ({ views: eb.bxp('views', '+', 1) }))
 		.where('slug', '=', slug)
 		.executeTakeFirst();
-	return NextResponse.json({ updated: data.numUpdatedRows });
+	console.log(data.numUpdatedRows);
+	return NextResponse.json({ updated: Number(data.numUpdatedRows) });
 };
 
 export { GET, PUT };
