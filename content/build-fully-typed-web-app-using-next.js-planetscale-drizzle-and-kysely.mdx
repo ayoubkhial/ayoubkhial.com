@@ -1,0 +1,732 @@
+---
+title: 'Build a fully typed web app using Next.js, PlanetScale, Drizzle, and Kysely'
+publishedAt: '2023-06-26'
+description: 'Harness the power of PlanetScale, Drizzle ORM, and Kysely Query Builder to develop a scalable fy-ully-typed web app.'
+keywords: "Next.js,planetscale,drizzle,kysely"
+published: true
+---
+
+When it comes to web development, choosing the right tools and technologies is crucial for creating
+robust and scalable applications. If you're working with a Next.js app based on TypeScript and searching
+for a reliable database solution, combining [PlanetScale](https://planetscale.com/),
+[Drizzle ORM](https://orm.drizzle.team/), and [Kysely](https://kysely.dev/) can be a mighty stack.
+
+- **PlanetScale** offers a highly available and scalable MySQL-based database, ideal for horizontally
+scalable applications.
+- **Drizzle ORM** is a TypeScript ORM for SQL databases, ensures maximum type safety, and provides a
+convenient CLI tool, Drizzle Kit, for defining table schemas and generating SQL migrations effortlessly.
+- **Kysely** is a type-safe TypeScript SQL query builder that complements the stack by simplifying the
+process of constructing SQL queries.
+
+You can develop scalable, type-safe, and efficient applications by combining PlanetScale, Drizzle ORM,
+and Kysely with Next.js based on TypeScript. Whether your project is small or large-scale, this stack
+empowers you to handle complex data operations while maintaining a clean and maintainable codebase.
+
+## What is PlanetScale?
+
+[PlanetScale](https://planetscale.com/) is a super cool database-as-a-service platform based on
+[Vitess](https://vitess.io/), the same technology that powers YouTube, Slack, and other mega-scale
+companies. It gives you a serverless MySQL-compatible database with an awesome Git-like development
+experience. Managing databases becomes a breeze with PlanetScale, and it scales like a champ while
+delivering top-notch performance.
+
+Here are some benefits of using PlanetScale:
+
+- **Horizontal sharding:** Scale your data horizontally across multiple servers effortlessly.
+- **Non-blocking schema changes:** Make schema changes without impacting or locking database availability.
+- **Branching workflow:** Manage different branches for development, testing, and production
+environments, just like Git.
+- **Multiple regions:** Optimize performance by distributing your database closer to users in the
+ different areas, reducing latency at the edge.
+
+<Callout type="WARNING">
+The PlanetScale hobby plan provides a single database with **one production** and **one development**
+branch. If you require multiple development branches, such as for different environments, you must
+upgrade your plan to accommodate them separately.
+
+[See more information](https://planetscale.com/pricing)
+</Callout>
+
+## Setup PlanetScale account and create your first database
+
+To get started, we need to create a PlanetScale account. You have two options: visit the official website
+and click the **Get Started** button or follow [this link](https://auth.planetscale.com/sign-up).
+
+<AdaptiveImage alt={'PlanetScale signup page'} src={'/img/blog/3/1.webp'} width={768} height={719.06} />
+
+You have two options for creating an account: sign up with your email and password or use your GitHub
+account. In this tutorial, I'll be using the GitHub account signup method.
+
+Upon signing up, you will receive a verification email. Click on the link within the email to confirm
+your account, regardless of your chosen signup method.
+
+<AdaptiveImage alt={'PlanetScale signup verification'} src={'/img/blog/3/2.webp'} width={768} height={719.06} />
+
+Once you click on the confirmation link, you'll be taken through an onboarding flow that highlights the
+amazing features of PlanetScale and provides guidance on how to use them. At the end of the flow,
+you'll see a button that says, **Create your first database**. Click on it and give your database a name
+(I'll go with **movies**).
+
+<AdaptiveImage alt={'Create your first database on PlanetScale'} src={'/img/blog/3/3.webp'} width={768} height={719.06} />
+
+<Callout type="WARNING">
+Ensure that you choose the region closest to your serverless function. This selection will help in
+minimizing latency and improving overall performance.
+</Callout>
+
+<Callout type="INFO">
+Instead of using the dashboard, you can use the PlanetScale CLI to create your initial branch.
+Run the following command: `pscale database create movies --region us-east`. We'll explore the
+PlanetScale CLI in more detail, including its features and capabilities.
+</Callout>
+
+Once you've provided a name for your first database, PlanetScale will start the initialization process.
+This may take a couple of minutes to complete.
+
+After the initialization is done, you'll land on the homepage of your database. This page provides an
+overview of your database and relevant details. It is the central hub for managing and interacting with
+your database within the PlanetScale platform.
+
+<AdaptiveImage alt={'PlanetScale dashboard'} src={'/img/blog/3/4.webp'} width={768} height={719.06} />
+
+## PlanetScale CLI
+The [PlanetScale CLI](https://planetscale.com/features/cli) is a handy command-line tool provided by
+PlanetScale to make your life easier. Its user-friendly interface allows you to interact with your
+PlanetScale databases, perform various operations, and seamlessly manage your databases, branches,
+and deployments. With the CLI, you can execute schema changes, create deploy requests, and more
+effortlessly. It's a valuable companion that streamlines your workflow and enhances your overall
+experience with PlanetScale databases.
+
+Using macOS, you can conveniently install the PlanetScale CLI using the
+[Brew package manager](https://brew.sh/). Just run the following command:
+
+```bash
+brew install planetscale/tap/pscale
+```
+
+Please follow [the instructions](https://github.com/planetscale/cli#installation) for non-macOS users
+to install the PlanetScale CLI on your respective operating system.
+
+To confirm that the installation process was successful, you can run the following command:
+
+```bash
+pscale version
+```
+
+Upon running this command, you should see the version of your PlanetScale CLI printed in the terminal,
+similar to the following output:
+
+```bash
+pscale version 0.146.0 (build date: 2023-06-06T15:12:18Z commit: 48fec66)
+```
+
+<Callout type="WARNING">
+Before using commands like `pscale shell`, ensure MySQL is installed on your system. If you're using
+macOS, you can install MySQL by running the following command: `brew install mysql-client`.
+</Callout>
+
+To authenticate and log in to your PlanetScale account using the CLI, execute the following command:
+
+```bash
+pscale auth login
+```
+
+After executing the command, a new browser tab will open and prompt you to sign in via the browser.
+You will be asked to verify the device confirmation code displayed in your terminal.
+
+<AdaptiveImage alt={'PlanetScale confirmation code'} src={'/img/blog/3/5.webp'} width={768} height={719.06} />
+
+You should see a Successfully logged-in message displayed in your terminal once you clickthe
+**Confirm code** button.
+
+When we created a **movies** database in the previous section, it came with a default development
+branch called **main**. As mentioned, you can have one production and one development branch in the
+free plan. Let's promote the **main** branch as a production branch.
+
+```bash
+pscale branch promote movies main
+```
+
+Ensure that you enable **safe migrations** on your production branch as well. This will grant you or
+your team the ability to create deploy requests.
+
+<AdaptiveImage alt={'PlanetScale enable safe migrations'} src={'/img/blog/3/14.webp'} width={768} height={719.06} />
+
+<Callout type="INFO">
+A production branch adds an extra layer of protection for schema changes, just like a protected git
+branch. It ensures that any modifications or schema changes must go through a pull request for review
+and approval. This helps maintain the integrity and stability of the production environment.
+
+[Read more about PlanetScale Branching](https://planetscale.com/docs/concepts/branching)
+</Callout>
+
+<Callout type="INFO">
+By default, the CLI is disabled for production branches, but you can enable it in your database settings
+if desired. This gives you the flexibility to use the CLI for operations on your production branch
+when necessary.
+
+<AdaptiveImage alt={'PlanetScale activate console on production branches'} src={'/img/blog/3/6.webp'} width={768} height={719.06} />
+</Callout>
+
+Now, let's create a new **dev** branch for our development environment. This branch will be
+specifically dedicated to our development work and experimentation.
+
+```bash
+pscale branch create movies dev
+```
+
+If you go to your PlanetScale dashboard, you can view the newly created **dev** branch listed among
+your branches.
+
+<AdaptiveImage alt={'PlanetScale branches list'} src={'/img/blog/3/7.webp'} width={768} height={719.06} />
+
+Here are some other helpful `pscale` commands worth noting:
+
+- `pscale shell`: Open a MySQL shell for a specific branch and database. Here, you can execute various
+MySQL commands like `show databases`.
+- `pscale database`: Manage the entire lifecycle of your database. Think of it as your database's CRUD
+interface.
+- `pscale branch`: Manage your branches and make schema changes.
+
+These commands, among others, offer valuable functionality that can simplify your database management tasks.
+
+See the complete command list with the documentation on
+[PlanetScale CLI reference](https://planetscale.com/docs/reference/planetscale-cli#available-commands).
+
+<Callout type="INFO">
+You can directly access the PlanetScale CLI web console within your PlanetScale database. Go to
+the Console tab and choose the dev branch.
+
+<AdaptiveImage alt={'PlanetScale web console'} src={'/img/blog/3/8.webp'} width={768} height={719.06} />
+</Callout>
+
+## Create a TypeScript-based Next.js app
+
+Create a new **Next.js** app by executing the following command:
+
+```bash
+npx create-next-app@latest
+```
+
+During the installation process, you will encounter the following prompts:
+
+```bash
+Need to install the following packages:
+  create-next-app@13.4.5
+Ok to proceed? (y) y
+✔ What is your project named? … favorite-movies
+✔ Would you like to use TypeScript with this project? … No / Yes
+✔ Would you like to use ESLint with this project? … No / Yes
+✔ Would you like to use Tailwind CSS with this project? … No / Yes
+✔ Would you like to use `src/` directory with this project? … No / Yes
+✔ Use App Router (recommended)? … No / Yes
+✔ Would you like to customize the default import alias? … No / Yes
+```
+
+Make sure to select the **TypeScript** option during the app creation process, and feel free to include
+other technologies like ESLint and Tailwind CSS as per your needs.
+
+Once you have responded to the prompts, the `create-next-app` command will create a new folder with the
+specified project name and automatically install the required dependencies.
+
+<Callout type="WARNING">
+Utilizing the app router to leverage the latest features provided by Next.js is highly recommended.
+</Callout>
+
+To ensure the proper initialization of your app, run the following command in the root folder of your
+project.
+
+```bash
+npm run dev
+```
+
+## Connect your Next.js app to a PlanetScale database
+
+Go to your PlanetScale dashboard and find the **dev** branch in the **Branches** tab. Click on
+the **Connect** button located at the top right corner. You will be asked to choose a name for your
+connection password. Leave the Branch and Role settings as they are by default.
+
+<AdaptiveImage alt={'PlanetScale create database password'} src={'/img/blog/3/9.webp'} width={768} height={719.06} />
+
+<Callout type="INFO">
+In the same branch, you can create multiple passwords to manage access rights for different developers.
+This gives you the flexibility to grant specific permissions based on their roles or requirements. By
+creating various passwords, you can ensure that developers have the necessary access privileges while
+maintaining security.
+
+[Read more about the password roles concept](https://planetscale.com/docs/concepts/password-roles)
+</Callout>
+
+Choose the **Connect with Node.js** option and securely save the provided string. This string will be
+required when connecting your Next.js application to the PlanetScale database.
+
+<AdaptiveImage alt={'PlanetScale connection string'} src={'/img/blog/3/10.webp'} width={768} height={719.06} />
+
+<Callout type="WARNING">
+Make sure to securely store these connection details, as PlanetScale automatically hides your password
+once it is initially generated.
+</Callout>
+
+Create a `.env` file at the root of your project folder. In this file, store the database string
+obtained from PlanetScale. This string will securely establish the connection between your project and
+the PlanetScale database.
+
+```bash
+DATABASE_URL='mysql://41n034teqmu82iodgr83:pscale_pw_ImHo71aUxU6iC9Z2OY6CwyxlYuO5WoECi7xFDJAWTO6@aws.connect.psdb.cloud/movies?ssl={"rejectUnauthorized":true}'
+```
+
+<Callout type="WARNING">
+Make sure to add the `.env` file to the `.gitignore` to prevent committing this file to source control, as it may
+contain sensitive information.
+</Callout>
+
+## Drizzle ORM
+
+[Drizzle ORM](https://orm.drizzle.team/) is a TypeScript ORM for SQL databases that prioritizes type
+safety. It follows a familiar SQL-like syntax and catches errors at compile time. With Drizzle ORM, you
+can enjoy the convenience of automatic SQL migrations and seamless integration with any TypeScript project.
+
+Instead of manually creating tables using the PlanetScale CLI (`pscale shell`), we can define our table
+schemas using Typescript interfaces. With the help of the
+[Drizzle Kit](https://orm.drizzle.team/kit-docs/overview) (more on this later), we can effortlessly push
+these defined tables into our PlanetScale database. This approach provides a convenient and efficient
+way to manage and synchronize our table structures.
+
+Let's begin by installing the following dependencies:
+
+```bash
+npm install @planetscale/database drizzle-orm
+```
+
+Next, we'll create a schema file called `schema.ts` within the `lib` folder.
+
+```ts showLineNumbers title="lib/schema.ts"
+import { InferModel } from 'drizzle-orm';
+import { int, mysqlTable, serial, varchar } from 'drizzle-orm/mysql-core';
+
+export const movies = mysqlTable('movies', {
+	id: serial('id').primaryKey(),
+	title: varchar('title', { length: 256 }).notNull(),
+	releaseYear: int('releaseYear'),
+	rating: int('rating'),
+});
+
+export type Movie = InferModel<typeof movies>;
+```
+
+Here, we are defining a schema for the `movies` table using the **mysql-core** package provided by drizzle-orm. This package offers the necessary data types to define our schema.
+
+<Callout type="INFO">
+- Feel free to use different names for the `schema.ts` file and the `lib` folder if you prefer. This is
+just a common convention followed by the community.
+- You can use different property names than the actual column names in the database. For instance, you
+can define a property like `title: varchar('name', { length: 256 }).notNull()`. This allows you to
+reference the column by using the `title` property instead of the actual column `name`.
+</Callout>
+
+Additionally, it is necessary to install [Drizzle Kit](https://orm.drizzle.team/kit-docs/overview), a CLI
+tool that complements Drizzle ORM. Drizzle Kit enables the generation of migrations and facilitates
+database prototyping.
+
+Install it as a dev dependency ,as we will use it through the terminal.
+
+```bash
+npm install -D drizzle-kit
+```
+
+To configure Drizzle Kit, we need to create a Drizzle configuration file. This file specifies the schema
+file location and the database connection URI. It enables Drizzle Kit to generate SQL prototyping and
+migrations.
+
+Create a new file named `drizzle.config.ts` in the root folder of your application:
+
+```ts showLineNumbers title="drizzle.config.ts"
+import type { Config } from 'drizzle-kit';
+
+export default {
+	schema: './lib/schema.ts',
+	out: './drizzle-output',
+	connectionString: process.env.DATABASE_URL,
+} satisfies Config;
+```
+
+We specify the schema file, connection string, and the desired location for the generated migration file.
+
+<Callout type="INFO">
+You have the option to use separate files for each **schema** by modifying the schema property to
+`schema: "./src/schema/*"`. This allows you to have individual schema files for each table in your
+application.
+
+```bash
+└── lib
+	    └── schema
+		    └── movie.ts
+		    └── actor.ts
+```
+</Callout>
+
+The generated migration file will have an SQL extension and contain the SQL commands required to create
+the table.
+
+```sql
+CREATE TABLE `movies` (
+	`id` serial AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	`title` varchar(256) NOT NULL,
+	`releaseYear` int,
+	`rating` int DEFAULT 1);
+
+```
+
+
+The drizzle kit offers various commands, and we'll use the *push* command to push the **movies** table
+into our PlanetScale database.
+
+Add a new script called `db:push` in the list of scripts in your `package.json` file.
+
+```json {8} showLineNumbers
+{
+	...
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"db:push": "drizzle-kit push:mysql --config=drizzle.config.ts"
+	},
+	"dependencies": {
+		...
+	},
+	"devDependencies": {
+		...
+	}
+}
+```
+
+Now, to execute the script, run the following command:
+
+```bash
+npm run db:push
+```
+
+You should see a successful message in your terminal indicating the changes have been applied.
+
+Go to the PlanetScale dashboard and visit the "dev" branch. You will notice that our table has been
+successfully created.
+
+<AdaptiveImage alt={'PlanetScale database schema changes'} src={'/img/blog/3/11.webp'} width={768} height={719.06} />
+
+Now, we will create some records using the PlanetScale CLI, specifically the integrated MySQL shell, to
+demonstrate its functionality.
+
+Run the following command:
+
+```bash
+pscale shell movies dev
+```
+
+This will prompt the shell. Here we can use a plain SQL language to create our first record:
+
+```bash
+INSERT INTO movies (title, releaseYear, rating) VALUES ('Scarface', 1983, 10);
+```
+
+Use the `SELECT` operation to check if the record has been successfully registered.
+
+```bash
+SELECT * FROM movies;
++----+----------+-------------+--------+
+| id | title    | releaseYear | rating |
++----+----------+-------------+--------+
+|  1 | Scarface |        1983 |     10 |
++----+----------+-------------+--------+
+```
+
+You can also see that the new record is displayed in the PlanetScale dashboard.
+
+<AdaptiveImage alt={'PlanetScale dashboard statistics'} src={'/img/blog/3/12.webp'} width={768} height={719.06} />
+
+<Callout type="WARNING">
+Since the usage statistics displayed in the PlanetScale Dashboard are updated hourly, the record may take some
+time to appear.
+</Callout>
+
+While utilizing an ORM such as Drizzle for query building is possible, it's essential to consider their
+limitations, especially when dealing with complex queries. Additionally, these ORMs can impact performance.
+
+
+Introducing [Kysely](https://kysely.dev/), A type-safe SQL query builder.
+
+## Kysely Query builder
+
+[Kysely](https://kysely.dev/) is a type-safe TypeScript SQL query builder that makes writing SQL queries
+easier and less error-prone. It works seamlessly with TypeScript, providing autocompletion and type
+safety based on your database schema. It supports popular databases like MySQL, PostgreSQL, and SQLite;
+it also supports 3rd party dialects like PlanetScale and SurrealDB, eliminating the need for additional
+engine binaries.
+
+Install Kysely dependency by running the following command:
+
+```bash
+npm install kysely
+```
+
+We will also need to install the [PlanetScale dialect](https://github.com/depot/kysely-planetscale) for
+the Kysely SQL query builder that enables compatibility with PlanetScale's MySQL-based database.
+
+```bash
+npm install kysely-planetscale
+```
+
+Create a new file called `kysely.js` in the `lib` folder and add the following code:
+
+```ts showLineNumbers title="lib/kysely.ts"
+import { Kysely } from 'kysely';
+import { PlanetScaleDialect } from 'kysely-planetscale';
+import { Kyselify } from 'drizzle-orm/kysely';
+import { movies } from './schema';
+
+interface Database {
+	movies: Kyselify<typeof movies>;
+}
+
+export const queryBuilder = new Kysely<Database>({
+	dialect: new PlanetScaleDialect({
+		url: process.env.DATABASE_URL,
+	}),
+});
+```
+
+We use the `kyselify` utility to register typescript interfaces to Kysely table objects.
+
+We can now execute queries against the PlanetScale database with the dialect configured. In the next
+section, we will create a simple user interface to display a list of movies retrieved from our database.
+
+## Kysely in action
+
+Let's create a simple UI for displaying a static movie list. Modify the content of the `page.tsx` file
+located in the `app` folder to the following code snippet:
+
+```tsx showLineNumbers
+export default function Home() {
+	return (
+		<main>
+			<div className="container">
+				<div className="table">
+					<div className="table-header">
+						<div className="header__item">
+							<span id="name" className="filter__link">
+								Title
+							</span>
+						</div>
+						<div className="header__item">
+							<span className="filter__link">Release year</span>
+						</div>
+						<div className="header__item">
+							<span className="filter__link">Rating</span>
+						</div>
+					</div>
+					<div className="table-content">
+						<div className="table-row">
+							<div className="table-data">title example</div>
+							<div className="table-data">2023</div>
+							<div className="table-data">7</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	);
+}
+```
+
+Please refer to [this file](https://github.com/ayoubkhial/fully-typed-next.js-planetscale-drizzle-kysely/blob/main/app/globals.css)
+to get the CSS code. It's a little large and trivial to put here.
+
+There are two approaches to using Kysely in a Next.js app. We can directly call it in the `app.tsx`
+file or create an API endpoint that returns the movies and then call that endpoint in the `app.tsx`
+file using the `fetch` method.
+
+Let's start with the easy one, calling Kysely directly on `page.tsx`.
+
+```tsx {4, 13-19} showLineNumbers
+import { queryBuilder } from '@/lib/planetscale';
+
+export default async function Home() {
+	const movies = await queryBuilder.selectFrom('movies').selectAll().execute();
+	return (
+		<main>
+			<div className="container">
+				<div className="table">
+					<div className="table-header">
+						...
+					</div>
+					<div className="table-content">
+						{movies.map((movie) => (
+							<div className="table-row">
+								<div className="table-data">{movie.title}</div>
+								<div className="table-data">{movie.releaseYear}</div>
+								<div className="table-data">{movie.rating}</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</main>
+	);
+}
+```
+
+As you can see, we call the `queryBuilder` from the server component directly and treat it as any
+async function.
+
+The Kysely SQL builder utilizes method chaining to compose SQL commands. To become familiar with the
+syntax, you can use the [Kysely playground](https://kysely.dev/docs/playground). Additionally, you can
+explore [these examples](https://kysely.dev/docs/category/examples) provided by Kysely to discover
+more methods.
+
+Navigate to `localhost:3000` in your web browser to see the list of movies retrieved from the database.
+
+<AdaptiveImage alt={'Movies list'} src={'/img/blog/3/13.webp'} width={768} height={719.06} />
+
+The approach described above is simpler and more straightforward for smaller applications. However,
+for larger applications with complex data retrieval requirements, it is better to use the route API
+approach to separate the database logic from the UI components, resulting in a more modular and
+maintainable codebase. Additionally, using the API allows you to fully leverage the enhanced `fetch`
+function, which provides caching capabilities, among other benefits.
+
+Under the `api` folder, please create a new folder called `movies` and add a file named `route.ts`.
+
+```bash
+└── app
+	    └── api
+	        └── movies
+		        └── route.ts
+```
+
+Since Next.js utilizes the folder structure to associate paths with each endpoint, any endpoint defined
+inside the `route.ts` file will be accessed via the path `/api/movies`.
+
+Let's add a `GET` method:
+
+```ts showLineNumbers title="app/api/movies/route.ts"
+import { queryBuilder } from '@/lib/planetscale';
+import { NextRequest, NextResponse } from 'next/server';
+
+const GET = async (_: NextRequest) => {
+	const movies = await queryBuilder.selectFrom('movies').selectAll().execute();
+	return NextResponse.json(movies);
+};
+
+export { GET };
+```
+
+We are using the same query builder command as on the `page.tsx` file.
+
+Now, on the `page.tsx` file, we can use the `fetch` method to call this endpoint.
+```tsx {3-13, 16} showLineNumbers
+import { Movie } from '@/lib/schema';
+
+const getMovies = async (): Promise<Movie[]> => {
+	try {
+		const response = await fetch(`http://localhost:3000/api/movies`, {
+			next: { revalidate: 3600 },
+		});
+		const movies: Movie[] = await response.json();
+		return movies;
+	} catch (error: any) {
+		throw new Error(error.message);
+	}
+};
+
+export default async function Home() {
+	const movies = await getMovies();
+	return (
+		...
+	);
+}
+```
+
+You may notice the extra parameter we are passing to `fetch`. This parameter is not supported by the
+native `fetch` method. Next.js extends the `fetch` options object to enable each request to set its own
+caching and revalidating.
+
+<Callout type="WARNING">
+By default, when the `revalidate` property is not set in the `fetch` method, the fetched data is
+automatically cached indefinitely, meaning subsequent requests for the same data will be served from
+the cache without making additional network requests.
+</Callout>
+
+<Callout type="INFO">
+You can use the `cache: 'no-store'` option to ensure that new data is fetched on every fetch request
+and prevent caching. By setting this option, each request will bypass the cache and retrieve the latest
+data directly from the server.
+</Callout>
+
+## Deploying to Vercel
+
+The **dev** branch now holds our initial schema. Let's create a **deploy request** to push these changes
+to the **main** production branch.
+
+```bash
+pscale deploy-request create movies dev
+```
+
+If everything goes smoothly, you will see a success message with a link to the details of the deployment
+request.
+
+```bash
+Deploy request #1 successfully created.
+
+View this deploy request in the browser: https://app.planetscale.com/ayoub-khial/movies/deploy-requests/1
+```
+
+Click on the link to redirect you to the deploy request details. From there, you can deploy the changes
+or close the request.
+
+<AdaptiveImage alt={'PlanetScale deploy request'} src={'/img/blog/3/15.webp'} width={768} height={719.06} />
+
+Click on the deploy changes button, and after a few seconds, you'll see a message indicating the
+deployment was completed successfully.
+
+<AdaptiveImage alt={'PlanetScale request deployed successfully'} src={'/img/blog/3/16.webp'} width={768} height={719.06} />
+
+If you navigate to your main branch, you will find the newly created movies table.
+
+<AdaptiveImage alt={'PlanetScale branch schema changes'} src={'/img/blog/3/17.webp'} width={768} height={719.06} />
+
+To set up your project on Vercel, commit it to Github and sync it with Vercel. Then, go to the
+**Settings** tab and select **Environment Variables** from the left menu. From there, please create a
+new variable for the production environment, similar to what you did in the `.env` file.
+
+
+But before that, get the database string from PlanetScale just like we did with the **dev** branch. But
+this time you need to get it from the **main** branch.
+
+<AdaptiveImage alt={'Vercel environment variables'} src={'/img/blog/3/18.webp'} width={768} height={719.06} />
+
+<Callout type="WARNING">
+It's essential to name your variable the same name as you named it in the `.env` file, in our case,
+`DATABASE_URL`.
+</Callout>
+
+You're all set! Your database schema is now synchronized between your branches, and each branch is
+accountable for a particular environment.
+
+
+## Conclusion
+
+The synergy between **Next.js**, **PlanetScale**, **Drizzle ORM**, and **Kysely** is a winning
+combination for creating scalable and fully typed applications. These tools offer the flexibility and
+power needed to build robust and efficient database-driven applications.
+
+You can find the complete code source in [this repository](https://github.com/ayoubkhial/fully-typed-next.js-planetscale-drizzle-kysely); feel free to give it a star ⭐️.
+
+<Callout type="RESOURCES">
+* [PlanetScale official website](https://planetscale.com/)
+* [PlanetScale CLI features](https://planetscale.com/features/cli)
+* [PlanetScale branching concept](https://planetscale.com/docs/concepts/branching)
+* [Drizzle ORM official website](https://orm.drizzle.team/)
+* [Kysely official website](https://kysely.dev/)
+* [PlanetScale dialect for Kysely](https://github.com/depot/kysely-planetscale)
+* [The complete source code repository](https://github.com/ayoubkhial/fully-typed-next.js-planetscale-drizzle-kysely)
+</Callout>
