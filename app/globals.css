@@ -131,8 +131,9 @@ aside p:not(:last-child) {
 }
 
 .blog-content p code,
-.blog-content a code {
-	display: inline-block;
+.blog-content a code,
+.blog-content li code {
+	display: inline;
 	border-radius: 0.375rem;
 	padding: 0 4px;
 	font-size: 12px;
