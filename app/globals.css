@@ -106,7 +106,11 @@ html.light [data-theme='dark'] {
 	@apply bg-gray-500 bg-opacity-30 dark:bg-gray-800;
 }
 
-[data-rehype-pretty-code-fragment] code > .line::before {
+code {
+	counter-reset: line;
+}
+
+code[data-line-numbers] .line::before {
 	counter-increment: line;
 	content: counter(line);
 	display: inline-block;

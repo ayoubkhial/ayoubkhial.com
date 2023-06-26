@@ -39,7 +39,7 @@ For more information about how the routing system works in the new app directory
 
 Let's create a simple navigation within the `layout.tsx` file so we can navigate between our defined pages.
 
-```tsx title="app/layout.tsx"
+```tsx title="app/layout.tsx" showLineNumbers
 import Link from 'next/link';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 To demonstrate how statically typed routes work, let's add a new navigation item that currently does not
 exist in our app. This way, we can simulate how the static typing feature can resolve such a scenario.
 
-```tsx {7}
+```tsx {7} showLineNumbers
 <header>
 	<h1><Link href="/">Next.js - Statically typed links</Link></h1>
 	<nav>
@@ -93,7 +93,7 @@ Statically typed routes are still in beta and require the new **app** directory 
 
 Enabling this feature is easy to set up; add `typedRoutes: true` under the `experimental` field
 in your **next.config.js** file.
-```js
+```js showLineNumbers
 const nextConfig = {
 	experimental: {
 		typedRoutes: true,
@@ -109,7 +109,7 @@ our application's link definition within the build source.
 Since I'm using the `13.4` version on Next.js, I don't need to add `appDir` under the `experimental` field
 since it's finally stable and can be adopted for production. However, If you're using an earlier version,
 you must include it.
-```js {3}
+```js {3} showLineNumbers
 const nextConfig = {
 	experimental: {
         appDir: true,
@@ -146,7 +146,7 @@ pnpm add nextjs-routes
 ```
 
 Update the **next.config.js** file to merge `next-routes` with the Next.js config.
-```js {1,2,6}
+```js {1,2,6} showLineNumbers
 const nextRoutes = require("nextjs-routes/config");
 const withRoutes = nextRoutes();
 const nextConfig = {
