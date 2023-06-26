@@ -138,8 +138,8 @@ aside p:not(:last-child) {
 .blog-content a code,
 .blog-content li code {
 	display: inline;
-	border-radius: 0.375rem;
-	padding: 0 4px;
+	border-radius: 0.25rem;
+	padding: 2px 4px;
 	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: 0.025rem;
@@ -186,6 +186,10 @@ aside p:not(:last-child) {
 .info [data-rehype-pretty-code-fragment] pre,
 .resources [data-rehype-pretty-code-fragment] pre {
 	margin: 0;
+}
+
+.warning code {
+	@apply bg-gray-100 text-red-500 dark:!bg-[#424b57] dark:!text-red-500;
 }
 
 body::-webkit-scrollbar-track {
