@@ -69,6 +69,7 @@ export default function Post({ params }: Props) {
 		<>
 			<article className="mt-28 px-4 md:mt-24">
 				<h1 className="mb-4 font-heading text-2xl font-semibold leading-10 tracking-wider md:mb-6 md:text-3xl">{post.title}</h1>
+				<p className="mb-4 font-medium text-gray-500 dark:text-gray-400 md:mb-6 md:text-lg">{post.description}</p>
 				<div className="mb-6 flex items-center justify-between gap-6 text-sm text-gray-600 dark:text-gray-100">
 					<div>
 						<span>Ayoub Khial - {getShortDate(new Date(post.publishedAt))}</span>
