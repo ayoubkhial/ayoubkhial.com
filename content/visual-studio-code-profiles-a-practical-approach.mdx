@@ -1,0 +1,262 @@
+---
+title: 'Visual Studio Code profiles: A practical approach'
+publishedAt: '2023-07-06'
+description: 'Effortlessly manage multiple projects, organize your workspace, and minimize distractions with a practical approach using Visual Studio Code profiles.'
+keywords: "vscode,IDE,productivity"
+published: true
+---
+
+## Introduction
+Most of us love Visual Studio Code for its versatility, extensibility, intuitive interface, and 
+strong community support. It offers a customizable coding environment with a vast extensions 
+marketplace, saving time and enhancing productivity. Its built-in features like code suggestions, 
+Git integration, and debugging streamline workflows, making it a favorite among developers globally.
+
+In fact, here are the Stackoverflow survey results regarding the Integrated development environment 
+(IDE).
+
+<AdaptiveImage alt={'Stackoverflow survey result concerning IDE in 2023'} src={'/img/blog/4/1.webp'} width={768} height={719.06} />
+
+Check out the full list on [the survey page](https://survey.stackoverflow.co/2023/#most-popular-technologies-new-collab-tools).
+
+While developers absolutely love Visual Studio Code, it does have a few drawbacks, especially when 
+loaded with a bunch of extensions:
+
+- **Performance impact:** Installing too many extensions can lead to increased memory usage and reduced 
+performance. Extensions often require extra system resources, especially if they include complex 
+features or are poorly optimized. This can result in slower startup times, laggy responsiveness, 
+and occasional freezes or crashes.
+- **Conflicts and instability:** Using multiple extensions simultaneously can lead to conflicts. 
+These conflicts may arise due to dependencies or incompatible functionalities between extensions, 
+resulting in unexpected behavior or instability within the editor. Diagnosing and resolving these 
+conflicts can be challenging, particularly when dealing with many extensions sourced from different 
+places.
+
+Developers often navigate and work on multiple projects with different settings, extensions, and 
+configuration requirements. Keeping track of all these customizations can be a frustrating experience 
+at times.
+
+Visual Studio Code **profiles** to the rescue.
+
+## Visual Studio Code profiles
+Earlier this year, Visual Studio Code introduced Profiles, a much-awaited and powerful feature that 
+allows developers to manage various configurations and settings for different development scenarios. 
+With Profiles, you have the flexibility to define and switch between multiple sets of preferences, 
+extensions, workspace configurations, and debugging settings within the VSCode editor, making it easy 
+to adapt to different project needs.
+
+Within project profiles, you can incorporate different combinations of settings, extensions, 
+configurations, and more. While our focus will primarily be on **settings** and **extensions**, as they 
+are the most commonly used. The same principles apply to the other elements as well.
+
+<Callout type="INFO">
+While this feature offers numerous benefits and use cases, this article will guide you through 
+setting up your VSCode workspace for multi-project development.
+
+[Read more about the uses of profiles in the official docs](https://code.visualstudio.com/docs/editor/profiles#_uses-for-profiles)
+</Callout>
+
+## The approach
+Let's consider an example: In my personal projects that I work on during my free time, I extensively 
+use **React-based** technologies. However, in my full-time work, I use the **MEAN** stack. To 
+effectively manage my projects and leverage the full power of VSCode without encountering crashes or 
+weird behaviors, I have to create two profiles, one for the react-based project and the other for the 
+MEAN stack project.
+
+Visual Studio Code comes with a **default** empty profile. I find it convenient to use this as a base 
+profile that includes all the **settings**, **extensions**, **themes**, and other configurations I 
+want in all my other profiles.
+
+In my case, I want to have certain extensions like [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens), 
+[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens), and 
+[Turbo Console Log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log) 
+in both profiles because both projects involve **Git** and **JavaScript**. Additionally, I would love 
+to use the [GitHub Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme) 
+in both profiles.
+
+Therefore, it's only logical to install all the shared extensions in a base profile and create any new 
+profiles based on it. This approach saves you from starting from scratch each time you want to create a 
+profile (or, even worse, creating a new profile based on a random one).
+
+The same approach can be applied to settings as well. For instance, it is preferable to maintain consistency 
+across all projects by using the same **, **UI state**, or **font-family**.
+
+Here's an illustrative diagram that demonstrates this practical approach.
+
+<AdaptiveImage alt={'A practical approch to use VSCode profiles'} src={'/img/blog/4/2.webp'} width={768} height={719.06} />
+
+<Callout type="WARNING">
+While this approach has benefits, it's important to note that the new profiles will only inherit 
+settings and extensions from the default profile at the creation time. Any subsequent changes or 
+installations to the default profile will not automatically be reflected in the created profiles.
+
+This feature is requested in the Visual Studio Code GitHub repository:
+
+[Profiles: Extend from Default Profile](https://github.com/microsoft/vscode/issues/156144)
+
+[Add ability to extend from other settings files](https://github.com/microsoft/vscode/issues/15909)
+</Callout>
+
+## The default profile
+As mentioned earlier, when you install VSCode, it comes with a single profile called **default**.
+
+<AdaptiveImage alt={'The default profile in VSCode'} src={'/img/blog/4/3.webp'} width={768} height={719.06} />
+
+Let's start by changing or adding some settings we want to use across the profiles. To access the 
+settings, you can use the shortcut `⌘` + `,` for macOS users or `Ctrl` + `Shift` + `P` for Windows 
+users.
+
+Start typing **"open settings"** in the search bar and select **Open User Settings**.
+
+<AdaptiveImage alt={'Open User Settings in VSCode'} src={'/img/blog/4/4.webp'} width={768} height={719.06} />
+
+This will open the user settings in the **UI** version. However, if you prefer the **JSON** version, 
+which is often more convenient for editing, you can easily switch by clicking the **Open Settings (JSON)** 
+icon in the top right corner.
+
+<AdaptiveImage alt={'Open VSCode User Settings in JSON format'} src={'/img/blog/4/5.webp'} width={768} height={719.06} />
+
+This will open the settings JSON file. At this point, the file will be empty since your workspace 
+currently utilizes the default configurations provided by Visual Studio Code.
+
+Here are a few customizations you can make to modify the appearance of the IDE, which you likely want 
+to affect all of your future profiles:
+
+```json showLineNumbers title="settings.ts"
+{
+    "editor.stickyScroll.enabled": true,
+    "editor.cursorBlinking": "solid",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorStyle": "line",
+    "editor.fontSize": 12,
+    "editor.lineHeight": 20,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontWeight": "500",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 4,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.suggestSelection": "first",
+    "workbench.editor.enablePreview": false,
+    "workbench.sideBar.location": "right"
+}
+```
+
+Feel free to add any additional settings based on your specific requirements and preferences. Customize the IDE to suit your needs and enhance your development experience.
+
+In addition, it is beneficial to install certain general-purpose extensions across all your profiles. 
+Extensions like the ones mentioned above can be useful regardless of your specific tech stack. 
+Since I primarily work with JavaScript, installing something like 
+[JavaScript (ES6) code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) 
+can be useful.
+
+You can customize these extensions according to your preferences in the **settings.json** file.
+
+```json {3-5} showLineNumbers title="settings.ts"
+{
+    ...
+    "workbench.colorTheme": "GitHub Dark",
+    "errorLens.fontSize": "13px",
+    "errorLens.fontWeight": "bold"
+}
+```
+
+Now that everything is set up, we can create a new profile dedicated to the **MEAN** stack development 
+that inherits all the customizations from the base profile. This way, we can quickly create a profile 
+tailored for MEAN stack development without starting from scratch.
+
+## Create a new profile
+
+To create a new profile, you can follow these steps. First, find the **gear icon** at the the **Explorer** 
+pane's bottom. Then, hover over the **Profiles** option. You will notice that the **default** 
+profile is currently selected. Click on **"Create Profile"**.
+
+<AdaptiveImage alt={'Create a new profile in VSCode'} src={'/img/blog/4/6.webp'} width={768} height={719.06} />
+
+A pop-up window will appear, presenting you with options. Choose the **Using current Profile** option, 
+which will create a duplicate of your currently selected profile. Additionally, you might notice a 
+selection of predefined templates available for use.
+
+<AdaptiveImage alt={'Create a new profile base on the current profile in VSCode'} src={'/img/blog/4/7.webp'} width={768} height={719.06} />
+
+Choose a name for your profile. In this case, let's name it **"MEAN"**. Press Enter to see 
+all the settings, configurations, and extensions from the current profile. You can deselect any 
+settings or extensions that do not fit the profile you are creating. However, since the 
+customizations we made are minimal, leaving all options selected for now is fine.
+
+<Callout type="INFO">
+As I have made changes only to the **settings** and **extensions**, the default profile will display 
+only the modified sections: Settings, Extensions, and UI State. If you have customized other elements, 
+such as **keybindings**, **tasks**, or **snippets**, you will find their corresponding entries listed 
+in this section as well.
+</Callout>
+
+<AdaptiveImage alt={'Import customization from the base profile when creating a new profile on VSCode'} src={'/img/blog/4/8.webp'} width={768} height={719.06} />
+
+That's it! You have successfully created a new profile that inherits all the settings and 
+configurations from the default profile. Now, you can install specific extensions useful for a 
+MEAN stack project, such as Angular Snippets and Pretty TypeScript Errors. Also, adjust the settings 
+according to your preferences and project requirements. You can tailor the new profile to suit your 
+MEAN stack development needs.
+
+<Callout type="INFO">
+When you create or select a profile, it becomes connected to the current workspace. This means the 
+profile will be active whenever you open that particular folder.
+</Callout>
+
+You can easily check the active profile by looking at the **gear icon**. It shows a little badge 
+with the first two letters of the profile name, so you can quickly see which profile is active. 
+It's a convenient way to identify the active profile without any hassle.
+
+<AdaptiveImage alt={'Identify the current profile in VSCode'} src={'/img/blog/4/9.webp'} width={768} height={719.06} />
+
+<Callout type="INFO">
+The profile name is also visible in the title bar. This is helpful if you have multiple profiles 
+with the same first 2 letters.
+</Callout>
+
+Within the profiles section accessed through the **gear icon**, you will see options such as **import** 
+and **export** a profile. This is incredibly useful when sharing your profile with your team, 
+ensuring consistent workspace settings, and avoiding unnecessary conflicts. You can choose to export 
+the profile as a file or, even better, export it to a GitHub gist, which can be accessed remotely 
+by your team members.
+
+<Callout type="WARNING">
+Machine-specific settings like local paths are not included when exporting profiles since they may not 
+apply to other machines.
+</Callout>
+
+You can also create a **temporary profile** to experiment with new configurations and test extensions 
+without altering your default or existing profile. These profiles can be created on the fly using the 
+**"Profiles: Create a Temporary Profile"** in the command palette. While using a Temporary Profile, 
+you can customize settings and extensions within your current VS Code session.
+
+<Callout type="WARNING">
+Please note that Temporary Profiles are deleted once you close VS Code, allowing you to revert to your 
+original profile after restarting the editor.
+</Callout>
+
+## Syncing your profiles across your devices
+Syncing your VSCode profiles across devices ensures a consistent development environment and effortless 
+access to customized settings and extensions. It eliminates the need to manually recreate profiles 
+on different machines, allowing changes made on one device to be applied to others. This saves time 
+and effort while maintaining a synchronized development setup.
+
+We'll use the built-in [Settings Sync](https://code.visualstudio.com/docs/editor/settings-sync) feature 
+to activate the Profiles sync. Search for **Settings Sync: Configure** in the command palette; 
+check the **Profiles** item in the drop-down menu that appears.
+
+<AdaptiveImage alt={'Settings Sync in VSCode'} src={'/img/blog/4/10.webp'} width={768} height={719.06} />
+
+## Conclusion
+In conclusion, VS Code's profiles improve performance, streamline project management, minimize 
+distractions, and offer customization options. With easy creation and switching, profiles seamlessly 
+integrate within VS Code, eliminating the need for external configurations.
+
+<Callout type="RESOURCES">
+* [The official documentation of Visual Studio Code profiles](https://code.visualstudio.com/docs/editor/profiles)
+* [Get started with Visual Studio Code settings](https://code.visualstudio.com/docs/getstarted/settings)
+* [The built-in settings sync](https://code.visualstudio.com/docs/editor/settings-sync)
+</Callout>
