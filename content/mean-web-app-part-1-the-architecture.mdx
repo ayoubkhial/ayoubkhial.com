@@ -1,0 +1,203 @@
+---
+title: 'Build a MEAN web app: Part 1 - The architecture'
+publishedAt: '2023-07-15'
+description: "This article offers insights into the MEAN stack and its potential. It provides a high-level view of the stack's architecture to better grasp its functionality."
+keywords: "mean,architecture,angular,express,mongodb,nodejs"
+published: true
+---
+
+## Introduction
+In this series of articles, we explore the transformative world of the **MEAN stack**. This robust 
+JavaScript stack combines various cutting-edge technologies working in perfect harmony.
+
+The **MEAN stack** is a web development framework that utilizes JavaScript-based technologies to 
+build dynamic and scalable web applications. It allows developers to use a unified programming 
+language, **JavaScript** (or **TypeScript** in our case), for both front-end and back-end development. 
+This stack is renowned for its flexibility, ease of learning, and ability to handle large amounts of 
+data.
+
+By examining this stack's different components, we can better understand its capabilities and how it can be used to create robust applications.
+
+<Callout type="WARNING">
+Please note that this article provides a general overview of the architectural aspects of the MEAN 
+stack. In upcoming articles, we will delve deeper into each component and examine its functionalities 
+in greater detail.
+</Callout>
+
+## Meet the stack
+<AdaptiveImage alt={'The MEAN stack components'} src={'/img/blog/5/1.webp'} width={768} height={719.06} />
+
+<Callout type="INFO">
+We will use TypeScript instead of JavaScript in the backend; this will provide us with strong typing 
+and better developer tools, which will help us catch errors early and write code that is easier to 
+maintain.
+</Callout>
+
+**"MEAN"** refers to the combination of four essential components: **MongoDB**, **Express**, 
+**Angular**, and **Node**. Together, they form the layers of this stack. **MEAN** is an acronym that 
+represents these technologies. 
+
+Let's take a closer look at each component and explore the stack layer by layer. This will help us 
+understand how they work together and the unique advantages that each component brings to the table.
+
+- **M** for **MongoDB**, an extensively used document-oriented database. This database stores data 
+in a flexible BSON format, which is JSON-like. This feature makes it simpler for developers to work 
+with data than conventional relational databases. MongoDB's schema-less design enables scalability 
+and adaptability when application needs change. In the MEAN stack, MongoDB is the back-end database, 
+which effectively stores and retrieves data for the application.
+- **E** for **Express.js**, an awesome part of the MEAN stack, is built on top of Node.js. It offers 
+a minimalistic and flexible framework for developing web applications and APIs. With Express.js, 
+handling HTTP requests and responses, routing, and middleware integration is a breeze. In the MEAN 
+stack, Express.js plays the role of a middleware layer, connecting the client-side Angular framework 
+with the back-end MongoDB database. It's like the glue that holds everything together!
+- **A** for **Angular**, a JavaScript framework that makes it easier to create complex web 
+applications by providing a structured method for developing user interfaces. It follows a 
+component-based architecture that divides the application into reusable and modular components. These 
+components combine HTML templates, CSS styles, and TypeScript code to define the behavior and 
+appearance of different application parts. In the MEAN stack, Angular manages the presentation layer 
+and user interactions.
+- **N** for **Node.js**, a JavaScript runtime environment that enables developers to execute 
+JavaScript code on the server-side. This provides a robust foundation for creating scalable and 
+high-performance web applications. The platform operates on an event-driven, non-blocking I/O model, 
+which makes it efficient and capable of handling multiple requests simultaneously.
+
+By combining these cutting-edge technologies, the MEAN stack offers a range of benefits that empower 
+developers to create modern, scalable web applications. With flexible data storage, streamlined 
+server-side logic, interactive user interfaces, and efficient execution, the MEAN stack is a top 
+choice for cross-platform web development.
+
+<Callout type="INFO">
+It's worth mentioning that you can customize the stack to fit your specific requirements. For example, 
+you can mix and match technologies to create your ideal stack if you favor **React** over **Angular** 
+for the front or **Koa** instead of **Express.js** for the back. This versatility enables developers 
+to leverage their preferred tools and frameworks while benefiting from the MEAN stack architecture's 
+core principles and advantages.
+</Callout>
+
+## The architecture
+
+The MEAN stack architecture follows a client-server model combining **MongoDB**, **Express**, 
+**Angular**, and **Node.js** to craft powerful applications. **Angular** takes charge of client-side 
+development, enabling the creation of web, mobile, and desktop applications. **Express** establishes 
+a well-defined API that facilitates seamless communication between the client and server. Meanwhile, 
+**Node** empowers the server to handle requests and efficiently manage data interactions with the 
+**MongoDB** database.
+
+<AdaptiveImage alt={'The MEAN stack components'} src={'/img/blog/5/2.webp'} width={768} height={719.06} />
+
+Using the MEAN stack's client-server architecture, developers can easily create web applications 
+using JavaScript across the entire stack. This approach promotes code reusability, allows efficient 
+API communication, ensures scalability, and provides flexible data storage options. The MEAN stack is 
+widely adopted and supported by a vibrant community, making it an excellent choice for crafting 
+modern web applications that are scalable, feature-rich, and easy to maintain. This harmonious 
+architecture paves the way for developing modern, scalable, and feature-rich applications.
+
+## A monorepo approach
+A monorepo is a single code repository that brings together multiple interconnected projects, enabling 
+simultaneous work on them. By storing both the backend and frontend code in one central location, a 
+monorepo promotes coordinated changes and enables smooth deployment.
+
+In software development, there are several approaches commonly used besides monorepo architecture. 
+Two of these approaches are monolith and multi-repo architectures.
+
+A monolith architecture combines all the components of an application tightly within one codebase, 
+which makes development and deployment simpler. However, maintaining and scaling large monolithic 
+applications can be a challenge. 
+
+On the other hand, a multi-repo architecture separates components or projects into individual 
+repositories, providing independence and flexibility. Each component has its own repository, but 
+managing multiple repositories can introduce complexities in coordinating changes and dependencies.
+
+<AdaptiveImage alt={'The MEAN stack components'} src={'/img/blog/5/3.webp'} width={768} height={719.06} />
+
+**But why we're using a monorepo?**
+
+When creating a full-stack application with a unified core language, the monorepo architecture can 
+bring many advantages. It allows for easily sharing configurations across the entire stack, such as 
+TypeScript and ESLint. Additionally, it enables the sharing of packages and libraries like lodash, 
+which can be used throughout the end-to-end stack. This approach reduces duplication, improves code 
+reusability, and streamlines development. Overall, the monorepo architecture offers a variety of 
+benefits, including:
+- **Sharing code** across multiple projects can be made easier using monorepos. These repositories allow 
+for creating and sharing shared libraries, reducing the need for duplicate code and encouraging code 
+reuse.
+- **Improved collaboration** is possible when multiple teams work together to enhance the codebase 
+in a monorepo. This promotes better collaboration and the use of reusable code practices.
+- **Simplified dependency management** by enabling shared dependencies across multiple projects, 
+guaranteeing consistent versions and effortless updates. This results in simplified dependency 
+maintenance.
+- Having all the code in a single repository is beneficial as it offers an **easy-to-view and 
+detailed overview**. This simplifies comprehending the entire codebase, collaborating, and resolving 
+issues.
+- **Enforcing standards**, branch policies, naming conventions, and best practices for maintaining 
+and managing codebases. This enables consistency and makes it easier to manage the codebase effectively.
+- **Streamlined testing and deployment**, allowing for comprehensive  and streamlined CI/CD processes. 
+With shared libraries having centralized test suites, changes can trigger tests across all  dependent 
+projects.
+- **Better overview of dependencies**: By splitting the application into multiple packages within a 
+monorepo. This approach ensures better organization and documentation of dependencies.
+
+Although the monorepo architecture has several advantages, it also comes with some limitations and 
+difficulties:
+
+- **Granting access** to specific projects within a codebase can be difficult. Additionally, file 
+ownership and permissions can become complex in popular version control systems like GIT without 
+built-in directory permissions.
+- While monorepo increases coordination and discipline among team members, it can lead to conflicts 
+if not managed properly. Effective communication and collaboration are crucial for efficient development.
+- Building and testing the whole repository may take longer because modifications made in one project 
+necessitate rebuilding and retesting the entire codebase.
+- As time passes, a monorepo can gather a significant amount of code, resulting in a more complex 
+codebase that could be difficult to comprehend and navigate.
+- There could be some extra overhead for smaller projects within a monorepo because of the shared 
+codebase and dependencies.
+- Organizing and managing tools and infrastructure for a monorepo can be more complicated compared to 
+smaller and separate repositories.
+
+When making architectural decisions for your project, it is crucial to consider its unique 
+requirements carefully. Monorepos offers streamlined workflows and coordination, while monolith and 
+multi-repo architectures have their advantages depending on project size, team structure, and 
+scalability needs. Each approach has its strengths, so choosing the one that best aligns with your 
+specific project context is essential.
+
+<Callout type="INFO">
+Certain obstacles can be reduced by investing in appropriate tools, personalized solutions, and 
+streamlined workflows. Companies may need to create specialized in-house teams or implement specific 
+strategies to overcome these limitations and guarantee the efficient functioning of a monorepo system.
+</Callout>
+
+In a monorepo, the folder structure typically follows a hierarchical organization that allows for 
+managing multiple projects or modules within a single codebase. Although the folder structure can 
+vary based on specific needs, here's a minimalistic example of how we might organize folders:
+
+<AdaptiveImage alt={'The MEAN stack components'} src={'/img/blog/5/4.webp'} width={768} height={719.06} />
+
+## What are we going to build, and with which arsenals?
+It took me a while to think of a project idea that would be practical and have a good balance between 
+the server and user interface (UI). I wanted it to be simple but more significant than a regular to-do 
+list. Eventually, I decided we would build an issue tracker like Jira or GitLab issues. It's worth 
+noting that we'll only concentrate on building the essential parts needed to explore and handle the 
+whole stack.
+
+I work as a full-time web developer using the MEAN stack. While I have gained considerable experience 
+using this stack, I recognize the need to update my tools, architecture, and process. This is why I am 
+excited to revisit the MEAN stack, this time with the best practices in mind. So I am still 
+determining all the tools we will be using or the exact features we will be implementing (we will 
+figure it out as we progress) as I'm going to take this journey with all of you for the first time.
+
+## Conclusion
+In conclusion, we have delved into the intricacies of the Mean Stack architecture and its various 
+components. We have also seen how a monorepo approach can be beneficial in terms of the project 
+structure. This approach allows developers to take advantage of its many advantageous features. 
+With this knowledge, developers can create powerful and efficient applications that meet the needs of 
+their users.
+
+In our upcoming article, it's time to roll up our sleeves and dive into some coding! We'll walk 
+through creating a Node.js server, leveraging TypeScript, and installing Express to power it up. 
+We'll also explore how to handle our monorepo structure using pnpm.
+
+<Callout type="RESOURCES">
+* [Everything you need to know about monorepos, and the tools to build them](https://monorepo.tools/)
+* [Learn more about server-client modal (3-tier architecture)](https://www.ibm.com/topics/three-tier-architecture)
+* [Check out the 2023 Stackoverflow survey to see the popularity of the MEAN stack technologies](https://survey.stackoverflow.co/2023/#programming-scripting-and-markup-languages)
+</Callout>
