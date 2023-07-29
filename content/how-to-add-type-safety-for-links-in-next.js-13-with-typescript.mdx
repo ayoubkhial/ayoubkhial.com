@@ -12,7 +12,7 @@ are striving for.
 Until recently, Next.js did not provide a built-in mechanism for ensuring type safety in its routing
 system. Unfortunately, this implies we needed a method to ensure the path we provide to `Link` is valid.
 
-Next.js has implemented a new feature in version `13.2` that introduces
+Next.js has implemented a new feature in version **13.2** that introduces
 [static typing for links](https://nextjs.org/blog/next-13-2#statically-typed-links) within the app
 directory. This feature aims to prevent typographical errors or potential issues that may arise when
 utilizing `next/link`.
@@ -106,7 +106,7 @@ const nextConfig = {
 When `typedRoutes` is `true`, Next.js will create a type corresponding to all possible paths in
 our application's link definition within the build source.
 
-Since I'm using the `13.4` version on Next.js, I don't need to add `appDir` under the `experimental` field
+Since I'm using the **13.4** version on Next.js, I don't need to add `appDir` under the `experimental` field
 since it's finally stable and can be adopted for production. However, If you're using an earlier version,
 you must include it.
 ```js {3} showLineNumbers
@@ -163,7 +163,7 @@ While this is still an experimental feature, it is worth exploring if you want t
 
 <Callout type="RESOURCES">
 * [How Next.js handles routing](https://nextjs.org/docs/app/building-your-application/routing)
-* [The optimized `<Link>` component](https://nextjs.org/docs/app/api-reference/components/link)
+* [The optimized Link component](https://nextjs.org/docs/app/api-reference/components/link)
 * [How Statically Typed Links works](https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links)
 * [nextjs-routes documentation](https://github.com/tatethurston/nextjs-routes)
 * [More about The built-in Typescript plugin in Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/typescript)
