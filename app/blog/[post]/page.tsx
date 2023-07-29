@@ -67,87 +67,108 @@ export default function Post({ params }: Props) {
 	const Component: any = getMDXComponent(post.body.code!);
 	return (
 		<>
-			<article className="mt-28 px-4 md:mt-24">
-				<h1 className="mb-4 font-heading text-2xl font-semibold leading-10 tracking-wider md:mb-6 md:text-3xl">{post.title}</h1>
-				<p className="mb-4 font-medium text-gray-500 dark:text-gray-400 md:mb-6 md:text-lg">{post.description}</p>
-				<div className="mb-6 flex items-center justify-between gap-6 text-sm text-gray-600 dark:text-gray-100">
-					<div>
-						<span>Ayoub Khial - {getShortDate(new Date(post.publishedAt))}</span>
+			<div className="mx-auto md:w-container">
+				<article className="mt-28 px-4 md:mt-24">
+					<h1 className="mb-4 font-display text-2xl font-semibold leading-10 tracking-wider md:mb-6 md:text-3xl">{post.title}</h1>
+					<p className="mb-4 font-medium text-gray-500 dark:text-gray-400 md:mb-6 md:text-lg">{post.description}</p>
+					<div className="mb-6 flex items-center justify-between gap-6 text-sm text-gray-600 dark:text-gray-100">
+						<div>
+							<span>Ayoub Khial - {getShortDate(new Date(post.publishedAt))}</span>
+						</div>
+						<div className="h-[0.2rem] w-auto flex-grow bg-gray-100 dark:bg-gray-700"></div>
+						<div className="flex items-center gap-2">
+							<span className="flex">{post.readingTime.text}</span>
+							<div className="font-black">•</div>
+							<span className="flex">
+								<Suspense fallback={'. . . '}>
+									{/*@ts-ignore*/}
+									<Views slug={slug} />
+								</Suspense>{' '}
+								views
+							</span>
+						</div>
 					</div>
-					<div className="h-[0.2rem] w-auto flex-grow bg-gray-100 dark:bg-gray-700"></div>
-					<div className="flex items-center gap-2">
-						<span className="flex">{post.readingTime.text}</span>
-						<div className="font-black">•</div>
-						<span className="flex">
-							<Suspense fallback={'. . . '}>
-								{/*@ts-ignore*/}
-								<Views slug={slug} />
-							</Suspense>{' '}
-							views
-						</span>
+					<ul className="mb-8 flex gap-2 text-sm">
+						{post.keywords?.split(',').map(keyword => (
+							<li key={keyword} className="font-medium">
+								<span className="text-primary font-semibold">#</span> {keyword}
+							</li>
+						))}
+					</ul>
+					<div className="blog-content text-[0.95rem]">
+						<Component components={MDXComponents} />
 					</div>
-				</div>
-				<ul className="mb-8 flex gap-2 text-sm">
-					{post.keywords?.split(',').map(keyword => (
-						<li key={keyword} className="font-medium">
-							<span className="font-semibold text-primary">#</span> {keyword}
-						</li>
-					))}
-				</ul>
-				<div className="blog-content text-[0.95rem]">
-					<Component components={MDXComponents} />
-				</div>
-			</article>
-			<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100 px-4 dark:border-gray-700" />
-			<div className="flex flex-col gap-4 px-4">
-				<div className="flex items-center justify-between">
-					<a
-						href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="flex items-center gap-2"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-							<path
-								fill="currentColor"
-								d="M3 6v2h11V6H3m0 4v2h11v-2H3m17 .1c-.1 0-.3.1-.4.2l-1 1l2.1 2.1l1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8l-6.1 6V20h2.1l6.1-6.1l-2.1-2M3 14v2h7v-2H3Z"
-							/>
-						</svg>
-						<span className="underline underline-offset-2">Submit an edit request on GitHub</span>
-					</a>
-					<div className="flex items-center gap-2">
-						<TwitterButton url={`www.ayoubkhial.com/blog/${post.slug}`} title={post.title} />
-						<LinkedinButton url={`www.ayoubkhial.com/blog/${post.slug}`} />
+				</article>
+				<hr className="dark:border-gray-700; my-8 h-[1.5px] border-t-[1.5px] border-gray-100 px-4 dark:border-gray-700" />
+				<div className="flex flex-col gap-4 px-4">
+					<div className="flex items-center justify-between">
+						<a
+							href={`https://github.com/ayoubkhial/ayoubkhial.com/edit/main/content/${slug}.mdx`}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex items-center gap-2"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path
+									fill="currentColor"
+									d="M3 6v2h11V6H3m0 4v2h11v-2H3m17 .1c-.1 0-.3.1-.4.2l-1 1l2.1 2.1l1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8l-6.1 6V20h2.1l6.1-6.1l-2.1-2M3 14v2h7v-2H3Z"
+								/>
+							</svg>
+							<span className="underline underline-offset-2">Submit an edit request on GitHub</span>
+						</a>
+						<div className="flex items-center gap-2">
+							<TwitterButton url={`www.ayoubkhial.com/blog/${post.slug}`} title={post.title} />
+							<LinkedinButton url={`www.ayoubkhial.com/blog/${post.slug}`} />
+						</div>
 					</div>
-				</div>
 
-				<section
-					id="contact"
-					className="mb-6 mt-2 flex flex-col rounded-xl border-[0.2px] border-[#cc9dfb] bg-[#f2e6fe] p-5 text-[#26034a] dark:border-[#e1d8f3] dark:bg-[#53319b] dark:text-[#f0ecf9] md:mb-8 md:mt-4"
-				>
-					<h2 className="mb-6 font-heading text-lg font-extrabold tracking-wider md:text-xl">Subscribe to my newsletter</h2>
-					<p className="mb-5 text-sm leading-6 md:text-base md:leading-7">
-						If you liked this post, sign up to get updates in your email when I write something new! No spam ever.
+					<section
+						id="contact"
+						className="mb-6 mt-2 flex flex-col rounded-xl border-[0.2px] border-purple-300 bg-purple-100 p-5 text-purple-950 dark:border-purple-400 dark:bg-purple-900 dark:text-purple-50 md:mb-8 md:mt-4"
+					>
+						<h2 className="mb-6 font-heading text-lg font-extrabold tracking-wider md:text-xl">Subscribe to my newsletter</h2>
+						<p className="mb-5 text-sm leading-6 md:text-base md:leading-7">
+							If you liked this post, sign up to get updates in your email when I write something new! No spam ever.
+						</p>
+						<div className="flex items-center gap-3">
+							<a
+								className=" rounded-md bg-[#993af8] px-3 py-2 text-[15px] font-medium tracking-wide text-white
+						dark:bg-[#993af8]"
+								href="https://ayoubkhial.substack.com/"
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								Subscribe
+							</a>
+							<span className="text-xs font-medium underline">
+								No spam. I only send you relevant content. Unsubscribe at any time.
+							</span>
+						</div>
+					</section>
+					<section className="mb-6">
+						<Comments />
+					</section>
+				</div>
+			</div>
+			{/* <div className="fixed right-8 top-96 md:max-w-[20%]">
+				<section id="contact" className="flex flex-col items-center text-black dark:text-white md:mb-8 md:mt-4">
+					<p className="mb-5 text-center text-sm font-medium leading-6 md:text-[16px] md:leading-7">
+						Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and
+						resources I found while surfing the web.
 					</p>
 					<div className="flex items-center gap-3">
 						<a
 							className=" rounded-md bg-[#993af8] px-3 py-2 text-[15px] font-medium tracking-wide text-white
-							dark:bg-[#993af8]"
+			dark:bg-[#993af8]"
 							href="https://ayoubkhial.substack.com/"
 							rel="noopener noreferrer"
 							target="_blank"
 						>
 							Subscribe
 						</a>
-						<span className="text-xs font-medium underline">
-							No spam. I only send you relevant content. Unsubscribe at any time.
-						</span>
 					</div>
 				</section>
-				<section className="mb-6">
-					<Comments />
-				</section>
-			</div>
+			</div> */}
 		</>
 	);
 }

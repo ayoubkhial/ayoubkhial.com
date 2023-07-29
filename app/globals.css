@@ -2,24 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-.light {
-	--color-primary: 259deg 59% 59%; /* #805ad5 */
-	--color-text: 218deg 23% 23%; /* #2D3748 */
-	--color-background: 0deg 0% 100%;
-}
-
-.dark {
-	--color-primary: 262deg 81% 65%; /* #B794F4 */
-	--color-text: 250deg 81% 99%; /* #fbfaff */
-	--color-background: 220deg 26% 14%; /* #1A202C */
-}
-
 *,
 *::after,
 *::before {
 	box-sizing: border-box;
-	@apply focus:outline focus:outline-1 focus:outline-offset-2 focus:outline-primary;
+	@apply focus:outline focus:outline-1 focus:outline-offset-2 focus:outline-primary-light dark:focus:outline-primary-dark;
 }
 
 * {
@@ -63,7 +50,7 @@ html.light [data-theme='dark'] {
 	border-top-right-radius: 0.5rem;
 	padding: 0.5rem 1rem;
 	font-weight: 500;
-	@apply border-b border-gray-50 bg-[#dde6ee] font-code text-base text-text dark:border-gray-500 dark:bg-gray-800;
+	@apply border-b border-gray-50 bg-[#dde6ee] font-code text-base text-text-light dark:border-gray-500 dark:bg-gray-800 dark:text-text-dark;
 }
 
 [data-rehype-pretty-code-fragment] {

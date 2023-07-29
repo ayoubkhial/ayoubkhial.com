@@ -6,9 +6,18 @@ const config: Config = {
 	theme: {
 		extend: {
 			colors: {
-				primary: 'hsl(var(--color-primary))',
-				background: 'hsl(var(--color-background))',
-				text: 'hsl(var(--color-text))',
+				primary: {
+					light: '#805ad5',
+					dark: '#B794F4'
+				},
+				background: {
+					light: '#fff',
+					dark: '#1A202C'
+				},
+				text: {
+					light: '#2D3748',
+					dark: '#fbfaff'
+				},
 				gray: {
 					50: '#f7fafc',
 					100: '#edf2f7',
@@ -36,8 +45,9 @@ const config: Config = {
 			}
 		},
 		fontFamily: {
-			base: 'var(--font-base)',
+			display: 'var(--font-display)',
 			heading: 'var(--font-heading)',
+			base: 'var(--font-base)',
 			code: 'var(--font-code)'
 		}
 	}

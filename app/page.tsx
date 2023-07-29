@@ -12,16 +12,16 @@ const getLatestPosts = (): Post[] => {
 export default function Home() {
 	const posts = getLatestPosts();
 	return (
-		<>
-			<section className="my-28 px-4 md:my-32">
-				<div className="mb-4 font-heading text-2xl font-bold tracking-wide md:text-3xl">
+		<div className="mx-auto md:w-container">
+			<section className="mb-24 mt-28 px-4 md:my-32">
+				<div className="mb-4 font-display text-2xl font-bold tracking-wider md:text-3xl">
 					<span>Hello, I’m</span> <h1 className="inline-block">Ayoub Khial</h1>.
 				</div>
-				<p className="mb-10 text-base leading-6 tracking-small md:leading-7">
+				<p className="mb-10 leading-6 tracking-small md:leading-7">
 					I’m a full-stack engineer specializing in building beautiful and minimalist web experiences. Currently, I’m helping
 					build a centered business solution as a MEAN stack developer at{' '}
 					<a
-						className="text-primary underline decoration-transparent decoration-[1.2px] underline-offset-[3px] transition-colors duration-300 hover:decoration-inherit"
+						className="text-primary-light underline decoration-transparent decoration-[1.3px] underline-offset-[3px] transition-colors duration-300 hover:decoration-inherit dark:text-primary-dark"
 						href="https://www.irevolution.com"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -30,7 +30,7 @@ export default function Home() {
 					</a>
 					.
 				</p>
-				<div className="grid grid-cols-2 gap-6 font-medium leading-none md:flex md:gap-6">
+				<div className="grid grid-cols-2 gap-6 font-heading font-medium leading-none tracking-wider md:flex md:gap-6">
 					<a
 						href="https://www.github.com/ayoubkhial"
 						target="_blank"
@@ -38,7 +38,7 @@ export default function Home() {
 						className="flex items-center gap-2"
 					>
 						<GithubIcon />
-						<span className="text-[#24292e] hover:underline hover:underline-offset-2 dark:text-[#c6ccd2]">Github</span>
+						<span className="text-gray-800 hover:underline hover:underline-offset-2 dark:text-[#c6ccd2]">Github</span>
 					</a>
 					<a
 						href="https://www.twitter.com/ayoubkhial"
@@ -47,7 +47,7 @@ export default function Home() {
 						className="flex items-center gap-2"
 					>
 						<TwitterIcon />
-						<span className="text-[#1e9bef] hover:underline hover:underline-offset-2">Twitter</span>
+						<span className="text-sky-500 hover:underline hover:underline-offset-2">Twitter</span>
 					</a>
 					<a
 						href="https://www.linkedin.com/in/akhial"
@@ -56,22 +56,26 @@ export default function Home() {
 						className="flex items-center gap-2"
 					>
 						<LinkedinIcon />
-						<span className="text-[#0d65c2] hover:underline hover:underline-offset-2">Linkedin</span>
+						<span className="text-blue-500 hover:underline hover:underline-offset-2">Linkedin</span>
 					</a>
 					<a href="/resume.pdf" className="flex items-center gap-2" download>
 						<ResumeIcon />
-						<span className="text-primary hover:underline hover:underline-offset-2">Resume</span>
+						<span className="text-purple-500 hover:underline hover:underline-offset-2">Resume</span>
 					</a>
 					<a href="mailto:ayouub.khial@gmail.com" rel="noopener noreferrer" target="_blank" className="flex items-center gap-2">
 						<EmailIcon />
-						<span className="text-[#DC3535] hover:underline hover:underline-offset-2">Email</span>
+						<span className="text-red-500 hover:underline hover:underline-offset-2">Email</span>
 					</a>
 				</div>
 			</section>
-			<section className="mb-28 px-4 md:mb-32">
+			<section className="mb-20 px-4 md:mb-32">
 				<div className="mb-6 flex items-center justify-between md:mb-7">
-					<h2 className="font-heading text-lg font-semibold tracking-wider md:text-xl">Latest posts</h2>
-					<Link href={'/blog'} prefetch={false} className="group/button text-base font-medium tracking-wider text-primary">
+					<h2 className="font-heading text-lg font-semibold tracking-[0.15rem] md:text-xl">Latest posts</h2>
+					<Link
+						href={'/blog'}
+						prefetch={false}
+						className="group/button text-[16px] font-semibold tracking-wider text-primary-light dark:text-primary-dark"
+					>
 						View all posts <RightArrowIcon />
 					</Link>
 				</div>
@@ -85,15 +89,15 @@ export default function Home() {
 					))}
 				</ul>
 			</section>
-			<section className="mx-2 mb-28 flex flex-col rounded-2xl border-[0.2px] border-[#cc9dfb] bg-[#f2e6fe] p-9 text-[#26034a] dark:border-[#e1d8f3] dark:bg-[#53319b] dark:text-[#f0ecf9]">
-				<h2 className="mb-6 font-heading text-lg tracking-wider md:mb-8 md:text-xl">Subscribe to my newsletter</h2>
-				<p className="mb-5 text-sm leading-6 md:mb-6 md:text-base md:leading-7">
+			<section className="mx-1 mb-20 flex flex-col rounded-2xl border-[0.4px] border-purple-300 bg-purple-100 p-9 text-purple-950 dark:border-purple-400 dark:bg-purple-900 dark:text-purple-50">
+				<h2 className="mb-6 font-display text-lg tracking-wider md:mb-8 md:text-xl">Subscribe to my newsletter</h2>
+				<p className="mb-5 text-sm leading-6 md:mb-6 md:text-base md:leading-loose">
 					Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I
 					found while surfing the web.
 				</p>
 				<div className="flex items-center gap-3">
 					<a
-						className="rounded-md bg-[#993af8] px-4 py-2 text-[15px] font-medium tracking-wide text-white"
+						className="rounded-md bg-purple-500 px-4 py-2 text-[15px] font-medium tracking-wide text-purple-50"
 						href="https://ayoubkhial.substack.com/"
 						rel="noopener noreferrer"
 						target="_blank"
@@ -105,33 +109,6 @@ export default function Home() {
 					</span>
 				</div>
 			</section>
-			{/* <section id="contact" className="mx-2 mb-28 flex flex-col rounded-2xl bg-gray-50 p-9 dark:bg-gray-700 md:mb-32">
-				<h2 className="mb-6 font-heading text-lg font-extrabold tracking-wider md:mb-8 md:text-xl">Get in touch</h2>
-				<p className="mb-8 text-sm leading-6 md:text-base md:leading-7">
-					Although I’m not actively looking for new job opportunities, my inbox is always open for a friendly hello or a casual
-					chat. So feel free to message me anytime, and let’s catch up!
-				</p>
-				<div className="flex gap-5">
-					<a
-						href="/resume.pdf"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="cursor-pointer rounded-md bg-primary px-4 py-3 text-sm font-medium tracking-wide text-white md:text-base"
-					>
-						Download my resume
-					</a>
-					<a
-						className="
-							cursor-pointer rounded-md border border-solid border-primary px-4 py-3 text-sm font-medium tracking-wide text-primary
-							dark:border-white dark:text-white dark:hover:border-primary md:text-base"
-						href="mailto:ayouub.khial@gmail.com"
-						rel="noopener noreferrer"
-						target="_blank"
-					>
-						Say Hello
-					</a>
-				</div>
-			</section> */}
-		</>
+		</div>
 	);
 }

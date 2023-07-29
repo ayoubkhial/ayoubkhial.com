@@ -30,13 +30,13 @@ const MDXComponents = {
 	h2(props: any) {
 		return (
 			<h2
-				className="mb-5 mt-10 border-b border-gray-100 text-[1.2rem] font-semibold leading-loose tracking-small dark:border-gray-800 md:text-[1.4rem]"
+				className="mb-5 mt-10 border-b border-gray-100 font-heading text-[1.2rem] font-semibold leading-loose tracking-wider dark:border-gray-800 md:text-[1.4rem]"
 				{...props}
 			/>
 		);
 	},
 	h3(props: any) {
-		return <h3 className="mb-5 mt-6 text-[1rem] font-medium leading-loose tracking-small md:text-[1.1rem]" {...props} />;
+		return <h3 className="mb-5 mt-6 font-heading text-[1rem] font-medium leading-loose tracking-wider md:text-[1.1rem]" {...props} />;
 	},
 	a(props: any) {
 		const className = 'font-medium leading-4 text-black underline underline-offset-2 dark:text-white';

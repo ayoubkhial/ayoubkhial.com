@@ -16,9 +16,9 @@ export default function Blog() {
 	const posts = getPosts();
 
 	return (
-		<section className="mb-12 mt-28 px-4 md:mb-20 md:mt-24 md:gap-8">
-			<h1 className="mb-6 font-heading text-xl font-bold tracking-wider md:text-2xl">My writing</h1>
-			<p className="mb-9 text-sm leading-6 tracking-wide md:mb-12 md:text-base md:leading-7">
+		<section className="mx-auto mb-12 mt-28 px-4 md:mb-20 md:mt-24 md:w-container md:gap-8">
+			<h1 className="mb-6 font-display text-xl font-bold tracking-wider md:text-2xl">My writing</h1>
+			<p className="mb-9 text-sm leading-6 tracking-wide md:mb-12 md:text-base md:leading-loose">
 				Here I share my writing about web development with a focus on the javascript ecosystem. Thanks for stopping by and happy
 				coding!
 			</p>

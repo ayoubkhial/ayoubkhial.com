@@ -3,7 +3,7 @@ import NavLink from '@components/nav-link';
 import Theme from '@components/theme';
 import Logo from '@public/img/logo.svg';
 import { Analytics } from '@vercel/analytics/react';
-import { Inconsolata, Inter } from 'next/font/google';
+import { Inconsolata, Inter, Lilita_One } from 'next/font/google';
 import localFont from 'next/font/local';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +11,6 @@ import './globals.css';
 
 export const metadata = {
 	metadataBase: new URL(process.env.API_URL || 'https://ayoubkhial.com'),
-
 	title: 'Ayoub Khial',
 	description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
 	openGraph: {
@@ -60,6 +59,13 @@ export const metadata = {
 	}
 };
 
+const lilita = Lilita_One({
+	subsets: ['latin'],
+	display: 'swap',
+	variable: '--font-display',
+	weight: '400'
+});
+
 const calSans = localFont({
 	src: '../public/fonts/CalSans-SemiBold.woff2',
 	style: 'black',
@@ -86,17 +92,14 @@ const links = [
 
 const Header = () => {
 	return (
-		<header
-			className="fixed left-0 top-0 h-14 w-screen
-			bg-background pl-4 pr-7 md:static md:h-auto md:w-auto md:px-4 md:pt-6"
-		>
+		<header className="fixed left-0 top-0 mx-auto h-14 w-screen bg-background-light pl-4 pr-7 dark:bg-background-dark md:static md:h-auto md:w-container md:px-4 md:pt-6">
 			<div className="flex h-full items-center justify-between">
 				<div className="flex items-center gap-12">
-					<Link href="/" className="md:block" prefetch={false}>
-						<Image src={Logo} alt="Ayoub khial logo" width="40" height="40" />
+					<Link href="/" prefetch={false}>
+						<Image src={Logo} alt="Ayoub KHIAL logo" width="40" height="40" />
 					</Link>
 					<nav>
-						<ul className="flex items-center gap-8 md:text-sm">
+						<ul className="flex items-center gap-8">
 							{links?.map((link, index) => (
 								<li key={index}>
 									<NavLink {...link} />
@@ -128,7 +131,7 @@ const Footer = () => {
 				</a>
 			</div>
 			<div>
-				<span className="text-sm font-medium leading-none tracking-small">&#169; 2023 Ayoub Khial, All rights reserved.</span>
+				<span className="font-heading text-sm leading-none tracking-wider">&#169; 2023 Ayoub Khial, All rights reserved.</span>
 			</div>
 		</footer>
 	);
@@ -136,9 +139,9 @@ const Footer = () => {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" className={`${inter.variable} ${calSans.variable} ${inconsolata.variable}`}>
-			<body className="relative min-h-screen bg-background font-base text-base">
-				<div className="layout mx-auto text-text md:w-container">
+		<html lang="en" className={`${lilita.variable} ${calSans.variable} ${inter.variable} ${inconsolata.variable}`}>
+			<body className="relative min-h-screen bg-background-light font-base text-base text-text-light dark:bg-background-dark dark:text-text-dark">
+				<div>
 					<Header />
 					<main>
 						<Theme>{children}</Theme>

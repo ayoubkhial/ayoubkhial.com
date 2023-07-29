@@ -14,7 +14,7 @@ export default function callout({ type, children }: Props) {
 	};
 	const textColorVariants = {
 		blue: 'text-[#00294d] dark:text-[#e5f3ff]',
-		red: 'text-[#4d0013] dark:text-[#fef1f1]',
+		red: 'text-[#3d000f] dark:text-[#fef1f1]',
 		purple: 'text-[#26034a] dark:text-[#dae1f1]'
 	};
 	return (
