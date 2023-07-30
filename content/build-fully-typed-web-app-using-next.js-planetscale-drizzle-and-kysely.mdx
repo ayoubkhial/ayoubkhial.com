@@ -52,7 +52,7 @@ upgrade your plan to accommodate them separately.
 To get started, we need to create a PlanetScale account. You have two options: visit the official website
 and click the **Get Started** button or follow [this link](https://auth.planetscale.com/sign-up).
 
-<AdaptiveImage alt={'PlanetScale signup page'} src={'/img/blog/3/1.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale signup page'} src={'/img/blog/3/1.webp'} width={734} height={461} />
 
 You have two options for creating an account: sign up with your email and password or use your GitHub
 account. In this tutorial, I'll be using the GitHub account signup method.
@@ -60,14 +60,14 @@ account. In this tutorial, I'll be using the GitHub account signup method.
 Upon signing up, you will receive a verification email. Click on the link within the email to confirm
 your account, regardless of your chosen signup method.
 
-<AdaptiveImage alt={'PlanetScale signup verification'} src={'/img/blog/3/2.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale signup verification'} src={'/img/blog/3/2.webp'} width={734} height={437} />
 
 Once you click on the confirmation link, you'll be taken through an onboarding flow that highlights the
 amazing features of PlanetScale and provides guidance on how to use them. At the end of the flow,
 you'll see a button that says, **Create your first database**. Click on it and give your database a name
 (I'll go with **movies**).
 
-<AdaptiveImage alt={'Create your first database on PlanetScale'} src={'/img/blog/3/3.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'Create your first database on PlanetScale'} src={'/img/blog/3/3.webp'} width={734} height={940} />
 
 <Callout type="WARNING">
 Ensure that you choose the region closest to your serverless function. This selection will help in
@@ -87,7 +87,7 @@ After the initialization is done, you'll land on the homepage of your database. 
 overview of your database and relevant details. It is the central hub for managing and interacting with
 your database within the PlanetScale platform.
 
-<AdaptiveImage alt={'PlanetScale dashboard'} src={'/img/blog/3/4.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale dashboard'} src={'/img/blog/3/4.webp'} width={734} height={332} />
 
 ## PlanetScale CLI
 The [PlanetScale CLI](https://planetscale.com/features/cli) is a handy command-line tool provided by
@@ -134,7 +134,7 @@ pscale auth login
 After executing the command, a new browser tab will open and prompt you to sign in via the browser.
 You will be asked to verify the device confirmation code displayed in your terminal.
 
-<AdaptiveImage alt={'PlanetScale confirmation code'} src={'/img/blog/3/5.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale confirmation code'} src={'/img/blog/3/5.webp'} width={734} height={345} />
 
 You should see a Successfully logged-in message displayed in your terminal once you click the
 **Confirm code** button.
@@ -150,7 +150,7 @@ pscale branch promote movies main
 Ensure that you enable **safe migrations** on your production branch as well. This will grant you or
 your team the ability to create deploy requests.
 
-<AdaptiveImage alt={'PlanetScale enable safe migrations'} src={'/img/blog/3/14.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale enable safe migrations'} src={'/img/blog/3/14.webp'} width={734} height={739} />
 
 <Callout type="INFO">
 A production branch adds an extra layer of protection for schema changes, just like a protected git
@@ -165,7 +165,7 @@ By default, the CLI is disabled for production branches, but you can enable it i
 if desired. This gives you the flexibility to use the CLI for operations on your production branch
 when necessary.
 
-<AdaptiveImage alt={'PlanetScale activate console on production branches'} src={'/img/blog/3/6.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale activate console on production branches'} src={'/img/blog/3/6.webp'} width={648} height={407} />
 </Callout>
 
 Now, let's create a new **dev** branch for our development environment. This branch will be
@@ -178,7 +178,7 @@ pscale branch create movies dev
 If you go to your PlanetScale dashboard, you can view the newly created **dev** branch listed among
 your branches.
 
-<AdaptiveImage alt={'PlanetScale branches list'} src={'/img/blog/3/7.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale branches list'} src={'/img/blog/3/7.webp'} width={734} height={220} />
 
 Here are some other helpful `pscale` commands worth noting:
 
@@ -197,7 +197,7 @@ See the complete command list with the documentation on
 You can directly access the PlanetScale CLI web console within your PlanetScale database. Go to
 the Console tab and choose the dev branch.
 
-<AdaptiveImage alt={'PlanetScale web console'} src={'/img/blog/3/8.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale web console'} src={'/img/blog/3/8.webp'} width={748} height={322} />
 </Callout>
 
 ## Create a TypeScript-based Next.js app
@@ -246,7 +246,7 @@ Go to your PlanetScale dashboard and find the **dev** branch in the **Branches**
 the **Connect** button located at the top right corner. You will be asked to choose a name for your
 connection password. Leave the Branch and Role settings as they are by default.
 
-<AdaptiveImage alt={'PlanetScale create database password'} src={'/img/blog/3/9.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale create database password'} src={'/img/blog/3/9.webp'} width={734} height={986} />
 
 <Callout type="INFO">
 In the same branch, you can create multiple passwords to manage access rights for different developers.
@@ -260,7 +260,7 @@ maintaining security.
 Choose the **Connect with Node.js** option and securely save the provided string. This string will be
 required when connecting your Next.js application to the PlanetScale database.
 
-<AdaptiveImage alt={'PlanetScale connection string'} src={'/img/blog/3/10.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale connection string'} src={'/img/blog/3/10.webp'} width={734} height={630} />
 
 <Callout type="WARNING">
 Make sure to securely store these connection details, as PlanetScale automatically hides your password
@@ -413,7 +413,7 @@ You should see a successful message in your terminal indicating the changes have
 Go to the PlanetScale dashboard and visit the "dev" branch. You will notice that our table has been
 successfully created.
 
-<AdaptiveImage alt={'PlanetScale database schema changes'} src={'/img/blog/3/11.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale database schema changes'} src={'/img/blog/3/11.webp'} width={734} height={345} />
 
 Now, we will create some records using the PlanetScale CLI, specifically the integrated MySQL shell, to
 demonstrate its functionality.
@@ -443,7 +443,7 @@ SELECT * FROM movies;
 
 You can also see that the new record is displayed in the PlanetScale dashboard.
 
-<AdaptiveImage alt={'PlanetScale dashboard statistics'} src={'/img/blog/3/12.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale dashboard statistics'} src={'/img/blog/3/12.webp'} width={734} height={348} />
 
 <Callout type="WARNING">
 Since the usage statistics displayed in the PlanetScale Dashboard are updated hourly, the record may take some
@@ -586,7 +586,7 @@ more methods.
 
 Navigate to `localhost:3000` in your web browser to see the list of movies retrieved from the database.
 
-<AdaptiveImage alt={'Movies list'} src={'/img/blog/3/13.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'Movies list'} src={'/img/blog/3/13.webp'} width={734} height={171} />
 
 The approach described above is simpler and more straightforward for smaller applications. However,
 for larger applications with complex data retrieval requirements, it is better to use the route API
@@ -683,16 +683,16 @@ View this deploy request in the browser: https://app.planetscale.com/ayoub-khial
 Click on the link to redirect you to the deploy request details. From there, you can deploy the changes
 or close the request.
 
-<AdaptiveImage alt={'PlanetScale deploy request'} src={'/img/blog/3/15.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale deploy request'} src={'/img/blog/3/15.webp'} width={734} height={347} />
 
 Click on the deploy changes button, and after a few seconds, you'll see a message indicating the
 deployment was completed successfully.
 
-<AdaptiveImage alt={'PlanetScale request deployed successfully'} src={'/img/blog/3/16.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale request deployed successfully'} src={'/img/blog/3/16.webp'} width={734} height={309} />
 
 If you navigate to your main branch, you will find the newly created movies table.
 
-<AdaptiveImage alt={'PlanetScale branch schema changes'} src={'/img/blog/3/17.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'PlanetScale branch schema changes'} src={'/img/blog/3/17.webp'} width={734} height={292} />
 
 To set up your project on Vercel, commit it to Github and sync it with Vercel. Then, go to the
 **Settings** tab and select **Environment Variables** from the left menu. From there, please create a
@@ -702,7 +702,7 @@ new variable for the production environment, similar to what you did in the `.en
 But before that, get the database string from PlanetScale just like we did with the **dev** branch. But
 this time you need to get it from the **main** branch.
 
-<AdaptiveImage alt={'Vercel environment variables'} src={'/img/blog/3/18.webp'} width={768} height={719.06} />
+<AdaptiveImage alt={'Vercel environment variables'} src={'/img/blog/3/18.webp'} width={734} height={479} />
 
 <Callout type="WARNING">
 It's essential to name your variable the same name as you named it in the `.env` file, in our case,

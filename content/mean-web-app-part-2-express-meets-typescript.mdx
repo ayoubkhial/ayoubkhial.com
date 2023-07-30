@@ -507,7 +507,7 @@ pnpm install --filter server
 
 Let's take a close look at how pnpm treats the installed packages.
 
-<AdaptiveImage alt={'pnpm symlink node_modules worspace'} src={'/img/blog/6/1.webp'} width={768} height={600} />
+<AdaptiveImage alt={'pnpm symlink node_modules worspace'} src={'/img/blog/6/1.webp'} width={734} height={468} />
 
 **bugsight** is the root of your monorepo, and **node_modules** at the root is the shared node_modules. 
 **client** and **server** are your applications, each with a **node_modules** directory containing 
@@ -604,7 +604,7 @@ server.start();
 You will encounter errors that appear in your ts files. This is a good sign that your TypeScript 
 configuration is correctly set up.
 
-<AdaptiveImage alt={'Declaration file not found for module "express".'} src={'/img/blog/6/2.webp'} width={768} height={600} />
+<AdaptiveImage alt={'Declaration file not found for module "express".'} src={'/img/blog/6/2.webp'} width={734} height={365} />
 
 The first error with the express import indicates that the `express` package is written in JavaScript 
 and has no exported modules.
@@ -653,7 +653,7 @@ pnpm run dev:server
 
 An error is expected to occur.
 
-<AdaptiveImage alt={'ts-node: command not found when attempting to run nodemon.'} src={'/img/blog/6/3.webp'} width={768} height={600} />
+<AdaptiveImage alt={'ts-node: command not found when attempting to run nodemon.'} src={'/img/blog/6/3.webp'} width={734} height={263} />
 
 We need to use a [ts-node](https://typestrong.org/ts-node/) package to execute the TypeScript file in 
 a Node.js environment. This package compiles the TypeScript file on the fly, converting it to a 
