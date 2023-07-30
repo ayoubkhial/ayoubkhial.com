@@ -8,9 +8,10 @@ type Props = {
 	alt: string;
 	width: number;
 	height: number;
+	priority: boolean;
 };
 
-export default function AdaptiveImage({ src, alt, width, height }: Props) {
+export default function AdaptiveImage({ src, alt, width, height, priority = false }: Props) {
 	const { resolvedTheme } = useTheme();
 	const [extension, ...filename] = src.split('.').reverse();
 	const source = resolvedTheme === 'dark' ? `${filename}_dark.${extension}` : src;
@@ -21,6 +22,7 @@ export default function AdaptiveImage({ src, alt, width, height }: Props) {
 			alt={alt}
 			width={width}
 			height={height}
+			priority={priority}
 		/>
 	);
 }

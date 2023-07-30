@@ -96,7 +96,7 @@ const Header = () => {
 			<div className="flex h-full items-center justify-between">
 				<div className="flex items-center gap-12">
 					<Link href="/" prefetch={false}>
-						<Image src={Logo} alt="Ayoub KHIAL logo" width="40" height="40" />
+						<Image src={Logo} alt="Ayoub KHIAL logo" width="40" height="40" priority={true} />
 					</Link>
 					<nav>
 						<ul className="flex items-center gap-8">
