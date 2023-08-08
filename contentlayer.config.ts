@@ -34,7 +34,7 @@ const Post = defineDocumentType(() => ({
 	computedFields: {
 		readingTime: {
 			type: 'json',
-			resolve: doc => readingTime(doc.body.raw, { wordsPerMinute: 265 })
+			resolve: doc => readingTime(doc.body.raw, { wordsPerMinute: 300 })
 		},
 		slug: {
 			type: 'string',
