@@ -32,7 +32,7 @@ Imagine our application consisting of three routes, a home page, a contact page,
 Since the routing system in the **app** directory is managed based on the folders contained within it.
 Structure the app folder as follows:
 
-<AdaptiveImage alt={'App folder structure with a simple routing system in Next.js 13'} src={'/img/blog/1/1.webp'} width={734} height={414} priority={true} />
+<AdaptiveImage alt={'App folder structure with a simple routing system in Next.js 13'} src={'/img/blog/1/1.webp'} width={768} height={414} priority={true} />
 
 
 <Callout type="INFO">
@@ -83,7 +83,7 @@ exist in our app. This way, we can simulate how the static typing feature can re
 By default, TypeScript will not complain about errors related to the non-existent route during build
 time. You won't receive any warnings in your text editor either (as shown in the screenshot below).
 
-<AdaptiveImage alt={'No error in Visual Studio Code when a route does not exist in Next.js'} src={'/img/blog/1/2.webp'} width={734} height={208} />
+<AdaptiveImage alt={'No error in Visual Studio Code when a route does not exist in Next.js'} src={'/img/blog/1/2.webp'} width={768} height={208} />
 
 
 This lack of type safety could lead to errors and bugs in the application.
@@ -125,7 +125,7 @@ const nextConfig = {
 Now that TypeScript can leverage the link definition file, it can provide feedback within your
 text editor to help catch any invalid links before you ship to production.
 
-<AdaptiveImage alt={'Screenshot of Visual Studio Code error if a route does not exist in Next.js app'} src={'/img/blog/1/3.webp'} width={734} height={208} />
+<AdaptiveImage alt={'Screenshot of Visual Studio Code error if a route does not exist in Next.js app'} src={'/img/blog/1/3.webp'} width={768} height={208} />
 
 <Callout type="INFO">
 As a side note, re-run your server to generate the corresponding `.d.ts` file if you can't see the error immediately.
