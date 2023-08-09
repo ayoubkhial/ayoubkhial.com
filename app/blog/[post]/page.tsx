@@ -96,6 +96,24 @@ export default function Post({ params }: Props) {
 						))}
 					</ul>
 					<div className="blog-content text-[0.95rem]">
+						<h2 className="mb-5 mt-10 border-b border-gray-100 font-heading text-[1.2rem] font-semibold leading-loose tracking-wider dark:border-gray-800 md:text-[1.4rem]">
+							Table of Contents
+						</h2>
+						<div className="toc">
+							{post.headings.map((heading: any) => {
+								return (
+									<div key={`#${heading.slug}`}>
+										<a
+											className="text-[1rem] font-semibold leading-8 data-[level=three]:pl-6"
+											data-level={heading.level}
+											href={`#${heading.slug}`}
+										>
+											{heading.text}
+										</a>
+									</div>
+								);
+							})}
+						</div>
 						<Component components={MDXComponents} />
 					</div>
 				</article>

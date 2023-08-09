@@ -1,4 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import GithubSlugger from 'github-slugger';
 import readingTime from 'reading-time';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -43,6 +44,24 @@ const Post = defineDocumentType(() => ({
 		url: {
 			type: 'string',
 			resolve: doc => `/content/${doc._raw.flattenedPath}`
+		},
+		headings: {
+			type: 'json',
+			resolve: async doc => {
+				const slugger = new GithubSlugger();
+				const regXHeader = /\n(?<flag>#{2,6})\s+(?<content>.+)/g;
+				const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(({ groups }) => {
+					console.log(groups);
+					const flag = groups?.flag;
+					const content = groups?.content;
+					return {
+						level: flag?.length == 1 ? 'one' : flag?.length == 2 ? 'two' : 'three',
+						text: content,
+						slug: content ? slugger.slug(content) : undefined
+					};
+				});
+				return headings;
+			}
 		}
 	}
 }));

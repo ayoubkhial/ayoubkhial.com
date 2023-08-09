@@ -208,3 +208,26 @@ pre::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	@apply bg-gray-200 dark:bg-gray-600;
 }
+
+.toc {
+	counter-reset: level1;
+}
+
+a[data-level='two'] {
+	counter-increment: level1;
+}
+
+a[data-level='two']::before {
+	content: counter(level1) '. ';
+	padding-right: 1rem;
+}
+
+a[data-level='three'] {
+	counter-reset: level2;
+}
+
+a[data-level='three']::before {
+	content: counter(level1) '.' counter(level2) '. ';
+	counter-increment: level2;
+	padding-right: 1rem;
+}
