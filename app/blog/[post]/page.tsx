@@ -1,4 +1,5 @@
 import Comments from '@components/comments';
+import { PlayfulArrowIcon } from '@components/icons';
 import MDXComponents from '@components/mdx';
 import { LinkedinButton, TwitterButton } from '@components/share';
 
@@ -67,6 +68,22 @@ export default function Post({ params }: Props) {
 	const Component: any = getMDXComponent(post.body.code!);
 	return (
 		<>
+			<div className="right-1 hidden xl:fixed xl:block">
+				<p className="mb-4 max-w-[17rem] font-display tracking-wider text-primary-light dark:text-primary-dark">
+					If you liked this post, sign up to get updates in your email when I write something new! No spam ever.
+				</p>
+				<div className="hidden items-end gap-2 xl:flex">
+					<a
+						className=" rounded-md bg-primary-light px-3 py-2 text-[15px] font-medium tracking-wide text-white"
+						href="https://ayoubkhial.substack.com/"
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						Subscribe
+					</a>
+					<PlayfulArrowIcon></PlayfulArrowIcon>
+				</div>
+			</div>
 			<div className="mx-auto md:w-container">
 				<article className="mt-28 px-4 md:mt-24">
 					<h1 className="mb-4 font-display text-2xl font-semibold leading-10 tracking-wider md:mb-6 md:text-3xl">{post.title}</h1>

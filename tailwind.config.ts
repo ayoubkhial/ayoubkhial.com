@@ -34,7 +34,8 @@ const config: Config = {
 			},
 			screens: {
 				md: '800px',
-				lg: '1024px'
+				lg: '1024px',
+				xl: '1350px'
 			},
 			letterSpacing: {
 				small: '0.015rem',
