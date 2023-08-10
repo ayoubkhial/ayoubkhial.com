@@ -91,7 +91,7 @@ export default function Post({ params }: Props) {
 					<ul className="mb-8 flex gap-2 text-sm">
 						{post.keywords?.split(',').map(keyword => (
 							<li key={keyword} className="font-medium">
-								<span className="text-primary font-semibold">#</span> {keyword}
+								<span className="font-semibold text-primary-light dark:text-primary-dark">#</span> {keyword}
 							</li>
 						))}
 					</ul>
