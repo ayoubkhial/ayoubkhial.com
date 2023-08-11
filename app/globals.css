@@ -222,12 +222,7 @@ a[data-level='two']::before {
 	padding-right: 1rem;
 }
 
-a[data-level='three'] {
-	counter-reset: level2;
-}
-
 a[data-level='three']::before {
-	content: counter(level1) '.' counter(level2) '. ';
-	counter-increment: level2;
+	content: '• ';
 	padding-right: 1rem;
 }

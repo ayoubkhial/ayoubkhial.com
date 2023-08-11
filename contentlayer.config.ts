@@ -51,7 +51,6 @@ const Post = defineDocumentType(() => ({
 				const slugger = new GithubSlugger();
 				const regXHeader = /\n(?<flag>#{2,6})\s+(?<content>.+)/g;
 				const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(({ groups }) => {
-					console.log(groups);
 					const flag = groups?.flag;
 					const content = groups?.content;
 					return {

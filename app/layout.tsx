@@ -1,7 +1,7 @@
 import { EmailIcon, GithubIcon, RSSIcon, TwitterIcon } from '@components/icons';
 import NavLink from '@components/nav-link';
 import Theme from '@components/theme';
-import Logo from '@public/img/logo.svg';
+import Logo from '@public/img/logo.png';
 import { Analytics } from '@vercel/analytics/react';
 import { Inconsolata, Inter, Lilita_One } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -10,17 +10,16 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata = {
-	metadataBase: new URL(process.env.API_URL || 'https://ayoubkhial.com'),
 	title: 'Ayoub Khial',
 	description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
 	openGraph: {
 		title: 'Ayoub Khial',
 		description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
 		siteName: 'Ayoub Khial portfolio',
-		url: `/`,
+		url: `https://ayoubkhial.com`,
 		images: [
 			{
-				url: `/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,
+				url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/opengraph-image.png`,
 				alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
 			}
 		],
@@ -47,13 +46,12 @@ export const metadata = {
 		creator: '@ayoubkhial',
 		site: '@ayoubkhial',
 		images: {
-			url: `/og?title=A software engineer specializing in building beautiful and minimalist web experiences.`,
-			alt: 'Ayoub Khial'
+			url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/opengraph-image.png`,
+			alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
 		}
 	},
 	alternates: {
 		types: {
-			// See the RSS Feed section for more details
 			'application/rss+xml': '/rss.xml'
 		}
 	}

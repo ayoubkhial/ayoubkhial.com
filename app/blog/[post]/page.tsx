@@ -21,10 +21,12 @@ const getPost = (slug: string): Post | undefined => {
 export function generateMetadata({ params }: Props): Metadata {
 	const { post: slug } = params;
 	const post = getPost(slug);
+	const index = allPosts
+		.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime())
+		.findIndex(p => p.slug === post?.slug);
 	if (!post) return { title: slug };
 	const { title, description, publishedAt, keywords } = post!;
 	return {
-		metadataBase: new URL(process.env.API_URL || 'https://ayoubkhial.com'),
 		title,
 		description,
 		keywords: keywords,
@@ -33,10 +35,10 @@ export function generateMetadata({ params }: Props): Metadata {
 			description,
 			publishedTime: publishedAt,
 			type: 'article',
-			url: `/blog/${slug}`,
+			url: `https://ayoubkhial.com/blog/${slug}`,
 			images: [
 				{
-					url: `/og?title=${title}&keywords=${keywords}`,
+					url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/blog/${index + 1}/og.png`,
 					alt: title
 				}
 			]
@@ -48,7 +50,7 @@ export function generateMetadata({ params }: Props): Metadata {
 			title,
 			description,
 			images: {
-				url: `/og?title=${title}&keywords=${keywords}`,
+				url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/blog/${index + 1}/og.png`,
 				alt: title
 			}
 		}
