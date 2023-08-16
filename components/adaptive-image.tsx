@@ -23,7 +23,7 @@ export default function AdaptiveImage({ src, alt, width, height, priority = fals
 
 	return (
 		<Image
-			className="my-6 rounded-xl border border-dashed border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-900"
+			className="my-5 rounded-xl border border-dashed border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-900"
 			src={source}
 			alt={alt}
 			width={width}
