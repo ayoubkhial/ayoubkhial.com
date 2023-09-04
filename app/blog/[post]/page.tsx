@@ -1,6 +1,7 @@
 import Comments from '@components/comments';
 import { PlayfulArrowIcon } from '@components/icons';
 import MDXComponents from '@components/mdx';
+import SeriesNavigationBox from '@components/series-navigation-box';
 import { LinkedinButton, TwitterButton } from '@components/share';
 
 import { getPostViews, incrementPostViews } from '@lib/requests';
@@ -66,6 +67,13 @@ export default function Post({ params }: Props) {
 	const { post: slug } = params;
 	const post = getPost(slug);
 	if (!post) throw new Error('This post is not exist.');
+	let seriesPosts: { slug: string; title: string; url: string }[] = [];
+	if (post?.series) {
+		seriesPosts = allPosts
+			.filter(p => p?.series === post?.series)
+			?.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime())
+			?.map(post => ({ slug: post?.slug, title: post?.title, url: post?.url }));
+	}
 	incrementPostViews(slug);
 	const Component: any = getMDXComponent(post.body.code!);
 	return (
@@ -114,7 +122,10 @@ export default function Post({ params }: Props) {
 							</li>
 						))}
 					</ul>
-					<div className="blog-content text-[0.95rem]">
+					{post?.series && (
+						<SeriesNavigationBox title={post?.series} articles={seriesPosts} current={post?.slug}></SeriesNavigationBox>
+					)}
+					<div className="blog-content text-[0.95rem]" suppressHydrationWarning>
 						<h2 className="mb-5 mt-10 border-b border-gray-100 font-heading text-[1.2rem] font-semibold leading-loose tracking-wider dark:border-gray-800 md:text-[1.4rem]">
 							Table of Contents
 						</h2>

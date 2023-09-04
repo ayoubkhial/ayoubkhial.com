@@ -30,6 +30,9 @@ const Post = defineDocumentType(() => ({
 			type: 'date',
 			description: 'The date of the post',
 			required: true
+		},
+		series: {
+			type: 'string'
 		}
 	},
 	computedFields: {
