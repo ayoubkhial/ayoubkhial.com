@@ -38,7 +38,10 @@ const Post = defineDocumentType(() => ({
 	computedFields: {
 		readingTime: {
 			type: 'json',
-			resolve: doc => readingTime(doc.body.raw, { wordsPerMinute: 300 })
+			resolve: doc => {
+				const text = doc.body.raw.replace(/```[\s\S]*?```/g, '');
+				return readingTime(text, { wordsPerMinute: 275 });
+			}
 		},
 		slug: {
 			type: 'string',
