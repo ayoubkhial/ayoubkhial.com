@@ -36,7 +36,7 @@ ol {
 a {
 	text-decoration: none;
 	color: inherit;
-	display: inline;
+	display: inline-block;
 }
 
 /* Code block style */
@@ -133,7 +133,7 @@ aside p:not(:last-child) {
 	@apply bg-gray-100 text-red-500 dark:bg-gray-700 dark:text-red-400;
 }
 
-.blog-content aside a {
+.blog-content a {
 	display: inline;
 }
 
