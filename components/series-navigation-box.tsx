@@ -34,18 +34,18 @@ export default function SeriesNavigationBox({ title, articles, current }: Props)
 									clip-rule="evenodd"
 								></path>
 							</defs>
-							<g fill="none" className="stroke-[#b36bfa] dark:stroke-[#edf0f8]" stroke-width="3">
+							<g fill="none" className="stroke-[#b36bfa] dark:stroke-[#edf0f8]" strokeWidth="3">
 								<use href="#ipOUpC0" clip-rule="evenodd"></use>
-								<use href="#ipOUpC0" stroke-linejoin="round"></use>
-								<path stroke-linecap="round" stroke-linejoin="round" d="m33 27l-9-9l-9 9"></path>
+								<use href="#ipOUpC0" strokeLinejoin="round"></use>
+								<path strokeLinecap="round" strokeLinejoin="round" d="m33 27l-9-9l-9 9"></path>
 							</g>
 						</svg>
 					)}
 					{!isOpen && (
 						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48">
-							<g fill="none" className="stroke-[#b36bfa] dark:stroke-[#edf0f8]" stroke-linejoin="round" stroke-width="3">
+							<g fill="none" className="stroke-[#b36bfa] dark:stroke-[#edf0f8]" strokeLinejoin="round" strokeWidth="3">
 								<path d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"></path>
-								<path stroke-linecap="round" d="m33 21l-9 9l-9-9"></path>
+								<path strokeLinecap="round" d="m33 21l-9 9l-9-9"></path>
 							</g>
 						</svg>
 					)}
