@@ -80,7 +80,7 @@ Here are some key differences between Model Queries and Document Queries:
 Understanding these differences helps you make informed decisions when developing database logic, ensuring efficiency and reliability in your application's data layer.
 
 <Callout type="INFO">
-Throughout this article, I will differentiate between Model-Level Queries (`Model::method`) and Document-Level Queries (`Document::method`) to avoid any confusions.
+Throughout this article, I will differentiate between Model-Level Queries (`Model::method`) and Document-Level Queries (`Document::method`) to avoid any confusion.
 </Callout>
 
 ## Chainable API VS. Query Parameters
@@ -259,7 +259,7 @@ Important options to note:
 
 For the complete list, check out [Mongoose API documentation](https://mongoosejs.com/docs/api/model.html#Model.insertMany()).
 
-Usage of the bulkInsert function is straightforward:
+Usage of the `bulkInsert` function is straightforward:
 
 ```ts
 import DAO from './dao';
@@ -533,7 +533,7 @@ export default class ProjectDAO {
 - `new`: When set to `true`, this option ensures the method returns the updated document rather than the original. If omitted or set to `false`, the pre-update document will be returned.
 - `returnOriginal`: Essentially an alternative to `new`, setting this to `false` yields the updated document.
 
-Here's how to use findAndUpdate method:
+Here's how to use `findAndUpdate` method:
 
 ```ts
 const filter: FilterQuery<IProjectDocument> = { name: 'Bugsight' };
