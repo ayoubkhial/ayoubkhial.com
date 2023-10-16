@@ -144,6 +144,7 @@ export default function Post({ params }: Props) {
 								);
 							})}
 						</div>
+						<div className="my-10 h-[0.1rem] w-auto bg-gray-100 dark:bg-gray-700"></div>
 						<Component components={MDXComponents} />
 					</div>
 				</article>
