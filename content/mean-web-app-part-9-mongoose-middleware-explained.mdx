@@ -1,0 +1,432 @@
+---
+title: 'Mongoose Middleware Explained'
+publishedAt: '2023-10-26'
+description: "This article aims to explain Mongoose middleware, while exploring the different types and some real-world use cases."
+keywords: "Express,Node.js,MongoDB,Mongoose"
+published: true
+series: 'Building a MEAN Web APP'
+---
+
+<Callout type="INFO">
+The complete source code up to this point can be found in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-8).
+</Callout>
+
+Middleware is one of those tech terms that you've probably heard but may not fully grasp. In the sense of Mongoose and MongoDB, middleware functions as the hidden power that performs actions before or after certain events, like saving a document or running a query. This article aims to break down the complexities of Mongoose middleware, making it easy to understand how it operates, when it's triggered, and how you can use it to produce cleaner, more efficient code.
+
+
+## What is Middleware?
+In Mongoose, middleware acts as a mediator that intervenes during certain operations in your application. Think of it as a series of checkpoints your data must pass through before reaching its final destination. These middleware functions are executed automatically throughout the lifecycle of a Mongoose model, such as when data is being saved, updated, or deleted.
+
+But why should you care? Well, it helps you enforce business logic and validation rules seamlessly. You don't have to worry about writing repetitive code ([DRY](https://www.plutora.com/blog/understanding-the-dry-dont-repeat-yourself-principle)), as middleware functions can be defined once and handle the logic whenever a specific event occurs. Moreover, middleware provides a structured way to extend Mongoose's functionalities. You can easily log changes, modify data, or even cancel an operation if certain conditions aren't met.
+
+<AdaptiveImage alt={'Mongoose Operation Workflow Diagram'} src={'/img/blog/15/1.webp'} width={768} height={353} />
+
+Mongoose middleware falls into two essential categories, each serving unique purposes:
+- **Pre-Middleware:** These hooks come into play before an operation is executed. They are invaluable for data validation, default value setting, hashing sensitive information, or transforming fields. By manipulating the data before it hits the database, pre-middleware can be a robust first layer of defense or optimization.
+- **Post Middleware:** Activated after an operation has been completed, these hooks are ideal for operations that need to occur after database changes. This could range from logging changes for auditing and sending notifications based on database events to even triggering other operations that depend on the outcome of the original one.
+
+By strategically employing these hooks, you can achieve a high level of automation and consistency, thereby enhancing the efficiency and reliability of your application.
+
+## Middleware Types
+Mongoose offers four types of middleware, each tailored to handle distinct aspects of your application's data operations. The four cornerstone types are **Document**, **Query**, **Aggregation**, and **Model**. Not only do they come with their own unique capabilities, but they also address specific use cases that you'll frequently encounter as a developer.
+
+<Callout type="INFO">
+In this section, I will use code samples to highlight some behaviors. Later in this article, I'll provide some real-world examples.
+</Callout>
+
+### Document Middleware
+Document middleware is the most common type of middleware. It handles operations involving a single document, such as saving, updating, or deleting. These hooks are defined on the schema level and are executed on the document itself.
+
+When you're within a Document Middleware function, the `this` keyword points directly to the document under operation. This makes it incredibly easy to implement custom logic, like tweaking a document's properties or validating data before saving it to the database. If you need to access the model, use `this.constructor`.
+
+```ts
+userSchema.pre('save', function (next) {
+  // `this` points to the current document
+  console.log(this.name); // logs 'John Doe'
+  next();
+});
+
+const user = new User({ name: 'John Doe' });
+user.save();
+```
+
+Here are the primary document operations where document middleware can be used: `Document:save`, `Document:updateOne`, and `Document:deleteOne`.
+
+<Callout type="INFO">
+The `Model:create()` function activates any existing `Document:save()` hooks you've configured. This happens because `create()` is essentially a wrapper for the `save()` method, executing it behind the scenes to add new documents to the database. Read more about it [here](https://www.ayoubkhial.com/blog/mean-web-app-part-8-the-dao-pattern-and-mongoose-queries#inserting-data).
+</Callout>
+
+### Query Middleware
+Query middleware handles operations involving multiple documents, such as finding, updating, or deleting. In contrast to Document Middleware, These hooks are executed on the query object.
+
+The `this` keyword points directly to the query object when you're within a Query Middleware function. This makes it incredibly easy to implement custom logic, like tweaking a query's parameters, logging the number of documents a query returns, adding filtering criteria, applying transformations to query results, or even caching the results for later use.
+
+```ts
+userSchema.pre('find', function (next) {
+  // `this` points to the current query
+  console.log(this.getQuery()); // logs { name: 'John Doe' }
+  next();
+});
+
+User.find({ name: 'John Doe' });
+```
+
+The utility of Query Middleware extends to various query methods, including but not limited to `Model:deleteOne`, `Model:find`, `Model:findOne`, `Model:updateOne`, and `Model:updateMany`. It gets activated when you use commands like `exec()`, `then()`, or the `await` keyword on a query object, essentially giving you hooks to insert your logic at critical points before or after query execution. For the complete list of query methods, check out the [Mongoose documentation](https://mongoosejs.com/docs/middleware.html#types-of-middleware).
+
+<Callout type="INFO">
+You might've noticed that operations like `updateOne` and `deleteOne` exist in document and query contexts. For `updateOne`, Mongoose treats both the document and query versions as query operations. That means both will trigger `updateOne` hooks, but remember, `this` will actually point to the query, not the document. On the flip side, the `deleteOne` hook activates by default when you use `Model:deleteOne`. But `Document:deleteOne()` won't set off any deleteOne hooks. (Don't sweat it; we'll see how to manually manage these scenarios in [the practical section](#practical-use-cases)).
+</Callout>
+
+### Aggregate Middleware
+Aggregate middleware handles operations involving multiple documents, such as `Model:aggregate`. These are executed on the aggregation object. For example, you can use aggregate middleware to log the documents returned by an aggregation pipeline or populate a field with data from another collection.
+
+In the context of Aggregation Middleware, the `this` keyword refers to the aggregation object itself. This allows you direct access to the pipeline, making it easy to augment or manipulate the ongoing aggregation operation. Say you want to add new stages dynamically based on user roles or application state—Aggregation Middleware allows you to insert these stages seamlessly, providing a dynamic, real-time response to data-processing needs.
+
+
+```ts
+userSchema.pre('aggregate', function (next) {
+  // `this` points to the current aggregation object
+  console.log(this.pipeline()); // logs [{ $match: { name: 'John Doe' } }]
+  next();
+});
+
+User.aggregate([{ $match: { name: 'John Doe' } }]);
+```
+
+Everyday use cases might include:
+- Injecting real-time calculation stages to compute metrics like averages or sums.
+- Dynamically appending stages to the pipeline to transform the shape of your returned data.
+- Modifying the pipeline based on user roles or other dynamic factors.
+
+### Model Middleware
+Model middleware handles the bulk insert operation. These hooks are executed on the model object. For example, you can use model middleware to log the number of documents created.
+
+In this type of middleware, the `this` keyword is directly bound to the model itself, providing you with an overarching view of all the operations and data manipulations associated with that particular model. This is especially handy when dealing with operations that simultaneously affect multiple documents, such as bulk insertions.
+
+```ts
+userSchema.pre('insertMany', function (next) {
+  // `this` points to the current model
+  console.log(this.modelName); // logs 'User'
+  next();
+});
+
+User.insertMany([{ name: 'John Doe' }, { name: 'Jane Doe' }]);
+```
+
+Currently, the only function that can leverage Model Middleware is `insertMany`. This function allows you to insert multiple documents into a MongoDB collection in a single operation.
+
+## Practical Use Cases
+Now that you understand the basics well, let's dive into some practical examples of how Mongoose middleware can be helpful in real-world scenarios.
+
+<Callout type="INFO">
+I will rely on the `ProjectDAO` class created in [the previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-8-the-dao-pattern-and-mongoose-queries) to interact with the database. Check it out if you feel a bit lost.
+</Callout>
+
+### Complex Data Validation
+Sometimes, the built-in validation features of Mongoose won't cut it. In such cases, `pre('save')` middleware can come in handy for more complex validation needs.
+
+Imagine that you are in the process of saving a project, and it is imperative to ensure that each entry array in your `configuration` object, such as `statuses`, priorities, and so on, has a distinct `title`. The goal is to prevent users from saving multiple `priorities` with the same `title`.
+
+<Callout type="INFO">
+If you're comfortable introducing a new dependency to your project, you can use [the separated plugin provided by Mongoose](https://thecodebarbarian.com/whats-new-in-mongoose-4.10-unique-in-arrays.html) to add unique constraints in arrays.
+</Callout>
+
+Enforcing `unique` constraints within an array inside a single document is not supported by Mongoose's built-in validation. Adding the `unique: true` property to the `title` in the `tagSchema` will ensure uniqueness across different documents but not within the array elements of a single document.
+
+```ts {5,15}
+const tagSchema = new Schema<ITagConfig>({
+	title: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	color: String,
+	icon: String
+});
+
+const projectSchema = new Schema<IProjectDocument>({
+	configuration: {
+		scopes: [tagSchema],
+		labels: [tagSchema],
+		priorities: [tagSchema],
+		statuses: [tagSchema]
+	}
+});
+```
+
+Adding a new project with duplicate property titles in the same document is possible in the provided code setup.
+
+```ts
+const project = new Project({
+	configuration: {
+		priorities: [
+			{ title: 'Priority 1', color: '#000000', icon: 'icon' },
+			{ title: 'Priority 1', color: '#000000', icon: 'icon' }
+		]
+	}
+});
+
+await ProjectDAO.save(project); // it will persist the data without error
+```
+
+One way to handle specific validation needs in Mongoose is by using a `pre('save')` middleware.
+
+```ts {23-34} title="src/api/components/project/model.ts"
+const tagSchema = new Schema<ITagConfig>({ ... });
+
+const projectSchema = new Schema<IProjectDocument>({ ... });
+
+const getDuplicatedTitle = (entries: Types.DocumentArray<ITagConfig> | undefined) => {
+	const titles = new Set<string>();
+	for (const entry of entries || []) {
+		const title = entry.title;
+		if (titles.has(title)) {
+			return { found: true, title };
+		}
+		titles.add(title);
+	}
+	return { found: false };
+};
+
+const getModifiedConfigurationPaths = (paths: string[]): (keyof IConfiguration)[] => {
+	return paths
+		.filter((path) => path.includes('configuration') && path.split('.').length === 2)
+		.map((path) => path.split('.').pop() as keyof IConfiguration);
+};
+
+projectSchema.pre('save', function (next) {
+	const modifiedPaths = this.modifiedPaths({ includeChildren: true });
+	const modifiedConfigurationPaths = getModifiedConfigurationPaths(modifiedPaths);
+	for (const path of modifiedConfigurationPaths) {
+		const entries = this.configuration?.[path];
+		const { found, title } = getDuplicatedTitle(entries);
+		if (found) {
+			throw new Error(`The value ${title} is duplicated in the ${path} array.`);
+		}
+	}
+	next();
+});
+```
+
+Let's take a deep look into the essential parts of this middleware:
+
+We select the `pre('save')` hook to ensure the data is valid before saving it. During this process, the keyword `this` refers to the document about to be saved because we're using `Document:save`. The `this` keyword provides helper methods such as `modifiedPaths`, which allow us to easily access the document's data and make any necessary adjustments.
+
+When we detect a duplicate title, we stop the process by throwing an `Error`. This action is necessary to prevent Mongoose from saving the document. However, if no duplicates appear, invoking the `next()` function allows Mongoose to save the document or pass it to the next middleware if it exists.
+
+<Callout type="WARNING">
+- It is essential to ensure that you call `next()` only when all the middleware tasks are complete. If you forget to call it, your application will freeze because Mongoose won't know how to proceed to the next middleware or complete the action.
+- Calling `next()` doesn't stop the remaining code in your middleware from running. If you want to stop the code execution after invoking `next()`, use the early return pattern `return next()`. This way, you'll prevent the rest of your middleware function from executing.
+</Callout>
+
+Lastly, we use helper functions like `getDuplicatedTitle` and `getModifiedConfigurationPaths` to keep our middleware clean and focused. These functions care for specialized logic, ensuring our primary middleware stays uncluttered.
+
+
+<Callout type="INFO">
+Rather than throwing an error, you can pass it to the `next` function like so: `next(err)`. Mongoose assumes any argument you pass to next is an error.
+</Callout>
+
+Running the earlier save operation throws this error:
+
+```text
+Error: The value Active is duplicated in the statuses array.
+```
+
+It's worth noting that you can further optimize this approach by using `pre('validate')` middleware instead of `pre('save')`. The `pre('validate')` middleware runs before Mongoose's built-in validation and fires automatically when saving. This lets you catch validation issues before the built-in checks kick in, making the entire operation more efficient.
+
+```ts {9-20} title="src/api/components/project/model.ts"
+const tagSchema = new Schema<ITagConfig>({ ... });
+
+const projectSchema = new Schema<IProjectDocument>({ ... });
+
+const getDuplicatedTitle = (entries: Types.DocumentArray<ITagConfig> | undefined) => { ... };
+
+const getModifiedConfigurationPaths = (paths: string[]): (keyof IConfiguration)[] => { ... };
+
+projectSchema.pre('validate', function (next) {
+	const modifiedPaths = this.modifiedPaths({ includeChildren: true });
+	const modifiedConfigurationPaths = getModifiedConfigurationPaths(modifiedPaths);
+	for (const path of modifiedConfigurationPaths) {
+		const entries = this.configuration?.[path];
+		const { found, title } = getDuplicatedTitle(entries);
+		if (found) {
+			throw new Error(`The value ${title} is duplicated in the ${path} array.`);
+		}
+	}
+	next();
+});
+```
+
+<Callout type="WARNING">
+If you rely on `createdAt` and `updatedAt` fields in your Mongoose middleware, be aware that these aren't accessible in the `pre('validate')` middleware. These fields get populated by Mongoose later in the process, specifically during the `save` operation. Use a `pre('save')` hook if you need to work with these timestamps.
+</Callout>
+
+To get a clearer picture of how a Mongoose `save` operation works, take a look at this illustrative diagram:
+
+<AdaptiveImage alt={'The Lyfecycle of Mongoose Save Operation'} src={'/img/blog/15/2.webp'} width={768} height={516} />
+
+In addition to creating new records, we often update existing ones. It's equally crucial to check for duplicate array entries in these scenarios, especially if a new entry is pushed. Say you want to add a new `status` called `'Canceled'`. Here's what a straightforward update operation could look like:
+
+```ts
+await ProjectDAO.updateOne(
+	{ _id: '...' },
+	{ $push: { 'configuration.statuses': [{ title: 'Canceled' }] } }
+);
+```
+
+Let's create a new middleware specifically for the `Model:updateOne` operation. While the new middleware will largely resemble our previous `pre('validate')` middleware, there's a significant difference: how we access operation data. In this middleware, the `this` keyword points to the query object, not the actual document. We're working at the model rather than the document level.
+
+```ts {9-27} title="src/api/components/project/model.ts"
+const tagSchema = new Schema<ITagConfig>({ ... });
+
+const projectSchema = new Schema<IProjectDocument>({ ... });
+
+const getDuplicatedTitle = (entries: Types.DocumentArray<ITagConfig> | undefined) => { ... };
+
+const getModifiedConfigurationPaths = (paths: string[]): (keyof IConfiguration)[] => { ... };
+
+projectSchema.pre('updateOne', async function (next) {
+	const docToUpdate: IProjectDocument = (await this.model.findOne(this.getQuery()))!;
+	const updateObject = this.getUpdate() as UpdateQuery<IProjectDocument>;
+	const pushOp = updateObject?.$push;
+	if (pushOp) {
+		for (const [key, value] of Object.entries(pushOp)) {
+			if (key.includes('configuration') && key.split('.').length === 2) {
+				const path = key.split('.').pop() as keyof IConfiguration;
+				const entries = docToUpdate.configuration?.[path];
+				const index = entries?.findIndex((entry) => entry.title === value?.title);
+				if (index !== -1) {
+					throw new Error(`The value ${value?.title} is duplicated in the ${path} array.`);
+				}
+			}
+		}
+	}
+	next();
+});
+```
+
+<Callout type="INFO">
+If you use `Document:updateOne` instead, the above middleware won't be triggered. To handle this scenario, you should create a dedicated middleware with the following signature: `pre('updateOne', { document: true, query: false }, next() {...})`. Both `document` and `query` properties must be set.
+</Callout>
+
+### Delete on Cascade
+Data in databases is often interconnected. When you remove an entity —let's say, a project— it's crucial to clean up related data. This keeps your data neat and consistent.
+
+For example, if you delete a project, you should delete all related sprints and remove that project from the `roles` array inside user documents.
+
+This is where the concept of ["Cascading Deletions"](https://dba.stackexchange.com/a/44962) comes into play, which you can implement easily using Mongoose's `post('deleteOne')` middleware.
+
+By default, `deleteOne` is a query middleware. It acts on the query, not directly on a single document. In simpler terms, you don't have access to the document you're deleting, just the query conditions that will delete it.
+
+```ts {9-19} title="src/api/components/project/model.ts"
+const tagSchema = new Schema<ITagConfig>({ ... });
+
+const projectSchema = new Schema<IProjectDocument>({ ... });
+
+const getDuplicatedTitle = (entries: Types.DocumentArray<ITagConfig> | undefined) => { ... };
+
+const getModifiedConfigurationPaths = (paths: string[]): (keyof IConfiguration)[] => { ... };
+
+projectSchema.post('deleteOne', async function () {
+	const query = this.getQuery();
+	const sprintDAO = new SprintDAO();
+	await sprintDAO.deleteMany({ project: query._id });
+
+	const userDAO = new UserDAO();
+	await userDAO.updateMany(
+		{ roles: { $elemMatch: { project: query._id } } },
+		{ $pull: { roles: { project: query._id } } }
+	);
+});
+```
+
+You might have noticed that the `next` parameter is absent in post-middleware. This is because post-middleware can be the last thing you execute. However, if there is another post middleware after that, you can add the `next` parameter as the second parameter. Mongoose assumes that the second parameter is the `next` function.
+
+
+The method `this.getQuery()` grabs the details of the query, letting you access the `_id` of the project to delete.
+
+Mongoose allows you to flip the script and use `deleteOne` as a document middleware instead. When you do that, your middleware can interact directly with the document you're deleting, not just the query conditions.
+
+```ts {9-19} title="src/api/components/project/model.ts"
+const tagSchema = new Schema<ITagConfig>({ ... });
+
+const projectSchema = new Schema<IProjectDocument>({ ... });
+
+const getDuplicatedTitle = (entries: Types.DocumentArray<ITagConfig> | undefined) => { ... };
+
+const getModifiedConfigurationPaths = (paths: string[]): (keyof IConfiguration)[] => { ... };
+
+projectSchema.post('deleteOne', { document: true, query: false }, async function (document) {
+	const sprintDAO = new SprintDAO();
+	await sprintDAO.deleteMany({ project: document._id });
+
+	const userDAO = new UserDAO();
+	await userDAO.updateMany(
+		{ roles: { $elemMatch: { project: document._id } } },
+		{ $pull: { roles: { project: document._id } } }
+	);
+});
+```
+
+By toggling `{ document: true, query: false }`, you're explicitly telling Mongoose, "Hey, let me work directly on the document being deleted".
+
+Now, when it comes to ensuring all related deletions are successful, you'd want an "all-or-nothing" approach. If one deletion fails, they should all fail. Here's where MongoDB transactions, encapsulated by Mongoose sessions, come into play. I won't go into much detail about sessions and transactions since we covered that in [the previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-8-the-dao-pattern-and-mongoose-queries#transactions).
+
+Here's an example of how to start a session and attach it to the delete operation.
+
+```ts
+const session = await ProjectDAO.startSession();
+try {
+	session.startTransaction();
+	await ProjectDAO.deleteOne({ _id: project?._id }, { session });
+	await session.commitTransaction();
+} catch (error) {
+	await session.abortTransaction();
+} finally {
+	session.endSession();
+}
+```
+
+The session can be accessible in both query and document middleware. For query middleware, it's found in the query options.
+
+```ts {2}
+projectSchema.post('deleteOne', async function () {
+	const session = this.getOptions().session;
+	const query = this.getQuery();
+	const sprintDAO = new SprintDAO();
+	await sprintDAO.deleteMany({ project: query._id }, { session });
+
+	const userDAO = new UserDAO();
+	await userDAO.updateMany(
+		{ roles: { $elemMatch: { project: query._id } } },
+		{ $pull: { roles: { project: query._id } } },
+		{ session }
+	);
+});
+```
+
+For document middleware, you have direct access to the session through the document:
+
+```ts {2}
+projectSchema.post('deleteOne', { document: true, query: false }, async function (document) {
+	const session = document.$session();
+	const sprintDAO = new SprintDAO();
+	await sprintDAO.deleteMany({ project: document._id }, { session });
+
+	const userDAO = new UserDAO();
+	await userDAO.updateMany(
+		{ roles: { $elemMatch: { project: document._id } } },
+		{ $pull: { roles: { project: document._id } } },
+		{ session }
+	);
+});
+```
+
+## Conclusion
+In conclusion, our exploration of Mongoose middleware has provided a comprehensive understanding of its functionalities and applications. From basic principles to complex scenarios like cascading deletions and advanced validation, the article aims to provide you with the tools necessary for efficient and robust database interactions.
+
+It's imperative to note that while middleware offers many advantages, it also comes with its own set of challenges. Poorly implemented middleware can introduce unintended consequences and complexities. Therefore, it is crucial to consider the overall application flow and rigorously test all middleware functions.
+
+You can find the complete code source in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-9); feel free to give it a star ⭐️.
+
+If you want to keep up with this series, consider [subscribing to my newsletter](https://ayoubkhial.substack.com/) to receive updates as soon as I publish an article.
