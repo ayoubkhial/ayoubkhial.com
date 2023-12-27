@@ -2,12 +2,12 @@
 title: 'Theoretical Foundations of REST APIs in Simple Terms'
 publishedAt: '2023-11-22'
 description: "Discover the essentials of REST APIs in this concise, beginner-friendly guide. Learn the basics of API and the key principles of RESTful architecture, and deeply examine each component."
-keywords: "API,REST"
-published: true
-series: 'Building a MEAN Web APP'
+keywords: "API(blue),REST(green)"
+series: "Build a MEAN web app"
+part: 10
 ---
 
-<Callout type="INFO">
+<Callout>
 This article offers a theoretical exploration of **APIs**, with a particular emphasis on **REST**. It lays the essential groundwork for understanding these technologies. A follow-up article is in the making for those interested in practical applications. This will cover handling HTTP requests and responses and guide you through implementing a RESTful API. The link to this practical guide will be added here once published.
 </Callout>
 
@@ -31,7 +31,7 @@ Let's delve in and take a closer look at how these APIs really work.
 
 ### How do APIs Work?
 
-<AdaptiveImage alt={'A basic overview od API Request-Response Workflow'} src={'/img/blog/16/1.webp'} width={768} height={339} />
+<Image alt={'A basic overview od API Request-Response Workflow'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/1.webp'} />
 
 When you interact with a website like IMDb, you're not just browsing but actively engaging with a complex digital process facilitated by APIs (Application Programming Interfaces). Let's break down this process:
 - **Initiating a Request:** When you want to view the details of a movie on IMDb, you start by clicking on its title. But this simple action is actually more complex than it seems. It sends a request from your device to IMDb's server through its API. It could be like dropping a letter in a mailbox addressed to the server, asking for specific movie details.
@@ -39,7 +39,7 @@ When you interact with a website like IMDb, you're not just browsing but activel
 - **Data Retrieval:** With the command now clear, the server dives into its extensive database, akin to a vast library of movie information. It searches for the specific section in the database where your requested movie's data is stored. The server then compiles the necessary details—such as the synopsis, cast, director, and box office statistics—carefully picking out the relevant information to respond to your query.
 - **Sending the Response:** Once the server has gathered all the necessary information, it sends it back through the API. This API acts like a postal service, ensuring the data is packaged and formatted correctly for the journey back. This step is crucial because it converts the server's response into a format your device's application (like the IMDb website or mobile app) can understand and display. To see this in action, head to a movie page the next time you're on IMDb and open the network tab in your browser's developer console. You'll be able to observe all the API HTTP calls lighting up as they happen.
 
-<AdaptiveImage alt={'Google Chrome Network Tab - HTTP API Request'} src={'/img/blog/16/2.webp'} width={768} height={392} />
+<Image alt={'Google Chrome Network Tab - HTTP API Request'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/2.webp'} />
 
 - **Display:** Your IMDb page or app takes the response and lays it out for you to read comfortably. The movie's data is now displayed on your screen in a user-friendly format, thanks to the underlying API that invisibly handles all the complex interactions.
 
@@ -47,7 +47,7 @@ As you go through each step, the API works behind the scenes to ensure your expe
 
 ### API Protocols and Architectures
 
-<AdaptiveImage alt={'API Protocols and Architecture'} src={'/img/blog/16/3.webp'} width={768} height={552} />
+<Image alt={'API Protocols and Architecture'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/3.webp'} />
 
 Think of **API protocols** as rules and standards that govern how data is exchanged between systems over the internet or other networks. These protocols define the methods and data formats for requesting and receiving responses. Let's dive into some of the most widely used API protocols and their distinctive features:
 
@@ -68,7 +68,7 @@ In the following sections, we'll dive into the principles that make REST APIs ti
 
 ### Principles of REST API
 
-<AdaptiveImage alt={'The Request-Response model of a REST API'} src={'/img/blog/16/4.webp'} width={768} height={442} />
+<Image alt={'The Request-Response model of a REST API'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/4.webp'} />
 
 Diving into RESTful systems feels a bit like exploring the engine of a fancy sports car. They've got some neat tricks under the hood, structured around six fundamental principles. Let's use the same IMDb's interaction for movie details as our guide:
 - **Client-Server Architecture:** This one's about keeping things separate. Imagine a team where one group handles all the visuals and interactions (your front-end client, like the IMDb page you see), and another handles the heavy lifting with data (the server). This division allows for smoother updates and scalability.
@@ -104,7 +104,7 @@ From cloud computing to mobile app development, REST APIs are crucial in making 
 Having explored how REST APIs are used in various settings, let's turn our attention to the elements that make up a REST API request, giving you a closer look at how these technologies operate in practice.
 
 ## Components of a REST API Request
-<AdaptiveImage alt={'REST API Principles'} src={'/img/blog/16/5.webp'} width={768} height={489} />
+<Image alt={'REST API Principles'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/5.webp'} />
 
 When exploring REST APIs, we realize a request is more than a plain message. It comprises various important components that play distinct roles in the conversation between your application and the server. Think of these components as puzzle pieces that fit together perfectly to form a clear set of instructions for the server. This organized approach makes it easier to access web-based resources in a standardized way, and it defines the various operations that clients can perform, such as reading data or making updates.
 
@@ -115,7 +115,7 @@ Resources are the foundational elements in REST APIs, representing distinct piec
 
 The way resources are designed is critical for the API's effectiveness. They should follow a logical and intuitive naming convention. For example, a resource named `/films` clearly indicates a collection of film information. You append identifiers to access specific details within this collection, forming URIs like `/films/tt0245429`. This approach allows for direct and efficient access to particular pieces of data, making the API's interaction straightforward for developers.
 
-<Callout type="INFO">
+<Callout>
 Name your resources with descriptive nouns, like `/films`, rather than action-based names, like `/getFilms`, for a more intuitive API. This naming strategy and structured endpoints that reflect relationships (e.g., `/films/{id}/actors` for a film's actors) greatly enhance the API's clarity and navigability.
 </Callout>
 
@@ -129,7 +129,7 @@ When using the IMDb REST API, you may come across an endpoint such as `https://a
 
 Moreover, well-thought-out endpoints are crucial for handling complex data structures efficiently. For instance, to list all reviews for a specific movie, the endpoint might be structured as `https://api.imdb.com/movies/tt0245429/reviews`. This clear, hierarchical approach to endpoint design allows REST APIs to manage the intricate data interactions required by modern web applications.
 
-<Callout type="INFO">
+<Callout>
 When creating endpoints, aim for simplicity and clarity. A good rule of thumb is to keep URL paths concise, ideally with no more than three levels deep, like `/movies/{id}/reviews`. This helps keep your API intuitive and easy to navigate, enhancing the overall user experience.
 </Callout>
 
@@ -147,7 +147,7 @@ Each method paves the way for different interactions with the API's resources, c
 
 A few more methods, like `HEAD` and `OPTIONS`, are less commonly used. You can learn more about them [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
 
-<Callout type="INFO">
+<Callout>
 When designing your API, it's essential to stick to the conventions: `GET` for retrieving, `POST` for creating, `PUT` and `PATCH` for updating, and `DELETE` for removing resources. This makes your API intuitive and ensures it stays in line with established web standards, making life easier for everyone who uses it.
 </Callout>
 
@@ -159,7 +159,7 @@ Parameters in a REST API request are key to detailing which resources a client i
 
 Path and query parameters provide a nuanced way to navigate an API. They enable clients to make specific requests, allowing servers to respond with precise data. Understanding and using these parameters effectively is crucial for making the most of RESTful APIs, ensuring that data and services are accessible in an organized and efficient way.
 
-<Callout type="INFO">
+<Callout>
 Utilize query parameters for flexible operations like filtering (`?year=1994`), sorting (`?sort=rating`), and pagination (`?page=1&limit=20`).  Incorporate key resource identifiers into the URL path for accessing specific movie details, like `/movies/{id}`.
 </Callout>
 
@@ -176,7 +176,7 @@ Headers are a powerful component in REST API requests, allowing clients to commu
 
 Check out [the MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) to learn more about HTTP headers with the complete list of standard headers and their use cases.
 
-<Callout type="INFO">
+<Callout>
 Use standard HTTP headers to ensure your requests and responses are processed as intended. For custom requirements, use the `X-` prefix for your headers, like `X-Custom-Header: value`, to avoid any future conflicts and maintain the adaptability of your API.
 </Callout>
 
@@ -207,14 +207,14 @@ Having delved into the various components that make up a REST API request, inclu
 
 ## Anatomy of a REST API Response
 
-<AdaptiveImage alt={'Anatomy of REST API Response'} src={'/img/blog/16/6.webp'} width={768} height={520} />
+<Image alt={'Anatomy of REST API Response'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/6.webp'}  />
 
 A REST API response is the server's answer to the client's request. Like the request, the response is composed of several parts that convey the outcome of the requested operation together. Understanding the anatomy of a REST API response is as essential as crafting the request.
 
 In this section, we'll dissect the critical components of a REST API response: the HTTP Response Status, which gives immediate feedback about the success or failure of the request; the Headers, which carry meta-information; and the Body, where the substantive content or result of the request resides. Understanding these elements will give us deeper insight into how RESTful services communicate and fulfill requests.
 
 ### HTTP Response Status
-<AdaptiveImage alt={'HTTP Response Status - Categories and Moset Used Status'} src={'/img/blog/16/7.webp'} width={768} height={310} />
+<Image alt={'HTTP Response Status - Categories and Moset Used Status'} filename={'theoretical-foundations-of-rest-apis-in-simple-terms/7.webp'}  />
 
 The Response Status is a key indicator of how the server has processed a request. This status is communicated through a set of standardized HTTP status codes, each fitting into specific categories to broadly outline the response's nature:
 - **2xx Success Codes:** These codes, like `200 OK`, signal that the request was successfully processed. For instance, `200 OK` indicates successful retrieval, and `201 Created` means a new resource has been successfully added.

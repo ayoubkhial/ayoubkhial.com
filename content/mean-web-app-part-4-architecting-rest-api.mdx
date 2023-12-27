@@ -2,139 +2,68 @@
 title: 'Architecting REST API'
 publishedAt: '2023-08-08'
 description: "In this article, we delve into crafting a REST API using the 3-tier architecture, emphasizing its layered design. We also explore the merits of a component-based folder structure for enhanced clarity and management."
-keywords: "Express,architecture,REST"
-published: true
-series: 'Building a MEAN Web APP'
+keywords: "REST(green),express.js(slate),architecture(orange)"
+series: "Build a MEAN web app"
+part: 4
 ---
 
-<Callout type="INFO">
+<Callout>
 The complete source code up to this point can be found in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-3).
 </Callout>
 
 ## Introduction
-In the rapidly changing landscape of web development, there's an increasing emphasis on building 
-applications that are not only robust and scalable but also maintainable. The key to achieving this 
-lies in adopting architectural patterns that foster clarity and intuitive code organization. The 
-**3-tier architecture** is divided into three strategic layers: **Presentation**, **Business Logic**, 
-and **Data Access**. With [Express.js](https://expressjs.com/), one of Node.js's premier web 
-application frameworks, the result is a powerhouse for streamlined RESTful API development. Yet, the 
-journey doesn't end there. A component-based folder structure elevates this setup, promoting enhanced 
-code reusability and a systematic approach to organizing functionalities.
+In the rapidly changing landscape of web development, there's an increasing emphasis on building applications that are not only robust and scalable but also maintainable. The key to achieving this lies in adopting architectural patterns that foster clarity and intuitive code organization. The **3-tier architecture** is divided into three strategic layers: **Presentation**, **Business Logic**, and **Data Access**. With [Express.js](https://expressjs.com/), one of Node.js's premier web application frameworks, the result is a powerhouse for streamlined RESTful API development. Yet, the journey doesn't end there. A component-based folder structure elevates this setup, promoting enhanced code reusability and a systematic approach to organizing functionalities.
 
-While [Express.js](https://expressjs.com/) is praised for its flexibility, arising from its 
-unopinionated design, this trait can sometimes be a double-edged sword. Without a defined structure, 
-it's easy to spiral into a realm of inconsistent and tangled codebases, especially in collaborative 
-environments. Fear not; this article is crafted with a singular purpose: to steer you towards 
-leveraging the 3-tier architecture and a component-based directory seamlessly within your Express.js 
-REST API projects.
+While [Express.js](https://expressjs.com/) is praised for its flexibility, arising from its unopinionated design, this trait can sometimes be a double-edged sword. Without a defined structure, it's easy to spiral into a realm of inconsistent and tangled codebases, especially in collaborative environments. Fear not; this article is crafted with a singular purpose: to steer you towards leveraging the 3-tier architecture and a component-based directory seamlessly within your Express.js REST API projects.
 
 ## Structured Layering: 3-Tier Architecture
 
-<AdaptiveImage alt={'3-tier architecture for REST API implementation'} src={'/img/blog/9/1.webp'} width={768} height={540} />
+<Image alt={'3-tier architecture for REST API implementation'} filename={'mean-web-app-part-4-architecting-rest-api/1.webp'} />
 
-The 3-Tier Architecture, or 3-Layer Architecture, is a design pattern that divides an application 
-into three functional areas or tiers. This separation into distinct layers creates a robust framework 
-that allows developers to modify or add to a layer without impacting the rest of the system. The 
-three primary tiers usually include:
+The 3-Tier Architecture, or 3-Layer Architecture, is a design pattern that divides an application into three functional areas or tiers. This separation into distinct layers creates a robust framework that allows developers to modify or add to a layer without impacting the rest of the system. The three primary tiers usually include:
 
-- **The Routing Layer** is the application's front end, handling user interactions within a REST API 
-framework by efficiently managing HTTP requests and responses. It understands user requests and 
-directs them to the appropriate service handlers, ensuring smooth communication between the user and 
-the system. This layer carefully verifies the authenticity of incoming client requests, comparing them 
-to established standards, before passing them on to the service layer, reducing the chances of errors. 
-It bridges the client and service layer, improving communication and the system's efficiency.
+- **The Routing Layer** is the application's front end, handling user interactions within a REST API framework by efficiently managing HTTP requests and responses. It understands user requests and directs them to the appropriate service handlers, ensuring smooth communication between the user and the system. This layer carefully verifies the authenticity of incoming client requests, comparing them to established standards, before passing them on to the service layer, reducing the chances of errors. It bridges the client and service layer, improving communication and the system's efficiency.
 
-<Callout type="INFO">
-Serving as the application's frontline, the Routing Layer in an **Express.js** application equates to 
-the Presentation Layer of traditional three-tier architectures. Here, **routes** and **middleware** deftly 
-orchestrate the flow of HTTP requests and responses.
+<Callout>
+Serving as the application's frontline, the Routing Layer in an **Express.js** application equates to the Presentation Layer of traditional three-tier architectures. Here, **routes** and **middleware** deftly orchestrate the flow of HTTP requests and responses.
 </Callout>
 
 <Callout type="WARNING">
-Dragging the Express `req` object beyond controllers can complicate potential framework switches and 
-testing and tangle the app with Express specifics. A better practice is to extract only the necessary 
-data from `req` and forward it. This way, the Express logic remains in the controllers where it belongs.
+Dragging the Express `req` object beyond controllers can complicate potential framework switches and testing and tangle the app with Express specifics. A better practice is to extract only the necessary data from `req` and forward it. This way, the Express logic remains in the controllers where it belongs.
 </Callout>
 
-- **The Service Layer** is a vital part of your application, handling user requests from the routing 
-layer. This layer manages and interprets each request, selecting the necessary service operations. It 
-also coordinates with the Data Access Layer to fetch, modify, add, or remove data. Finally, the 
-Service Layer prepares the data to be returned to the client through the Routing Layer.
+- **The Service Layer** is a vital part of your application, handling user requests from the routing layer. This layer manages and interprets each request, selecting the necessary service operations. It also coordinates with the Data Access Layer to fetch, modify, add, or remove data. Finally, the Service Layer prepares the data to be returned to the client through the Routing Layer.
 
-- **The Data Access Layer** bridges your application and its underlying data storage, such as 
-databases like **MongoDB**. It executes CRUD (Create, Read, Update, Delete) operations when equipped 
-with repositories, queries, and data connections.
+- **The Data Access Layer** bridges your application and its underlying data storage, such as databases like **MongoDB**. It executes CRUD (Create, Read, Update, Delete) operations when equipped with repositories, queries, and data connections.
 
-In the context of building a REST API using **Express.js**, the 3-layer architecture often makes more 
-sense, and here's why:
+In the context of building a REST API using **Express.js**, the 3-layer architecture often makes more sense, and here's why:
 
-- **Simplified Complexity:** The 3-tier architecture's inherent simplicity is a significant benefit 
-when designing a REST API in Express.js, as it aligns seamlessly with the RESTful design principle of 
-providing an uncomplicated interface for server-side resource management. This architecture simplifies 
-the API design by minimizing unnecessary complexity and optimizes the path between client requests and 
-server responses, making the overall system easier to comprehend, implement, and use.
+- **Simplified Complexity:** The 3-tier architecture's inherent simplicity is a significant benefit when designing a REST API in Express.js, as it aligns seamlessly with the RESTful design principle of providing an uncomplicated interface for server-side resource management. This architecture simplifies the API design by minimizing unnecessary complexity and optimizes the path between client requests and server responses, making the overall system easier to comprehend, implement, and use.
 
-- **Defined Responsibilities and Enhanced Maintainability:** In the 3-tier architecture, each layer, 
-namely the Routing, Service, and Data Access Layers, have distinct responsibilities such as handling 
-client requests, managing business rules, and directly interacting with the data source, respectively. 
-This explicit separation of concerns significantly streamlines debugging and maintenance, as 
-developers can modify one layer without inadvertently impacting others, thus enhancing the overall 
-maintainability of the codebase.
+- **Defined Responsibilities and Enhanced Maintainability:** In the 3-tier architecture, each layer, namely the Routing, Service, and Data Access Layers, have distinct responsibilities such as handling client requests, managing business rules, and directly interacting with the data source, respectively. This explicit separation of concerns significantly streamlines debugging and maintenance, as developers can modify one layer without inadvertently impacting others, thus enhancing the overall maintainability of the codebase.
 
-- **Seamless Alignment with REST Principles:** The principles of RESTful design strongly advocate for 
-stateless communication and resource representation. This philosophy links seamlessly with the 3-tier 
-architecture. The model provides an explicit and efficient path from the HTTP request to the 
-application's business logic and data storage. This alignment enhances the API's conformity with REST 
-principles and elevates the overall quality of the REST API design.
+- **Seamless Alignment with REST Principles:** The principles of RESTful design strongly advocate for stateless communication and resource representation. This philosophy links seamlessly with the 3-tier architecture. The model provides an explicit and efficient path from the HTTP request to the application's business logic and data storage. This alignment enhances the API's conformity with REST principles and elevates the overall quality of the REST API design.
 
-- **Scalability:** Lastly, the 3-tier architecture does not restrict scalability. By isolating the 
-business logic from data access and routing, developers can scale each application part independently 
-if needed. This architectural flexibility is a significant advantage when dealing with the growth of 
-the application and increased demand.
+- **Scalability:** Lastly, the 3-tier architecture does not restrict scalability. By isolating the business logic from data access and routing, developers can scale each application part independently if needed. This architectural flexibility is a significant advantage when dealing with the growth of the application and increased demand.
 
-The 3-layer architecture in Express.js is an excellent choice for building a REST API. It separates 
-concerns, making the codebase more modular, reusable, and scalable. This approach simplifies 
-development and testing, making it a top choice for various applications.
+The 3-layer architecture in Express.js is an excellent choice for building a REST API. It separates concerns, making the codebase more modular, reusable, and scalable. This approach simplifies development and testing, making it a top choice for various applications.
 
 ## Dependency Management and Flow
+<Image alt={'3-tier architecture - Dependency Flow'} filename={'mean-web-app-part-4-architecting-rest-api/2.webp'} />
 
-<AdaptiveImage alt={'3-tier architecture - Dependency Flow'} src={'/img/blog/9/2.webp'} width={768} height={192} />
+Managing dependencies is critical for maintaining a clean, testable, scalable codebase. In the 3-Tier Architecture, understanding how dependencies flow and interact across the Routing Layer (Presentation Layer in other contexts), Service Layer (Business Logic Layer), and Data Access Layer can be critical to developing efficient applications.
 
-Managing dependencies is critical for maintaining a clean, testable, scalable codebase. In the 3-Tier 
-Architecture, understanding how dependencies flow and interact across the Routing Layer (Presentation 
-Layer in other contexts), Service Layer (Business Logic Layer), and Data Access Layer can be critical 
-to developing efficient applications.
+- **Routing Layer (Presentation Layer):** In a RESTful API, the routing layer directs incoming HTTP requests to the appropriate service handlers. Dependencies at this layer may include middleware functions for handling request and response objects and services from the Service Layer. Here, it is crucial to keep the dependencies minimal to maintain the layer's primary focus - routing and minor data formatting.
+- **Service Layer (Business Logic Layer):** This layer manages the core application logic. It integrates validation tools, business rule modules, and data access objects. Proper dependency management here ensures clarity and ease of maintenance.
+- **Data Access Layer:** This layer interacts directly with the database or other data sources. It will depend on modules and libraries related to database access, such as ORM libraries (like **Mongoose** or **Sequelize**), database drivers, and perhaps caching systems. This layer should not have upward dependencies to prevent tight coupling with business logic or routing concerns.
 
-- **Routing Layer (Presentation Layer):** In a RESTful API, the routing layer directs incoming HTTP 
-requests to the appropriate service handlers. Dependencies at this layer may include middleware 
-functions for handling request and response objects and services from the Service Layer. Here, it is 
-crucial to keep the dependencies minimal to maintain the layer's primary focus - routing and minor 
-data formatting.
-- **Service Layer (Business Logic Layer):** This layer manages the core application logic. It 
-integrates validation tools, business rule modules, and data access objects. Proper dependency 
-management here ensures clarity and ease of maintenance.
-- **Data Access Layer:** This layer interacts directly with the database or other data sources. It 
-will depend on modules and libraries related to database access, such as ORM libraries (like 
-**Mongoose** or **Sequelize**), database drivers, and perhaps caching systems. This layer should not 
-have upward dependencies to prevent tight coupling with business logic or routing concerns.
-
-It is important to note that dependencies must align with the control flow, which means they should 
-point inward. Precisely, dependencies must move from the **Routing Layer** to the **Service Layer** 
-and then to the **Data Access Layer**. This rule, known as the **"Dependence Rule"**, is a fundamental 
-principle of Clean Architecture. It guarantees that high-level policies like business rules are not 
-dependent on low-level details like database access.
+It is important to note that dependencies must align with the control flow, which means they should point inward. Precisely, dependencies must move from the **Routing Layer** to the **Service Layer** and then to the **Data Access Layer**. This rule, known as the **"Dependence Rule"**, is a fundamental principle of Clean Architecture. It guarantees that high-level policies like business rules are not dependent on low-level details like database access.
 
 ## Folder Structure in Express APIs
-
-Organizing code well-structured and meaningfully is crucial for a software project's maintainability, 
-scalability, and comprehensibility. Two prominent patterns in organizing code are **folder structure by 
-Technical Role** and **folder structure by Business Component**. Let's dive into each.
+Organizing code well-structured and meaningfully is crucial for a software project's maintainability, scalability, and comprehensibility. Two prominent patterns in organizing code are **folder structure by Technical Role** and **folder structure by Business Component**. Let's dive into each.
 
 ### Based on Technical Role
-
-In this approach, the codebase is organized based on its technical function within the application. 
-Common directory names you might encounter include `controllers`, `models`, `routes`, `services`, and 
-`dao`; Each directory group files based on their primary role.
+In this approach, the codebase is organized based on its technical function within the application. Common directory names you might encounter include `controllers`, `models`, `routes`, `services`, and `dao`; Each directory group files based on their primary role.
 
 ```text
 |-- api/
@@ -157,21 +86,12 @@ Common directory names you might encounter include `controllers`, `models`, `rou
 |-- index.ts
 ```
 
-Structuring by technical role provides an intuitive and consistent layout, allowing developers to 
-identify component roles quickly. Its predictability is further enhanced as many frameworks adopt or 
-recommend this approach, easing the onboarding process for new team members.
+Structuring by technical role provides an intuitive and consistent layout, allowing developers to identify component roles quickly. Its predictability is further enhanced as many frameworks adopt or recommend this approach, easing the onboarding process for new team members.
 
-However, its primary drawback is the potential obscurity of business context, making it challenging to 
-relate parts to specific business functionalities. This structure can become cumbersome and hard to 
-manage as the application expands. Developers familiar with traditional MVC might find it unfamiliar, 
-and it demands a solid grasp of the application's business domains.
+However, its primary drawback is the potential obscurity of business context, making it challenging to relate parts to specific business functionalities. This structure can become cumbersome and hard to manage as the application expands. Developers familiar with traditional MVC might find it unfamiliar, and it demands a solid grasp of the application's business domains.
 
 ### Based on Business Component
-
-In contrast, structuring by component groups code based on the specific business feature or domain it 
-addresses. Here, directories might be named after the major features of your application, such as 
-`project` and `task`. Each of these directories would then contain all technical roles related to that 
-feature.
+In contrast, structuring by component groups code based on the specific business feature or domain it addresses. Here, directories might be named after the major features of your application, such as `project` and `task`. Each of these directories would then contain all technical roles related to that feature.
 
 ```text
 |-- api/
@@ -190,70 +110,36 @@ feature.
 |   |   |   |-- service.ts
 |-- app.ts
 |-- index.ts
-
 ```
 
-Structuring by business domain aligns seamlessly with the application's business logic, offering 
-clarity to all parties. This approach promotes scalability, introducing new components without 
-overwhelming existing folders. Collaborative efforts benefit, as teams can work on distinct components 
-without overlap. The design remains modular and decoupled, enhancing maintainability by minimizing 
-unintended interdependencies. Additionally, developers find navigating and understanding specific 
-features more intuitive.
+Structuring by business domain aligns seamlessly with the application's business logic, offering clarity to all parties. This approach promotes scalability, introducing new components without overwhelming existing folders. Collaborative efforts benefit, as teams can work on distinct components without overlap. The design remains modular and decoupled, enhancing maintainability by minimizing unintended interdependencies. Additionally, developers find navigating and understanding specific features more intuitive.
 
-On the downside, initiating this structure can be challenging, mainly if the business domain needs 
-clarification. There's also a risk of inconsistent component structuring, which might disrupt the 
-uniformity of the codebase.
+On the downside, initiating this structure can be challenging, mainly if the business domain needs clarification. There's also a risk of inconsistent component structuring, which might disrupt the uniformity of the codebase.
 
-Based on the information provided, what are the reasons for choosing to organize by **Business 
-Components**? Here are some convincing factors:
+Based on the information provided, what are the reasons for choosing to organize by **Business Components**? Here are some convincing factors:
 
-- **Enhanced Modularity:** Breaking down the application by components ensures each module is 
-self-contained with its responsibilities. This promotes better code isolation and easier debugging, as 
-issues within a component can be addressed without interfering with other application parts.
-- **Clear Business Context:** Structuring by component intuitively aligns with business 
-functionalities. When developers need to work on a particular feature or functionality, everything 
-related to that component - from routes to data access - is located in one place, reducing the time 
-spent searching for related files.
-- **Scalability:** As the application grows, adding new features or components becomes seamless. Each 
-new component can be slotted into the existing structure without disrupting the established flow, 
-ensuring the application remains maintainable even as its complexity increases.
-- **Facilitated Collaboration:** When multiple developers work on different components, the risk of 
-merge conflicts is reduced. Each developer can work within their designated component folder, making 
-parallel development more manageable.
-- **Testing Boundaries:** Components can be individually tested, making focusing on their unique 
-business logic simpler during the testing phase.
+- **Enhanced Modularity:** Breaking down the application by components ensures each module is self-contained with its responsibilities. This promotes better code isolation and easier debugging, as issues within a component can be addressed without interfering with other application parts.
+- **Clear Business Context:** Structuring by component intuitively aligns with business functionalities. When developers need to work on a particular feature or functionality, everything related to that component - from routes to data access - is located in one place, reducing the time spent searching for related files.
+- **Scalability:** As the application grows, adding new features or components becomes seamless. Each new component can be slotted into the existing structure without disrupting the established flow, ensuring the application remains maintainable even as its complexity increases.
+- **Facilitated Collaboration:** When multiple developers work on different components, the risk of merge conflicts is reduced. Each developer can work within their designated component folder, making parallel development more manageable.
+- **Testing Boundaries:** Components can be individually tested, making focusing on their unique business logic simpler during the testing phase.
 
-**Technical Role** structuring provides function-based organization, whereas **Business Components** 
-structure reflects business operations, enhancing scalability and maintainability. The choice depends 
-on the project's nuances. However, the Business Components approach is often more beneficial for 
-projects with distinct business components and modular expansion.
+**Technical Role** structuring provides function-based organization, whereas **Business Components** structure reflects business operations, enhancing scalability and maintainability. The choice depends on the project's nuances. However, the Business Components approach is often more beneficial for projects with distinct business components and modular expansion.
 
-<Callout type="INFO">
-If you're thinking about versioning your API, it's recommended that you create separate folders for 
-each version, such as **"v1"**, **"v2"**, and so on, within your API directory. By organizing your 
-existing API files into a **"v1"** folder, you can easily structure your API as `'api/v1'`, `
-'api/v2'`, and so forth. This will guarantee backward compatibility across different versions.
+<Callout>
+If you're thinking about versioning your API, it's recommended that you create separate folders for each version, such as **"v1"**, **"v2"**, and so on, within your API directory. By organizing your existing API files into a **"v1"** folder, you can easily structure your API as `'api/v1'`, `'api/v2'`, and so forth. This will guarantee backward compatibility across different versions.
 </Callout>
 
 ## Practical Implementation
-
 <Callout type="WARNING">
-While the current implementation is a foundational prototype illustrating our discussion, it is not 
-the final version. We will retain this base while enhancing it considerably as we delve into topics 
-like **ORM**, **Dependency Injection**, **Error Handling**, **Middleware**, and more.
+While the current implementation is a foundational prototype illustrating our discussion, it is not the final version. We will retain this base while enhancing it considerably as we delve into topics like **ORM**, **Dependency Injection**, **Error Handling**, **Middleware**, and more.
 </Callout>
 
-Within your **"src"** folder, create an **"api"** directory. This will house your application's 
-primary components and associated elements like **middleware**. Under the **"api"** directory, create a 
-**"components"** sub-directory. Each component of your application, for instance, **"task"**, will 
-reside in its distinct directory.
+Within your **"src"** folder, create an **"api"** directory. This will house your application's primary components and associated elements like **middleware**. Under the **"api"** directory, create a **"components"** sub-directory. Each component of your application, for instance, **"task"**, will reside in its distinct directory.
 
-The **"task"** directory will contain all the files related to our **task** component, such as **routes**, 
-**services**, **data access objects (DAO)**, and **models**.
+The **"task"** directory will contain all the files related to our **task** component, such as **routes**, **services**, **data access objects (DAO)**, and **models**.
 
-Start by defining your `Task` model in a **"model.ts"** file. This file describes the structure of a 
-task, including properties such as `id`, `name`, `description`, and `status`. No dependencies are 
-injected into this file as it merely defines the data structure.
+Start by defining your `Task` model in a **"model.ts"** file. This file describes the structure of a task, including properties such as `id`, `name`, `description`, and `status`. No dependencies are injected into this file as it merely defines the data structure.
 
 ```ts showLineNumbers title="src/api/components/task/model.ts"
 type Task = {
@@ -267,15 +153,10 @@ export default Task;
 ```
 
 <Callout type="WARNING">
-Remember that in practical scenarios, you'd typically define your schema using an ORM like **Mongoose**. 
-We'll talk about databases in a later article.
+Remember that in practical scenarios, you'd typically define your schema using an ORM like **Mongoose**. We'll talk about databases in a later article.
 </Callout>
 
-Next, create a **"dao.ts"** file. This file includes functions to interact with your data sources. 
-In our example, we're using hard-coded tasks in an array. However, in a real-world application, you 
-would replace these with functions that interact with your database (We'll do so when we introduce 
-**MongoDB** and **Mongoose**). This file has only the `model` as its dependency, but you can also 
-remove the model file and use it directly in the **"dao.ts"** file.
+Next, create a **"dao.ts"** file. This file includes functions to interact with your data sources. In our example, we're using hard-coded tasks in an array. However, in a real-world application, you would replace these with functions that interact with your database (We'll do so when we introduce **MongoDB** and **Mongoose**). This file has only the `model` as its dependency, but you can also remove the model file and use it directly in the **"dao.ts"** file.
 
 ```ts showLineNumbers title="src/api/components/task/dao.ts"
 import Task from './model';
@@ -316,9 +197,7 @@ const findByStatus = (status: 'To Do' | 'In Progress' | 'Done'): Task[] => {
 export { find, findById, findByStatus };
 ```
 
-The **"service.ts"** file interacts with the **DAO** to manipulate the data. Here, the `DAO` is 
-used as a dependency so that the service layer interacts with it to perform necessary operations. 
-The service layer may contain additional processing logic before forwarding the data to the controller.
+The **"service.ts"** file interacts with the **DAO** to manipulate the data. Here, the `DAO` is used as a dependency so that the service layer interacts with it to perform necessary operations. The service layer may contain additional processing logic before forwarding the data to the controller.
 
 ```ts showLineNumbers title="src/api/components/task/service.ts"
 import * as dao from './dao';
@@ -338,10 +217,7 @@ const getTasksByStatus = (status: 'To Do' | 'In Progress' | 'Done') => {
 export { getTasks, getTaskById, getTasksByStatus };
 ```
 
-The **"controller.ts"** file communicates with the service layer to retrieve or modify data. The 
-outcomes are then conveyed to the client. The `service` is included in this file as a dependency on 
-the controller. The controller offers functions that manage different tasks, such as retrieving all 
-tasks or a specific task by its id.
+The **"controller.ts"** file communicates with the service layer to retrieve or modify data. The outcomes are then conveyed to the client. The `service` is included in this file as a dependency on the controller. The controller offers functions that manage different tasks, such as retrieving all tasks or a specific task by its id.
 
 ```ts showLineNumbers title="src/api/components/task/controller.ts"
 import * as service from './service';
@@ -372,9 +248,7 @@ const getTasksByStatus = (status: string) => {
 export { getTasks, getTask, getTasksByStatus };
 ```
 
-The **"routes.ts"** file handles HTTP requests and directs them to the appropriate **controller** 
-functions. The file exports an array of `route` objects containing a `path`, `method`, and `handler`. 
-In this file, the `controller` is used as a dependency to route handlers.
+The **"routes.ts"** file handles HTTP requests and directs them to the appropriate **controller** functions. The file exports an array of `route` objects containing a `path`, `method`, and `handler`. In this file, the `controller` is used as a dependency to route handlers.
 
 ```ts showLineNumbers title="src/api/components/task/routes.ts"
 import { Request, Response } from 'express';
@@ -412,12 +286,9 @@ const routes = [
 export default routes;
 ```
 
-Now that we created our files, we still need to plug the routes into the express Router to access them. 
-As of now, attempting to navigate to **http://localhost:4000/api/tasks** would greet you with a 
-**"Cannot GET /api/tasks"** alert since our Express server doesn't know about these routes yet.
+Now that we created our files, we still need to plug the routes into the express Router to access them. As of now, attempting to navigate to **http://localhost:4000/api/tasks** would greet you with a **"Cannot GET /api/tasks"** alert since our Express server doesn't know about these routes yet.
 
-A conventional solution is manually importing the `Router` from `Express` and registering our routes in 
-the **routes.ts** file. Here's a simplified example of how you could do this:
+A conventional solution is manually importing the `Router` from `Express` and registering our routes in the **routes.ts** file. Here's a simplified example of how you could do this:
 
 ```ts
 import { Router } from 'express';
@@ -438,13 +309,9 @@ You can then bring in this `Router` and integrate it with your Express app as fo
 app.use('/api', tasksRouter);
 ```
 
-Now, imagine that you have multiple components, each with a handful of routes. It would become tedious 
-to register each route manually. This is where dynamic route loading can be very helpful.
+Now, imagine that you have multiple components, each with a handful of routes. It would become tedious to register each route manually. This is where dynamic route loading can be very helpful.
 
-To streamline the organization of your component, create an **index.ts** file inside the **task** 
-folder; this file serves as the entry point for your component. This is where other related parts of 
-the task routing, such as middleware, could be exported. For the current implementation, focus will 
-be placed on exporting the routes.
+To streamline the organization of your component, create an **index.ts** file inside the **task** folder; this file serves as the entry point for your component. This is where other related parts of the task routing, such as middleware, could be exported. For the current implementation, focus will be placed on exporting the routes.
 
 ```ts showLineNumbers title="src/api/components/task/index.ts"
 import routes from './routes';
@@ -452,19 +319,11 @@ import routes from './routes';
 export default routes;
 ```
 
-Before we start with the process of routes loading, I want to shift to a more organized server 
-structure. As your application expands, the once-simple **app.ts** file can become cluttered. To 
-maintain clarity, consider introducing a **providers** folder. This structure separates 
-configurations, making the server more modular and easier to manage.
+Before we start with the process of routes loading, I want to shift to a more organized server structure. As your application expands, the once-simple **app.ts** file can become cluttered. To maintain clarity, consider introducing a **providers** folder. This structure separates configurations, making the server more modular and easier to manage.
 
-The **providers** folder typically includes foundational parts of your application, which aren't 
-necessarily tied to any specific feature but are essential for the functioning of your app. This can 
-include services like **database connections**, **authentication providers**, **third-party 
-integrations**, etc.
+The **providers** folder typically includes foundational parts of your application, which aren't necessarily tied to any specific feature but are essential for the functioning of your app. This can include services like **database connections**, **authentication providers**, **third-party integrations**, etc.
 
-Within the **providers** folder, create a **server** sub-folder to house the specific logic related to 
-your Express.js server. The server folder can include configuration for your express application, 
-middleware registration, error handling, route registration, and even the code to start the server.
+Within the **providers** folder, create a **server** sub-folder to house the specific logic related to your Express.js server. The server folder can include configuration for your express application, middleware registration, error handling, route registration, and even the code to start the server.
 
 ```text
 src/
@@ -479,8 +338,7 @@ src/
 └── index.ts
 ```
 
-Create a **components.ts** file within the server folder. This file is a registry for all the 
-application's components, such as `task`.
+Create a **components.ts** file within the server folder. This file is a registry for all the application's components, such as `task`.
 
 ```ts showLineNumbers title="src/providers/server/components.ts"
 export type Component = string | NestedComponents;
@@ -501,13 +359,9 @@ const components: NestedComponents = {
 export default components;
 ```
 
-In this setup, a `Component` can be a `string` that identifies the name of a folder or a 
-`NestedComponents` object for nested Components. The `NestedComponents` interface maps folder names to 
-corresponding Component values, accommodating basic and complex structures. This design makes it 
-effortless to integrate new components into dynamic routing.
+In this setup, a `Component` can be a `string` that identifies the name of a folder or a `NestedComponents` object for nested Components. The `NestedComponents` interface maps folder names to corresponding Component values, accommodating basic and complex structures. This design makes it effortless to integrate new components into dynamic routing.
 
-Let's create a **"helper.ts"** file containing utility functions that help dynamically load your 
-components and register their routes with an Express `Router`.
+Let's create a **"helper.ts"** file containing utility functions that help dynamically load your components and register their routes with an Express `Router`.
 
 ```ts showLineNumbers title="src/providers/server/helper.ts"
 import { Request, Response, Router } from 'express';
@@ -555,20 +409,13 @@ const registerRoutes = (router: Router, module: Module) => {
 export { getPaths, registerRoutes };
 ```
 
-Here, `HttpMethod` refers to a category that includes all acceptable HTTP methods. Meanwhile, `Route` 
-is an interface that defines a route's format, including its `path`, HTTP `method`, and `handler` function.
-The `module`is a type that represents the structure of an imported component module. It expects the 
-module to export an array of Route objects as its default export.
+Here, `HttpMethod` refers to a category that includes all acceptable HTTP methods. Meanwhile, `Route` is an interface that defines a route's format, including its `path`, HTTP `method`, and `handler` function.The `module`is a type that represents the structure of an imported component module. It expects the module to export an array of Route objects as its default export.
 
-`getPaths` is a recursive function that takes a `NestedComponents` object and builds an array of 
-paths to all components, considering nested component structures.
+`getPaths` is a recursive function that takes a `NestedComponents` object and builds an array of paths to all components, considering nested component structures.
 
-`registerRoutes`takes an Express `Router`** `and a `Module` and registers all of the module's routes 
-with the `Router`.
+`registerRoutes`takes an Express `Router`** `and a `Module` and registers all of the module's routes with the `Router`.
 
-Finally, create **"index.ts"** file, the entry point for starting your server. It imports your 
-components and helper functions, then uses them to dynamically load your components, register their 
-routes, and start your Express server.
+Finally, create **"index.ts"** file, the entry point for starting your server. It imports your components and helper functions, then uses them to dynamically load your components, register their routes, and start your Express server.
 
 ```ts showLineNumbers title="src/providers/server/index.ts"
 import express, { Router } from 'express';
@@ -616,12 +463,10 @@ export { start };
 ```
 
 <Callout type="WARNING">
-I'm using the `// eslint-disable-next-line no-console` comment to silence the ESLint rule; later, we 
-will introduce a **logger** to be used instead of the `console`.
+I'm using the `// eslint-disable-next-line no-console` comment to silence the ESLint rule; later, we will introduce a **logger** to be used instead of the `console`.
 </Callout>
 
-Since the start function has become asynchronous, update the `index.ts` in the `src` folder to `await` 
-the server initialization.
+Since the start function has become asynchronous, update the `index.ts` in the `src` folder to `await` the server initialization.
 
 ```ts showLineNumbers title="src/providers/server/index.ts"
 import * as server from './providers/server';
@@ -631,31 +476,20 @@ import * as server from './providers/server';
 })();
 ```
 
-<Callout type="INFO">
-We're utilizing an **Immediately Invoked Function Expression (IIFE)** to enable `await` at the top 
-level in **index.ts**. This pattern allows asynchronous code to run in a context where `await` is 
-valid without moving everything inside a function.
+<Callout>
+We're utilizing an **Immediately Invoked Function Expression (IIFE)** to enable `await` at the top level in **index.ts**. This pattern allows asynchronous code to run in a context where `await` is valid without moving everything inside a function.
 </Callout>
 
-To verify our API's functionality, access the endpoint that retrieves all tasks. Navigate to 
-**http://localhost:4000/api/tasks** in your browser or use your preferred API development platform. 
-I'm using [Insomnia](https://insomnia.rest/):
+To verify our API's functionality, access the endpoint that retrieves all tasks. Navigate to **http://localhost:4000/api/tasks** in your browser or use your preferred API development platform. I'm using [Insomnia](https://insomnia.rest/):
 
-<AdaptiveImage alt={'API testing usin Insomnia'} src={'/img/blog/9/3.webp'} width={768} height={389} />
+<Image alt={'API testing usin Insomnia'} filename={'mean-web-app-part-4-architecting-rest-api/3.webp'} width={768} height={389} />
 
 ## Conclusion
-The 3-tier architecture with a component-based folder setup in Express.js helps build a tidy and 
-easy-to-manage REST API. Splitting the app into transparent layers and organizing them by business 
-parts makes it reflect real-world needs and makes adding new stuff easier. Express gives a lot of 
-freedom, and by adding this structured approach, we dodge potential messes and end up with a neat, 
-expandable app. It's a handy roadmap for building something new or refactoring an old project.
+The 3-tier architecture with a component-based folder setup in Express.js helps build a tidy and easy-to-manage REST API. Splitting the app into transparent layers and organizing them by business parts makes it reflect real-world needs and makes adding new stuff easier. Express gives a lot of freedom, and by adding this structured approach, we dodge potential messes and end up with a neat, expandable app. It's a handy roadmap for building something new or refactoring an old project.
 
-You can find the complete code source in 
-[this repository](https://github.com/ayoubkhial/bugsight/tree/part-4); feel free to give it a star ⭐️.
+You can find the complete code source in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-4); feel free to give it a star ⭐️.
 
-If you want to keep up with this series, consider 
-[subscribing to my newsletter](https://ayoubkhial.substack.com/) to receive updates as soon as I 
-publish an article.
+If you want to keep up with this series, consider [subscribing to my newsletter](https://ayoubkhial.substack.com/) to receive updates as soon as I publish an article.
 
 <Callout type="RESOURCES">
 - [Structure your solution by components.](https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md)

@@ -2,12 +2,12 @@
 title: 'From Abstraction to Action - The DAO Pattern & Mongoose Queries'
 publishedAt: '2023-10-08'
 description: "This guide deep-dives into the Data Access Object pattern and Mongoose's powerful querying capabilities. We unravel the DAO's role in streamlining database interactions and showcase how Mongoose effectively communicates with MongoDB."
-keywords: "Express,Node.js,MongoDB,Mongoose,DAO,TypeScript"
-published: true
-series: 'Building a MEAN Web APP'
+keywords: "express.js(slate),node.js(green),mongoose(red),typescript(blue)"
+series: "Build a MEAN web app"
+part: 8
 ---
 
-<Callout type="INFO">
+<Callout>
 The complete source code up to this point can be found in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-7).
 </Callout>
 
@@ -17,7 +17,7 @@ In our [previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-7-de
 **The DAO pattern** is a useful way to organize our database operations, but MongoDB also offers much flexibility in querying. This article will start by explaining the importance and benefits of the DAO pattern. Then, we will explore MongoDB queries in detail, showing how they can help us manipulate and retrieve data more effectively.
 
 ## The Data Access Object Pattern
-<AdaptiveImage alt={'The Data Access Object Pattern'} src={'/img/blog/13/1.webp'} width={768} height={513} />
+<Image alt={'The Data Access Object Pattern'} filename={'mean-web-app-part-8-the-dao-pattern-and-mongoose-queries/1.webp'} />
 
 **The Data Access Object Pattern** is a design approach to abstract and encapsulate all access to data sources. It manages the connection with the data source to obtain and store data. The purpose of the DAO pattern is to separate the persistence logic from the business logic, enabling the system to be more scalable, maintainable, and flexible.
 
@@ -48,7 +48,7 @@ export default class ProjectDAO {
 
 Here, we define a `ProjectDAO` class specific to the `Project` model. The class encapsulates the Mongoose model for projects. This design promotes clean code and ensures that any changes to the database or its structure have minimal ripple effects on the rest of the application. By incorporating the DAO pattern, you can ensure that the business logic remains unaffected by data storage or retrieval mechanism changes.
 
-<Callout type="INFO">
+<Callout>
 I will focus only on the `ProjectDAO`. Every component should have its dedicated DAO. Later in this article, we'll see how to create a shared DAO with operations commonly used across all components.
 </Callout>
 
@@ -79,7 +79,7 @@ Here are some key differences between Model Queries and Document Queries:
 
 Understanding these differences helps you make informed decisions when developing database logic, ensuring efficiency and reliability in your application's data layer.
 
-<Callout type="INFO">
+<Callout>
 Throughout this article, I will differentiate between Model-Level Queries (`Model::method`) and Document-Level Queries (`Document::method`) to avoid any confusion.
 </Callout>
 
@@ -99,7 +99,7 @@ const activeProjects = await Project
     .exec();
 ```
 
-<Callout type="INFO">
+<Callout>
 Chaining is possible for most operations, except those that modify data such as `create` and `insertMany`.
 </Callout>
 
@@ -111,7 +111,7 @@ const activeProjects = await Project.find({ status: 'Active' }, 'name status', {
 
 For basic queries, direct parameters are clear and concise, quickly showing all the needed info. But when queries get tricky with many conditions, method chaining is the preferred choice. It makes the code easy to read and change. Performance-wise, both ways are similar since they send the same kind of request to MongoDB. So, picking one over the other depends on what feels suitable for the developer and which way is easier to manage in the code.
 
-<Callout type="INFO">
+<Callout>
 This article demonstrates the query parameters technique. However, the principles remain consistent across both methods.
 </Callout>
 
@@ -142,7 +142,7 @@ export default class ProjectDAO {
 }
 ```
 
-<Callout type="INFO">
+<Callout>
 I strongly recommend referring to the type definitions when utilizing a Mongoose method. They provide comprehensive details on the necessary parameters and their types. If you're using **VSCode**, you can place your text cursor somewhere inside the method name and press **F12**. Alternatively, right-click on the method and choose **"Go to Definition"**.
 </Callout>
 
@@ -312,7 +312,7 @@ The `Model::findOne` method takes three parameters:
 - `projection`: Specifies the fields to include or exclude in the result.
 - `options`: Additional options to control the find result.
 
-<Callout type="INFO">
+<Callout>
 The `projection` parameter is also available in the `options` parameter, so passing `null` is possible if the projection is defined within options.
 </Callout>
 
@@ -333,7 +333,7 @@ In this example, `findOne()` searches for a project named **"Bugsight"** while e
 
 Read more about [populate](https://mongoosejs.com/docs/populate.html) and [sort](https://www.mongodb.com/docs/manual/reference/method/cursor.sort/) options.
 
-<Callout type="INFO">
+<Callout>
 If you want to find a document based on its unique ID, you can use the convenient `Model::findById(id)` method. This method is essentially a shortcut for `Model::findOne({ _id: id })`.
 </Callout>
 
@@ -457,7 +457,7 @@ The `Model::updateOne` method returns an object with some information about the 
 }
 ```
 
-<Callout type="INFO">
+<Callout>
 - You can also update a document using the `Document::save` method discussed earlier. This is particularly useful when you have the document already loaded in memory.
 - For those already possessing the document in memory, a syntactic sugar variant of `Model::updateOne` is available on the document (`Document::updateOne`), mirroring the model's `updateOne` functionality.
 </Callout>
@@ -550,7 +550,7 @@ By default, the result will be the document pre-update. If you aim to retrieve t
 ```ts
 await ProjectDAO.findAndUpdate(filter, update, { new: true });
 ```
-<Callout type="INFO">
+<Callout>
 Mongoose offers a handy variation for scenarios when the filter is on the document's ID: `Model::findByIdAndUpdate`. It simplifies the process by taking the document's ID as its primary parameter, eliminating the need for a filter object.
 </Callout>
 
@@ -600,7 +600,7 @@ The object returned by `Model::deleteOne` has the following structure:
 }
 ```
 
-<Callout type="INFO">
+<Callout>
 If the document in question is already in memory, the `Document::deleteOne` method on that instance offers a direct deletion approach.
 </Callout>
 
@@ -635,7 +635,7 @@ ProjectDAO.deleteAndFind({ name: 'Bugsight' });
 
 By default, the method returns the original document before deletion. This gives you access to the entire document's data, allowing you to perform any necessary tasks.
 
-<Callout type="INFO">
+<Callout>
 `Model::findOneAndDelete` is the recommended approach. However, Mongoose also provides a `Model::findOneAndRemove` method with similar functionality. Unless there's a specific reason, it's generally advisable to stick with `Model::findOneAndDelete`.
 </Callout>
 
@@ -684,7 +684,7 @@ Always exercise caution when using `Model::deleteMany` without a filter, as it w
 ### Counting Documents
 Managing large datasets requires developers to understand the volume of data they're working with. Mongoose offers two primary methods to retrieve document counts from a MongoDB collection: `Model::countDocuments` and `Model::estimatedDocumentCount`. While both aim to provide the count of documents, they serve slightly different use cases and operate in distinct ways.
 
-<Callout type="INFO">
+<Callout>
 The MongoDB server has deprecated the `Model::count()` function, recommending the use of two distinct functions instead: `Model::countDocuments()` and `Model::estimatedDocumentCount()`.
 </Callout>
 
@@ -842,7 +842,7 @@ const projectSchema = new Schema<IProjectDocument>(
 ```
 
 You can check out directly in the MongoDB UI if the collations are created for the field:
-<AdaptiveImage alt={'Mongo Compass Collection Indexes'} src={'/img/blog/13/2.webp'} width={768} height={400} />
+<Image alt={'Mongo Compass Collection Indexes'} filename={'mean-web-app-part-8-the-dao-pattern-and-mongoose-queries/2.webp'} />
 
 
 <Callout type="WARNING">
@@ -851,7 +851,7 @@ Remember that for any changes in the schema, You need to delete the collection a
 
 After implementing this change, executing the script will result in MongoDB raising a `MongoServerError` on the second call. This happens because MongoDB now recognizes both **"Bugsight"** and **"bugsight"** as identical. In the same vein, if you were to search for projects with the status **"High"** but you made a silly typing mistake like **"HiGh"**, the query would still return the expected results, capturing documents with statuses like **"High"**, **"HIgh"**, and so forth.
 
-<Callout type="INFO">
+<Callout>
 You can also change the default collation on query-based: 
 `ProjectDAO.find({ status: 'HiGH' }, { collation: { locale: 'fr', strength: 5 } })`.
 </Callout>

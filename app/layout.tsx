@@ -1,153 +1,185 @@
-import { EmailIcon, GithubIcon, RSSIcon, TwitterIcon } from '@components/icons';
-import NavLink from '@components/nav-link';
-import Theme from '@components/theme';
-import Logo from '@public/img/logo.png';
-import { Analytics } from '@vercel/analytics/react';
-import { Inconsolata, Inter, Lilita_One } from 'next/font/google';
-import localFont from 'next/font/local';
-import Image from 'next/image';
-import Link from 'next/link';
 import './globals.css';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+import NavBar from '@components/nav-bar';
+import ThemeProvider from '@components/theme-provider';
+import ThemeSwitcher from '@components/theme-switcher';
+import { GithubIcon, LinkIcon, LinkedInIcon, LogoIcon, RSSIcon, TwitterIcon } from '@components/icons';
 
-export const metadata = {
-	title: 'Ayoub Khial',
-	description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
-	openGraph: {
-		title: 'Ayoub Khial',
-		description: 'A software engineer specializing in building beautiful and minimalist web experiences.',
-		siteName: 'Ayoub Khial portfolio',
-		url: `https://ayoubkhial.com`,
-		images: [
-			{
-				url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/opengraph-image.png`,
-				alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
-			}
-		],
-		locale: 'en-US',
-		type: 'website'
-	},
-	robots: {
-		index: true,
-		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-			'max-video-preview': -1,
-			'max-image-preview': 'large',
-			'max-snippet': -1
-		}
-	},
-	icons: {
-		shortcut: '/favicon.ico'
-	},
-	twitter: {
-		title: 'Ayoub Khial',
-		card: 'summary_large_image',
-		creator: '@ayoubkhial',
-		site: '@ayoubkhial',
-		images: {
-			url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/opengraph-image.png`,
-			alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
-		}
-	},
-	alternates: {
-		types: {
-			'application/rss+xml': '/rss.xml'
-		}
-	}
+export const metadata: Metadata = {
+  metadataBase: new URL('https://ayoubkhial.com'),
+  title: {
+    default: 'Ayoub Khial',
+    template: '%s | Ayoub Khial'
+  },
+  description: 'Web developer.',
+  icons: {
+    icon: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        media: '(prefers-color-scheme: light)',
+        url: 'images/icon-light.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        media: '(prefers-color-scheme: dark)',
+        url: 'images/icon-dark.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        media: '(prefers-color-scheme: light)',
+        url: 'images/apple-icon-light.png'
+      },
+      ,
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        media: '(prefers-color-scheme: dark)',
+        url: 'images/apple-icon-dark.png'
+      }
+    ]
+  },
+  openGraph: {
+    title: 'Ayoub Khial',
+    description: 'Web developer.',
+    url: 'https://ayoubkhial.com',
+    siteName: 'Ayoub Khial',
+    images: [
+      {
+        url: `images/og.jpg`,
+        alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
+      }
+    ],
+    locale: 'en_US',
+    type: 'website'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  },
+  twitter: {
+    title: 'Ayoub Khial',
+    card: 'summary_large_image',
+    creator: '@ayoubkhial',
+    site: '@ayoubkhial',
+    images: {
+      url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/opengraph-image.png`,
+      alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
+    }
+  },
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml'
+    }
+  }
 };
 
-const lilita = Lilita_One({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-display',
-	weight: '400'
-});
-
-const calSans = localFont({
-	src: '../public/fonts/CalSans-SemiBold.woff2',
-	style: 'black',
-	display: 'swap',
-	variable: '--font-heading'
-});
-
-const inter = Inter({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-base'
-});
-
-const inconsolata = Inconsolata({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-code'
-});
-
-const links = [
-	{ num: '01', label: 'Home', path: '/', targetSegment: null },
-	{ num: '02', label: 'Writing', path: '/blog', targetSegment: 'blog' }
-];
-
-const Header = () => {
-	return (
-		<header className="fixed left-0 top-0 mx-auto h-14 w-screen bg-background-light pl-4 pr-7 dark:bg-background-dark md:static md:h-auto md:w-container md:px-4 md:pt-6">
-			<div className="flex h-full items-center justify-between">
-				<div className="flex items-center gap-12">
-					<Link href="/" prefetch={false}>
-						<Image src={Logo} alt="Ayoub KHIAL logo" width="40" height="40" priority={true} />
-					</Link>
-					<nav>
-						<ul className="flex items-center gap-8">
-							{links?.map((link, index) => (
-								<li key={index}>
-									<NavLink {...link} />
-								</li>
-							))}
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</header>
-	);
-};
+const Header = () => (
+  <header className="flex w-full items-center justify-between text-3 font-medium lg:w-[1024px]">
+    <Link href="/" className="flex items-center gap-2" aria-label="home">
+      <LogoIcon />
+    </Link>
+    <NavBar />
+    <div className="flex items-center gap-5">
+      <ThemeSwitcher />
+      <Link
+        href="https://ayoubkhial.substack.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+        prefetch={false}
+        className="group flex items-center gap-2 rounded border border-light-blue-200 bg-light-blue-100 px-2 py-1 transition-colors duration-300 hover:border-light-blue-400 dark:border-dark-blue-800 dark:bg-dark-blue-950 dark:text-dark-blue-400 hover:dark:border-dark-blue-600"
+      >
+        <RSSIcon className="h-1 w-1" iconStyle="fill-light-blue-600 dark:fill-dark-blue-500" />
+        <span className="text-light-blue-800 dark:text-dark-blue-300">Subscribe</span>
+      </Link>
+    </div>
+  </header>
+);
 
 const Footer = () => {
-	return (
-		<footer className="flex flex-col items-center justify-center gap-4 py-4">
-			<div className="flex items-center justify-center gap-6 font-medium leading-none">
-				<a href="https://www.github.com/ayoubkhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-					<GithubIcon />
-				</a>
-				<a href="https://www.twitter.com/ayoubkhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-					<TwitterIcon />
-				</a>
-				<a href="mailto:ayouub.khial@gmail.com" rel="noopener noreferrer" target="_blank" className="flex items-center gap-2">
-					<EmailIcon />
-				</a>
-				<a href="/rss.xml" rel="noopener noreferrer" target="_blank" className="flex items-center gap-2">
-					<RSSIcon />
-				</a>
-			</div>
-			<div>
-				<span className="font-heading text-sm leading-none tracking-wider">&#169; 2023 Ayoub Khial, All rights reserved.</span>
-			</div>
-		</footer>
-	);
+  return (
+    <footer className="flex w-full flex-wrap items-center justify-between gap-1 rounded bg-slate-50 px-3 py-2 dark:bg-slate-900 lg:w-[1024px]">
+      <p className="text-3 font-medium">Designed & Built by Ayoub KHIAL &#169; 2024</p>
+      <div className="flex items-center gap-6">
+        <Link href="https://www.github.com/ayoubkhial" target="_blank" rel="noopener noreferrer" aria-label="github">
+          <GithubIcon className="h-1 w-1" iconStyle="fill-slate-900 dark:fill-slate-100" />
+        </Link>
+        <Link href="https://www.twitter.com/ayoubkhial" target="_blank" rel="noopener noreferrer" aria-label="twitter">
+          <TwitterIcon className="h-1 w-1" iconStyle="fill-gray-900 dark:fill-gray-100" />
+        </Link>
+        <Link href="https://www.linkedin.com/in/akhial" target="_blank" rel="noopener noreferrer" aria-label="linkedin">
+          <LinkedInIcon className="h-1 w-1" iconStyle="fill-light-blue-600 dark:fill-dark-blue-400" />
+        </Link>
+        <Link href="mailto:ayouub.khial@gmail.com" rel="noopener noreferrer" target="_blank" aria-label="e-mail">
+          <RSSIcon className="h-1 w-1" iconStyle="fill-light-red-600 dark:fill-dark-red-500" />
+        </Link>
+        <Link href="/resume.pdf" download={true} aria-label="resume">
+          <LinkIcon className="h-1 w-1" iconStyle="fill-light-green-600 dark:fill-dark-green-500" />
+        </Link>
+      </div>
+      <div className="flex items-center gap-2 text-3 font-medium">
+        <Link
+          href={'/blog'}
+          className="underline decoration-slate-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 dark:decoration-slate-700 hover:dark:decoration-slate-500"
+        >
+          Writings
+        </Link>
+        <span>&#8212;</span>
+        <Link
+          href="https://ayoubkhial.substack.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+          prefetch={false}
+          className="underline decoration-slate-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 dark:decoration-slate-700 
+          hover:dark:decoration-slate-500"
+        >
+          Newsletter
+        </Link>
+        <span>&#8212;</span>
+        <Link
+          href="mailto:ayouub.khial@gmail.com"
+          rel="noopener noreferrer"
+          target="_blank"
+          className="underline decoration-slate-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 dark:decoration-slate-700 
+          hover:dark:decoration-slate-500"
+        >
+          Say hello
+        </Link>
+      </div>
+    </footer>
+  );
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-	return (
-		<html lang="en" className={`${lilita.variable} ${calSans.variable} ${inter.variable} ${inconsolata.variable}`}>
-			<body className="relative min-h-screen bg-background-light font-base text-base text-text-light dark:bg-background-dark dark:text-text-dark">
-				<div>
-					<Header />
-					<main>
-						<Theme>{children}</Theme>
-					</main>
-					<Analytics />
-					<Footer />
-				</div>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body
+        className={`${GeistMono.variable} ${GeistSans.variable} m-2 grid place-items-center gap-8 font-sans text-slate-800 dark:bg-slate-800 dark:text-slate-200 lg:mx-0 lg:my-3`}
+      >
+        <ThemeProvider>
+          <Header />
+          <main className="grid w-full place-items-center gap-8">
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }
