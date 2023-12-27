@@ -1,38 +1,82 @@
-import { getPostViews } from '@lib/requests';
-import { getShortDate } from '@lib/shared';
-import { type Post } from 'contentlayer/generated';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
+import Loader from './loader';
+import ViewsCounter from './views-counter';
 
-type Props = {
-	post: Partial<Post>;
+export const getShortDate = (date: Date): string => {
+  return new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(date);
 };
 
-const Views = async ({ slug }: { slug: string }) => getPostViews(slug);
+export const getTagClass = (color: string) => {
+  const colorVariants = {
+    slate: 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300',
+    gray: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
+    blue: 'bg-light-blue-50 text-light-blue-900 dark:bg-dark-blue-950 dark:text-dark-blue-300',
+    green: 'bg-light-green-50 text-light-green-900 dark:bg-dark-green-950 dark:text-dark-green-300',
+    red: 'bg-light-red-50 text-light-red-900 dark:bg-dark-red-950 dark:text-dark-red-300',
+    lime: 'bg-lime-100 text-lime-700 dark:bg-lime-800 dark:text-lime-300',
+    violet: 'bg-violet-100 text-violet-700 dark:bg-violet-800 dark:text-violet-300',
+    orange: 'bg-orange-100 text-orange-700 dark:bg-orange-800 dark:text-orange-300'
+  };
+  return colorVariants[color];
+};
 
-export default (async function PostHighlight({ post }: Props) {
-	return (
-		<Link
-			className="w-full rounded-lg bg-gray-50 p-5 duration-300 hover:bg-gray-100 dark:bg-[#212736] dark:hover:bg-[#262d40]"
-			href={`/blog/${post.slug}`}
-			prefetch={false}
-		>
-			<div className="flex flex-col gap-[0.6rem]">
-				<h3 className="font-heading text-sm font-medium tracking-wider md:text-[1rem]">{post.title}</h3>
-				<div className="mb-2 flex gap-[0.4rem] font-heading text-xs font-normal tracking-wider text-gray-700 dark:text-gray-200 md:text-[0.8rem]">
-					<span>{getShortDate(new Date(post.publishedAt!))}</span>
-					<div className="font-black md:text-[1rem]">•</div>
-					<span className="flex">{post.readingTime.text}</span>
-					<div className="font-black md:text-[1rem]">•</div>
-					<span className="flex">
-						<Suspense fallback={'. . .'}>
-							<Views slug={post.slug!} />
-						</Suspense>
-						<span>&nbsp;views</span>
-					</span>
-				</div>
-				<p className="text-sm leading-relaxed tracking-wide text-gray-600 dark:text-gray-200 md:text-base">{post.description}</p>
-			</div>
-		</Link>
-	);
-} as unknown as (props: Props) => JSX.Element);
+const PostHighlight = ({ post, index }) => {
+  const { slug, title, description, keywords, publishedAt, readingTime } = post;
+  const tags = keywords.split(',').map((tag) => {
+    const [label, color] = tag.match(/(.*)\((.*)\)/)?.slice(1);
+    return { name: label, style: getTagClass(color) };
+  });
+  return (
+    <div className="flex flex-col rounded-md border border-light-blue-100 transition duration-300 hover:border-light-blue-200 dark:border-light-blue-900 hover:dark:border-light-blue-800">
+      <Link href={`/blog/${slug}`}>
+        <Image
+          src={`/img/blog/${slug}/og.webp`}
+          alt={title}
+          width={1200}
+          height={630}
+          priority={index <= 1 ? true : false}
+          className="dark:hidden"
+        />
+        <Image
+          src={`/img/blog/${slug}/og-dark.webp`}
+          alt={title}
+          width={1200}
+          height={630}
+          quality={90}
+          priority={index <= 1 ? true : false}
+          className="hidden dark:block"
+        />
+      </Link>
+      <div className="flex h-full flex-col gap-4 px-3 pb-3 pt-2 sm:justify-between">
+        <div className="flex flex-col gap-2">
+          <h3 className="line-clamp-2 text-3 font-medium">
+            <Link href={`/blog/${slug}`}>{title}</Link>
+          </h3>
+          <div className="flex items-center gap-2 font-mono text-1 font-bold tracking-tight text-slate-800 dark:text-slate-200">
+            <span>{getShortDate(new Date(publishedAt!))}</span>
+            <span> - </span>
+            <span>{readingTime} min read</span>
+            <span> - </span>
+            <span>
+              <Suspense fallback={<Loader />}>
+                <ViewsCounter slug={slug} />
+              </Suspense>
+            </span>
+          </div>
+        </div>
+        <p className="line-clamp-4 text-2 leading-txt text-slate-700 dark:text-slate-300">{description}</p>
+        <div className="flex justify-end gap-2 font-mono text-1 font-medium tracking-tight">
+          {tags?.map((tag) => (
+            <span key={tag?.name} className={`${tag?.style} rounded px-1 py-1`}>
+              {tag?.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PostHighlight;

@@ -2,112 +2,68 @@
 title: 'Prettier + ESLint, a match made in heaven'
 publishedAt: '2023-07-27'
 description: "A comprehensive guide on how to enhance your TypeScript development experience by integrating Prettier and ESLint, two powerful tools for maintaining code quality."
-keywords: "ESLint,Prettier,Typescript,Express"
-published: true
-series: 'Building a MEAN Web APP'
+keywords: "eslint(violet),prettier(red),typescript(blue),express.js(slate)"
+series: "Build a MEAN web app"
+part: 3
 ---
 
-<Callout type="INFO">
+<Callout>
 The complete source code up to this point can be found in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-2).
 </Callout>
 
 ## Introduction
-[The previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-2-express-meets-typescript) 
-explored setting up TypeScript in an Express.js app. We discussed the advantages that TypeScript, 
-a statically-typed extension of JavaScript, brings to developers, such as detecting errors during 
-compilation, enhancing code browsing, and establishing a more sustainable code structure.
+[The previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-2-express-meets-typescript) explored setting up TypeScript in an Express.js app. We discussed the advantages that TypeScript, a statically-typed extension of JavaScript, brings to developers, such as detecting errors during compilation, enhancing code browsing, and establishing a more sustainable code structure.
 
-In a monorepo architecture, managing code quality and consistent style can become complicated due to 
-the disparate nature of the codebase. This is where tools such as **ESLint** and **Prettier** come 
-into play. They help to maintain code quality and consistent coding styles across multiple packages. 
-This article provides a detailed guide on integrating ESLint and Prettier into a monorepo architecture.
+In a monorepo architecture, managing code quality and consistent style can become complicated due to the disparate nature of the codebase. This is where tools such as **ESLint** and **Prettier** come into play. They help to maintain code quality and consistent coding styles across multiple packages. This article provides a detailed guide on integrating ESLint and Prettier into a monorepo architecture.
 
-Before we begin, let's talk about linters and formatters so we can better understand how to use them 
-correctly.
+Before we begin, let's talk about linters and formatters so we can better understand how to use them correctly.
 
 ## Linters vs. Formatters
-Linters are static code analysis tools that flag programming errors, bugs, stylistic errors, and 
-suspicious constructs.
+Linters are static code analysis tools that flag programming errors, bugs, stylistic errors, and suspicious constructs.
 
 The main features of a linter are:
 
-- **Code Quality Rules**: These rules relate to code correctness, i.e., they catch potential errors 
-and programmer mistakes. Examples include flagging undeclared variables, warning when variables are 
-unused, or catching faulty loop structures.
-- **Code Style Rules**: These rules relate to style and formatting. Examples include enforcing 
-indenting with tabs or spaces, requiring or disallowing semicolons at the end of lines, or enforcing 
-the positioning of braces.
-- **Extensibility**: Allows you to use third-party plugins to define your own rules. You can also 
-extend it with shared configurations.
-- **Automated Fixing**: Some linters can automatically fix specific issues, saving time and helping 
-maintain consistency.
+- **Code Quality Rules**: These rules relate to code correctness, i.e., they catch potential errors and programmer mistakes. Examples include flagging undeclared variables, warning when variables are unused, or catching faulty loop structures.
+- **Code Style Rules**: These rules relate to style and formatting. Examples include enforcing indenting with tabs or spaces, requiring or disallowing semicolons at the end of lines, or enforcing the positioning of braces.
+- **Extensibility**: Allows you to use third-party plugins to define your own rules. You can also extend it with shared configurations.
+- **Automated Fixing**: Some linters can automatically fix specific issues, saving time and helping maintain consistency.
 
-Formatters, on the other hand, focus more on the cosmetic aspects of your code. They enforce a 
-consistent style by parsing your code and re-printing it with their own rules that take care of code 
-formatting to ensure that all outputted code conforms to a consistent style.
+Formatters, on the other hand, focus more on the cosmetic aspects of your code. They enforce a consistent style by parsing your code and re-printing it with their own rules that take care of code formatting to ensure that all outputted code conforms to a consistent style.
 
 Here are the main features of a formatter:
 
 - **Enforced Consistency**: Formatters enforce a consistent coding style across your entire codebase. 
-This makes the code more readable and eliminates unnecessary discussions about coding style among team 
-members.
-- **Ease of Use**: Most formatters are designed to be easy to use. They usually come with a 
-command-line interface and can be integrated into most text editors or IDEs. You can set up a 
-formatter to automatically format your code whenever you save a file.
-- **Support for Multiple Languages**: Many formatters support various programming languages and file 
-types. This can be particularly useful in multi-language projects.
+This makes the code more readable and eliminates unnecessary discussions about coding style among team members.
+- **Ease of Use**: Most formatters are designed to be easy to use. They usually come with a command-line interface and can be integrated into most text editors or IDEs. You can set up a formatter to automatically format your code whenever you save a file.
+- **Support for Multiple Languages**: Many formatters support various programming languages and file types. This can be particularly useful in multi-language projects.
 
 While there are some overlaps in what linters and formatters can do, there are key differences:
 
-- **Scope**: Linters can handle code quality and formatting rules, whereas formatters are primarily 
-concerned with formatting rules. The focus of linters is broader, dealing with potential coding errors 
-and style issues. The focus of formatters is narrower, ensuring that the style and syntax of your 
-code adhere to predefined rules.
-- **Flexibility vs. Opinionated**: Linters are highly customizable. You can switch rules on and off 
-and even write your own or use plugins to extend the linter's functionality. Formatters, on the other 
-hand, are often more opinionated and provide fewer customization options.
-- **Fixing Mechanism**: Some linters can automatically fix certain types of issues, either by making 
-suggestions or by modifying the code directly. Formatters, on the other hand, completely rewrite your 
-code based on the formatting rules they're configured to follow.
+- **Scope**: Linters can handle code quality and formatting rules, whereas formatters are primarily concerned with formatting rules. The focus of linters is broader, dealing with potential coding errors and style issues. The focus of formatters is narrower, ensuring that the style and syntax of your code adhere to predefined rules.
+- **Flexibility vs. Opinionated**: Linters are highly customizable. You can switch rules on and off and even write your own or use plugins to extend the linter's functionality. Formatters, on the other hand, are often more opinionated and provide fewer customization options.
+- **Fixing Mechanism**: Some linters can automatically fix certain types of issues, either by making suggestions or by modifying the code directly. Formatters, on the other hand, completely rewrite your code based on the formatting rules they're configured to follow.
 
-In summary, linters are primarily used to catch potential bugs and maintain code quality, while 
-formatters ensure a consistent coding style across the project. They both serve important roles and 
-are often used together to maintain a clean, error-free, and consistently styled codebase.
+In summary, linters are primarily used to catch potential bugs and maintain code quality, while formatters ensure a consistent coding style across the project. They both serve important roles and are often used together to maintain a clean, error-free, and consistently styled codebase.
 
 ## Prettier - An opinionated code formatter
-[Prettier](https://prettier.io/) is an open-source, opinionated code formatter that enforces a 
-consistent code style across your project. It supports many languages, including JavaScript, 
-TypeScript, HTML, CSS, Markdown, and more. It removes all original styling and ensures all outputted 
-code conforms to a consistent style.
+[Prettier](https://prettier.io/) is an open-source, opinionated code formatter that enforces a consistent code style across your project. It supports many languages, including JavaScript, TypeScript, HTML, CSS, Markdown, and more. It removes all original styling and ensures all outputted code conforms to a consistent style.
 
-Prettier parses your code into an 
-[Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree), then re-prints it 
-from scratch to ensure it conforms to its formatting rules. It discards all original styling and 
-ensures that the re-printed code adheres to a consistent style.
+Prettier parses your code into an [Abstract Syntax Tree (AST)](https://en.wikipedia.org/wiki/Abstract_syntax_tree), then re-prints it from scratch to ensure it conforms to its formatting rules. It discards all original styling and ensures that the re-printed code adheres to a consistent style.
 
-To apply Prettier to any project, installing the Prettier extension is usually necessary, which can 
-automatically format your code upon saving or even manually through the integrated extension. 
-We recommend installing 
-[this extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) if you're 
-using Visual Studio Code. Rest assured, an extension is available for nearly 
-[all popular code editors](https://prettier.io/docs/en/editors.html).
+To apply Prettier to any project, installing the Prettier extension is usually necessary, which can automatically format your code upon saving or even manually through the integrated extension. We recommend installing [this extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) if you're using Visual Studio Code. Rest assured, an extension is available for nearly [all popular code editors](https://prettier.io/docs/en/editors.html).
 
-<Callout type="INFO">
+<Callout>
 If your code editor lacks Prettier support, you can use a [file watcher](https://prettier.io/docs/en/watching-files.html) 
 to run Prettier.
 </Callout>
 
-The extension provides default configurations, but you may want to customize some settings according 
-to your preferences. To adjust Prettier settings, navigate to user settings by pressing `cmd + ,` 
-on MacOS or `ctrl + ,` on Windows.
+The extension provides default configurations, but you may want to customize some settings according to your preferences. To adjust Prettier settings, navigate to user settings by pressing `cmd + ,` on MacOS or `ctrl + ,` on Windows.
 
-In the search bar, type **"Prettier"** to filter out Prettier-specific settings and easily access the 
-relevant options.
+In the search bar, type **"Prettier"** to filter out Prettier-specific settings and easily access the relevant options.
 
-In the Prettier settings, you have the flexibility to customize various options such as the print 
-width, tab width, usage of semicolons, single vs. double quotes, and more.
+In the Prettier settings, you have the flexibility to customize various options such as the print width, tab width, usage of semicolons, single vs. double quotes, and more.
 
-<AdaptiveImage alt={'VSCode prettier settings'} src={'/img/blog/7/1.webp'} width={768} height={509} />
+<Image alt={'VSCode prettier settings'} filename={'mean-web-app-part-3-prettier-eslint-match-made-in-heaven/1.webp'} />
 
 Alternatively, when using the JSON view, begin typing "prettier," and you'll see the complete list of fields you can modify.
 
@@ -137,35 +93,23 @@ I also suggest enabling formatting on save.
 }
 ```
 
-Installing Prettier as a project dependency instead of just the VSCode extension ensures consistent 
-formatting across various environments, allows integration with build tools, and enhances 
-compatibility with ESLint. It controls versioning and supports automated code formatting, benefitting 
-multi-developer projects.
+Installing Prettier as a project dependency instead of just the VSCode extension ensures consistent formatting across various environments, allows integration with build tools, and enhances compatibility with ESLint. It controls versioning and supports automated code formatting, benefitting multi-developer projects.
 
-In a monorepo, it's best to have all apps and packages follow the same formatting rules to maintain 
-consistency and make maintenance easier. Installing Prettier at the root of the monorepo is 
-recommended to avoid the need for a separate package for its dependencies and configurations.
+In a monorepo, it's best to have all apps and packages follow the same formatting rules to maintain consistency and make maintenance easier. Installing Prettier at the root of the monorepo is recommended to avoid the need for a separate package for its dependencies and configurations.
 
-To install Prettier as a project dependency, navigate to your project directory in your terminal and 
-run the following command:
+To install Prettier as a project dependency, navigate to your project directory in your terminal and run the following command:
 
 ```bash
 pnpm -w add -D prettier --save-exact
 ```
 
 <Callout type="WARNING">
-[Prettier recommends specifying the exact version](https://prettier.io/docs/en/install.html) 
-(--save-exact) to avoid potential issues caused by minor changes that might alter defaults, impacting 
-the entire codebase. By updating this dependency manually, you can have better control over the 
-changes and ensure the stability and consistency of your project.
+[Prettier recommends specifying the exact version](https://prettier.io/docs/en/install.html) (--save-exact) to avoid potential issues caused by minor changes that might alter defaults, impacting the entire codebase. By updating this dependency manually, you can have better control over the changes and ensure the stability and consistency of your project.
 </Callout>
 
 By specifying a specific version of Prettier, every team member working on the project will utilize the same version with its default configurations.
 
-Although Prettier has default configurations, you can customize specific rules to match your preferred 
-coding style. To achieve this, create a configuration file named **.prettierrc.mjs** in your project's 
-root directory. Prettier will automatically detect and apply the settings specified in this file. This 
-way, you can tailor Prettier to suit your coding requirements.
+Although Prettier has default configurations, you can customize specific rules to match your preferred coding style. To achieve this, create a configuration file named **.prettierrc.mjs** in your project's root directory. Prettier will automatically detect and apply the settings specified in this file. This way, you can tailor Prettier to suit your coding requirements.
 
 Below is an example of a simple configuration file:
 
@@ -181,24 +125,17 @@ export default {
 
 You can find the complete list of options you can configure in [the official documentation](https://prettier.io/docs/en/options.html).
 
-<Callout type="INFO">
-Support for ECMAScript modules was introduced in Prettier version 3.0. However, if you prefer to use 
-CommonJS or any other file extension, 
-[it is still possible to do so](https://prettier.io/docs/en/configuration.html). For further 
-information, refer to [the official release article](https://prettier.io/blog/2023/07/05/3.0.0.html).
+<Callout>
+Support for ECMAScript modules was introduced in Prettier version 3.0. However, if you prefer to use CommonJS or any other file extension, [it is still possible to do so](https://prettier.io/docs/en/configuration.html). For further information, refer to [the official release article](https://prettier.io/blog/2023/07/05/3.0.0.html).
 </Callout>
 
-Now the Prettier extension is smart enough to locate and utilize the rules specified in the 
-**.prettierrc.mjs** file.
+Now the Prettier extension is smart enough to locate and utilize the rules specified in the **.prettierrc.mjs** file.
 
 <Callout type="WARNING">
-When you change the **.prettierrc.mjs** file, there might be instances where VS Code does not 
-immediately recognize the update. In such cases, you'll need to restart the editor for the changes to 
-take effect properly.
+When you change the **.prettierrc.mjs** file, there might be instances where VS Code does not immediately recognize the update. In such cases, you'll need to restart the editor for the changes to take effect properly.
 </Callout>
 
-Like Git, you can exclude specific files or directories from being formatted according to your 
-preferences using the **.prettierignore** file.
+Like Git, you can exclude specific files or directories from being formatted according to your preferences using the **.prettierignore** file.
 
 ```text showLineNumbers title=".prettierignore"
 node_modules/
@@ -227,31 +164,22 @@ This script will allow you to quickly run Prettier on all the files in your proj
 pnpm run format
 ```
 
-<AdaptiveImage alt={'prettier command result'} src={'/img/blog/7/2.webp'} width={768} height={325} />
+<Image alt={'prettier command result'} filename={'mean-web-app-part-3-prettier-eslint-match-made-in-heaven/2.webp'} width={768} height={325} />
 
-<Callout type="INFO">
-You don't need to run the formatting command manually since the VS Code extension handles automatic 
-code formatting on save. However, before deploying to production, you can incorporate the formatting 
-script into other scripts, like a pre-build phase.
+<Callout>
+You don't need to run the formatting command manually since the VS Code extension handles automatic code formatting on save. However, before deploying to production, you can incorporate the formatting script into other scripts, like a pre-build phase.
 </Callout>
 
 ## ESLint - A customizable JavaScript linter
-[ESLint](https://eslint.org/) is a pluggable and configurable linter tool for identifying and 
-reporting patterns in JavaScript. Its primary goal is to help developers write better code by 
-enforcing specific coding rules and detecting potential bugs and errors before they make it into 
-production.
+[ESLint](https://eslint.org/) is a pluggable and configurable linter tool for identifying and reporting patterns in JavaScript. Its primary goal is to help developers write better code by enforcing specific coding rules and detecting potential bugs and errors before they make it into production.
 
 <Callout type="WARNING">
-[TSLint](https://palantir.github.io/tslint/), originally designed for TypeScript, 
-[ceased support in 2019](https://blog.palantir.com/tslint-in-2019-1a144c2317a9) due to the overlapping 
-functionality with ESLint, prompting a consolidated focus on ESLint to avoid redundancy.
+[TSLint](https://palantir.github.io/tslint/), originally designed for TypeScript, [ceased support in 2019](https://blog.palantir.com/tslint-in-2019-1a144c2317a9) due to the overlapping functionality with ESLint, prompting a consolidated focus on ESLint to avoid redundancy.
 </Callout>
 
 Let's dive into creating a new ESLint configuration package and utilizing it within the **server** app in our monorepo setup.
 
-To organize your project effectively, head to the **packages** folder and create a new directory named 
-**eslint-config**. This directory will serve as the container for your shared ESLint configuration 
-package.
+To organize your project effectively, head to the **packages** folder and create a new directory named **eslint-config**. This directory will serve as the container for your shared ESLint configuration package.
 
 Initialize a new **package.json** file inside the **eslint-config** folder:
 
@@ -259,8 +187,7 @@ Initialize a new **package.json** file inside the **eslint-config** folder:
 pnpm init
 ```
 
-I will update the `name` field in the **package.json** to include either the company or the app name, 
-following the same approach we used for the **tsconfig** package.
+I will update the `name` field in the **package.json** to include either the company or the app name, following the same approach we used for the **tsconfig** package.
 
 ```json {2} showLineNumbers title="packages/esling-config/package.json"
 {
@@ -277,10 +204,8 @@ pnpm add -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser --
 ```
 
 - [eslint](https://github.com/eslint/eslint): The core package.
-- **[@typescript-eslint/parser](https://typescript-eslint.io/packages/parser/)**: A parser allowing 
-ESLint to lint TypeScript code by converting it into an Abstract Syntax Tree.
-- **[@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin/)**: A 
-plugin adding TypeScript-specific linting rules to ESLint for enforcing good TypeScript practices.
+- **[@typescript-eslint/parser](https://typescript-eslint.io/packages/parser/)**: A parser allowing ESLint to lint TypeScript code by converting it into an Abstract Syntax Tree.
+- **[@typescript-eslint/eslint-plugin](https://typescript-eslint.io/packages/eslint-plugin/)**: A plugin adding TypeScript-specific linting rules to ESLint for enforcing good TypeScript practices.
 
 Create an **index.js** file in the **eslint-config** directory and add your shared ESLint configuration.
 
@@ -296,18 +221,10 @@ module.exports = {
 ```
 
 Let's break down the configuration:
-- `parser`: The parser parses the code into an Abstract Syntax Tree (AST) that ESLint can understand 
-and work with. `@typescript-eslint/parse`r is a parser that understands TypeScript, which allows 
-ESLint to lint TypeScript code effectively.
-- `plugins`: Adds extra rules through plugins not included in the core ESLint package. 
-`@typescript-eslint` is a plugin that adds several TypeScript-specific linting rules to ESLint.
-- `extends`: This field is used to specify sets of rules to apply. 
-`plugin:@typescript-eslint/recommended` involves a group of recommended rules for TypeScript from the 
-`@typescript-eslint` plugin.
-- `rules`: Allows for custom rule specification. Rules dictate which code patterns ESLint will warn 
-or error about. For instance, `no-console: 1` is a custom rule that triggers a warning when `console` 
-functions (e.g., `console.log`) are used. In ESLint, rules can be disabled (`'off'` or `0`), provide 
-warnings (`'warn'` or `1`), or trigger errors (`'error'` or `2`).
+- `parser`: The parser parses the code into an Abstract Syntax Tree (AST) that ESLint can understand and work with. `@typescript-eslint/parse`r is a parser that understands TypeScript, which allows ESLint to lint TypeScript code effectively.
+- `plugins`: Adds extra rules through plugins not included in the core ESLint package. `@typescript-eslint` is a plugin that adds several TypeScript-specific linting rules to ESLint.
+- `extends`: This field is used to specify sets of rules to apply. `plugin:@typescript-eslint/recommended` involves a group of recommended rules for TypeScript from the `@typescript-eslint` plugin.
+- `rules`: Allows for custom rule specification. Rules dictate which code patterns ESLint will warn or error about. For instance, `no-console: 1` is a custom rule that triggers a warning when `console` functions (e.g., `console.log`) are used. In ESLint, rules can be disabled (`'off'` or `0`), provide warnings (`'warn'` or `1`), or trigger errors (`'error'` or `2`).
 
 Check out the [Awesome ESLint](https://github.com/dustinspecker/awesome-eslint) package for a curated list of awesome ESLint plugins, configs, etc.
 
@@ -323,19 +240,15 @@ module.exports = {
 };
 ```
 
-This configuration is meant to be shared across all packages in a monorepo, enforcing a consistent coding 
-style and helping to catch common errors. In a monorepo, sharing an ESLint configuration like this can 
-help ensure that all code adheres to the same rules and styles.
+This configuration is meant to be shared across all packages in a monorepo, enforcing a consistent coding style and helping to catch common errors. In a monorepo, sharing an ESLint configuration like this can help ensure that all code adheres to the same rules and styles.
 
-We'll install this ESLint configuration package in our **server** folder, allowing us to extend it 
-and add specific properties tailored to our server-side codebase. You can easily install it through the CLI using the following command:
+We'll install this ESLint configuration package in our **server** folder, allowing us to extend it and add specific properties tailored to our server-side codebase. You can easily install it through the CLI using the following command:
 
 ```bash
 pnpm add @bugsight/eslint-config-shared --filter server
 ```
 
-Alternatively, you can manually add the ESLint configuration package to your **package.json** file in 
-the **server** folder, then run `pnpm install` to install the package and its dependencies.
+Alternatively, you can manually add the ESLint configuration package to your **package.json** file in the **server** folder, then run `pnpm install` to install the package and its dependencies.
 
 ```json {4} showLineNumbers title="apps/server/package.json"
 {
@@ -348,9 +261,7 @@ the **server** folder, then run `pnpm install` to install the package and its de
 }
 ```
 
-Create a new file named **.eslintrc.js** within the server folder. This file will serve as the 
-configuration file for ESLint in the server application, allowing you to customize and extend the 
-shared ESLint rules specific to the server-side codebase.
+Create a new file named **.eslintrc.js** within the server folder. This file will serve as the configuration file for ESLint in the server application, allowing you to customize and extend the shared ESLint rules specific to the server-side codebase.
 
 ```js showLineNumbers title="apps/server/.eslintrc.js"
 module.exports = {
@@ -368,31 +279,22 @@ module.exports = {
 
 Let's break it down:
 
-- `extends`: This line imports a predefined set of ESLint rules from `@bugsight/eslint-config-shared`, 
-eliminating the need to redefine these rules in the current configuration.
-- `env`: Used to define global variables that are predefined. `es2023: true` specifies that this 
-script is intended to be run in an environment that supports ES2023 globals. `node: true` specifies 
-that this is a Node.js environment, which comes with its own set of globals.
-- `parserOptions`: Used to specify the JavaScript version and source type. The `ecmaVersion: 'latest'` 
-option indicates that the parser should use the latest ECMAScript standard, and `sourceType: 'module'` 
-indicates that the code should be treated as ECMAScript modules.
+- `extends`: This line imports a predefined set of ESLint rules from `@bugsight/eslint-config-shared`, eliminating the need to redefine these rules in the current configuration.
+- `env`: Used to define global variables that are predefined. `es2023: true` specifies that this script is intended to be run in an environment that supports ES2023 globals. `node: true` specifies that this is a Node.js environment, which comes with its own set of globals.
+- `parserOptions`: Used to specify the JavaScript version and source type. The `ecmaVersion: 'latest'` option indicates that the parser should use the latest ECMAScript standard, and `sourceType: 'module'` indicates that the code should be treated as ECMAScript modules.
 
 <Callout type="WARNING">
-When you change the shared ESLint config or any .eslintrc.js file, you need to restart the ESLint 
-server, `cmd + shift + P` and search for **"ESLint: Restart ESLint Server"**.
-[Check out this issue for more information](https://github.com/microsoft/vscode-eslint/issues/477).
+When you change the shared ESLint config or any .eslintrc.js file, you need to restart the ESLint server, `cmd + shift + P` and search for **"ESLint: Restart ESLint Server"**.[Check out this issue for more information](https://github.com/microsoft/vscode-eslint/issues/477).
 </Callout>
 
-Like Prettier, we can create a **.eslintignore** file to specify paths that should be excluded from 
-linting.
+Like Prettier, we can create a **.eslintignore** file to specify paths that should be excluded from linting.
 
 ```text title="apps/server/.eslintignore"
 node_modules/
 dist/
 ```
 
-Add a new script to your **package.json** file, allowing you to run ESLint and enforce the defined 
-rules on your server-side codebase.
+Add a new script to your **package.json** file, allowing you to run ESLint and enforce the defined rules on your server-side codebase.
 
 ```json {7} title="apps/server/package.json"
 {
@@ -406,8 +308,7 @@ rules on your server-side codebase.
 }
 ```
 
-Now, let's add two statements in our **index.j**s file within the server folder to test if the linting 
-works appropriately.
+Now, let's add two statements in our **index.j**s file within the server folder to test if the linting works appropriately.
 
 ```js {5,6} showLineNumbers title="apps/server/index.js"
 import * as server from './server';
@@ -424,51 +325,32 @@ Let's go ahead and run the lint script now. Execute the following command in the
 pnpm run lint
 ```
 
-By running this script, ESLint will analyze the code in the **index.js** file and any other files in 
-the server directory, and it will display any linting warnings or errors detected based on the defined 
-ESLint rules.
+By running this script, ESLint will analyze the code in the **index.js** file and any other files in the server directory, and it will display any linting warnings or errors detected based on the defined ESLint rules.
 
 You will receive error messages in your terminal if your configuration is correct.
 
-<AdaptiveImage alt={'eslint cli errors example'} src={'/img/blog/7/3.webp'} width={768} height={260} />
+<Image alt={'eslint cli errors example'} filename={'mean-web-app-part-3-prettier-eslint-match-made-in-heaven/3.webp'} />
 
-Let's focus on the errors in the **index.js**. The first error is caused by an unused variable `a` in 
-the code, detected by the `no-unused-vars` rule from the `@typescript-eslint` plugin.
+Let's focus on the errors in the **index.js**. The first error is caused by an unused variable `a` in the code, detected by the `no-unused-vars` rule from the `@typescript-eslint` plugin.
 
-The second error results from a `console` statement, generally discouraged in production code. The 
-`no-console` rule triggers this as a warning.
+The second error results from a `console` statement, generally discouraged in production code. The `no-console` rule triggers this as a warning.
 
-While running ESLint from the command line interface (CLI) can be effective, installing and using the 
-[ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) in your 
-code editor can make the linting process smoother and more integrated into your development workflow.
+While running ESLint from the command line interface (CLI) can be effective, installing and using the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) in your code editor can make the linting process smoother and more integrated into your development workflow.
 
-Installing the ESLint extension lets you receive immediate feedback as you write code, with real-time 
-issue highlighting. This integration allows for a seamless development experience, making identifying 
-and addressing potential problems more manageable.
+Installing the ESLint extension lets you receive immediate feedback as you write code, with real-time issue highlighting. This integration allows for a seamless development experience, making identifying and addressing potential problems more manageable.
 
-<AdaptiveImage alt={'eslint VSCode errors example'} src={'/img/blog/7/4.webp'} width={768} height={284} />
+<Image alt={'eslint VSCode errors example'} filename={'mean-web-app-part-3-prettier-eslint-match-made-in-heaven/4.webp'} />
 
-<Callout type="INFO">
-The ESLint error message you observe in the editor is an outcome of the 
-[Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) extension. It 
-provides immediate visual feedback by highlighting the erroneous line and displaying the error message 
-directly, eliminating the need to hover over the code with your pointer.
+<Callout>
+The ESLint error message you observe in the editor is an outcome of the [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) extension. It provides immediate visual feedback by highlighting the erroneous line and displaying the error message directly, eliminating the need to hover over the code with your pointer.
 </Callout>
 
 ## Avoiding rules conflicts between ESLint and prettier
+ESLint and Prettier are two powerful tools that, while serving similar purposes, work in slightly different ways. ESLint focuses on analyzing code to find and fix issues, while Prettier concentrates more on formatting code to ensure it adheres to a consistent style. The potential for conflict arises because ESLint also has rules that enforce code style.
 
-ESLint and Prettier are two powerful tools that, while serving similar purposes, work in slightly 
-different ways. ESLint focuses on analyzing code to find and fix issues, while Prettier concentrates 
-more on formatting code to ensure it adheres to a consistent style. The potential for conflict arises 
-because ESLint also has rules that enforce code style.
+For example, Both ESLint and Prettier provide the ability to enforce whether or not to use semicolons at the end of statements. This is configured using the `semi` rule. In both tools, this rule takes either true (semicolons are required) or false (semicolons should be omitted where possible) as its value.
 
-For example, Both ESLint and Prettier provide the ability to enforce whether or not to use semicolons 
-at the end of statements. This is configured using the `semi` rule. In both tools, this rule takes 
-either true (semicolons are required) or false (semicolons should be omitted where possible) as its 
-value.
-
-Let's say you want to omit semicolons, and you've set up both your **.prettierrc.mjs** and **.eslintrc.js** 
-files accordingly:
+Let's say you want to omit semicolons, and you've set up both your **.prettierrc.mjs** and **.eslintrc.js** files accordingly:
 
 ```js title=".prettierrc.mjs"
 export default = {
@@ -487,14 +369,9 @@ module.exports = {
 };
 ```
 
-This seems OK initially, as both rules are set to the same value, meaning both tools will enforce the 
-same style. However, when you run both Prettier and ESLint, the same piece of code is flagged by 
-ESLint but then reformatted by Prettier, or vice versa. This can lead to conflicts, causing confusion 
-and reducing the effectiveness of these tools.
+This seems OK initially, as both rules are set to the same value, meaning both tools will enforce the same style. However, when you run both Prettier and ESLint, the same piece of code is flagged by ESLint but then reformatted by Prettier, or vice versa. This can lead to conflicts, causing confusion and reducing the effectiveness of these tools.
 
-To prevent ESLint from flagging formatting rules that Prettier will fix, we can use the 
-[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) package. This package 
-turns off all ESLint rules that conflict with Prettier.
+To prevent ESLint from flagging formatting rules that Prettier will fix, we can use the [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) package. This package turns off all ESLint rules that conflict with Prettier.
 
 ```bash
 pnpm add -D eslint-config-prettier --filter @bugsight/eslint-config-shared
@@ -511,25 +388,17 @@ module.exports = {
 };
 ```
 
-The order is important here; the prettier should be the extended array's last configuration to 
-ensure it can override other configurations.
+The order is important here; the prettier should be the extended array's last configuration to ensure it can override other configurations.
 
-By configuring ESLint and Prettier correctly, you can ensure that these two powerful tools work 
-harmoniously together, helping to improve your code quality and consistency without causing conflicts.
+By configuring ESLint and Prettier correctly, you can ensure that these two powerful tools work harmoniously together, helping to improve your code quality and consistency without causing conflicts.
 
 ## Conclusion
 
-In conclusion, integrating ESLint and Prettier into a pnpm-driven monorepo enhances code consistency 
-and quality while preventing common JavaScript/TypeScript errors. This combination leverages PNPM's 
-package management efficiency within a TypeScript monorepo, offering a flexible and scalable coding 
-environment that caters to your project's unique requirements and your team's coding standards.
+In conclusion, integrating ESLint and Prettier into a pnpm-driven monorepo enhances code consistency and quality while preventing common JavaScript/TypeScript errors. This combination leverages PNPM's package management efficiency within a TypeScript monorepo, offering a flexible and scalable coding environment that caters to your project's unique requirements and your team's coding standards.
 
-You can find the complete code source in 
-[this repository](https://github.com/ayoubkhial/bugsight); feel free to give it a star ⭐️.
+You can find the complete code source in [this repository](https://github.com/ayoubkhial/bugsight); feel free to give it a star ⭐️.
 
-If you want to keep up with this series, consider 
-[subscribing to my newsletter](https://ayoubkhial.substack.com/) to receive updates as soon as I 
-publish an article.
+If you want to keep up with this series, consider [subscribing to my newsletter](https://ayoubkhial.substack.com/) to receive updates as soon as I publish an article.
 
 <Callout type="RESOURCES">
 - [Prettier documentation.](https://prettier.io/docs/en/index.html)

@@ -2,12 +2,12 @@
 title: 'Designing and Modeling the Database with Mongoose'
 publishedAt: '2023-09-23'
 description: "This comprehensive guide provides step-by-step instructions for crafting a scalable MongoDB database design and modeling it effectively using Mongoose ODM. Leveraging Mongoose's robust modeling and validation capabilities."
-keywords: "Express,Node.js,MongoDB,Mongoose"
-published: true
-series: 'Building a MEAN Web APP'
+keywords: "express.js(slate),node.js(green),mongoose(red)"
+series: "Build a MEAN web app"
+part: 7
 ---
 
-<Callout type="INFO">
+<Callout>
 The complete source code up to this point can be found in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-6).
 </Callout>
 
@@ -20,10 +20,8 @@ In our [previous article](http://www.ayoubkhial.com/blog/mean-web-app-part-6-int
 
 So why is getting your database design right so important? Picture trying to build a house without any plans. You could start stacking bricks, but you'll likely end up with a shaky building. Just like that, a well-planned database is essential for a successful app. It helps it run smoothly and makes it easier to manage in the long run.
 
-<Callout type="INFO">
-Within this article, we will occasionally utilize queries to highlight some functionalities and 
-behaviors of Mongoose. However, these are merely illustrative. A detailed exploration of queries and 
-DAO will be the subject of our forthcoming article.
+<Callout>
+Within this article, we will occasionally utilize queries to highlight some functionalities and behaviors of Mongoose. However, these are merely illustrative. A detailed exploration of queries and DAO will be the subject of our forthcoming article.
 </Callout>
 
 Before diving into **Mongoose**, establishing a well-designed MongoDB schema is essential. In the next section, we'll focus on the differences between SQL and MongoDB in database design, along with some best practices and pitfalls to avoid.
@@ -34,7 +32,7 @@ A carefully planned database schema is crucial when developing an application, p
 
 If you come from an **SQL** background, you'll know that schema design focuses on [normalization](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description). This approach aims to reduce repeated data by spreading it across separate tables. Doing so keeps the data organized, minimizes duplication, and avoids issues when adding, changing, or deleting data. Reaching these organized stages, known as [normal forms](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description#first-normal-form), is crucial for data integrity in SQL.
 
-<AdaptiveImage alt={'SQL Database Normalization'} src={'/img/blog/12/1.webp'} width={768} height={383} />
+<Image alt={'SQL Database Normalization'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/1.webp'} />
 
 In **NoSQL**, especially in **MongoDB**, schema design takes a unique route. Here, your design decisions should align closely with your application's requirements. How the data is displayed in the application naturally guides how you should store it.
 
@@ -42,7 +40,7 @@ Our system's **Issues** are closely linked to their related **Comments** and **A
 
 **HOWEVER**, if your application's use case doesn't require displaying **Comments** and **Activities** alongside **Issues**, separating them into distinct collections could be a wiser choice. For instance, if **Comments** are often accessed independently of **Issues** for analytics or reporting, keeping them in their own collection can improve data retrieval speed and manageability. The right design depends on your needs and how you intend to interact with the data.
 
-<Callout type="INFO">
+<Callout>
 Data frequently accessed or displayed together should be stored together.
 </Callout>
 
@@ -50,7 +48,7 @@ The main reason you should be cautious is all about speed, or rather, the lack o
 
 Here's what an **Issue** document might look like in MongoDB compared to SQL:
 
-<AdaptiveImage alt={'SQL Normalization VS. NoSQL Denormalization'} src={'/img/blog/12/2.webp'} width={768} height={437} />
+<Image alt={'SQL Normalization VS. NoSQL Denormalization'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/2.webp'} />
 
 Although MongoDB provides design flexibility, some pitfalls should be avoided, especially when embedding documents. It's not always best to store all data in a single collection.
 
@@ -92,23 +90,23 @@ Another point to consider is how **Issues** operate independently. You might nee
 
 A solution to these challenges is to form a distinct issues collection, allowing for more granular querying. We could also flip the model and embed the project detail in the issues documents instead.
 
-<AdaptiveImage alt={'MongoDB Embedded Documents'} src={'/img/blog/12/3.webp'} width={768} height={408} />
+<Image alt={'MongoDB Embedded Documents'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/3.webp'} />
 
 In this design, each Issue would carry basic project information, ideal for scenarios where Issues and their associated Projects are frequently accessed together and where the Project details are unlikely to change. However, this approach could result in considerable data duplication.
 
 To minimize data duplication, include only essential project details in each Issue and use a reference for complete project data when necessary. For instance, simply displaying the project's `name` alongside an issue might suffice. This strategy is called [The Extended Reference Pattern](https://www.mongodb.com/blog/post/building-with-patterns-the-extended-reference-pattern).
 
-<Callout type="INFO">
+<Callout>
 **The Extended Reference Pattern** involves embedding selective fields from one document into another, providing a summary view, while also adding a reference, such as the `_id`, to the original document. This allows quick access to commonly viewed data while preserving the option to pull in more details as needed.
 </Callout>
 
-<AdaptiveImage alt={'MongoDB - The Extended Reference Pattern'} src={'/img/blog/12/4.webp'} width={768} height={375} />
+<Image alt={'MongoDB - The Extended Reference Pattern'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/4.webp'} />
 
 To completely understand our database, I have created a diagram displaying each collection and its corresponding fields and data types. To illustrate the relationships between collections, I have included arrows in the diagram. An arrow that ends with **'1'** indicates a one-to-one relationship, while an arrow that ends with **'n'** signifies a one-to-many relationship.
 
-<AdaptiveImage alt={'Schema Design for Bug Tracking app in MongoDB'} src={'/img/blog/12/5.webp'} width={768} height={430} />
+<Image alt={'Schema Design for Bug Tracking app in MongoDB'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/5.webp'} />
 
-<Callout type="INFO">
+<Callout>
 Fields like `createdAt` and `updatedAt` are omitted in the diagram as Mongoose auto-generates them. The `_id` field is included to highlight inter-collection relationships, even though MongoDB creates it automatically.
 </Callout>
 
@@ -163,14 +161,14 @@ export default components;
 
 Having explored the principles of effective database design, let's now delve into how to model this architecture using [Mongoose ODM](https://mongoosejs.com/).
 
-<Callout type="INFO">
+<Callout>
 In this article, I'll explore various Mongoose features using multiple collections as examples. You can find the complete code in [this Github repository](https://github.com/ayoubkhial/bugsight/tree/part-7).
 </Callout>
 
 ## Mongoose Components
 [Mongoose](https://mongoosejs.com/) provides a powerful yet straightforward way to work with MongoDB databases in a Node.js environment. Understanding its core concepts —Model, Schema, and Document— is essential for appreciating how Mongoose streamlines data management and validation.
 
-<AdaptiveImage alt={'How Mongoose Works'} src={'/img/blog/12/6.webp'} width={768} height={406} />
+<Image alt={'How Mongoose Works'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/6.webp'} />
 
 ### Schema: The Data Blueprint
 In Mongoose, a schema serves as the architectural plan that outlines the format of your data within a MongoDB collection. Every data operation and interaction in Mongoose is centered around this schema.
@@ -294,7 +292,7 @@ use bugsight
 
 Once connected, you can execute MongoDB methods and queries. For example, run `db.project.find()` to list saved projects.
 
-<AdaptiveImage alt={'Visualizing MongoDB Database using MongoDB Shell (mongosh)'} src={'/img/blog/12/7.webp'} width={768} height={418} />
+<Image alt={'Visualizing MongoDB Database using MongoDB Shell (mongosh)'} filename={'mean-web-app-part-7-designing-and-modeling-database-with-mongoose/7.webp'} />
 
 If you prefer a graphical interface for database management, [MongoDB Compass](https://www.mongodb.com/products/tools/compass) offers an intuitive platform for visualizing data, executing queries, and managing indexes. Alternatively, if you're utilizing [MongoDB Atlas's cloud solution](https://www.mongodb.com/atlas/database), you can use its web-based interface, which closely resembles Compass and requires no additional installation.
 
@@ -345,7 +343,7 @@ export default model('Project', projectSchema);
 
 Here, `IProjectDocument` combines the custom fields of `IProject` and the standard methods and properties of Mongoose's `Document`, providing a cohesive model structure.
 
-<Callout type="INFO">
+<Callout>
 The distinction between `IProject` and `IProjectDocument` is useful. It lets you choose between a general project structure without Mongoose-specific features and a fully equipped document object.
 </Callout>
 
@@ -387,7 +385,7 @@ Ensuring data validation is crucial, especially when working with MongoDB, a dat
 Mongoose allows you to set specific data types for each field in a schema, ranging from standard JavaScript types like `String`, `Number`, `Date`, and `Boolean` to Mongoose-specific types such as 
 `ObjectId` and `Mixed`.
 
-<Callout type="INFO">
+<Callout>
 Refer to [the official documentation](https://mongoosejs.com/docs/schematypes.html) for a complete list of Mongoose-supported data types.
 </Callout>
 
@@ -439,7 +437,7 @@ const issue: IIssue = { number: '1a', title: 'Second Issue', ... };
 const createdIssue = await IssueModel.create(issue); // Fails, resulting in a ValidationError because '1a' isn't a valid number.
 ```
 
-<Callout type="INFO">
+<Callout>
 Since we're using TypeScript, we have an additional layer of type safety. The TypeScript compiler will flag type mismatches before Mongoose can apply its type-casting rules.
 </Callout>
 
@@ -489,7 +487,7 @@ const project: IProject = {
 await Project.create(project); // ValidationError: Project validation failed: name: Path name is required.
 ```
 
-<Callout type="INFO">
+<Callout>
 In a future article, we'll dive deeper into Mongoose Errors and best practices for handling them.
 </Callout>
 
@@ -525,7 +523,7 @@ const projectSchema = new Schema<IProjectDocument>({
 
 Here, the `status` field in the `IProject` interface uses the `ProjectStatus` enum to define acceptable statuses. In the Mongoose schema, we use `Object.values(ProjectStatus)` to generate an array of valid statuses dynamically based on the enum.
 
-<Callout type="INFO">
+<Callout>
 In Mongoose, enums are designed to support only S**tring** and **Number** data types.
 </Callout>
 
@@ -864,7 +862,7 @@ await User.create(user);
 await User.create(user); // MongoServerError: E11000 duplicate key error collection: bugsight.users index: username_1 dup key: { username: "max_storm" }
 ```
 
-<Callout type="INFO">
+<Callout>
 Keep in mind that setting `unique: true` implicitly creates an index for that field. Therefore, specifying `index: true` is redundant when you've already set `unique`.
 </Callout>
 
@@ -945,7 +943,7 @@ const projectSchema = new Schema<IProjectDocument>(
 
 If `autoIndex` is enabled (`true` or the default setting), it takes precedence over a `false` value for `autoCreate`. This makes sense, as the very action of creating an index necessitates the existence of the collection. Thus, even if `autoCreate` is set to `false`, Mongoose will create the collection if it doesn't already exist when indexing is triggered.
 
-<Callout type="INFO">
+<Callout>
 The relationship between `autoIndex` and `autoCreate` is hierarchical because the need to build an index inherently implies the need for a collection.
 </Callout>
 

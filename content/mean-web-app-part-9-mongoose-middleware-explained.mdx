@@ -2,12 +2,12 @@
 title: 'Mongoose Middleware Explained'
 publishedAt: '2023-10-26'
 description: "This article aims to explain Mongoose middleware, while exploring the different types and some real-world use cases."
-keywords: "Express,Node.js,MongoDB,Mongoose"
-published: true
-series: 'Building a MEAN Web APP'
+keywords: "express.js(slate),node.js(green),mongoDB(lime),mongoose(red)"
+series: "Build a MEAN web app"
+part: 9
 ---
 
-<Callout type="INFO">
+<Callout>
 The complete source code up to this point can be found in [this repository](https://github.com/ayoubkhial/bugsight/tree/part-8).
 </Callout>
 
@@ -19,7 +19,7 @@ In Mongoose, middleware acts as a mediator that intervenes during certain operat
 
 But why should you care? Well, it helps you enforce business logic and validation rules seamlessly. You don't have to worry about writing repetitive code ([DRY](https://www.plutora.com/blog/understanding-the-dry-dont-repeat-yourself-principle)), as middleware functions can be defined once and handle the logic whenever a specific event occurs. Moreover, middleware provides a structured way to extend Mongoose's functionalities. You can easily log changes, modify data, or even cancel an operation if certain conditions aren't met.
 
-<AdaptiveImage alt={'Mongoose Operation Workflow Diagram'} src={'/img/blog/15/1.webp'} width={768} height={353} />
+<Image alt={'Mongoose Operation Workflow Diagram'} filename={'mean-web-app-part-9-mongoose-middleware-explained/1.webp'} />
 
 Mongoose middleware falls into two essential categories, each serving unique purposes:
 - **Pre-Middleware:** These hooks come into play before an operation is executed. They are invaluable for data validation, default value setting, hashing sensitive information, or transforming fields. By manipulating the data before it hits the database, pre-middleware can be a robust first layer of defense or optimization.
@@ -30,7 +30,7 @@ By strategically employing these hooks, you can achieve a high level of automati
 ## Middleware Types
 Mongoose offers four types of middleware, each tailored to handle distinct aspects of your application's data operations. The four cornerstone types are **Document**, **Query**, **Aggregation**, and **Model**. Not only do they come with their own unique capabilities, but they also address specific use cases that you'll frequently encounter as a developer.
 
-<Callout type="INFO">
+<Callout>
 In this section, I will use code samples to highlight some behaviors. Later in this article, I'll provide some real-world examples.
 </Callout>
 
@@ -52,7 +52,7 @@ user.save();
 
 Here are the primary document operations where document middleware can be used: `Document:save`, `Document:updateOne`, and `Document:deleteOne`.
 
-<Callout type="INFO">
+<Callout>
 The `Model:create()` function activates any existing `Document:save()` hooks you've configured. This happens because `create()` is essentially a wrapper for the `save()` method, executing it behind the scenes to add new documents to the database. Read more about it [here](https://www.ayoubkhial.com/blog/mean-web-app-part-8-the-dao-pattern-and-mongoose-queries#inserting-data).
 </Callout>
 
@@ -73,7 +73,7 @@ User.find({ name: 'John Doe' });
 
 The utility of Query Middleware extends to various query methods, including but not limited to `Model:deleteOne`, `Model:find`, `Model:findOne`, `Model:updateOne`, and `Model:updateMany`. It gets activated when you use commands like `exec()`, `then()`, or the `await` keyword on a query object, essentially giving you hooks to insert your logic at critical points before or after query execution. For the complete list of query methods, check out the [Mongoose documentation](https://mongoosejs.com/docs/middleware.html#types-of-middleware).
 
-<Callout type="INFO">
+<Callout>
 You might've noticed that operations like `updateOne` and `deleteOne` exist in document and query contexts. For `updateOne`, Mongoose treats both the document and query versions as query operations. That means both will trigger `updateOne` hooks, but remember, `this` will actually point to the query, not the document. On the flip side, the `deleteOne` hook activates by default when you use `Model:deleteOne`. But `Document:deleteOne()` won't set off any deleteOne hooks. (Don't sweat it; we'll see how to manually manage these scenarios in [the practical section](#practical-use-cases)).
 </Callout>
 
@@ -118,7 +118,7 @@ Currently, the only function that can leverage Model Middleware is `insertMany`.
 ## Practical Use Cases
 Now that you understand the basics well, let's dive into some practical examples of how Mongoose middleware can be helpful in real-world scenarios.
 
-<Callout type="INFO">
+<Callout>
 I will rely on the `ProjectDAO` class created in [the previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-8-the-dao-pattern-and-mongoose-queries) to interact with the database. Check it out if you feel a bit lost.
 </Callout>
 
@@ -127,7 +127,7 @@ Sometimes, the built-in validation features of Mongoose won't cut it. In such ca
 
 Imagine that you are in the process of saving a project, and it is imperative to ensure that each entry array in your `configuration` object, such as `statuses`, priorities, and so on, has a distinct `title`. The goal is to prevent users from saving multiple `priorities` with the same `title`.
 
-<Callout type="INFO">
+<Callout>
 If you're comfortable introducing a new dependency to your project, you can use [the separated plugin provided by Mongoose](https://thecodebarbarian.com/whats-new-in-mongoose-4.10-unique-in-arrays.html) to add unique constraints in arrays.
 </Callout>
 
@@ -222,7 +222,7 @@ When we detect a duplicate title, we stop the process by throwing an `Error`. Th
 Lastly, we use helper functions like `getDuplicatedTitle` and `getModifiedConfigurationPaths` to keep our middleware clean and focused. These functions care for specialized logic, ensuring our primary middleware stays uncluttered.
 
 
-<Callout type="INFO">
+<Callout>
 Rather than throwing an error, you can pass it to the `next` function like so: `next(err)`. Mongoose assumes any argument you pass to next is an error.
 </Callout>
 
@@ -263,7 +263,7 @@ If you rely on `createdAt` and `updatedAt` fields in your Mongoose middleware, b
 
 To get a clearer picture of how a Mongoose `save` operation works, take a look at this illustrative diagram:
 
-<AdaptiveImage alt={'The Lyfecycle of Mongoose Save Operation'} src={'/img/blog/15/2.webp'} width={768} height={516} />
+<Image alt={'The Lyfecycle of Mongoose Save Operation'} filename={'mean-web-app-part-9-mongoose-middleware-explained/2.webp'} />
 
 In addition to creating new records, we often update existing ones. It's equally crucial to check for duplicate array entries in these scenarios, especially if a new entry is pushed. Say you want to add a new `status` called `'Canceled'`. Here's what a straightforward update operation could look like:
 
@@ -305,7 +305,7 @@ projectSchema.pre('updateOne', async function (next) {
 });
 ```
 
-<Callout type="INFO">
+<Callout>
 If you use `Document:updateOne` instead, the above middleware won't be triggered. To handle this scenario, you should create a dedicated middleware with the following signature: `pre('updateOne', { document: true, query: false }, next() {...})`. Both `document` and `query` properties must be set.
 </Callout>
 
