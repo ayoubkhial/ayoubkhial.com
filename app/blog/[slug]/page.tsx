@@ -52,7 +52,7 @@ export function generateMetadata({ params }): Metadata {
 
 const TOC = ({ headers }) => {
   return (
-    <aside className="toc hidden max-h-[97vh] overflow-auto rounded-md border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-600 dark:bg-slate-900 lg:sticky lg:top-4 lg:block lg:flex-shrink-0 lg:flex-grow lg:basis-1/6 lg:self-start">
+    <aside className="toc hidden max-h-[97vh] overflow-auto rounded-md border border-slate-200 bg-slate-50 px-3 py-2 lg:sticky lg:top-4 lg:block lg:flex-shrink-0 lg:flex-grow lg:basis-1/6 lg:self-start dark:border-slate-600 dark:bg-slate-900">
       <h4 className="mb-2 text-4 font-bold leading-txt tracking-tight text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-slate-100 dark:decoration-slate-700">
         Table of contents
       </h4>
@@ -77,7 +77,7 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="newsletter hidden max-h-[97vh] overflow-auto rounded-md border border-slate-300 bg-slate-100 px-3 py-2 dark:border-slate-600 dark:bg-slate-900 lg:sticky lg:top-4 lg:block lg:flex-shrink-0 lg:flex-grow lg:basis-1/6 lg:self-start">
+    <aside className="newsletter hidden max-h-[97vh] overflow-auto rounded-md border border-slate-300 bg-slate-100 px-3 py-2 lg:sticky lg:top-4 lg:block lg:flex-shrink-0 lg:flex-grow lg:basis-1/6 lg:self-start dark:border-slate-600 dark:bg-slate-900">
       <h4 className="mb-2 text-4 font-bold leading-txt tracking-tight text-slate-900 underline decoration-slate-300 decoration-2 underline-offset-4 dark:text-slate-100 dark:decoration-slate-700">
         Subscribe to my newsletter
       </h4>

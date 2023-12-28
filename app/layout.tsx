@@ -23,26 +23,25 @@ export const metadata: Metadata = {
         rel: 'icon',
         type: 'image/png',
         media: '(prefers-color-scheme: light)',
-        url: 'images/icon-light.png'
+        url: '/images/icon-light.png'
       },
       {
         rel: 'icon',
         type: 'image/png',
         media: '(prefers-color-scheme: dark)',
-        url: 'images/icon-dark.png'
+        url: '/images/icon-dark.png'
       },
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
         media: '(prefers-color-scheme: light)',
-        url: 'images/apple-icon-light.png'
+        url: '/images/apple-icon-light.png'
       },
-      ,
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
         media: '(prefers-color-scheme: dark)',
-        url: 'images/apple-icon-dark.png'
+        url: '/images/apple-icon-dark.png'
       }
     ]
   },
@@ -112,7 +111,7 @@ const Header = () => (
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-wrap items-center justify-between gap-1 rounded bg-slate-50 px-3 py-2 dark:bg-slate-900 lg:w-[1024px]">
+    <footer className="flex w-full flex-wrap items-center justify-between gap-1 rounded bg-slate-50 px-3 py-2 lg:w-[1024px] dark:bg-slate-900">
       <p className="text-3 font-medium">Designed & Built by Ayoub KHIAL &#169; 2024</p>
       <div className="flex items-center gap-6">
         <Link href="https://www.github.com/ayoubkhial" target="_blank" rel="noopener noreferrer" aria-label="github">
@@ -168,7 +167,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${GeistMono.variable} ${GeistSans.variable} m-2 grid place-items-center gap-8 font-sans text-slate-800 dark:bg-slate-800 dark:text-slate-200 lg:mx-0 lg:my-3`}
+        className={`${GeistMono.variable} ${GeistSans.variable} m-2 grid place-items-center gap-8 font-sans text-slate-800 lg:mx-0 lg:my-3 dark:bg-slate-800 dark:text-slate-200`}
       >
         <ThemeProvider>
           <Header />
