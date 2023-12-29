@@ -59,11 +59,11 @@ const PostHighlight = ({ post, index }) => {
             <span> - </span>
             <span>{readingTime} min read</span>
             <span> - </span>
-            <span>
+            <div>
               <Suspense fallback={<Loader />}>
                 <ViewsCounter slug={slug} />
               </Suspense>
-            </span>
+            </div>
           </div>
         </div>
         <p className="line-clamp-4 text-2 leading-txt text-slate-700 dark:text-slate-300">{description}</p>
