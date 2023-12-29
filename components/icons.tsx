@@ -267,7 +267,7 @@ const LogoIcon = () => {
         </g>
         <defs>
           <linearGradient id="paint0_linear_33_2892" x1="0" y1="90" x2="180" y2="90" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#EDF6FE" />
+            <stop offset="0" stopColor="#EDF6FE" />
             <stop offset="0.453125" stopColor="#ECF8EC" />
             <stop offset="1" stopColor="#FFF1F1" />
           </linearGradient>
@@ -540,7 +540,7 @@ const LogoIcon = () => {
         </g>
         <defs>
           <linearGradient id="paint0_linear_35_5259" x1="0" y1="90" x2="180" y2="90" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#19334A" />
+            <stop offset="0" stopColor="#19334A" />
             <stop offset="0.453125" stopColor="#133A20" />
             <stop offset="1" stopColor="#571E26" />
           </linearGradient>
