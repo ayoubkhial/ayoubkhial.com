@@ -17,11 +17,9 @@ export default function SeriesNavigation({ title, articles, current }: Props) {
   return (
     <div id="accordion-collapse" data-accordion="collapse">
       <div
-        className={`flex justify-between rounded-lg rounded-b-none border border-slate-300 bg-slate-100 p-3 dark:border-slate-700 dark:bg-slate-900 ${
-          isOpen && 'border-b-slate-200'
-        }`}
+        className={`flex justify-between rounded rounded-b-none border border-slate-300 bg-slate-100 p-3 ${isOpen && 'border-b-slate-200'}`}
       >
-        <h2 className="font-heading text-3 font-medium text-slate-900 dark:text-slate-100">{title} - Article Series</h2>
+        <h2 className="text-sm font-medium text-slate-900 md:text-base">{title} - Article Series</h2>
         <button
           onClick={toggleList}
           data-accordion-target="#accordion-collapse-body"
@@ -33,17 +31,14 @@ export default function SeriesNavigation({ title, articles, current }: Props) {
       </div>
       {isOpen && (
         <div id="accordion-collapse-body" aria-labelledby="accordion-collapse-heading">
-          <ul
-            className="flex flex-col gap-3 border border-t-0 border-slate-300 bg-slate-100 p-3 
-dark:border-slate-700 dark:bg-slate-900"
-          >
+          <ul className="flex flex-col gap-2 border border-t-0 border-slate-300 bg-slate-100 p-3 text-sm md:text-base">
             {articles?.map((article, index) => (
               <li
                 key={index}
                 className={
                   article?.slug === current
-                    ? 'font-medium text-slate-900 underline decoration-slate-400 decoration-2 underline-offset-2 dark:text-slate-100 dark:decoration-slate-700'
-                    : 'text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100'
+                    ? 'font-medium text-slate-900 underline decoration-slate-400 decoration-2 underline-offset-2'
+                    : 'text-slate-700 hover:text-slate-900 '
                 }
               >
                 <Link
@@ -52,7 +47,7 @@ dark:border-slate-700 dark:bg-slate-900"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <span className="font-medium text-slate-900 dark:text-slate-100">Part {index + 1}:</span> {article?.title}
+                  <span className="font-medium text-slate-900">Part {index + 1}:</span> {article?.title}
                 </Link>
               </li>
             ))}

@@ -21,13 +21,13 @@ const ThemeSwitcher = () => {
 
     const currentTheme = theme === 'system' ? systemTheme : theme;
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'light') {
       return (
         <button
           role="button"
           aria-label="light-mode"
-          onClick={() => setTheme('light')}
-          className="rounded-full bg-[#2a3650] p-1 transition-colors duration-300 hover:bg-[#3a4760]"
+          onClick={() => setTheme('dark')}
+          className="rounded-full p-[6px] transition-colors duration-300 hover:bg-gray-100"
         >
           <SunIcon />
         </button>
@@ -37,8 +37,8 @@ const ThemeSwitcher = () => {
         <button
           aria-label="dark-mode"
           role="button"
-          onClick={() => setTheme('dark')}
-          className="rounded-full bg-[#F0F0FB] p-1 transition-colors duration-300 hover:bg-[#E5E5F9]"
+          onClick={() => setTheme('light')}
+          className="rounded-full p-[6px] transition-colors duration-300 hover:bg-gray-800"
         >
           <MoonIcon />
         </button>

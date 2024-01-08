@@ -1,51 +1,95 @@
 import Link from 'next/link';
-import { HomeIcon, WritingIcon, ContactIcon } from '@components/icons';
+import { HomeIcon, WritingIcon, GithubIcon, TwitterIcon, LinkedInIcon, RSSIcon, LinkIcon, MessageIcon } from '@components/icons';
 
 const navItems = [
   {
     name: 'Home',
+    path: '/',
     image: HomeIcon,
-    link: 'hover:bg-light-blue-50 dark:hover:bg-dark-blue-950',
-    text: 'group-hover:text-light-blue-800 dark:group-hover:text-dark-blue-300 decoration-light-blue-200 dark:decoration-dark-blue-800',
-    icon: 'fill-light-blue-500 group-hover:fill-light-blue-600 dark:fill-dark-blue-500 dark:group-hover:fill-dark-blue-400',
-    tooltip: 'bg-light-blue-50 text-light-blue-800 dark:bg-dark-blue-950 dark:text-dark-blue-400 -ml-[18px]',
-    path: '/'
+    link: 'md:hidden hover:bg-madang-50',
+    text: 'group-hover:text-madang-900 decoration-madang-200',
+    tooltip: 'bg-madang-50 text-madang-800 -ml-5'
   },
   {
     name: 'Writing',
+    path: '/blog',
     image: WritingIcon,
-    link: 'hover:bg-light-green-50 dark:hover:bg-dark-green-900',
-    text: 'group-hover:text-light-green-800 dark:group-hover:text-dark-green-300 decoration-light-green-200  dark:decoration-dark-green-800',
-    icon: 'fill-light-green-500 group-hover:fill-light-green-600 dark:fill-dark-green-500 dark:group-hover:fill-dark-green-400',
-    tooltip: 'bg-light-green-50 text-light-green-800 dark:bg-dark-green-950 dark:text-dark-green-400 -ml-[24px]',
-    path: '/blog'
-  } /* ,
+    link: 'hover:bg-solitude-50',
+    text: 'group-hover:text-solitude-900 decoration-solitude-200 ',
+    tooltip: 'bg-solitude-50 text-solitude-800 -ml-6'
+  },
   {
-    name: 'Contact',
-    image: ContactIcon,
-    link: 'hover:bg-light-red-50 dark:hover:bg-dark-red-900',
-    text: 'group-hover:text-light-red-800 dark:group-hover:text-dark-red-300 decoration-light-red-200  dark:decoration-dark-red-800',
-    icon: 'fill-light-red-500 group-hover:fill-light-red-600 dark:fill-dark-red-500 dark:group-hover:fill-dark-red-400',
-    tooltip: 'bg-light-red-50 text-light-red-800 dark:bg-dark-red-950 dark:text-dark-red-300 -ml-[26px]',
-    path: '/'
-  } */
+    name: 'Github',
+    path: 'https://www.github.com/ayoubkhial',
+    image: GithubIcon,
+    link: 'hidden md:block hover:bg-gray-100',
+    text: 'group-hover:text-gray-900 decoration-gray-200'
+  },
+  {
+    name: 'Twitter',
+    path: 'https://www.twitter.com/ayoubkhial',
+    image: TwitterIcon,
+    link: 'hidden md:block hover:bg-slate-100',
+    text: 'group-hover:text-slate-900 decoration-slate-200'
+  },
+  {
+    name: 'LinkedIn',
+    path: 'https://www.linkedin.com/in/akhial',
+    image: LinkedInIcon,
+    link: 'hidden md:block hover:bg-solitude-50',
+    text: 'group-hover:text-solitude-900 decoration-solitude-200'
+  },
+  {
+    name: 'Say Hello',
+    path: 'mailto:ayouub.khial@gmail.com',
+    image: MessageIcon,
+    link: 'hidden md:block hover:bg-chablis-50',
+    text: 'group-hover:text-chablis-900 decoration-chablis-200'
+  },
+  {
+    name: 'Resume',
+    path: 'https://www.ayoubkhial.com/resume.pdf',
+    image: LinkIcon,
+    link: 'hidden md:block hover:bg-madang-50',
+    text: 'group-hover:text-madang-900 decoration-madang-200'
+  }
 ];
 
 export default function NavBar() {
   return (
     <nav className="flex">
-      <ul className="flex gap-6">
-        {navItems?.map(({ name, image: IconImage, link, text, icon, tooltip, path }, index) => (
+      <ul className="flex gap-3 xs:gap-6 md:gap-3 lg:gap-6">
+        {navItems?.map(({ name, image: IconImage, link, text, tooltip, path }, index) => (
           <li key={index} className={`group rounded px-2 py-1 ${link} transition duration-300`}>
-            <Link href={path} className="flex items-center gap-2" aria-label={name}>
-              <IconImage className="h-2 w-2" iconStyle={`${icon} transition-colors duration-300`} />
-              <span
-                className={`invisible absolute mt-[80px] rounded-[4px] px-2 py-1 group-hover:visible sm:!invisible ${tooltip} transition-colors duration-300`}
-              >
-                {name}
-              </span>
-              <span className={`${text} hidden underline decoration-4 underline-offset-4 group-hover:no-underline sm:block`}>{name}</span>
-            </Link>
+            {path.startsWith('/') ? (
+              <Link href={path} className="flex items-center gap-2 md:gap-1 lg:gap-2" aria-label={name}>
+                <IconImage />
+                <span
+                  className={`invisible absolute mt-16 rounded px-2 py-1 group-hover:visible ${tooltip} text-sm transition-colors duration-300 xs:group-hover:invisible`}
+                >
+                  {name}
+                </span>
+                <span
+                  className={`${text} hidden text-sm font-medium underline decoration-2 underline-offset-2 group-hover:no-underline xs:block lg:text-base`}
+                >
+                  {name}
+                </span>
+              </Link>
+            ) : (
+              <a href={path} rel="noopener noreferrer" target="_blank" className="flex items-center gap-2" aria-label={name}>
+                <IconImage />
+                <span
+                  className={`invisible absolute mt-16 rounded px-2 py-1 group-hover:visible ${tooltip} text-sm transition-colors duration-300 xs:group-hover:invisible`}
+                >
+                  {name}
+                </span>
+                <span
+                  className={`${text} hidden text-sm font-medium underline decoration-2 underline-offset-2 group-hover:no-underline xs:block lg:text-base`}
+                >
+                  {name}
+                </span>
+              </a>
+            )}
           </li>
         ))}
       </ul>

@@ -10,14 +10,12 @@ export const getShortDate = (date: Date): string => {
 
 export const getTagClass = (color: string) => {
   const colorVariants = {
-    slate: 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300',
-    gray: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-    blue: 'bg-light-blue-50 text-light-blue-900 dark:bg-dark-blue-950 dark:text-dark-blue-300',
-    green: 'bg-light-green-50 text-light-green-900 dark:bg-dark-green-950 dark:text-dark-green-300',
-    red: 'bg-light-red-50 text-light-red-900 dark:bg-dark-red-950 dark:text-dark-red-300',
-    lime: 'bg-lime-100 text-lime-700 dark:bg-lime-800 dark:text-lime-300',
-    violet: 'bg-violet-100 text-violet-700 dark:bg-violet-800 dark:text-violet-300',
-    orange: 'bg-orange-100 text-orange-700 dark:bg-orange-800 dark:text-orange-300'
+    slate: 'bg-slate-100 text-slate-700',
+    blue: 'bg-solitude-50 text-solitude-900',
+    green: 'bg-madang-50 text-madang-900',
+    red: 'bg-chablis-50 text-chablis-900',
+    purple: 'bg-hawkes-blue-50 text-hawkes-blue-900',
+    orange: 'bg-vivid-tangerine-50 text-vivid-tangerine-900'
   };
   return colorVariants[color];
 };
@@ -29,32 +27,23 @@ const PostHighlight = ({ post, index }) => {
     return { name: label, style: getTagClass(color) };
   });
   return (
-    <div className="flex flex-col rounded-md border border-light-blue-100 transition duration-300 hover:border-light-blue-200 dark:border-light-blue-900 hover:dark:border-light-blue-800">
-      <Link href={`/blog/${slug}`}>
+    <div className="flex flex-col">
+      <Link href={`/blog/${slug}`} className="mb-2">
         <Image
           src={`/img/blog/${slug}/og.webp`}
           alt={title}
-          width={1200}
-          height={630}
+          width={900}
+          height={210}
           priority={index <= 1 ? true : false}
-          className="dark:hidden"
-        />
-        <Image
-          src={`/img/blog/${slug}/og-dark.webp`}
-          alt={title}
-          width={1200}
-          height={630}
-          quality={90}
-          priority={index <= 1 ? true : false}
-          className="hidden dark:block"
+          className="rounded-md"
         />
       </Link>
-      <div className="flex h-full flex-col gap-4 px-3 pb-3 pt-2 sm:justify-between">
+      <div className="flex h-full flex-col gap-4 sm:justify-between">
         <div className="flex flex-col gap-2">
-          <h3 className="line-clamp-2 text-3 font-medium">
+          <h3 className="line-clamp-2 text-base font-medium">
             <Link href={`/blog/${slug}`}>{title}</Link>
           </h3>
-          <div className="flex items-center gap-2 font-mono text-1 font-bold tracking-tight text-slate-800 dark:text-slate-200">
+          <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-tight text-slate-600">
             <span>{getShortDate(new Date(publishedAt!))}</span>
             <span> - </span>
             <span>{readingTime} min read</span>
@@ -66,10 +55,10 @@ const PostHighlight = ({ post, index }) => {
             </div>
           </div>
         </div>
-        <p className="line-clamp-4 text-2 leading-txt text-slate-700 dark:text-slate-300">{description}</p>
-        <div className="flex justify-end gap-2 font-mono text-1 font-medium tracking-tight">
+        <p className="line-clamp-4 h-full text-sm leading-[1.7] text-slate-600">{description}</p>
+        <div className="flex flex-wrap justify-end gap-1 font-mono text-xs font-medium tracking-tight">
           {tags?.map((tag) => (
-            <span key={tag?.name} className={`${tag?.style} rounded px-1 py-1`}>
+            <span key={tag?.name} className={`${tag?.style} rounded px-2 py-1`}>
               {tag?.name}
             </span>
           ))}

@@ -7,7 +7,6 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import NavBar from '@components/nav-bar';
 import ThemeProvider from '@components/theme-provider';
-import ThemeSwitcher from '@components/theme-switcher';
 import { GithubIcon, LinkIcon, LinkedInIcon, LogoIcon, RSSIcon, TwitterIcon } from '@components/icons';
 
 export const metadata: Metadata = {
@@ -22,27 +21,27 @@ export const metadata: Metadata = {
       {
         rel: 'icon',
         type: 'image/png',
-        media: '(prefers-color-scheme: light)',
-        url: '/images/icon-light.png'
+        //media: '(prefers-color-scheme: light)',
+        url: '/images/icon.png'
       },
-      {
+      /* {
         rel: 'icon',
         type: 'image/png',
         media: '(prefers-color-scheme: dark)',
         url: '/images/icon-dark.png'
-      },
+      }, */
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        media: '(prefers-color-scheme: light)',
-        url: '/images/apple-icon-light.png'
-      },
-      {
+        //media: '(prefers-color-scheme: light)',
+        url: '/images/apple-icon.png'
+      }
+      /* {
         rel: 'apple-touch-icon',
         sizes: '180x180',
         media: '(prefers-color-scheme: dark)',
         url: '/images/apple-icon-dark.png'
-      }
+      } */
     ]
   },
   openGraph: {
@@ -88,75 +87,63 @@ export const metadata: Metadata = {
 };
 
 const Header = () => (
-  <header className="flex w-full items-center justify-between text-3 font-medium lg:w-[1024px]">
-    <Link href="/" className="flex items-center gap-2" aria-label="home">
+  <header className="flex w-full items-center justify-between p-2 lg:py-4 xl:w-[1280px] xl:px-0">
+    <Link href="/" aria-label="home">
       <LogoIcon />
     </Link>
     <NavBar />
-    <div className="flex items-center gap-5">
-      <ThemeSwitcher />
-      <Link
-        href="https://ayoubkhial.substack.com/"
-        rel="noopener noreferrer"
-        target="_blank"
-        prefetch={false}
-        className="group flex items-center gap-2 rounded border border-light-blue-200 bg-light-blue-100 px-2 py-1 transition-colors duration-300 hover:border-light-blue-400 dark:border-dark-blue-800 dark:bg-dark-blue-950 dark:text-dark-blue-400 hover:dark:border-dark-blue-600"
-      >
-        <RSSIcon className="h-1 w-1" iconStyle="fill-light-blue-600 dark:fill-dark-blue-500" />
-        <span className="text-light-blue-800 dark:text-dark-blue-300">Subscribe</span>
-      </Link>
-    </div>
+    <Link
+      href="https://ayoubkhial.substack.com/"
+      rel="noopener noreferrer"
+      target="_blank"
+      prefetch={false}
+      className="group flex items-center gap-1 rounded border border-solitude-200 bg-solitude-100 px-2 py-1 transition-colors duration-300 hover:border-solitude-400"
+    >
+      <RSSIcon />
+      <span className="text-sm text-solitude-950 lg:text-base">Subscribe</span>
+    </Link>
   </header>
 );
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-wrap items-center justify-between gap-1 rounded bg-slate-50 px-3 py-2 lg:w-[1024px] dark:bg-slate-900">
-      <p className="text-3 font-medium">Designed & Built by Ayoub KHIAL &#169; 2024</p>
+    <footer className="flex w-full flex-col gap-1 p-4 sm:flex-row sm:items-center sm:justify-between xl:w-[1280px] xl:px-0">
+      <p className="text-sm lg:text-base">
+        Designed by{' '}
+        <a
+          className="font-medium underline decoration-slate-300 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400"
+          href="https://www.twitter.com/ayoubkhial"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ayoub
+        </a>
+        . The code source is available on{' '}
+        <a
+          className="font-medium underline decoration-slate-300 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400"
+          href="https://www.github.com/ayoubkhial/ayoubkhial.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Github
+        </a>
+        .
+      </p>
       <div className="flex items-center gap-6">
         <Link href="https://www.github.com/ayoubkhial" target="_blank" rel="noopener noreferrer" aria-label="github">
-          <GithubIcon className="h-1 w-1" iconStyle="fill-slate-900 dark:fill-slate-100" />
+          <GithubIcon />
         </Link>
         <Link href="https://www.twitter.com/ayoubkhial" target="_blank" rel="noopener noreferrer" aria-label="twitter">
-          <TwitterIcon className="h-1 w-1" iconStyle="fill-gray-900 dark:fill-gray-100" />
+          <TwitterIcon />
         </Link>
         <Link href="https://www.linkedin.com/in/akhial" target="_blank" rel="noopener noreferrer" aria-label="linkedin">
-          <LinkedInIcon className="h-1 w-1" iconStyle="fill-light-blue-600 dark:fill-dark-blue-400" />
+          <LinkedInIcon />
         </Link>
         <Link href="mailto:ayouub.khial@gmail.com" rel="noopener noreferrer" target="_blank" aria-label="e-mail">
-          <RSSIcon className="h-1 w-1" iconStyle="fill-light-red-600 dark:fill-dark-red-500" />
+          <RSSIcon />
         </Link>
         <Link href="/resume.pdf" download={true} aria-label="resume">
-          <LinkIcon className="h-1 w-1" iconStyle="fill-light-green-600 dark:fill-dark-green-500" />
-        </Link>
-      </div>
-      <div className="flex items-center gap-2 text-3 font-medium">
-        <Link
-          href={'/blog'}
-          className="underline decoration-slate-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 dark:decoration-slate-700 hover:dark:decoration-slate-500"
-        >
-          Writings
-        </Link>
-        <span>&#8212;</span>
-        <Link
-          href="https://ayoubkhial.substack.com/"
-          rel="noopener noreferrer"
-          target="_blank"
-          prefetch={false}
-          className="underline decoration-slate-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 dark:decoration-slate-700 
-          hover:dark:decoration-slate-500"
-        >
-          Newsletter
-        </Link>
-        <span>&#8212;</span>
-        <Link
-          href="mailto:ayouub.khial@gmail.com"
-          rel="noopener noreferrer"
-          target="_blank"
-          className="underline decoration-slate-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 dark:decoration-slate-700 
-          hover:dark:decoration-slate-500"
-        >
-          Say hello
+          <LinkIcon />
         </Link>
       </div>
     </footer>
@@ -165,13 +152,13 @@ const Footer = () => {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${GeistMono.variable} ${GeistSans.variable} m-2 grid place-items-center gap-8 font-sans text-slate-800 lg:mx-0 lg:my-3 dark:bg-slate-800 dark:text-slate-200`}
+        className={`${GeistMono.variable} ${GeistSans.variable} grid min-h-full grid-rows-[auto,1fr,auto] place-items-center gap-12 font-sans text-slate-800 sm:gap-16 lg:gap-24`}
       >
         <ThemeProvider>
           <Header />
-          <main className="grid w-full place-items-center gap-8">
+          <main className="grid w-full place-items-center gap-12 sm:gap-16 lg:gap-24">
             {children}
             <Analytics />
             <SpeedInsights />

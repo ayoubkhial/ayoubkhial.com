@@ -52,8 +52,8 @@ export function generateMetadata({ params }): Metadata {
 
 const TOC = ({ headers }) => {
   return (
-    <aside className="toc hidden max-h-[97vh] overflow-auto rounded-md border border-slate-200 bg-slate-50 px-3 py-2 lg:sticky lg:top-4 lg:block lg:flex-shrink-0 lg:flex-grow lg:basis-1/6 lg:self-start dark:border-slate-600 dark:bg-slate-900">
-      <h4 className="mb-2 text-4 font-bold leading-txt tracking-tight text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-slate-100 dark:decoration-slate-700">
+    <aside className="hidden max-h-[97vh] overflow-auto 2xl:sticky 2xl:top-4 2xl:ml-4 2xl:block 2xl:flex-1 2xl:self-start">
+      <h4 className="mb-2 text-lg font-semibold text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4">
         Table of contents
       </h4>
       <ul className="list-inside list-none">
@@ -61,7 +61,7 @@ const TOC = ({ headers }) => {
           return (
             <li key={`#${header.slug}`}>
               <a
-                className="dark:data-[level=three]:before:text-slate-30 text-2 font-medium leading-txt text-slate-900 hover:text-slate-950 data-[level=three]:pl-3 data-[level=three]:font-normal data-[level=three]:text-slate-700 data-[level=three]:before:absolute data-[level=three]:before:-ml-3 data-[level=three]:before:text-slate-400 data-[level=three]:before:content-['\2013'] data-[level=three]:hover:text-slate-950 dark:text-slate-100 dark:hover:text-slate-100 dark:data-[level=three]:text-slate-300 dark:data-[level=three]:hover:text-slate-100"
+                className="text-sm font-medium leading-7 text-slate-900 hover:text-slate-950 data-[level=three]:pl-3 data-[level=three]:font-normal data-[level=three]:text-slate-700 data-[level=three]:before:absolute data-[level=three]:before:-ml-3 data-[level=three]:before:text-slate-400 data-[level=three]:before:content-['\2013'] data-[level=three]:hover:text-slate-950"
                 data-level={header.level}
                 href={`#${header.slug}`}
               >
@@ -77,28 +77,26 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="newsletter hidden max-h-[97vh] overflow-auto rounded-md border border-slate-300 bg-slate-100 px-3 py-2 lg:sticky lg:top-4 lg:block lg:flex-shrink-0 lg:flex-grow lg:basis-1/6 lg:self-start dark:border-slate-600 dark:bg-slate-900">
-      <h4 className="mb-2 text-4 font-bold leading-txt tracking-tight text-slate-900 underline decoration-slate-300 decoration-2 underline-offset-4 dark:text-slate-100 dark:decoration-slate-700">
+    <aside className="newsletter hidden overflow-auto rounded-md border border-hawkes-blue-200 bg-hawkes-blue-50 p-4 xl:sticky xl:top-4 xl:mr-4 xl:block xl:flex-1 xl:self-start">
+      <h4 className="mb-4 text-lg font-semibold text-hawkes-blue-950 underline decoration-slate-200 decoration-2 underline-offset-4">
         Subscribe to my newsletter
       </h4>
-      <p className="mb-3 text-2 text-slate-800 dark:text-slate-200">
+      <p className="mb-4 text-hawkes-blue-950">
         Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found while
         surfing the web.
       </p>
-      <div className="flex flex-wrap items-center gap-5">
-        <Link
-          href="https://ayoubkhial.substack.com/"
-          rel="noopener noreferrer"
-          target="_blank"
-          prefetch={false}
-          className="group w-full rounded-[4px] border border-slate-300 bg-slate-200 px-2 py-1 text-center transition-colors duration-300 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800 hover:dark:border-slate-600"
-        >
-          <span className="text-3 font-medium text-slate-900 dark:text-slate-100">Subscribe</span>
-        </Link>
-        <span className="text-center text-1 text-slate-700 underline dark:text-slate-300">
-          No spam. I only send you relevant content. Unsubscribe at any time.
-        </span>
-      </div>
+      <Link
+        href="https://ayoubkhial.substack.com/"
+        rel="noopener noreferrer"
+        target="_blank"
+        prefetch={false}
+        className="group mx-auto mb-2 block w-11/12 rounded border border-hawkes-blue-300 bg-hawkes-blue-100 px-2 py-1 text-center transition-colors duration-300 hover:border-hawkes-blue-400"
+      >
+        <span className="font-medium text-hawkes-blue-950">Subscribe</span>
+      </Link>
+      <span className="block text-center text-sm text-hawkes-blue-900 underline">
+        No spam. I only send you relevant content. Unsubscribe at any time.
+      </span>
     </aside>
   );
 };
@@ -126,11 +124,11 @@ export default function Post(params) {
   const Component: any = getMDXComponent(post.body.code!);
   return (
     <>
-      <div className="flex flex-col-reverse gap-6 lg:flex-row lg:px-2">
+      <div className="flex gap-8">
         <TOC headers={post?.headings} />
-        <section className="order-1 lg:order-none">
-          <div className="mb-2 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-4 font-mono text-1 font-medium tracking-tight text-slate-800 dark:text-slate-200">
+        <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] xl:mx-0">
+          <div className="mb-2 flex items-center justify-between gap-3 md:mb-4">
+            <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-tight text-slate-700 md:text-sm">
               <div className="flex items-center gap-1">
                 <CalendarIcon />
                 <span>{getShortDate(new Date(post?.publishedAt))}</span>
@@ -146,23 +144,23 @@ export default function Post(params) {
                 </Suspense>
               </div>
             </div>
-            <div className="h-[1.5px] w-auto flex-grow bg-gradient-to-r from-light-blue-100 to-light-blue-50 dark:from-light-blue-900 dark:to-light-blue-950"></div>
-            <div className="flex justify-end gap-2 font-mono text-1 font-medium tracking-tight">
+            <div className="h-[1.5px] w-auto flex-grow bg-gradient-to-r from-solitude-100 to-solitude-50"></div>
+            <div className="flex justify-end gap-1 font-mono text-xs font-medium tracking-tight md:text-sm">
               {tags?.map((tag) => (
-                <span key={tag?.name} className={`${tag?.style} rounded-[4px] px-1 py-[4px]`}>
+                <span key={tag?.name} className={`${tag?.style} rounded px-2 py-1`}>
                   {tag?.name}
                 </span>
               ))}
             </div>
           </div>
-          <h1 className="mb-2 bg-gradient-to-r from-light-blue-950 to-light-blue-900 bg-clip-text text-7 font-black tracking-tight text-[transparent] dark:from-light-blue-50 dark:to-light-blue-100">
+          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] md:mb-4 md:text-4xl">
             {post?.title}
           </h1>
-          <p className="mb-5 border-b-[1.5px] border-light-blue-50 pb-4 text-3 font-medium leading-txt text-slate-500 dark:border-dark-blue-950 dark:text-slate-400">
+          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 md:mb-8 md:pb-4 md:text-base md:leading-7">
             {post?.description}
           </p>
           {post?.series && <SeriesNavigation title={post?.series} articles={seriesPosts} current={post?.slug}></SeriesNavigation>}
-          <article className="article text-3 leading-txt text-slate-800 dark:text-slate-200">
+          <article className="article text-sm leading-6 md:text-base md:leading-7">
             <Component components={MDXComponents} />
           </article>
         </section>

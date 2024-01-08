@@ -3,7 +3,7 @@ import { allPosts } from 'contentlayer/generated';
 
 export const metadata = {
   title: 'Blog',
-  description: 'Read my thoughts on software development, design, and more.',
+  description: 'Web Developer.',
   openGraph: {
     title: 'Ayoub Khial - Blog',
     description: 'Web developer.',
@@ -23,14 +23,16 @@ export const metadata = {
 export default function Blog() {
   const posts = allPosts.sort((a, b) => (new Date(a.publishedAt) > new Date(b.publishedAt) ? -1 : 1));
   return (
-    <section className="lg:w-[1024px]">
-      <h1 className="mb-3 text-6 font-bold tracking-tight underline decoration-slate-200 decoration-4 underline-offset-[6px] dark:decoration-slate-600">
-        My writing
+    <section className="mx-2 xl:mx-0 xl:w-[1280px]">
+      <h1 className="text-solitude-950 mb-4 text-xl font-semibold tracking-tight underline decoration-slate-200 decoration-4 underline-offset-4 lg:mb-6 lg:text-2xl">
+        Writing
       </h1>
-      <p className="mb-5 text-3 leading-txt text-slate-600 dark:text-slate-300">
-        Here, I share my writing about web development, focusing on the Javascript ecosystem. Thanks for stopping by, and happy coding!
+      <p className="leading-txt mb-4 text-sm leading-relaxed text-slate-700 lg:mb-6 lg:text-base lg:leading-7">
+        I’ve been sharing insights through my blog and newsletter for the past year. My approach is to simplify complex topics. You’ll
+        discover posts about the latest technologies catching my interest alongside my professional growth and learning journey. As I evolve
+        in my career, I enjoy passing on the knowledge I’ve gained.
       </p>
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, index) => (
           <PostHighlight key={post?.slug} post={post} index={index} />
         ))}

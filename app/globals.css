@@ -23,10 +23,6 @@ picture {
   max-width: 100%;
 }
 
-.article ul p {
-  display: inline;
-}
-
 strong {
   font-weight: 500;
 }
@@ -37,11 +33,15 @@ html.light [data-theme='dark'] {
 }
 
 [data-rehype-pretty-code-fragment] {
-  @apply my-3;
+  @apply my-2 md:my-4;
 }
 
 [data-rehype-pretty-code-title] {
-  @apply rounded-t-lg border border-b-0 border-dashed border-slate-400 bg-slate-200 px-3 py-2 font-mono text-1 font-bold text-slate-800 dark:border-slate-600 dark:bg-[#1A2334] dark:text-slate-200;
+  @apply rounded-t-lg border border-b-0 border-dashed border-slate-400 bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 md:text-sm;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  @apply mt-0 rounded-t-none rounded-tr-none border-t-0;
 }
 
 [data-rehype-pretty-code-fragment] code {
@@ -49,29 +49,25 @@ html.light [data-theme='dark'] {
 }
 
 [data-rehype-pretty-code-fragment] .line {
-  @apply pl-2;
+  @apply pl-1;
 }
 
 code[data-line-numbers] .line::before {
   counter-increment: line;
   content: counter(line);
-  @apply mr-4 inline-block w-1 text-right font-mono font-medium text-slate-500;
+  @apply mr-8 inline-block w-6 text-right font-mono font-medium text-slate-500;
 }
 
 [data-rehype-pretty-code-fragment] .line.highlighted {
-  @apply rounded bg-slate-500 bg-opacity-10 dark:bg-[#1A2334];
+  @apply rounded bg-slate-500 bg-opacity-10;
 }
 
 [data-rehype-pretty-code-fragment] .line .word-highlighted {
-  @apply mx-[0.5px] rounded bg-slate-500 bg-opacity-10 px-[4px] py-[2px] dark:bg-slate-800;
-}
-
-[data-rehype-pretty-code-title] + pre {
-  @apply mt-0 rounded-t-none rounded-tr-none border-t-0;
+  @apply mx-[0.5px] rounded bg-slate-500 bg-opacity-10 px-1 py-[2px];
 }
 
 body::-webkit-scrollbar {
-  @apply w-[8px];
+  @apply w-2;
 }
 
 body::-webkit-scrollbar-track {
@@ -80,16 +76,4 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   @apply rounded-lg bg-slate-300 dark:bg-slate-500;
-}
-
-.toc::-webkit-scrollbar {
-  @apply w-[4px];
-}
-
-.toc::-webkit-scrollbar-track {
-  @apply rounded-lg bg-light-green-100 dark:bg-dark-green-900;
-}
-
-.toc::-webkit-scrollbar-thumb {
-  @apply rounded-lg bg-light-green-200 dark:bg-dark-green-700;
 }
