@@ -29,31 +29,55 @@ const HeroSection = () => {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-6 font-mono text-xs font-bold md:hidden">
-            <Link href="https://www.github.com/ayoubkhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <Link
+              href="https://www.github.com/ayoubkhial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+              aria-label="Github"
+            >
               <GithubIcon />
               <span className="hidden text-gray-700 underline decoration-gray-300 decoration-2 underline-offset-2 transition duration-300 hover:decoration-gray-400 sm:inline-block dark:text-gray-400 dark:decoration-gray-700 dark:hover:decoration-gray-600">
                 Github
               </span>
             </Link>
-            <Link href="https://www.twitter.com/ayoubkhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <Link
+              href="https://www.twitter.com/ayoubkhial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+              aria-label="Twitter"
+            >
               <TwitterIcon />
               <span className="hidden text-slate-800 underline decoration-slate-300 decoration-2 underline-offset-2 transition duration-300 hover:decoration-slate-400 sm:inline-block dark:text-slate-400 dark:decoration-slate-700 dark:hover:decoration-slate-600">
                 Twitter
               </span>
             </Link>
-            <Link href="https://www.linkedin.com/in/akhial" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <Link
+              href="https://www.linkedin.com/in/akhial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+              aria-label="LinkedIn"
+            >
               <LinkedInIcon />
               <span className="hidden text-solitude-700 underline decoration-solitude-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-solitude-400 sm:inline-block dark:text-solitude-400 dark:decoration-solitude-700 dark:hover:decoration-solitude-600">
                 LinkedIn
               </span>
             </Link>
-            <Link href="mailto:ayouub.khial@gmail.com" rel="noopener noreferrer" target="_blank" className="flex items-center gap-2">
+            <Link
+              href="mailto:ayouub.khial@gmail.com"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="flex items-center gap-2"
+              aria-label="Email"
+            >
               <MessageIcon />
               <span className="hidden text-chablis-600 underline decoration-chablis-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-chablis-400 sm:inline-block dark:text-chablis-400 dark:decoration-chablis-700 dark:hover:decoration-chablis-600">
                 Email
               </span>
             </Link>
-            <Link href="/resume.pdf" download={true} className="flex items-center gap-2">
+            <Link href="/resume.pdf" download={true} className="flex items-center gap-2" aria-label="Resume">
               <LinkIcon />
               <span className="hidden text-madang-600 underline decoration-madang-200 decoration-2 underline-offset-2 transition duration-300 hover:decoration-madang-400 sm:inline-block dark:text-madang-400 dark:decoration-madang-700 dark:hover:decoration-madang-600">
                 Resume
