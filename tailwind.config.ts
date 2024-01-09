@@ -15,45 +15,45 @@ const config: Config = {
       colors: {
         solitude: {
           // blue
-          '50': '#eff9ff',
-          '100': '#e7f6ff',
-          '200': '#b8e9ff',
-          '300': '#79d7ff',
-          '400': '#32c4fe',
-          '500': '#07aef0',
-          '600': '#008bce',
-          '700': '#006fa6',
-          '800': '#035d89',
-          '900': '#094e71',
-          '950': '#06314b'
+          '50': 'var(--solitude-50)',
+          '100': 'var(--solitude-100)',
+          '200': 'var(--solitude-200)',
+          '300': 'var(--solitude-300)',
+          '400': 'var(--solitude-400)',
+          '500': 'var(--solitude-500)',
+          '600': 'var(--solitude-600)',
+          '700': 'var(--solitude-700)',
+          '800': 'var(--solitude-800)',
+          '900': 'var(--solitude-900)',
+          '950': 'var(--solitude-950)'
         },
         chablis: {
           // red
-          '50': '#fff2f2',
-          '100': '#ffe0e0',
-          '200': '#ffc6c6',
-          '300': '#ff9e9e',
-          '400': '#ff6666',
-          '500': '#fd3636',
-          '600': '#eb1717',
-          '700': '#c60f0f',
-          '800': '#a31111',
-          '900': '#871515',
-          '950': '#4a0505'
+          '50': 'var(--chablis-50)',
+          '100': 'var(--chablis-100)',
+          '200': 'var(--chablis-200)',
+          '300': 'var(--chablis-300)',
+          '400': 'var(--chablis-400)',
+          '500': 'var(--chablis-500)',
+          '600': 'var(--chablis-600)',
+          '700': 'var(--chablis-700)',
+          '800': 'var(--chablis-800)',
+          '900': 'var(--chablis-900)',
+          '950': 'var(--chablis-950)'
         },
         madang: {
           // green
-          '50': '#f2fbf3',
-          '100': '#e0f8e2',
-          '200': '#afe9b6',
-          '300': '#95e09f',
-          '400': '#5fc96e',
-          '500': '#39ae49',
-          '600': '#2a8f38',
-          '700': '#24712f',
-          '800': '#215a2a',
-          '900': '#1d4a25',
-          '950': '#0b2810'
+          '50': 'var(--madang-50)',
+          '100': 'var(--madang-100)',
+          '200': 'var(--madang-200)',
+          '300': 'var(--madang-300)',
+          '400': 'var(--madang-400)',
+          '500': 'var(--madang-500)',
+          '600': 'var(--madang-600)',
+          '700': 'var(--madang-700)',
+          '800': 'var(--madang-800)',
+          '900': 'var(--madang-900)',
+          '950': 'var(--madang-950)'
         },
         varden: {
           // yellow - orange
@@ -85,17 +85,17 @@ const config: Config = {
         },
         'hawkes-blue': {
           // purple
-          '50': '#eef1ff',
-          '100': '#d8dffe',
-          '200': '#c8d1fd',
-          '300': '#a7b2fa',
-          '400': '#8489f5',
-          '500': '#6b67ed',
-          '600': '#594ae1',
-          '700': '#4c3cc6',
-          '800': '#3f33a0',
-          '900': '#36307f',
-          '950': '#211c4a'
+          '50': 'var(--hawkes-blue-50)',
+          '100': 'var(--hawkes-blue-100)',
+          '200': 'var(--hawkes-blue-200)',
+          '300': 'var(--hawkes-blue-300)',
+          '400': 'var(--hawkes-blue-400)',
+          '500': 'var(--hawkes-blue-500)',
+          '600': 'var(--hawkes-blue-600)',
+          '700': 'var(--hawkes-blue-700)',
+          '800': 'var(--hawkes-blue-800)',
+          '900': 'var(--hawkes-blue-900)',
+          '950': 'var(--hawkes-blue-950)'
         },
         'vivid-tangerine': {
           // orange

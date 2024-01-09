@@ -10,11 +10,11 @@ export const getShortDate = (date: Date): string => {
 
 export const getTagClass = (color: string) => {
   const colorVariants = {
-    slate: 'bg-slate-100 text-slate-700',
-    blue: 'bg-solitude-50 text-solitude-900',
-    green: 'bg-madang-50 text-madang-900',
-    red: 'bg-chablis-50 text-chablis-900',
-    purple: 'bg-hawkes-blue-50 text-hawkes-blue-900',
+    slate: 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300',
+    blue: 'bg-solitude-50 text-solitude-900 dark:bg-solitude-900 dark:text-solitude-300',
+    green: 'bg-madang-50 text-madang-900 dark:bg-madang-900 dark:text-madang-300',
+    red: 'bg-chablis-50 text-chablis-900 dark:bg-chablis-900 dark:text-chablis-300',
+    purple: 'bg-hawkes-blue-50 text-hawkes-blue-900 dark:bg-hawkes-blue-900 dark:text-hawkes-blue-300',
     orange: 'bg-vivid-tangerine-50 text-vivid-tangerine-900'
   };
   return colorVariants[color];
@@ -43,7 +43,7 @@ const PostHighlight = ({ post, index }) => {
           <h3 className="line-clamp-2 text-base font-medium">
             <Link href={`/blog/${slug}`}>{title}</Link>
           </h3>
-          <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-tight text-slate-600">
+          <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-tight text-slate-600 dark:text-slate-400">
             <span>{getShortDate(new Date(publishedAt!))}</span>
             <span> - </span>
             <span>{readingTime} min read</span>
@@ -55,7 +55,7 @@ const PostHighlight = ({ post, index }) => {
             </div>
           </div>
         </div>
-        <p className="line-clamp-4 h-full text-sm leading-[1.7] text-slate-600">{description}</p>
+        <p className="line-clamp-4 h-full text-sm leading-[1.7] text-slate-600 dark:text-slate-400">{description}</p>
         <div className="flex flex-wrap justify-end gap-1 font-mono text-xs font-medium tracking-tight">
           {tags?.map((tag) => (
             <span key={tag?.name} className={`${tag?.style} rounded px-2 py-1`}>

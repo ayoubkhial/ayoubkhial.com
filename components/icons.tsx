@@ -1,489 +1,497 @@
 const LogoIcon = () => {
   return (
     <>
-      <svg className="h-8 w-8 dark:hidden" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="125" cy="125" r="123" fill="url(#paint0_linear_87_5)" stroke="url(#paint1_linear_87_5)" strokeWidth="4" />
-        <mask id="mask0_87_5" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="41" y="75" width="167" height="99">
-          <mask id="path-2-outside-1_87_5" maskUnits="userSpaceOnUse" x="40" y="74" width="170" height="101" fill="black">
-            <rect fill="white" x="40" y="74" width="170" height="101" />
-            <path d="M77.3425 75.31H108.34L143.924 174H116.124L110.564 157.737H74.9795L69.4195 174H41.7585L77.3425 75.31ZM103.475 136.609L92.9105 105.334L82.2075 136.609H103.475ZM144.964 75.31V114.369L175.127 75.31H205.985L171.374 119.373L207.931 174H177.768L153.582 137.026L144.964 147.59V174H117.72V75.31H144.964Z" />
+      <svg className="h-7 w-7 md:h-8 md:w-8 lg:h-9 lg:w-9 dark:hidden" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="98" fill="url(#paint0_linear_87_5)" stroke="url(#paint1_linear_87_5)" strokeWidth="4" />
+        <mask id="mask0_87_5" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="16" y="50" width="167" height="99">
+          <mask id="path-2-outside-1_87_5" maskUnits="userSpaceOnUse" x="15" y="49" width="170" height="101" fill="black">
+            <rect fill="white" x="15" y="49" width="170" height="101" />
+            <path d="M52.3425 50.31H83.3396L118.924 149H91.1236L85.5635 132.737H49.9795L44.4195 149H16.7585L52.3425 50.31ZM78.4745 111.609L67.9105 80.334L57.2075 111.609H78.4745ZM119.964 50.31V89.369L150.127 50.31H180.985L146.374 94.373L182.931 149H152.768L128.582 112.026L119.964 122.59V149H92.7199V50.31H119.964Z" />
           </mask>
           <path
-            d="M77.3425 75.31H108.34L143.924 174H116.124L110.564 157.737H74.9795L69.4195 174H41.7585L77.3425 75.31ZM103.475 136.609L92.9105 105.334L82.2075 136.609H103.475ZM144.964 75.31V114.369L175.127 75.31H205.985L171.374 119.373L207.931 174H177.768L153.582 137.026L144.964 147.59V174H117.72V75.31H144.964Z"
+            d="M52.3425 50.31H83.3396L118.924 149H91.1236L85.5635 132.737H49.9795L44.4195 149H16.7585L52.3425 50.31ZM78.4745 111.609L67.9105 80.334L57.2075 111.609H78.4745ZM119.964 50.31V89.369L150.127 50.31H180.985L146.374 94.373L182.931 149H152.768L128.582 112.026L119.964 122.59V149H92.7199V50.31H119.964Z"
             fill="#E71E1E"
           />
           <path
-            d="M77.3425 75.31V74.31H76.6401L76.4018 74.9708L77.3425 75.31ZM108.34 75.31L109.28 74.9708L109.042 74.31H108.34V75.31ZM143.924 174V175H145.347L144.864 173.661L143.924 174ZM116.124 174L115.177 174.323L115.409 175H116.124V174ZM110.564 157.737L111.51 157.414L111.278 156.737H110.564V157.737ZM74.9795 157.737V156.737H74.2646L74.0333 157.414L74.9795 157.737ZM69.4195 174V175H70.1345L70.3658 174.323L69.4195 174ZM41.7585 174L40.8178 173.661L40.335 175H41.7585V174ZM103.475 136.609V137.609H104.868L104.422 136.289L103.475 136.609ZM92.9105 105.334L93.858 105.014L92.9167 102.227L91.9644 105.01L92.9105 105.334ZM82.2076 136.609L81.2614 136.285L80.8084 137.609H82.2076V136.609ZM77.3425 76.31H108.34V74.31H77.3425V76.31ZM107.399 75.6492L142.983 174.339L144.864 173.661L109.28 74.9708L107.399 75.6492ZM143.924 173H116.124V175H143.924V173ZM117.07 173.677L111.51 157.414L109.617 158.06L115.177 174.323L117.07 173.677ZM110.564 156.737H74.9795V158.737H110.564V156.737ZM74.0333 157.414L68.4733 173.677L70.3658 174.323L75.9258 158.06L74.0333 157.414ZM69.4195 173H41.7585V175H69.4195V173ZM42.6993 174.339L78.2833 75.6492L76.4018 74.9708L40.8178 173.661L42.6993 174.339ZM104.422 136.289L93.858 105.014L91.9631 105.654L102.527 136.929L104.422 136.289ZM91.9644 105.01L81.2614 136.285L83.1537 136.933L93.8567 105.658L91.9644 105.01ZM82.2076 137.609H103.475V135.609H82.2076V137.609ZM144.964 75.31H145.964V74.31H144.964V75.31ZM144.964 114.369H143.964V117.3L145.755 114.98L144.964 114.369ZM175.127 75.31V74.31H174.636L174.335 74.6988L175.127 75.31ZM205.985 75.31L206.771 75.9277L208.042 74.31H205.985V75.31ZM171.374 119.373L170.587 118.755L170.139 119.326L170.543 119.929L171.374 119.373ZM207.931 174V175H209.803L208.762 173.444L207.931 174ZM177.768 174L176.931 174.547L177.227 175H177.768V174ZM153.582 137.026L154.419 136.479L153.671 135.335L152.807 136.394L153.582 137.026ZM144.964 147.59L144.189 146.958L143.964 147.234V147.59H144.964ZM144.964 174V175H145.964V174H144.964ZM117.72 174H116.72V175H117.72V174ZM117.72 75.31V74.31H116.72V75.31H117.72ZM143.964 75.31V114.369H145.964V75.31H143.964ZM145.755 114.98L175.918 75.9212L174.335 74.6988L144.172 113.758L145.755 114.98ZM175.127 76.31H205.985V74.31H175.127V76.31ZM205.198 74.6923L170.587 118.755L172.16 119.991L206.771 75.9277L205.198 74.6923ZM170.543 119.929L207.1 174.556L208.762 173.444L172.205 118.817L170.543 119.929ZM207.931 173H177.768V175H207.931V173ZM178.605 173.453L154.419 136.479L152.745 137.573L176.931 174.547L178.605 173.453ZM152.807 136.394L144.189 146.958L145.739 148.222L154.357 137.658L152.807 136.394ZM143.964 147.59V174H145.964V147.59H143.964ZM144.964 173H117.72V175H144.964V173ZM118.72 174V75.31H116.72V174H118.72ZM117.72 76.31H144.964V74.31H117.72V76.31Z"
+            d="M52.3425 50.31V49.31H51.6401L51.4018 49.9708L52.3425 50.31ZM83.3396 50.31L84.2803 49.9708L84.042 49.31H83.3396V50.31ZM118.924 149V150H120.347L119.864 148.661L118.924 149ZM91.1236 149L90.1773 149.323L90.4086 150H91.1236V149ZM85.5635 132.737L86.5098 132.414L86.2785 131.737H85.5635V132.737ZM49.9795 132.737V131.737H49.2646L49.0333 132.414L49.9795 132.737ZM44.4195 149V150H45.1345L45.3658 149.323L44.4195 149ZM16.7585 149L15.8178 148.661L15.335 150H16.7585V149ZM78.4745 111.609V112.609H79.8678L79.422 111.289L78.4745 111.609ZM67.9105 80.334L68.858 80.014L67.9167 77.2275L66.9644 80.0102L67.9105 80.334ZM57.2076 111.609L56.2614 111.285L55.8084 112.609H57.2076V111.609ZM52.3425 51.31H83.3396V49.31H52.3425V51.31ZM82.3988 50.6492L117.983 149.339L119.864 148.661L84.2803 49.9708L82.3988 50.6492ZM118.924 148H91.1236V150H118.924V148ZM92.0698 148.677L86.5098 132.414L84.6173 133.06L90.1773 149.323L92.0698 148.677ZM85.5635 131.737H49.9795V133.737H85.5635V131.737ZM49.0333 132.414L43.4733 148.677L45.3658 149.323L50.9258 133.06L49.0333 132.414ZM44.4195 148H16.7585V150H44.4195V148ZM17.6993 149.339L53.2833 50.6492L51.4018 49.9708L15.8178 148.661L17.6993 149.339ZM79.422 111.289L68.858 80.014L66.9631 80.654L77.5271 111.929L79.422 111.289ZM66.9644 80.0102L56.2614 111.285L58.1537 111.933L68.8567 80.6578L66.9644 80.0102ZM57.2076 112.609H78.4745V110.609H57.2076V112.609ZM119.964 50.31H120.964V49.31H119.964V50.31ZM119.964 89.369H118.964V92.3L120.755 89.9802L119.964 89.369ZM150.127 50.31V49.31H149.636L149.335 49.6988L150.127 50.31ZM180.985 50.31L181.771 50.9277L183.042 49.31H180.985V50.31ZM146.374 94.373L145.587 93.7553L145.139 94.326L145.543 94.9292L146.374 94.373ZM182.931 149V150H184.803L183.762 148.444L182.931 149ZM152.768 149L151.931 149.547L152.227 150H152.768V149ZM128.582 112.026L129.419 111.479L128.671 110.335L127.807 111.394L128.582 112.026ZM119.964 122.59L119.189 121.958L118.964 122.234V122.59H119.964ZM119.964 149V150H120.964V149H119.964ZM92.7199 149H91.7199V150H92.7199V149ZM92.7199 50.31V49.31H91.7199V50.31H92.7199ZM118.964 50.31V89.369H120.964V50.31H118.964ZM120.755 89.9802L150.918 50.9212L149.335 49.6988L119.172 88.7578L120.755 89.9802ZM150.127 51.31H180.985V49.31H150.127V51.31ZM180.198 49.6923L145.587 93.7553L147.16 94.9907L181.771 50.9277L180.198 49.6923ZM145.543 94.9292L182.1 149.556L183.762 148.444L147.205 93.8168L145.543 94.9292ZM182.931 148H152.768V150H182.931V148ZM153.605 148.453L129.419 111.479L127.745 112.573L151.931 149.547L153.605 148.453ZM127.807 111.394L119.189 121.958L120.739 123.222L129.357 112.658L127.807 111.394ZM118.964 122.59V149H120.964V122.59H118.964ZM119.964 148H92.7199V150H119.964V148ZM93.7199 149V50.31H91.7199V149H93.7199ZM92.7199 51.31H119.964V49.31H92.7199V51.31Z"
             fill="black"
             mask="url(#path-2-outside-1_87_5)"
           />
         </mask>
         <g mask="url(#mask0_87_5)">
-          <path d="M50 106L60 106" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 141L45 141" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 156L140 156" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 111L120 111" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 161L90 161" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 116L90 116" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 121L160 121" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 126L80 126" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 131L140 131" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 136L120 136" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 81L35 81" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 116L20 116" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 131L115 131" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 86L95 86" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 136L65 136" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 91L65 91" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 96L135 96" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 101L55 101" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 106L115 106" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 111L95 111" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 116L155 116" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 121L35 121" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 126L85 126" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 81L50 81" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 96L15 96" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 116L35 116" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 131L130 131" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 86L110 86" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 136L80 136" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 91L80 91" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 96L150 96" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 101L70 101" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 106L130 106" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 111L110 111" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 116L170 116" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 121L50 121" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 126L100 126" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 81L110 81" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 96L75 96" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 106L55 106" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 111L35 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 116L95 116" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M15 126L25 126" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 131L55 131" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 86L20 86" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 86L35 86" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 86L170 86" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 136L140 136" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 91L140 91" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 101L130 101" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 111L170 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 121L110 121" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 126L160 126" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 81L155 81" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 96L120 96" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 101L40 101" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 106L100 106" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 111L80 111" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 116L140 116" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 121L20 121" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 126L70 126" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 131L100 131" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 136L50 136" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 121L185 121" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 81L185 81" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 86L65 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 86L80 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 136L185 136" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 91L185 91" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M165 101L175 101" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 121L155 121" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 81L65 81" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 96L30 96" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 116L50 116" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 131L145 131" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 86L125 86" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 136L95 136" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 91L20 91" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 91L95 91" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 96L165 96" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 101L85 101" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 106L145 106" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 111L125 111" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 116L185 116" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 121L65 121" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 126L115 126" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 81L80 81" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 96L45 96" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M15 106L25 106" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 116L65 116" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M15 131L25 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 131L160 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 86L140 86" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 136L110 136" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 91L35 91" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 91L110 91" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 96L180 96" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 101L100 101" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 106L160 106" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 111L140 111" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 121L80 121" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 126L130 126" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 81L125 81" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 96L90 96" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 106L70 106" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 111L50 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 116L110 116" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 126L40 126" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 131L70 131" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 136L20 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 86L35 86" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 86L50 86" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 86L185 86" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 136L155 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 91L155 91" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 101L145 101" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 111L185 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 121L125 121" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M165 126L175 126" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 81L95 81" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 96L60 96" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 106L40 106" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 111L20 111" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 116L80 116" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 131L40 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 86L20 86" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M165 131L175 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 86L155 86" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 136L125 136" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 91L50 91" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 91L125 91" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 101L115 101" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M165 106L175 106" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 111L155 111" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 121L95 121" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 126L145 126" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 81L140 81" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 96L105 96" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M15 101L25 101" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 106L85 106" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 111L65 111" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 116L125 116" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 126L55 126" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 131L85 131" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 136L35 136" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 121L170 121" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 81L170 81" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 86L50 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 86L65 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 136L170 136" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 91L170 91" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 101L160 101" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 121L140 121" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 141L15 141" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 71L95 71" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 146L75 146" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 76L45 76" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 61L180 61" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
           <path d="M170 141L180 141" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 146L60 146" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 151L110 151" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 106L75 106" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 121L40 121" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 141L60 141" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 156L155 156" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 111L135 111" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 161L105 161" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 116L105 116" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 121L175 121" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 126L95 126" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 131L155 131" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 136L135 136" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 141L195 141" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 146L75 146" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 151L125 151" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 106L135 106" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 121L100 121" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 131L80 131" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 136L60 136" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 141L120 141" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M40 151L50 151" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 156L80 156" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 111L45 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 111L60 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 111L195 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 161L165 161" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 116L165 116" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 126L155 126" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 136L195 136" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 146L135 146" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 151L185 151" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 106L180 106" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 121L145 121" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 126L65 126" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 131L125 131" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 136L105 136" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 51L75 51" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 56L135 56" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 61L15 61" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 66L65 66" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 141L30 141" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 56L15 56" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 71L110 71" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 146L90 146" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 76L60 76" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 51L90 51" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 56L150 56" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 61L30 61" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 66L80 66" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 141L90 141" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 51L15 51" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 56L75 56" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 71L35 71" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 146L15 146" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 71L170 71" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 146L150 146" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 76L120 76" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 51L150 51" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 61L90 61" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 66L140 66" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 141L135 141" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 51L60 51" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 56L120 56" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 66L50 66" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 71L80 71" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 76L30 76" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 61L165 61" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
           <path d="M155 141L165 141" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
           <path d="M35 146L45 146" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 151L95 151" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 156L125 156" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 161L75 161" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 146L210 146" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 106L210 106" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 111L90 111" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 111L105 111" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 161L210 161" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 116L210 116" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M190 126L200 126" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 146L180 146" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 106L90 106" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 121L55 121" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 141L75 141" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 156L170 156" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 111L150 111" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 161L120 161" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 116L45 116" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 116L120 116" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 121L190 121" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 126L110 126" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 131L170 131" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 136L150 136" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 141L210 141" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 146L90 146" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 151L140 151" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 106L105 106" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 121L70 121" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M40 131L50 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 141L90 141" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M40 156L50 156" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 156L185 156" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 111L165 111" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 161L135 161" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 116L60 116" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 116L135 116" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 121L205 121" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 126L125 126" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 131L185 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 136L165 136" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 146L105 146" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 151L155 151" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 106L150 106" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 121L115 121" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 131L95 131" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 136L75 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 141L135 141" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 151L65 151" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 156L95 156" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 161L45 161" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 111L60 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 111L75 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 111L210 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 161L180 161" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 116L180 116" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 126L170 126" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 136L210 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 146L150 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M190 151L200 151" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 106L120 106" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 121L85 121" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 131L65 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 136L45 136" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 141L105 141" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 156L65 156" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 111L45 111" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M190 156L200 156" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 111L180 111" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 161L150 161" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 116L75 116" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 116L150 116" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 126L140 126" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M190 131L200 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 136L180 136" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 146L120 146" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 151L170 151" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 106L165 106" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 121L130 121" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M40 126L50 126" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 131L110 131" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 136L90 136" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 146L60 146" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 76L165 76" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 61L135 61" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 66L185 66" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 141L45 141" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 56L30 56" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 71L125 71" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 146L105 146" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 76L75 76" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 51L105 51" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 56L165 56" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 61L45 61" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 66L95 66" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 141L60 141" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 56L45 56" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 71L140 71" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 146L120 146" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 76L90 76" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 51L120 51" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 56L180 56" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 61L60 61" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 66L110 66" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 141L105 141" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 51L30 51" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 56L90 56" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 66L20 66" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 71L50 71" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 146L15 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 146L30 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 71L185 71" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 146L165 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 76L135 76" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 51L165 51" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 61L105 61" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 66L155 66" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 141L75 141" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 56L60 56" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 71L20 71" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 71L155 71" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 146L135 146" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 76L105 76" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 51L135 51" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 61L75 61" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 66L125 66" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 141L120 141" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 51L45 51" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 56L105 56" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 66L35 66" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 71L65 71" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 76L15 76" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 61L150 61" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
           <path d="M140 141L150 141" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 151L80 151" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 156L110 156" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 161L60 161" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 146L195 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 106L195 106" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 111L75 111" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 111L90 111" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 161L195 161" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 116L195 116" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 126L185 126" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 146L165 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 166L40 166" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 96L120 96" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 171L100 171" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 101L70 101" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 86L205 86" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 166L205 166" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 76L100 76" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 81L160 81" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 86L40 86" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 91L90 91" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 166L55 166" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 81L40 81" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 96L135 96" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 171L115 171" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 101L85 101" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 76L115 76" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 81L175 81" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 86L55 86" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 91L105 91" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 166L115 166" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 76L40 76" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 81L100 81" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 96L60 96" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 171L40 171" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 96L195 96" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 171L175 171" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 101L145 101" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 76L175 76" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 86L115 86" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 91L165 91" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 166L160 166" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 76L85 76" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 81L145 81" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 91L75 91" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 96L105 96" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 101L55 101" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 86L190 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 166L190 166" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 171L70 171" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 171L85 171" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 101L190 101" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 86L160 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 91L210 91" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 166L70 166" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 81L55 81" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 96L150 96" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 171L130 171" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 101L100 101" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 76L130 76" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 81L190 81" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 86L70 86" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 91L120 91" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 166L85 166" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 81L70 81" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 96L165 96" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 171L145 171" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 101L115 101" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 76L145 76" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 81L205 81" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 86L85 86" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 91L135 91" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 166L130 166" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 76L55 76" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 81L115 81" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 91L45 91" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 96L75 96" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 171L40 171" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 171L55 171" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 96L210 96" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 171L190 171" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 101L160 101" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 76L190 76" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 86L130 86" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 91L180 91" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 166L100 166" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 81L85 81" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 96L45 96" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 96L180 96" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 171L160 171" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 101L130 101" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 76L160 76" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 86L100 86" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 91L150 91" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 166L145 166" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 76L70 76" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 81L130 81" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 91L60 91" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 96L90 96" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 101L40 101" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 86L175 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 166L175 166" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 171L55 171" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 171L70 171" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 171L205 171" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 101L175 101" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 76L205 76" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 86L145 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 91L195 91" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 146L30 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 146L45 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 146L180 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 76L150 76" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 51L180 51" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 61L120 61" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 66L170 66" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
         </g>
         <defs>
-          <linearGradient id="paint0_linear_87_5" x1="46.25" y1="46.875" x2="196.25" y2="227.5" gradientUnits="userSpaceOnUse">
+          <linearGradient id="paint0_linear_87_5" x1="37" y1="37.5" x2="157" y2="182" gradientUnits="userSpaceOnUse">
             <stop stopColor="#E2E8F0" />
             <stop offset="1" stopColor="#F1F5F9" />
           </linearGradient>
-          <linearGradient id="paint1_linear_87_5" x1="125" y1="0" x2="125" y2="250" gradientUnits="userSpaceOnUse">
+          <linearGradient id="paint1_linear_87_5" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
             <stop stopColor="#E2F0FC" />
             <stop offset="0.4375" stopColor="#FFE4E4" />
             <stop offset="1" stopColor="#E2F6E3" />
           </linearGradient>
         </defs>
       </svg>
-      <svg className="hidden h-7 w-7 dark:block" viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="125" cy="125" r="123" fill="url(#paint0_linear_87_4)" stroke="url(#paint1_linear_87_4)" strokeWidth="4" />
-        <mask id="mask0_87_4" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="41" y="75" width="167" height="99">
-          <mask id="path-2-outside-1_87_4" maskUnits="userSpaceOnUse" x="40" y="74" width="170" height="101" fill="black">
-            <rect fill="white" x="40" y="74" width="170" height="101" />
-            <path d="M77.3425 75.31H108.34L143.924 174H116.124L110.564 157.737H74.9795L69.4195 174H41.7585L77.3425 75.31ZM103.475 136.609L92.9105 105.334L82.2075 136.609H103.475ZM144.964 75.31V114.369L175.127 75.31H205.985L171.374 119.373L207.931 174H177.768L153.582 137.026L144.964 147.59V174H117.72V75.31H144.964Z" />
+
+      <svg
+        className="hidden h-7 w-7 md:h-8 md:w-8 lg:h-9 lg:w-9 dark:block"
+        width="200"
+        height="200"
+        viewBox="0 0 200 200"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="100" cy="100" r="98" fill="url(#paint0_linear_207_1043)" stroke="url(#paint1_linear_207_1043)" strokeWidth="4" />
+        <mask id="mask0_207_1043" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="16" y="50" width="167" height="99">
+          <mask id="path-2-outside-1_207_1043" maskUnits="userSpaceOnUse" x="15" y="49" width="170" height="101" fill="black">
+            <rect fill="white" x="15" y="49" width="170" height="101" />
+            <path d="M52.3425 50.31H83.3396L118.924 149H91.1236L85.5635 132.737H49.9795L44.4195 149H16.7585L52.3425 50.31ZM78.4745 111.609L67.9105 80.334L57.2075 111.609H78.4745ZM119.964 50.31V89.369L150.127 50.31H180.985L146.374 94.373L182.931 149H152.768L128.582 112.026L119.964 122.59V149H92.7199V50.31H119.964Z" />
           </mask>
           <path
-            d="M77.3425 75.31H108.34L143.924 174H116.124L110.564 157.737H74.9795L69.4195 174H41.7585L77.3425 75.31ZM103.475 136.609L92.9105 105.334L82.2075 136.609H103.475ZM144.964 75.31V114.369L175.127 75.31H205.985L171.374 119.373L207.931 174H177.768L153.582 137.026L144.964 147.59V174H117.72V75.31H144.964Z"
+            d="M52.3425 50.31H83.3396L118.924 149H91.1236L85.5635 132.737H49.9795L44.4195 149H16.7585L52.3425 50.31ZM78.4745 111.609L67.9105 80.334L57.2075 111.609H78.4745ZM119.964 50.31V89.369L150.127 50.31H180.985L146.374 94.373L182.931 149H152.768L128.582 112.026L119.964 122.59V149H92.7199V50.31H119.964Z"
             fill="#E71E1E"
           />
           <path
-            d="M77.3425 75.31V74.31H76.6401L76.4018 74.9708L77.3425 75.31ZM108.34 75.31L109.28 74.9708L109.042 74.31H108.34V75.31ZM143.924 174V175H145.347L144.864 173.661L143.924 174ZM116.124 174L115.177 174.323L115.409 175H116.124V174ZM110.564 157.737L111.51 157.414L111.278 156.737H110.564V157.737ZM74.9795 157.737V156.737H74.2646L74.0333 157.414L74.9795 157.737ZM69.4195 174V175H70.1345L70.3658 174.323L69.4195 174ZM41.7585 174L40.8178 173.661L40.335 175H41.7585V174ZM103.475 136.609V137.609H104.868L104.422 136.289L103.475 136.609ZM92.9105 105.334L93.858 105.014L92.9167 102.227L91.9644 105.01L92.9105 105.334ZM82.2075 136.609L81.2614 136.285L80.8084 137.609H82.2075V136.609ZM77.3425 76.31H108.34V74.31H77.3425V76.31ZM107.399 75.6492L142.983 174.339L144.864 173.661L109.28 74.9708L107.399 75.6492ZM143.924 173H116.124V175H143.924V173ZM117.07 173.677L111.51 157.414L109.617 158.06L115.177 174.323L117.07 173.677ZM110.564 156.737H74.9795V158.737H110.564V156.737ZM74.0333 157.414L68.4733 173.677L70.3658 174.323L75.9258 158.06L74.0333 157.414ZM69.4195 173H41.7585V175H69.4195V173ZM42.6993 174.339L78.2833 75.6492L76.4018 74.9708L40.8178 173.661L42.6993 174.339ZM104.422 136.289L93.858 105.014L91.9631 105.654L102.527 136.929L104.422 136.289ZM91.9644 105.01L81.2614 136.285L83.1537 136.933L93.8567 105.658L91.9644 105.01ZM82.2075 137.609H103.475V135.609H82.2075V137.609ZM144.964 75.31H145.964V74.31H144.964V75.31ZM144.964 114.369H143.964V117.3L145.755 114.98L144.964 114.369ZM175.127 75.31V74.31H174.636L174.335 74.6988L175.127 75.31ZM205.985 75.31L206.771 75.9277L208.042 74.31H205.985V75.31ZM171.374 119.373L170.587 118.755L170.139 119.326L170.543 119.929L171.374 119.373ZM207.931 174V175H209.803L208.762 173.444L207.931 174ZM177.768 174L176.931 174.547L177.227 175H177.768V174ZM153.582 137.026L154.419 136.479L153.671 135.335L152.807 136.394L153.582 137.026ZM144.964 147.59L144.189 146.958L143.964 147.234V147.59H144.964ZM144.964 174V175H145.964V174H144.964ZM117.72 174H116.72V175H117.72V174ZM117.72 75.31V74.31H116.72V75.31H117.72ZM143.964 75.31V114.369H145.964V75.31H143.964ZM145.755 114.98L175.918 75.9212L174.335 74.6988L144.172 113.758L145.755 114.98ZM175.127 76.31H205.985V74.31H175.127V76.31ZM205.198 74.6923L170.587 118.755L172.16 119.991L206.771 75.9277L205.198 74.6923ZM170.543 119.929L207.1 174.556L208.762 173.444L172.205 118.817L170.543 119.929ZM207.931 173H177.768V175H207.931V173ZM178.605 173.453L154.419 136.479L152.745 137.573L176.931 174.547L178.605 173.453ZM152.807 136.394L144.189 146.958L145.739 148.222L154.357 137.658L152.807 136.394ZM143.964 147.59V174H145.964V147.59H143.964ZM144.964 173H117.72V175H144.964V173ZM118.72 174V75.31H116.72V174H118.72ZM117.72 76.31H144.964V74.31H117.72V76.31Z"
+            d="M52.3425 50.31V49.31H51.6401L51.4018 49.9708L52.3425 50.31ZM83.3396 50.31L84.2803 49.9708L84.042 49.31H83.3396V50.31ZM118.924 149V150H120.347L119.864 148.661L118.924 149ZM91.1236 149L90.1773 149.323L90.4086 150H91.1236V149ZM85.5635 132.737L86.5098 132.414L86.2785 131.737H85.5635V132.737ZM49.9795 132.737V131.737H49.2646L49.0333 132.414L49.9795 132.737ZM44.4195 149V150H45.1345L45.3658 149.323L44.4195 149ZM16.7585 149L15.8178 148.661L15.335 150H16.7585V149ZM78.4745 111.609V112.609H79.8678L79.422 111.289L78.4745 111.609ZM67.9105 80.334L68.858 80.014L67.9167 77.2275L66.9644 80.0102L67.9105 80.334ZM57.2076 111.609L56.2614 111.285L55.8084 112.609H57.2076V111.609ZM52.3425 51.31H83.3396V49.31H52.3425V51.31ZM82.3988 50.6492L117.983 149.339L119.864 148.661L84.2803 49.9708L82.3988 50.6492ZM118.924 148H91.1236V150H118.924V148ZM92.0698 148.677L86.5098 132.414L84.6173 133.06L90.1773 149.323L92.0698 148.677ZM85.5635 131.737H49.9795V133.737H85.5635V131.737ZM49.0333 132.414L43.4733 148.677L45.3658 149.323L50.9258 133.06L49.0333 132.414ZM44.4195 148H16.7585V150H44.4195V148ZM17.6993 149.339L53.2833 50.6492L51.4018 49.9708L15.8178 148.661L17.6993 149.339ZM79.422 111.289L68.858 80.014L66.9631 80.654L77.5271 111.929L79.422 111.289ZM66.9644 80.0102L56.2614 111.285L58.1537 111.933L68.8567 80.6578L66.9644 80.0102ZM57.2076 112.609H78.4745V110.609H57.2076V112.609ZM119.964 50.31H120.964V49.31H119.964V50.31ZM119.964 89.369H118.964V92.3L120.755 89.9802L119.964 89.369ZM150.127 50.31V49.31H149.636L149.335 49.6988L150.127 50.31ZM180.985 50.31L181.771 50.9277L183.042 49.31H180.985V50.31ZM146.374 94.373L145.587 93.7553L145.139 94.326L145.543 94.9292L146.374 94.373ZM182.931 149V150H184.803L183.762 148.444L182.931 149ZM152.768 149L151.931 149.547L152.227 150H152.768V149ZM128.582 112.026L129.419 111.479L128.671 110.335L127.807 111.394L128.582 112.026ZM119.964 122.59L119.189 121.958L118.964 122.234V122.59H119.964ZM119.964 149V150H120.964V149H119.964ZM92.7199 149H91.7199V150H92.7199V149ZM92.7199 50.31V49.31H91.7199V50.31H92.7199ZM118.964 50.31V89.369H120.964V50.31H118.964ZM120.755 89.9802L150.918 50.9212L149.335 49.6988L119.172 88.7578L120.755 89.9802ZM150.127 51.31H180.985V49.31H150.127V51.31ZM180.198 49.6923L145.587 93.7553L147.16 94.9907L181.771 50.9277L180.198 49.6923ZM145.543 94.9292L182.1 149.556L183.762 148.444L147.205 93.8168L145.543 94.9292ZM182.931 148H152.768V150H182.931V148ZM153.605 148.453L129.419 111.479L127.745 112.573L151.931 149.547L153.605 148.453ZM127.807 111.394L119.189 121.958L120.739 123.222L129.357 112.658L127.807 111.394ZM118.964 122.59V149H120.964V122.59H118.964ZM119.964 148H92.7199V150H119.964V148ZM93.7199 149V50.31H91.7199V149H93.7199ZM92.7199 51.31H119.964V49.31H92.7199V51.31Z"
             fill="black"
-            mask="url(#path-2-outside-1_87_4)"
+            mask="url(#path-2-outside-1_207_1043)"
           />
         </mask>
-        <g mask="url(#mask0_87_4)">
-          <path d="M130 156L140 156" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 111L120 111" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 116L90 116" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 121L160 121" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 126L80 126" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 131L140 131" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 136L120 136" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+        <g mask="url(#mask0_207_1043)">
+          <path d="M105 131L115 131" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 86L95 86" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 91L65 91" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 96L135 96" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 101L55 101" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 106L115 106" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 111L95 111" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 116L155 116" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 121L35 121" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 126L85 126" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 81L50 81" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 116L35 116" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 131L130 131" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 86L110 86" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 91L80 91" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 96L150 96" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 101L70 101" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 106L130 106" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 111L110 111" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 116L170 116" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 121L50 121" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 126L100 126" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 81L110 81" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 96L75 96" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 106L55 106" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 111L35 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 116L95 116" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M15 126L25 126" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 131L55 131" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 91L140 91" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 101L130 101" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 111L170 111" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 121L110 121" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 126L160 126" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 81L155 81" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 96L120 96" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 101L40 101" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 106L100 106" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 111L80 111" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 116L140 116" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 126L70 126" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 131L100 131" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 136L50 136" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 86L65 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 86L80 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M175 136L185 136" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 121L155 121" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 81L65 81" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 116L50 116" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 131L145 131" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 86L125 86" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 136L95 136" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 91L95 91" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 101L85 101" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 106L145 106" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 111L125 111" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 121L65 121" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 126L115 126" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 81L80 81" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 96L45 96" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 116L65 116" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M15 131L25 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 131L160 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 86L140 86" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 136L110 136" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 91L35 91" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 91L110 91" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M90 101L100 101" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 106L160 106" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 111L140 111" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 121L80 121" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 126L130 126" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 81L125 81" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 96L90 96" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 106L70 106" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 111L50 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 116L110 116" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 126L40 126" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M60 131L70 131" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M10 136L20 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 86L50 86" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 136L155 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 91L155 91" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 101L145 101" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 121L125 121" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M165 126L175 126" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 81L95 81" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 96L60 96" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 106L40 106" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 116L80 116" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M30 131L40 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M165 131L175 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 86L155 86" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 136L125 136" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 91L50 91" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 91L125 91" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M105 101L115 101" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 111L155 111" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 121L95 121" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M135 126L145 126" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 81L140 81" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 96L105 96" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 106L85 106" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 111L65 111" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 116L125 116" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M45 126L55 126" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M75 131L85 131" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M25 136L35 136" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 121L170 121" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 81L170 81" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 86L50 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 86L65 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 136L170 136" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M150 101L160 101" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 121L140 121" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 71L95 71" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 76L45 76" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 61L180 61" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
           <path d="M170 141L180 141" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 146L60 146" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 151L110 151" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 106L75 106" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 141L60 141" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 156L155 156" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 111L135 111" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 116L105 116" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 121L175 121" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 126L95 126" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 131L155 131" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 136L135 136" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 141L195 141" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 146L75 146" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 151L125 151" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 106L135 106" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 121L100 121" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 131L80 131" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 136L60 136" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 141L120 141" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M40 151L50 151" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 156L80 156" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 116L165 116" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 126L155 126" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 136L195 136" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 146L135 146" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 151L185 151" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 106L180 106" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 121L145 121" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 126L65 126" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 131L125 131" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 136L105 136" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 51L75 51" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 66L65 66" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 141L30 141" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 71L110 71" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 146L90 146" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 76L60 76" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 51L90 51" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 56L150 56" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 66L80 66" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 141L90 141" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 56L75 56" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M5 146L15 146" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 71L170 71" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 146L150 146" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 76L120 76" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 51L150 51" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 61L90 61" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 66L140 66" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 51L60 51" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 56L120 56" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 66L50 66" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M70 71L80 71" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 61L165 61" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
           <path d="M155 141L165 141" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 151L95 151" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 156L125 156" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 161L75 161" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 111L90 111" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 111L105 111" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M200 161L210 161" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 146L180 146" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 106L90 106" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 141L75 141" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 156L170 156" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 111L150 111" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 161L120 161" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 116L120 116" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 126L110 126" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 131L170 131" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 136L150 136" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 146L90 146" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 151L140 151" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 106L105 106" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 121L70 121" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 141L90 141" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M40 156L50 156" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 156L185 156" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 111L165 111" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 161L135 161" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 116L60 116" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 116L135 116" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M115 126L125 126" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 131L185 131" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 136L165 136" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 146L105 146" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M145 151L155 151" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 106L150 106" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 121L115 121" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 131L95 131" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 136L75 136" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 141L135 141" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 151L65 151" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M85 156L95 156" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M35 161L45 161" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 111L75 111" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 161L180 161" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 116L180 116" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 126L170 126" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 146L150 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M190 151L200 151" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 106L120 106" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 121L85 121" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 131L65 131" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 141L105 141" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M55 156L65 156" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M190 156L200 156" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 111L180 111" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 161L150 161" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 116L75 116" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 116L150 116" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M130 126L140 126" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 136L180 136" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 146L120 146" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M160 151L170 151" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 106L165 106" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 121L130 121" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 131L110 131" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 136L90 136" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 146L45 146" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 76L165 76" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 141L45 141" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 71L125 71" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 146L105 146" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 76L75 76" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 51L105 51" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 56L165 56" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M85 66L95 66" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 141L60 141" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M130 71L140 71" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 146L120 146" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 76L90 76" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 51L120 51" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 56L180 56" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 61L60 61" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M100 66L110 66" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 141L105 141" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M80 56L90 56" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M40 71L50 71" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 146L30 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 146L165 146" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M125 76L135 76" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M155 51L165 51" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 61L105 61" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 66L155 66" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M50 56L60 56" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M145 71L155 71" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 76L105 76" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M65 61L75 61" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M115 66L125 66" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 141L120 141" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M95 56L105 56" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M55 71L65 71" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 61L150 61" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
           <path d="M140 141L150 141" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M70 151L80 151" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M100 156L110 156" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M50 161L60 161" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 146L195 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 106L195 106" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 111L75 111" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 111L90 111" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 161L195 161" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M175 126L185 126" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 146L165 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 96L120 96" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 101L70 101" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 86L205 86" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 166L205 166" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 76L100 76" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 91L90 91" stroke="#0C75BD" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 166L55 166" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 96L135 96" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 171L115 171" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 101L85 101" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 76L115 76" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 81L175 81" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 91L105 91" stroke="#A43FF3" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 166L115 166" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 81L100 81" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M30 171L40 171" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 96L195 96" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 171L175 171" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 101L145 101" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 76L175 76" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 86L115 86" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 91L165 91" stroke="#F3A03F" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 76L85 76" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 81L145 81" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 91L75 91" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M95 96L105 96" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 86L190 86" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 166L190 166" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 171L70 171" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 101L190 101" stroke="#A80404" strokeOpacity="0.63" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 166L70 166" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 96L150 96" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 171L130 171" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 101L100 101" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 76L130 76" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 81L190 81" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M110 91L120 91" stroke="#E11D3A" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 166L85 166" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M155 96L165 96" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 171L145 171" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 101L115 101" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 76L145 76" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 81L205 81" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 86L85 86" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M125 91L135 91" stroke="#328737" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 166L130 166" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M105 81L115 81" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M65 96L75 96" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 171L55 171" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 171L190 171" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M150 101L160 101" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M180 76L190 76" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 86L130 86" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 91L180 91" stroke="#F440D7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M75 81L85 81" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M170 96L180 96" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 101L130 101" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M90 86L100 86" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M140 91L150 91" stroke="#00BBC7" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 166L145 166" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M120 81L130 81" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M80 96L90 96" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 86L175 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 166L175 166" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M45 171L55 171" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M60 171L70 171" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 171L205 171" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M165 101L175 101" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M195 76L205 76" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M135 86L145 86" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
-          <path d="M185 91L195 91" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M20 146L30 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M35 146L45 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 146L180 146" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M140 76L150 76" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M170 51L180 51" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M110 61L120 61" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
+          <path d="M160 66L170 66" stroke="#90A3A4" strokeWidth="4" strokeLinecap="round" />
         </g>
         <defs>
-          <linearGradient id="paint0_linear_87_4" x1="46.25" y1="46.875" x2="196.25" y2="227.5" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#1E293B" />
-            <stop offset="1" stopColor="#0F172A" />
+          <linearGradient id="paint0_linear_207_1043" x1="37" y1="37.5" x2="157" y2="182" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#2B3A55" />
+            <stop offset="1" stopColor="#26344C" />
           </linearGradient>
-          <linearGradient id="paint1_linear_87_4" x1="125" y1="0" x2="125" y2="250" gradientUnits="userSpaceOnUse">
+          <linearGradient id="paint1_linear_207_1043" x1="100" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
             <stop stopColor="#1F4D6D" />
             <stop offset="0.0001" stopColor="#1F4D6D" />
             <stop offset="0.4375" stopColor="#80313C" />
@@ -500,7 +508,7 @@ const HomeIcon = () => {
     <svg className="h-4 w-4" viewBox="0 0 64 64">
       <path
         d="m44,52c3.78,0,6.11-4,12-4v6c-3.78,0-6.11,4-12,4s-8.14-4-12-4-6.11,4-12,4-8.14-4-12-4v-6c5.97,0,8.14,4,12,4s6.11-4,12-4,8.14,4,12,4Zm5-29v-15h-8v7l-9-9L8,30v4h7v11.6c.88.42,1.66.86,2.35,1.25,1.28.73,2.03,1.15,2.65,1.15s1.52-.51,2.65-1.15c1.17-.66,2.59-1.46,4.35-2.04v-6.81h10v6.8c1.77.58,3.18,1.38,4.35,2.05,1.28.73,2.03,1.15,2.65,1.15s1.52-.51,2.65-1.15c.69-.39,1.47-.83,2.35-1.24v-11.61h7v-4l-7-7Z"
-        className="fill-madang-500 transition-colors duration-300 group-hover:fill-madang-600 dark:fill-madang-500 dark:group-hover:fill-madang-400"
+        className="fill-madang-600"
       />
     </svg>
   );
@@ -558,7 +566,7 @@ const WritingIcon = () => {
 const GithubIcon = () => {
   return (
     <svg className="h-4 w-4" viewBox="0 0 128 128">
-      <g className="fill-gray-800">
+      <g className="fill-gray-800 dark:fill-gray-200">
         <path
           fillRule="evenodd"
           d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388c0 26.682 17.303 49.317 41.297 57.303c3.017.56 4.125-1.31 4.125-2.905c0-1.44-.056-6.197-.082-11.243c-16.8 3.653-20.345-7.125-20.345-7.125c-2.747-6.98-6.705-8.836-6.705-8.836c-5.48-3.748.413-3.67.413-3.67c6.063.425 9.257 6.223 9.257 6.223c5.386 9.23 14.127 6.562 17.573 5.02c.542-3.903 2.107-6.568 3.834-8.076c-13.413-1.525-27.514-6.704-27.514-29.843c0-6.593 2.36-11.98 6.223-16.21c-.628-1.52-2.695-7.662.584-15.98c0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033c11.526-7.813 16.59-6.19 16.59-6.19c3.287 8.317 1.22 14.46.593 15.98c3.872 4.23 6.215 9.617 6.215 16.21c0 23.194-14.127 28.3-27.574 29.796c2.167 1.874 4.097 5.55 4.097 11.183c0 8.08-.07 14.583-.07 16.572c0 1.607 1.088 3.49 4.148 2.897c23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"
@@ -574,7 +582,7 @@ const TwitterIcon = () => {
   return (
     <svg className="h-4 w-4" viewBox="0 0 24 24">
       <path
-        className="fill-slate-800"
+        className="fill-slate-800 dark:fill-slate-200"
         d="M8 2H1l8.26 11.015L1.45 22H4.1l6.388-7.349L16 22h7l-8.608-11.478L21.8 2h-2.65l-5.986 6.886zm9 18L5 4h2l12 16z"
       />
     </svg>
@@ -611,7 +619,7 @@ const LinkIcon = () => {
   return (
     <svg className="h-4 w-4" viewBox="0 0 256 256">
       <path
-        className="fill-madang-600 transition-colors duration-300 group-hover:fill-madang-600 dark:fill-madang-500 dark:group-hover:fill-madang-400"
+        className="fill-madang-600"
         d="M136.37 187.53a12 12 0 0 1 0 17l-5.94 5.94a60 60 0 0 1-84.88-84.88l24.12-24.11A60 60 0 0 1 152 99a12 12 0 1 1-16 18a36 36 0 0 0-49.37 1.47l-24.1 24.08a36 36 0 0 0 50.92 50.92l5.94-5.94a12 12 0 0 1 16.98 0m74.08-142a60.09 60.09 0 0 0-84.88 0l-5.94 5.94a12 12 0 0 0 17 17l5.94-5.94a36 36 0 0 1 50.92 50.92l-24.11 24.12A36 36 0 0 1 120 139a12 12 0 1 0-16 18a60 60 0 0 0 82.3-2.43l24.12-24.11a60.09 60.09 0 0 0 .03-84.91Z"
       />
     </svg>
@@ -623,7 +631,7 @@ const RSSIcon = () => {
     <svg className="h-4 w-4" viewBox="0 0 64 64">
       <path
         d="m53.17,8L11.17,18.5l-3.17,3.17,12.43,12.43-4.43,11.07,2.83,2.83,11.07-4.43,12.43,12.43,3.17-3.17,10.5-42-2.83-2.83Zm-19.42,30.93l-2.4-2.4-6.46,2.58,2.58-6.46-2.4-2.4,23.63-14.95-14.95,23.63Z"
-        className="fill-solitude-600 transition-colors duration-300 group-hover:fill-solitude-700"
+        className="fill-solitude-600 transition-colors duration-300 group-hover:fill-solitude-700 dark:fill-solitude-500 dark:group-hover:fill-solitude-400"
       />
     </svg>
   );
@@ -655,7 +663,7 @@ const MoonIcon = () => {
 
 const InfoIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-solitude-600 md:h-6 md:w-6">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-solitude-600 md:h-7 md:w-7 dark:fill-solitude-500">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -671,7 +679,7 @@ const InfoIcon = () => {
 
 const WarningIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-chablis-600 md:h-6 md:w-6">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-chablis-600 md:h-7 md:w-7 dark:fill-chablis-500">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -687,7 +695,7 @@ const WarningIcon = () => {
 
 const QuestionIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-madang-600 md:h-6 md:w-6">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-madang-600 md:h-7 md:w-7 dark:fill-madang-500">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -732,7 +740,7 @@ const TimeIcon = () => {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M12 7.25C12.4142 7.25 12.75 7.58579 12.75 8V11.6893L15.0303 13.9697C15.3232 14.2626 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2626 15.3232 13.9697 15.0303L11.4697 12.5303C11.329 12.3897 11.25 12.1989 11.25 12V8C11.25 7.58579 11.5858 7.25 12 7.25Z"
-          fill="white"
+          fill="current"
         ></path>
       </g>
     </svg>
@@ -758,7 +766,7 @@ const ViewsIcon = () => {
 
 const DownIcon = () => {
   return (
-    <svg className="h-5 w-5 stroke-slate-700" viewBox="-0.5 0 25 25" fill="none">
+    <svg className="h-5 w-5 stroke-slate-700 dark:stroke-slate-300" viewBox="-0.5 0 25 25" fill="none">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -781,7 +789,7 @@ const DownIcon = () => {
 
 const UpIcon = () => {
   return (
-    <svg className="h-5 w-5 stroke-slate-700" viewBox="-0.5 0 25 25" fill="none">
+    <svg className="h-5 w-5 stroke-slate-700 dark:stroke-slate-300" viewBox="-0.5 0 25 25" fill="none">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">

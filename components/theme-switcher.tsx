@@ -27,7 +27,7 @@ const ThemeSwitcher = () => {
           role="button"
           aria-label="light-mode"
           onClick={() => setTheme('dark')}
-          className="rounded-full p-[6px] transition-colors duration-300 hover:bg-gray-100"
+          className="rounded-full p-2 transition-colors duration-300 hover:bg-slate-100"
         >
           <SunIcon />
         </button>
@@ -38,7 +38,7 @@ const ThemeSwitcher = () => {
           aria-label="dark-mode"
           role="button"
           onClick={() => setTheme('light')}
-          className="rounded-full p-[6px] transition-colors duration-300 hover:bg-gray-800"
+          className="rounded-full p-2 transition-colors duration-300 hover:bg-slate-700"
         >
           <MoonIcon />
         </button>

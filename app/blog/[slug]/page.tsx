@@ -52,8 +52,8 @@ export function generateMetadata({ params }): Metadata {
 
 const TOC = ({ headers }) => {
   return (
-    <aside className="hidden max-h-[97vh] overflow-auto 2xl:sticky 2xl:top-4 2xl:ml-4 2xl:block 2xl:flex-1 2xl:self-start">
-      <h4 className="mb-2 text-lg font-semibold text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4">
+    <aside className="hidden max-h-[97vh] 2xl:sticky 2xl:top-4 2xl:ml-8 2xl:block 2xl:flex-1 2xl:self-start">
+      <h4 className="mb-2 text-lg font-semibold text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-slate-100 dark:decoration-slate-700">
         Table of contents
       </h4>
       <ul className="list-inside list-none">
@@ -61,7 +61,7 @@ const TOC = ({ headers }) => {
           return (
             <li key={`#${header.slug}`}>
               <a
-                className="text-sm font-medium leading-7 text-slate-900 hover:text-slate-950 data-[level=three]:pl-3 data-[level=three]:font-normal data-[level=three]:text-slate-700 data-[level=three]:before:absolute data-[level=three]:before:-ml-3 data-[level=three]:before:text-slate-400 data-[level=three]:before:content-['\2013'] data-[level=three]:hover:text-slate-950"
+                className="text-sm font-medium leading-7 text-slate-900 hover:text-slate-950 data-[level=three]:pl-3 data-[level=three]:font-normal data-[level=three]:text-slate-700 data-[level=three]:before:absolute data-[level=three]:before:-ml-3 data-[level=three]:before:text-slate-400 data-[level=three]:before:content-['\2013'] data-[level=three]:hover:text-slate-950 dark:text-slate-300 dark:hover:text-slate-100 dark:data-[level=three]:text-slate-400 dark:data-[level=three]:hover:text-slate-100"
                 data-level={header.level}
                 href={`#${header.slug}`}
               >
@@ -77,11 +77,11 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="newsletter hidden overflow-auto rounded-md border border-hawkes-blue-200 bg-hawkes-blue-50 p-4 xl:sticky xl:top-4 xl:mr-4 xl:block xl:flex-1 xl:self-start">
-      <h4 className="mb-4 text-lg font-semibold text-hawkes-blue-950 underline decoration-slate-200 decoration-2 underline-offset-4">
+    <aside className="newsletter hidden overflow-auto rounded-md border border-hawkes-blue-200 bg-hawkes-blue-50 p-4 xl:sticky xl:top-4 xl:mr-4 xl:block xl:flex-1 xl:self-start 2xl:mr-8 dark:border-hawkes-blue-800 dark:bg-hawkes-blue-950">
+      <h4 className="mb-4 text-lg font-semibold text-hawkes-blue-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-hawkes-blue-100 dark:decoration-slate-700">
         Subscribe to my newsletter
       </h4>
-      <p className="mb-4 text-hawkes-blue-950">
+      <p className="mb-4 text-hawkes-blue-950 dark:text-hawkes-blue-300">
         Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found while
         surfing the web.
       </p>
@@ -90,11 +90,11 @@ const NewsLetter = () => {
         rel="noopener noreferrer"
         target="_blank"
         prefetch={false}
-        className="group mx-auto mb-2 block w-11/12 rounded border border-hawkes-blue-300 bg-hawkes-blue-100 px-2 py-1 text-center transition-colors duration-300 hover:border-hawkes-blue-400"
+        className="group mx-auto mb-2 block w-11/12 rounded border border-hawkes-blue-300 bg-hawkes-blue-100 px-2 py-1 text-center transition-colors duration-300 hover:border-hawkes-blue-400 dark:border-hawkes-blue-700 dark:bg-hawkes-blue-900 dark:hover:border-hawkes-blue-600"
       >
-        <span className="font-medium text-hawkes-blue-950">Subscribe</span>
+        <span className="font-medium text-hawkes-blue-950 dark:text-hawkes-blue-200">Subscribe</span>
       </Link>
-      <span className="block text-center text-sm text-hawkes-blue-900 underline">
+      <span className="block text-center text-sm text-hawkes-blue-900 underline dark:text-hawkes-blue-300">
         No spam. I only send you relevant content. Unsubscribe at any time.
       </span>
     </aside>
@@ -124,11 +124,11 @@ export default function Post(params) {
   const Component: any = getMDXComponent(post.body.code!);
   return (
     <>
-      <div className="flex gap-8">
+      <div className="flex justify-center gap-8">
         <TOC headers={post?.headings} />
-        <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] xl:mx-0">
+        <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] 2xl:mx-0">
           <div className="mb-2 flex items-center justify-between gap-3 md:mb-4">
-            <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-tight text-slate-700 md:text-sm">
+            <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-tight text-slate-700 md:text-sm dark:text-slate-400">
               <div className="flex items-center gap-1">
                 <CalendarIcon />
                 <span>{getShortDate(new Date(post?.publishedAt))}</span>
@@ -153,10 +153,10 @@ export default function Post(params) {
               ))}
             </div>
           </div>
-          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] md:mb-4 md:text-4xl">
+          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] md:mb-4 md:text-4xl dark:from-solitude-100 dark:to-solitude-200">
             {post?.title}
           </h1>
-          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 md:mb-8 md:pb-4 md:text-base md:leading-7">
+          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 md:mb-8 md:pb-4 md:text-base md:leading-7 dark:text-slate-400">
             {post?.description}
           </p>
           {post?.series && <SeriesNavigation title={post?.series} articles={seriesPosts} current={post?.slug}></SeriesNavigation>}
