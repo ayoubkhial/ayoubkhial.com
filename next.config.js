@@ -75,8 +75,7 @@ const nextConfig = {
         has: [{ type: 'host', value: 'ayoubkhial.com' }],
         destination: 'https://www.ayoubkhial.com/:path*',
         permanent: true
-      },
-      {}
+      }
     ];
   }
 };
