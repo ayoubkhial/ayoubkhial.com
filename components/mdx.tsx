@@ -79,7 +79,7 @@ const Code = ({ children, ...props }) => {
 const Pre = ({ children, ...props }) => {
   return (
     <pre
-      className="dark:bor-sl-500 whitespace-pre-wrap break-all rounded-lg border border-dashed border-slate-500 !bg-slate-100 p-3 md:p-4 dark:!bg-slate-700"
+      className="whitespace-pre-wrap break-all rounded-md border border-dashed border-slate-500 !bg-slate-100 p-3 md:p-4 dark:border-slate-500 dark:!bg-slate-700"
       {...props}
     >
       {children}

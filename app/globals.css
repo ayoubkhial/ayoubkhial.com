@@ -148,7 +148,7 @@ html.light [data-theme='dark'] {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply rounded-t-lg border border-b-0 border-dashed border-slate-400 bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 md:text-sm dark:border-slate-500 dark:bg-slate-800 dark:text-slate-200;
+  @apply rounded-t-md border border-b-0 border-dashed border-slate-400 bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 md:text-sm dark:border-slate-500 dark:bg-slate-800 dark:text-slate-200;
 }
 
 [data-rehype-pretty-code-title] + pre {
