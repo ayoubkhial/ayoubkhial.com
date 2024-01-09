@@ -67,6 +67,17 @@ const nextConfig = {
         headers: securityHeaders
       }
     ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'ayoubkhial.com' }],
+        destination: 'https://www.ayoubkhial.com/:path*',
+        permanent: true
+      },
+      {}
+    ];
   }
 };
 
