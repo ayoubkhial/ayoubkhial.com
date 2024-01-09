@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { allPosts } from 'contentlayer/generated';
 import { GithubIcon, LinkIcon, LinkedInIcon, MessageIcon, TwitterIcon } from '@components/icons';
 import PostHighlight from '@components/post-highlight';
-import HeroImage from '@public/hero.svg';
-import NewsletterImage from '@public/newsletter.svg';
+import HeroImage from '@public/img/hero.svg';
+import NewsletterImage from '@public/img/newsletter.svg';
 
 import Image from 'next/image';
 

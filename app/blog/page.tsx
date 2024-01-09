@@ -11,7 +11,7 @@ export const metadata = {
     siteName: 'Ayoub Khial',
     images: [
       {
-        url: `images/og-blog.jpg`,
+        url: `img/og-blog.jpg`,
         alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
       }
     ],

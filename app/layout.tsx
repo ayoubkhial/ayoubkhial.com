@@ -23,25 +23,25 @@ export const metadata: Metadata = {
         rel: 'icon',
         type: 'image/png',
         media: '(prefers-color-scheme: light)',
-        url: '/images/icon.png'
+        url: '/img/icon.png'
       },
       {
         rel: 'icon',
         type: 'image/png',
         media: '(prefers-color-scheme: dark)',
-        url: '/images/icon-dark.png'
+        url: '/img/icon-dark.png'
       },
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
         media: '(prefers-color-scheme: light)',
-        url: '/images/apple-icon.png'
+        url: '/img/apple-icon.png'
       },
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
         media: '(prefers-color-scheme: dark)',
-        url: '/images/apple-icon-dark.png'
+        url: '/img/apple-icon-dark.png'
       }
     ]
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: 'Ayoub Khial',
     images: [
       {
-        url: `images/og.jpg`,
+        url: `img/og.jpg`,
         alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
       }
     ],
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     creator: '@ayoubkhial',
     site: '@ayoubkhial',
     images: {
-      url: `https://raw.githubusercontent.com/ayoubkhial/ayoubkhial.com/main/public/img/opengraph-image.png`,
+      url: `img/og.jpg`,
       alt: 'Ayoub Khial - software engineer specializing in building beautiful and minimalist web experiences.'
     }
   },
