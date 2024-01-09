@@ -59,7 +59,7 @@ const Code = ({ children, ...props }) => {
   if (isChildrenArray || props?.['data-language']) {
     return (
       <code
-        className="overflow-wrap-break-word grid max-w-full !bg-transparent p-0 font-mono text-xs font-semibold leading-6 md:text-[13px]"
+        className="overflow-wrap-break-word grid max-w-full !bg-transparent p-0 font-mono text-xs font-semibold leading-5 md:text-[13px] md:leading-6"
         {...props}
       >
         {children}

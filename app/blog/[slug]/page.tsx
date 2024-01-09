@@ -127,8 +127,8 @@ export default function Post(params) {
       <div className="flex justify-center gap-8">
         <TOC headers={post?.headings} />
         <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] 2xl:mx-0">
-          <div className="mb-2 flex items-center justify-between gap-3 md:mb-4">
-            <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-tight text-slate-700 md:text-sm dark:text-slate-400">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-3 md:mb-4">
+            <div className="flex items-center gap-2 font-mono font-semibold tracking-tight text-slate-700 sm:text-xs md:text-sm dark:text-slate-400">
               <div className="flex items-center gap-1">
                 <CalendarIcon />
                 <span>{getShortDate(new Date(post?.publishedAt))}</span>
