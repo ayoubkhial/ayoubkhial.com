@@ -20,28 +20,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        rel: 'icon',
-        type: 'image/png',
-        media: '(prefers-color-scheme: light)',
-        url: '/img/icon.png'
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        media: '(prefers-color-scheme: dark)',
-        url: '/img/icon-dark.png'
-      },
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        media: '(prefers-color-scheme: light)',
-        url: '/img/apple-icon.png'
-      },
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        media: '(prefers-color-scheme: dark)',
-        url: '/img/apple-icon-dark.png'
+        type: 'image/svg+xml',
+        url: '/img/icon.svg?v=2'
       }
     ]
   },
