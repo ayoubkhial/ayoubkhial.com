@@ -10,6 +10,7 @@
     "cache-clean": "rm -rf .next/"
   },
   "dependencies": {
+    "@giscus/react": "^2.4.0",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "geist": "^1.1.0",

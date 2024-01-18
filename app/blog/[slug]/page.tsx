@@ -10,6 +10,7 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import SeriesNavigation from '@components/series-navigation';
+import Comment from '@components/comments';
 
 export function generateMetadata({ params }): Metadata {
   const { slug } = params;
@@ -144,7 +145,7 @@ export default function Post(params) {
                 </Suspense>
               </div>
             </div>
-            <div className="h-[1.5px] w-auto flex-grow bg-gradient-to-r from-solitude-100 to-solitude-50"></div>
+            <div className="h-[1.5px] w-auto flex-grow bg-gradient-to-r from-solitude-100 to-solitude-50 dark:from-slate-600 dark:to-slate-700"></div>
             <div className="flex justify-end gap-1 font-mono text-xs font-medium tracking-tight md:text-sm">
               {tags?.map((tag) => (
                 <span key={tag?.name} className={`${tag?.style} rounded px-2 py-1`}>
@@ -156,13 +157,14 @@ export default function Post(params) {
           <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] md:mb-4 md:text-4xl dark:from-solitude-100 dark:to-solitude-200">
             {post?.title}
           </h1>
-          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 md:mb-8 md:pb-4 md:text-base md:leading-7 dark:text-slate-400">
+          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 md:mb-8 md:pb-4 md:text-base md:leading-7 dark:border-slate-700 dark:text-slate-400">
             {post?.description}
           </p>
           {post?.series && <SeriesNavigation title={post?.series} articles={seriesPosts} current={post?.slug}></SeriesNavigation>}
-          <article className="article text-sm leading-6 md:text-base md:leading-7">
+          <article className="article mb-8 border-b-2 border-solitude-50 pb-8 text-sm leading-6 md:text-base md:leading-7 dark:border-slate-700">
             <Component components={MDXComponents} />
           </article>
+          <Comment />
         </section>
         <NewsLetter />
       </div>

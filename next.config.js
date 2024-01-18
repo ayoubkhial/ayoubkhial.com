@@ -5,6 +5,7 @@ const { withContentlayer } = require('next-contentlayer');
 // frame-src giscus.app;
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
+    frame-src giscus.app;
     script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com vitals.vercel-insights.com;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
