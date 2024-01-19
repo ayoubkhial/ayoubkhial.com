@@ -11,7 +11,16 @@ export const incrementViews = (slug: string) => {
 
 const ViewsCounter = async ({ slug }) => {
   noStore();
-  const post = await queryBuilder.selectFrom('PostInfo').selectAll().where('slug', '=', slug).executeTakeFirst();
+  let post;
+  try {
+    post = await queryBuilder.selectFrom('PostInfo').selectAll().where('slug', '=', slug).executeTakeFirst();
+    if (!post) {
+      await queryBuilder.insertInto('PostInfo').values({ slug, views: 1 }).execute();
+    }
+  } catch {
+    post = { views: 1 };
+  }
+
   return <span>{post?.views} views</span>;
 };
 
