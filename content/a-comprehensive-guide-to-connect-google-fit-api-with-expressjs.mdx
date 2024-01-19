@@ -15,7 +15,7 @@ There are many use cases for using Goole Fit API. For example:
 - **Nutrition Apps:** collect data on dietary habits, calorie intake, and hydration levels. Combining this data with exercise metrics can create a well-rounded health profile.
 
 ## Google Fit Components
-<Image alt={'Google Fit API Components'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/1.webp'} width={768} height={340} priority={true} />
+<Image alt={'Google Fit API Components'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/1.webp'} priority={true} />
 
 It's essential to know the different parts of Google Fit to use it well. Google Fit is like a one-stop shop for keeping track of your health and wellness. It has a lot of different parts that work together to help you keep on top of things. Let's take a closer look at what's inside.
 
@@ -57,11 +57,11 @@ A **project** is a unit in Google Cloud for organizing resources, managing IAM, 
 
 To create a new project, navigate to the [Google Cloud Console](https://console.cloud.google.com/); you'll see a project dropdown at the top of the page. Click on it and select **"New Project"** from the dialog box.
 
-<Image alt={'Google API Project List'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/2.webp'} width={768} height={477} />
+<Image alt={'Google API Project List'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/2.webp'} />
 
 Fill in the project details, ensuring you provide a descriptive name, such as **"Fitness APP - Nodejs"**, to capture its intent. Additionally, you can specify its organizational location by selecting the appropriate parent folder or organization, though this step is optional.
 
-<Image alt={'Google API Project Create Page'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/3.webp'} width={768} height={450} />
+<Image alt={'Google API Project Create Page'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/3.webp'} />
 
 <Callout>
 By default, the Project ID is generated using your project name with a hyphen and sometimes some random number. It can be edited by clicking **"Edit"** before creating your project because it can't be changed later.
@@ -76,7 +76,7 @@ To enable the fit API, head to the [Google Cloud Marketplace](https://console.cl
 
 Ensure your desired project is selected in the console. Validate your selection by pressing **"Next"**; Then click on **"Enable"**.
 
-<Image alt={'Google Console - Enable Fitness API'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/4.webp'} width={768} height={394} />
+<Image alt={'Google Console - Enable Fitness API'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/4.webp'} />
 
 Upon successful activation, the **"Enable"** option becomes inactive, signaling that your project now has access to the Google Fit API.
 
@@ -85,48 +85,48 @@ After enabling the Google Fit API for your project, configuring the [OAuth Conse
 
 To configure the OAuth consent screen, Click on the menu icon at the top left of your Google API Console. Then, navigate to **"APIs & Services"** and select **"OAuth Consent Screen"**.
 
-<Image alt={'Google Console - OAuth Consent Screen Configuration'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/5.webp'} width={768} height={462} />
+<Image alt={'Google Console - OAuth Consent Screen Configuration'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/5.webp'} />
 
 You'll be prompted to choose between two user types:
 - **External:** For applications that intend to access users' data outside your organization.
 - **Internal:** Restricted to users within your Google Workspace domain.
 Make a selection based on your application's target audience. I will opt for **"External"** for this tutorial since we're still in testing mode.
 
-<Image alt={'Google Console - Create OAuth Consent Screen'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/6.webp'} width={768} height={436} />
+<Image alt={'Google Console - Create OAuth Consent Screen'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/6.webp'} />
 
 Next, Fill Out the App Information:
 - **App Name:** The name will be displayed to users during authorization.
 - **User Support Email:** An email address where users can get support or ask questions about the app.
 - **App Logo** (optional): You can upload a logo that users will see on the consent screen.
 
-<Image alt={'Google Console - OAuth Consent Screen Information'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/7.webp'} width={768} height={517} />
+<Image alt={'Google Console - OAuth Consent Screen Information'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/7.webp'} />
 
 You can also add URLs under **"App Domain"** to your app's main pages, like privacy policy or terms of service; while this is optional, **"Authorized Domains"** are mandatory. However, we can set them later through credentials settings.
 
 Finally, make sure to provide at least one contact email. You can include more if you wish.
 
-<Image alt={'Google Console - OAuth Consent Screen Information'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/8.webp'} width={768} height={437} />
+<Image alt={'Google Console - OAuth Consent Screen Information'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/8.webp'} />
 
 Upon clicking **"Continue"**, you'll move on to define the scopes or permissions your app will request.
 
 Scopes determine the type of access your application requests from users. While some default scopes may be pre-selected, ensure you only choose the ones necessary for your application to function. Over-requesting can discourage users from granting consent.
 
-<Image alt={'Google Console - OAuth Consent Screen Scopes'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/9.webp'} width={768} height={374} />
+<Image alt={'Google Console - OAuth Consent Screen Scopes'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/9.webp'} />
 
 I will search for fitness in the scope list and select all.
 
-<Image alt={'Google Console - OAuth Consent Screen Scope List'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/10.webp'} width={768} height={383} />
+<Image alt={'Google Console - OAuth Consent Screen Scope List'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/10.webp'} />
 
 Finally, if you selected the **"External"** user type, you'd need to add test users. Only these specified users can grant consent during the testing phase.
 
-<Image alt={'Google Console - OAuth Consent Screen Test Users'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/11.webp'} width={768} height={456} />
+<Image alt={'Google Console - OAuth Consent Screen Test Users'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/11.webp'} />
 
 ### Credentials
 Credentials play a pivotal role in the Google API ecosystem. They serve as the digital handshake between your application and Google's services.
 
 To set up credentials, Begin by clicking **"Credentials"** on the left menu within the Google API Console. Then click **"Create Credentials"** button at the top of the page and choose **"OAuth client ID"** from the dropdown.
 
-<Image alt={'Google Console - Set up Credentials'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/12.webp'} width={768} height={430} />
+<Image alt={'Google Console - Set up Credentials'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/12.webp'} />
 
 You will be prompted to designate the type of application you are developing, and your options will include:
 - **Web application:** For apps that run on a server and are accessed through web browsers.
@@ -138,17 +138,17 @@ You will be prompted to designate the type of application you are developing, an
 
 I will select **"Web application"** since we aim to connect to the API through the express server.
 
-<Image alt={'Google Console - Create OAuth Client ID'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/13.webp'} width={768} height={329} />
+<Image alt={'Google Console - Create OAuth Client ID'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/13.webp'} />
 
 While the **"Authorized JavaScript origins"** section isn't mandatory for web server applications, you must provide the **"Authorized redirect URIs"**. For example, if you're using an Express server on port `8000`, you might create a route like `GET:/get-token`.
 
-<Image alt={'Google Console - Create OAuth Client ID'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/14.webp'} width={768} height={354} />
+<Image alt={'Google Console - Create OAuth Client ID'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/14.webp'} />
 
 After providing the necessary details, click the **"Create"** button. Once done, you'll receive your OAuth 2.0 credentials, which include:
 - **Client ID:** A unique string representing the registration information.
 - **Client Secret:** A secret token your application uses to exchange for an access token.
 
-<Image alt={'Google Console - Credentials Detail'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/15.webp'} width={768} height={610} />
+<Image alt={'Google Console - Credentials Detail'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/15.webp'} />
 
 Securely store these credentials, especially the Client Secret, as they'll be essential for authenticating your application with Google services.
 
@@ -291,7 +291,7 @@ You can find the list of scopes specific to the Fitness API in the [Google Ident
 
 When you access this endpoint, it generates a redirect URL. This URL is the gateway for initiating the authentication and authorization process with Google.
 
-<Image alt={'Google API - Auth URL'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/16.webp'} width={768} height={386} />
+<Image alt={'Google API - Auth URL'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/16.webp'} />
 
 Before navigating the OAuth URL, setting up the redirect routes for your application is required. Recall that we configured a redirection URL in the Google Console as `http://localhost:8000/get-token`. Let's now set a GET route at this endpoint.
 
@@ -325,7 +325,7 @@ To initiate Google's OAuth 2.0 process, visit the URL generated from the initial
 If you still need to be signed into your Google account, the URL will initiate a sign-in process before proceeding.
 </Callout>
 
-<Image alt={'Google API Consent Screen - Sign in'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/17.webp'} width={768} height={548} />
+<Image alt={'Google API Consent Screen - Sign in'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/17.webp'}  />
 
 <Callout type="WARNING">
 Be aware that only accounts designated as test users in your Google Developer Console will be able to connect to the application. Unauthorized accounts will encounter an access restriction. Make sure to configure this setting before initiating the OAuth process.
@@ -333,17 +333,17 @@ Be aware that only accounts designated as test users in your Google Developer Co
 
 After selecting your account, a warning will appear because the app is in testing mode and has not received verification. Just click on **"Continue"**.
 
-<Image alt={'Google API Consent Screen - Unverified App'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/18.webp'} width={768} height={548} />
+<Image alt={'Google API Consent Screen - Unverified App'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/18.webp'}/>
 
 On the following screen, users are presented with a choice to either grant or deny the requested permissions.
 
-<Image alt={'Google API Consent Screen - Grant/Deny Permissions'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/19.webp'} width={768} height={620} />
+<Image alt={'Google API Consent Screen - Grant/Deny Permissions'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/19.webp'} />
 
 When a user **grants permission**, Google will direct the user to the URI specified in the `redirect_uri` parameter. In the example given, the URI is `http://localhost:8000/get-token`. Crucially, Google will add an authorization `code` parameter to this redirect URI. On the other hand, if the user **denies permission**, Google will still redirect to the specified `redirect_uri`. However, instead of an authorization code, it will append an error parameter to indicate that the user has been denied access.
 
 If the permission is granted, The Google OAuth returns the token. You can also see the code parameter we used to generate the token in the address bar.
 
-<Image alt={'Google API Consent Screen - Successful Redirection'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/20.webp'} width={768} height={382} />
+<Image alt={'Google API Consent Screen - Successful Redirection'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/20.webp'} />
 
 Once you have successfully obtained the access token, you are prepared to fetch data from the Google Fitness API. This token is a key to unlock specific scopes or data points your application can access.
 
@@ -453,7 +453,7 @@ You can also use sessions to fetch data from the Google Fit API. Sessions are a 
 
 To test the `/steps` route, make a GET request and include the Google-issued token in the Authorization header. Use the format `"Authorization: Bearer YOUR_TOKEN"` to ensure proper authentication. Without this token, you won't be able to access the step count data.
 
-<Image alt={'Get steps count aggregation - Google Fit API'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/21.webp'} width={768} height={340} />
+<Image alt={'Get steps count aggregation - Google Fit API'} filename={'a-comprehensive-guide-to-connect-google-fit-api-with-expressjs/21.webp'} />
 
 Let's examine each field in detail:
 
