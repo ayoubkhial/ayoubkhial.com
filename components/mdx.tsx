@@ -104,7 +104,7 @@ const Callout = ({ type = 'INFO', children }) => {
     <aside
       className={`${type.toLocaleLowerCase()} my-2 flex w-full gap-5 rounded-md border border-dashed md:my-3 ${
         calloutColorVariants[color]
-      } p-3 md:p-4`}
+      } p-3 md:p-4 ${color === 'green' ? '!mt-8' : ''}`}
     >
       <div>{type === 'INFO' ? <InfoIcon /> : type === 'WARNING' ? <WarningIcon /> : <QuestionIcon />}</div>
       <div className={`${textColorVariants[color]} overflow-x-auto [&>*:last-child]:my-0`}>
