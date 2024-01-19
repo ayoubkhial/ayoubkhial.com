@@ -78,11 +78,11 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="newsletter hidden overflow-auto rounded-md border border-hawkes-blue-200 bg-hawkes-blue-50 p-4 xl:sticky xl:top-4 xl:mr-4 xl:block xl:flex-1 xl:self-start 2xl:mr-8 dark:border-hawkes-blue-800 dark:bg-hawkes-blue-950">
+    <aside className="newsletter mx-4 mt-4 overflow-auto rounded-md border border-hawkes-blue-200 bg-hawkes-blue-50 p-4 md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8 dark:border-hawkes-blue-800 dark:bg-hawkes-blue-950">
       <h4 className="mb-4 text-lg font-semibold text-hawkes-blue-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-hawkes-blue-100 dark:decoration-slate-700">
         Subscribe to my newsletter
       </h4>
-      <p className="mb-4 text-hawkes-blue-950 dark:text-hawkes-blue-300">
+      <p className="mb-4 text-sm leading-6 text-hawkes-blue-950 md:text-base md:leading-7 dark:text-hawkes-blue-300">
         Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found while
         surfing the web.
       </p>
@@ -91,11 +91,11 @@ const NewsLetter = () => {
         rel="noopener noreferrer"
         target="_blank"
         prefetch={false}
-        className="group mx-auto mb-2 block w-11/12 rounded border border-hawkes-blue-300 bg-hawkes-blue-100 px-2 py-1 text-center transition-colors duration-300 hover:border-hawkes-blue-400 dark:border-hawkes-blue-700 dark:bg-hawkes-blue-900 dark:hover:border-hawkes-blue-600"
+        className="group mb-2 mr-2 w-11/12 rounded border border-hawkes-blue-300 bg-hawkes-blue-100 px-3 py-2 text-center text-base transition-colors duration-300 hover:border-hawkes-blue-400 xl:mx-auto xl:block dark:border-hawkes-blue-700 dark:bg-hawkes-blue-900 dark:hover:border-hawkes-blue-600"
       >
         <span className="font-medium text-hawkes-blue-950 dark:text-hawkes-blue-200">Subscribe</span>
       </Link>
-      <span className="block text-center text-sm text-hawkes-blue-900 underline dark:text-hawkes-blue-300">
+      <span className="text-center text-xs leading-6 text-hawkes-blue-900 underline md:text-sm md:leading-7 xl:block dark:text-hawkes-blue-300">
         No spam. I only send you relevant content. Unsubscribe at any time.
       </span>
     </aside>
@@ -125,7 +125,7 @@ export default function Post(params) {
   const Component: any = getMDXComponent(post.body.code!);
   return (
     <>
-      <div className="flex justify-center gap-8">
+      <div className="flex-row justify-center gap-8 xl:flex">
         <TOC headers={post?.headings} />
         <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] 2xl:mx-0">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-3 md:mb-4">
