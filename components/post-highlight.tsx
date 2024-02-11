@@ -15,7 +15,7 @@ export const getTagClass = (color: string) => {
     green: 'bg-madang-50 text-madang-900 dark:bg-madang-900 dark:text-madang-300',
     red: 'bg-chablis-50 text-chablis-900 dark:bg-chablis-900 dark:text-chablis-300',
     purple: 'bg-hawkes-blue-50 text-hawkes-blue-900 dark:bg-hawkes-blue-900 dark:text-hawkes-blue-300',
-    orange: 'bg-vivid-tangerine-50 text-vivid-tangerine-900'
+    orange: 'bg-vivid-tangerine-50 text-vivid-tangerine-900 dark:bg-vivid-tangerine-900 dark:text-vivid-tangerine-300'
   };
   return colorVariants[color];
 };
