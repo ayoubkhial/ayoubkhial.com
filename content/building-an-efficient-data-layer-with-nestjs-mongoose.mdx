@@ -1,0 +1,705 @@
+---
+title: 'Building an Efficient Data Layer with NestJS and Mongoose'
+publishedAt: '2024-02-12'
+description: "This guide offers a comprehensive walkthrough on creating a NestJS project from scratch, focusing on integrating DAOs to enhance data handling efficiency and maintainability."
+keywords: "nest.js(orange),mongoose(red)"
+---
+
+## Introduction
+This guide will teach you how to set up a NestJS project from scratch and make the most of Data Access Objects (DAOs) for efficient data management.
+
+[NestJS](https://www.nestjs.com) is a modern and versatile Node.js framework with many features to help you build robust server-side applications. On the other hand, Mongoose is a popular tool for creating scalable and maintainable data models and interactions in a Node.js environment. By combining the two, you can build a robust foundation for your applications that can help you develop scalable and highly maintainable solutions with ease.
+
+## Understanding DAO
+[Data Access Objects (DAOs)](https://en.wikipedia.org/wiki/Data_access_object) is a design pattern that separates low-level data accessing functions from high-level business services. This pattern allows interaction with a database or another persistence mechanism without influencing the business logic layer. It is useful for managing the application's data by mapping application calls to the persistence layer. 
+
+This approach allows greater flexibility in replacing or modifying the underlying database operations without affecting the business logic layer. In short, DAOs provide an abstract interface to a database or persistence mechanism.
+
+Below is a diagram that illustrates how a DAO fits into the main components of NestJS.
+
+<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/1.webp'} priority={true} />
+
+In a nutshell, DAOs are like your app's database traffic controllers. They provide a set of precise instructions that dictate how your app interacts with the database, including tasks like retrieving data, modifying records, and deleting them. By providing a consistent and structured approach, DAOs offer several benefits:
+
+- **Abstraction of Complexity:** Developers can manage data operations without knowing the specifics of database languages.
+- **Scalability:** When your application grows, it can take time to keep track of all the database calls you're making. DAOs can help by centralizing these calls and making them easier to manage and scale.
+- **Maintainability and Reusability:** DAOs help to make database transitions and data interactions smoother, with minimal disruption to the core functions. You can reuse established DAOs for data models in your application to minimize redundancy and ensure consistent data operations.
+- **Enhanced Testing:** Using DAOs in unit tests makes testing your data access layer easier. This is because you can mock DAOs instead of relying on the actual database.
+
+As we progress in our development process, we will incorporate DAOs (Data Access Objects) into our NestJS and Mongoose framework. This approach will help us improve the efficiency of our database interactions and enhance our application's overall structure and maintainability. With DAOs, we can create a more modular, manageable, and scalable application architecture, which will serve as a solid foundation for advanced application development.
+
+<Callout>
+You can find more detailed information about DAO and Mongoose in [my previous article](https://www.ayoubkhial.com/blog/mean-web-app-part-8-the-dao-pattern-and-mongoose-queries).
+</Callout>
+
+## Setting Up a NestJS Project
+NestJS, with its out-of-the-box architecture and rich module ecosystem, provides a robust framework for server-side applications. Let's walk through the steps to set up a new NestJS project and prepare it to integrate our modules.
+
+The initial step involves installing the [NestJS CLI (Command Line Interface)](https://docs.nestjs.com/cli/overview), an indispensable tool for maintaining your NestJS applications. Open your terminal and run:
+
+``` bash
+npm install -g @nestjs/cli
+```
+
+<Callout type="WARNING">
+Please be aware that NestJS relies on Node.js version 16 or later. Therefore, ensuring you have the correct version installed on your machine before proceeding with NestJS is important.
+</Callout>
+
+Once you have installed the CLI, creating a new project is just a command away. First, navigate to the directory where you want to create the project. Then, execute the following command:
+
+``` bash
+nest new project-name
+```
+
+Replace `project-name` with the name you want to give to your project. The CLI will prompt you to choose a package manager - **npm**, **pnpm**, or **yarn** - which will be used to set up your project's architecture.
+
+After installation, you'll have a new directory with your project's name. It will contain the initial structure provided by NestJS, including the following:
+- `src/` - Your primary workspace for modules, controllers, and services.
+- `test/` - Holds your end-to-end tests.
+- `nest-cli.json` - Configuration for the Nest CLI.
+- `tsconfig.json` - Sets up TypeScript compiler options.
+
+<Callout type="TIP">
+It is worthwhile to become familiar with the structure of your project, as it will help you navigate and organize it better as it grows.
+</Callout>
+
+Go to your project folder and launch the application to ensure everything is configured correctly.
+
+``` bash
+cd project-name
+npm run start:dev
+```
+
+By default, your application will be accessible at **http://localhost:3000**. Visiting this URL in your browser should display a welcoming "Hello World!" message, signaling that your NestJS project is successfully up and running.
+
+<Callout type="TIP">
+When working in development mode, use `npm run start:dev` instead of `npm start`. This will enable the watch mode, which will automatically reload your app whenever you change. If you prefer, you can also adjust the `start` script in your **'package.json'** file to include `--watch` for similar functionality.
+</Callout>
+
+## A Modular Architecture
+Modules are at the heart of NestJS's architecture, helping to keep your code organized and facilitating the modularization of your application. This approach not only makes your application easier to maintain but also enhances its scalability.
+
+Each application feature can be enclosed in its module, creating a more organized and maintainable codebase. For instance, we'll create a features module that will be a container for all our API-exposed modules.
+
+<Callout>
+Choose folder names that make sense for your workflow. You may consider using descriptive names such as **'features'**, **'modules'**, or **'api'** depending on the nature of your project.
+</Callout>
+
+To clarify this concept, let's introduce two key components of our application: `Book` and `Bookmark` entities. Each of these entities will have a module that will demonstrate how we can systematically organize the features of our application.
+
+<AdaptiveImage alt={"Modular architecture - NestJS"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/2.webp'} />
+
+Navigate to the **'src'** folder and create a new folder called **'features'**. Create a file named **'features.module.ts'** inside this folder to declare the module. This module will act as a container for all the feature-specific modules, including ones for the `Book` and `Bookmark` entities.
+
+``` ts title="src/features/features.module.ts"
+import { Module } from '@nestjs/common';
+
+@Module({})
+export class FeaturesModule {}
+```
+
+<Callout>
+The `@Module` decorator is used to mark a class as a NestJS module. It accepts an object with properties like controllers, providers, imports, and exports that define the module's dependencies and behavior. Read more about modules in [NestJS documentation](https://docs.nestjs.com/modules).
+</Callout>
+
+To make the features module accessible throughout your application, you'll need to import it into the `AppModule`, which is the main module of your application. You can do this by editing the **'app.module.ts'** file and adding it to the `imports` array.
+
+``` ts {2,5} title="src/app.module.ts"
+import { Module } from '@nestjs/common';
+import { FeaturesModule } from './features/features.module';
+
+@Module({
+  imports: [FeaturesModule]
+})
+export class AppModule {}
+```
+
+<Callout type="TIP">
+Organizing your features into separate modules and importing them into a central module is an excellent way to keep your application organized and scalable as it grows.
+</Callout>
+
+To create modules for the `Book` and `Bookmark` entities, navigate to the **'features'** folder and make two new folders, one for each entity. Create a module file inside each folder named **'book.module.ts'** and **'bookmark.module.ts'**, respectively. 
+
+``` ts title="src/features/book/book.module.ts"
+import { Module } from '@nestjs/common';
+
+@Module({})
+export class BookModule {}
+```
+
+``` ts title="src/features/bookmark/bookmark.module.ts"
+import { Module } from '@nestjs/common';
+
+@Module({})
+export class BookmarkModule {}
+```
+
+Once you have created both modules, link them back to the `FeaturesModule`. This will combine all of your application's features into a coherent and modular approach to development.
+
+``` ts {2,3,6} title="src/features/features.module.ts"
+import { Module } from '@nestjs/common';
+import { BookModule } from './book/book.module';
+import { BookmarkModule } from './bookmark/bookmark.module';
+
+@Module({
+  imports: [BookModule, BookmarkModule]
+})
+export class FeaturesModule {}
+```
+
+<Callout type="TIP">
+I highly recommend that beginners create each file manually instead of using the Nest CLI for their project. Doing so can provide valuable insights into how NestJS works and how its pieces fit together. This approach can strengthen your foundational understanding of the framework's inner workings.
+</Callout>
+
+## Mongoose Integration
+
+Integrating Mongoose in NestJS streamlines database operations and strengthens modular design by connecting your app's logic with MongoDB's storage capabilities.
+
+To start, you must add [Mongoose](https://mongoosejs.com/) to your project and install the NestJS wrapper for Mongoose. This wrapper will help you integrate the two more easily. To do this, run the following command in your project root directory:
+
+``` bash
+npm install i @nestjs/mongoose
+```
+
+<Callout type="TIP">
+While it is possible to use the Mongoose library directly, similar to how it is used in Express, it is recommended to use the `@nestjs/mongoose` wrapper as it provides decorators and functions that make working with Mongoose much easier.
+
+[Read more about using Mongoose directly as custom components.](https://docs.nestjs.com/recipes/mongodb)
+</Callout>
+
+Creating a separate module for database configuration is a good idea. This will help organize your code and make it more modular. By having a dedicated module to handle database connections and operations, you can easily reuse it in different parts of your application.
+
+<AdaptiveImage alt={"Modular architecture in nest.js"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/3.webp'} priority={true} />
+
+To start, go to the **'src'** folder and create a new **'core'** folder. This folder will help you organize core functionalities, such as database configurations. It will also make your application structure scalable. Once you've created the core folder, create a new file called **'core.module.ts'**. This file will manage the core functionalities.
+
+``` ts title="src/core/core.module.ts"
+import { Module } from '@nestjs/common';
+
+@Module({})
+export class CoreModule {}
+```
+
+Remember to import this module into the app module.
+
+``` ts {3,6} title="src/app.module.ts"
+import { Module } from '@nestjs/common';
+import { FeaturesModule } from './features/features.module';
+import { CoreModule } from './core/core.module';
+
+@Module({
+  imports: [FeaturesModule, CoreModule]
+})
+export class AppModule {}
+```
+
+To set up the MongoDB connection, create a file called **'database.module.ts**' in the **'database**' folder. This file will centralize the connection setup.
+    
+``` ts title="src/core/database/database.module.ts"
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+
+@Module({
+  imports: [
+    MongooseModule.forRootAsync({
+      useFactory: () => {
+        const host = 'localhost';
+        const port = 27017;
+        const name = 'bookmarksy';
+        return {
+          uri: `mongodb://${host}:${port}/${name}`,
+          connectionFactory: (connection) => {
+            if (connection.readyState === 1) {
+              console.log(`Connected to database ${name} at ${host}:${port}`);
+            }
+            return connection;
+          }
+        };
+      }
+    })
+  ]
+})
+export class DatabaseModule {}
+```
+
+The `MongooseModule.forRootAsync` method offers a dynamic and asynchronous way to configure MongoDB connections. It uses a `useFactory` function that enables the injection of other services or configurations. This provides the flexibility to adjust database connections according to runtime conditions or environmental configurations.
+
+After preparing the database module, import it into the core module.
+
+``` ts {2,5} title="src/core/core.module.ts"
+import { Module } from '@nestjs/common';
+import { DatabaseModule } from './database/database.module';
+
+@Module({
+  imports: [DatabaseModule]
+})
+export class CoreModule {}
+```
+
+Upon launching the application, initialization logs will confirm the successful setup of modules, including `DatabaseModule`, `FeaturesModule`, and entity-specific modules.
+
+<AdaptiveImage alt={"NestJS logs for dependencies initialization"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/4.webp'} />
+
+## Schemas Definition
+It's time to create schemas for our entities, define the structure of MongoDB collection documents, and prepare for database interactions.
+
+Begin with the `Book` model by heading to the **'src/features/book'** directory and creating a **'book.schema.ts'** file. Use the `@Schema()` decorator to mark the class as a Mongoose schema and employ the `SchemaFactory` for generating a schema based on the `Book` class:
+
+```ts title="src/features/book/book.schema.ts"
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+
+export type BookDocument = HydratedDocument<Book>;
+
+@Schema()
+export class Book {
+  @Prop({ required: true, unique: true, maxlength: 100 })
+  title: string;
+  @Prop({ required: true, maxlength: 100 })
+  author: string;
+  @Prop({ enum: ['fiction', 'non-fiction', 'fantasy', 'sci-fi', 'horror'] })
+  genre?: string;
+  @Prop({
+    validate: function (value) {
+      return new Date(value) <= new Date();
+    }
+  })
+  publicationYear: Date;
+}
+export const BookSchema = SchemaFactory.createForClass(Book);
+```
+
+The `@Prop()` decorator enables you to define schema properties, specifying validation rules like `required` and `unique`.
+
+Next, mirror this process for the `Bookmark` model:
+
+```ts title="src/features/bookmark/bookmark.schema.ts"
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
+import { Book } from '../book/book.schema';
+
+export type BookmarkDocument = HydratedDocument<Bookmark>;
+
+@Schema()
+export class Bookmark {
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Book', required: true })
+  bookId: Book | Types.ObjectId;
+  @Prop({ required: true })
+  pageNumber?: number;
+  @Prop()
+  notes?: string;
+}
+export const BookmarkSchema = SchemaFactory.createForClass(Bookmark);
+```
+
+<Callout>
+The `ref` option in the `@Prop` decorator links the `Bookmark` schema to the `Book` schema, facilitating document relationships and population.
+</Callout>
+
+It's essential to integrate these schemas into their respective modules. You'll need to update the **'book.module.ts'** file to do this. Use the `MongooseModule.forFeature()` method to include the `BookSchema` and associate it with the `Book` model. This method allows you to configure the module and define registered models in the current scope.
+
+```ts {3,7} title="src/features/book/book.module.ts"
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Book, BookSchema } from './book.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }])
+  ]
+})
+export class BookModule {}
+```
+
+Similarly, enrich the **'bookmark.module.ts'** with the `BookmarkSchema`.
+
+```ts {3,7} title="src/features/bookmark/bookmark.module.ts"
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Bookmark, BookmarkSchema } from './bookmark.schema';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Bookmark.name, schema: BookmarkSchema }])
+  ]
+})
+export class BookmarkModule {}
+```
+
+<Callout>
+You can read more about MongoDB integration and Mongoose wrapper in the [official documentation](https://docs.nestjs.com/techniques/mongodb).
+</Callout>
+
+## Introducing DAOs
+The DAO pattern is an architectural blueprint isolates the application or business layer from the persistence layer, utilizing an abstract API for database operations. This clear separation simplifies database management and ensures the service layer remains decoupled from the database access layer.
+
+In the heart of your project's core functionality, the groundwork begins with creating an abstract `DAO` class within the **'src/core/database'** directory. This class outlines generic methods for CRUD operations, laying a versatile foundation that specific model DAOs can extend.
+
+```ts title="src/core/database/database.dao.ts"
+import { Model, FilterQuery, UpdateQuery, QueryOptions, SaveOptions } from 'mongoose';
+
+export abstract class DAO<T> {
+  constructor(protected readonly model: Model<T>) {}
+
+  async create(doc: Partial<T>, options?: SaveOptions) {
+    const createdDoc = new this.model(doc);
+    return createdDoc.save(options);
+  }
+
+  async find(filter: FilterQuery<T> = {}, options?: QueryOptions) {
+    return this.model.find(filter, null, options).lean();
+  }
+
+  async findOne(filter: FilterQuery<T>, options?: QueryOptions) {
+    return this.model.findOne(filter, null, options).lean();
+  }
+
+  async updateOne(filter: FilterQuery<T>, update: UpdateQuery<T>, options?: QueryOptions) {
+    return this.model.findOneAndUpdate(filter, update, { new: true, ...options });
+  }
+
+  async deleteOne(filter: FilterQuery<T>, options?: QueryOptions) {
+    return this.model.findOneAndDelete(filter, options);
+  }
+}
+```
+
+<Callout type="WARNING">
+This article uses Mongoose version 7.*, but it's worth noting that Mongoose version 8 has been released. If you decide to use version 8, remember that you may need to manually install the `mongodb` package to access certain types. Additionally, you should make any necessary adjustments to ensure compatibility with the new version.
+</Callout>
+
+This abstraction, through the generic `<T>`, enables the `DAO` class to be highly reusable across any model type.
+
+With this foundation, we create specific DAOs for the `Book` and `Bookmark` models, each inheriting the base `DAO`'s generic CRUD capabilities while also addressing model-specific needs.
+
+```ts title="src/features/book/book.dao.ts"
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Book, BookDocument } from './book.schema';
+import { DAO } from '../../core/database/database.dao';
+
+@Injectable()
+export class BookDAO extends DAO<BookDocument> {
+  constructor(@InjectModel(Book.name) model: Model<BookDocument>) {
+    super(model);
+  }
+}
+```
+
+Similarly, the `Bookmark` model receives its specialized DAO in the **'src/features/bookmark'** directory through a **'bookmark.dao.ts'** file:
+
+```ts title="src/features/bookmark/bookmark.dao.ts"
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Bookmark, BookmarkDocument } from './bookmark.schema';
+import { DAO } from '../../core/database/database.dao';
+
+@Injectable()
+export class BookmarkDAO extends DAO<BookmarkDocument> {
+  constructor(@InjectModel(Bookmark.name) model: Model<BookmarkDocument>) {
+    super(model);
+  }
+  
+  async findByBookId(bookId: string) {
+    return this.model.find({ bookId });
+  }
+}
+```
+
+The `@InjectModel` decorator injects the Mongoose model for the specified class into the `DAO`, facilitating database operations.
+
+This setup enables standard CRUD operations and allows adding custom functions tailored to specific needs, such as `findByBookId`. Custom DAOs can implement model-specific queries.
+
+The final step is to register these DAOs as providers within their respective modules to make them available for injection into services. The **'book.module.ts'** and **'bookmark.module.ts'** are then updated to include their respective DAOs in the `providers` array.
+
+```ts {3} title="src/features/book/book.module.ts"
+@Module({
+  imports: [MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }])],
+  providers: [BookDAO]
+})
+export class BookModule {}
+```
+
+```ts {3} title="src/features/bookmark/bookmark.module.ts"
+@Module({
+  imports: [MongooseModule.forFeature([{ name: Bookmark.name, schema: BookmarkSchema }])],
+  providers: [BookmarkDAO]
+})
+export class BookmarkModule {}
+```
+
+Our application's data access is now modular and maintainable with shared DAOs, which minimize redundant code and enhance scalability through a uniform method for database operations.
+
+## Services on Top of DAOs
+Services serve as the intermediary between controllers, which manage incoming requests, and DAOs, responsible for database operations. 
+
+Starting with the `Book` entity, we create a service in the **'src/features/book'** directory. Here, a **'book.service.ts'** file outlines a service class utilizing `BookDAO` for operations related to books:
+
+```ts title="src/features/book/book.service.ts"
+import { Injectable } from '@nestjs/common';
+import { FilterQuery, QueryOptions } from 'mongoose';
+import { BookDAO } from './book.dao';
+import { Book, BookDocument } from './book.schema';
+
+@Injectable()
+export class BookService {
+  constructor(private readonly bookDAO: BookDAO) {}
+
+  async save(book: Book) {
+    return this.bookDAO.save(book);
+  }
+
+  async find(
+    filter: FilterQuery<BookDocument>,
+    options?: QueryOptions<BookDocument>,
+  ) {
+    return this.bookDAO.find(filter, options);
+  }
+
+  async findOne(id: string, options?: QueryOptions<BookDocument>) {
+    return this.bookDAO.findById(id, options);
+  }
+
+  async updateOne(
+    id: string,
+    book: Partial<Book>,
+    options?: QueryOptions<BookDocument>,
+  ) {
+    return this.bookDAO.updateById(id, book, options);
+  }
+
+  async deleteOne(id: string, options?: QueryOptions<BookDocument>) {
+    return this.bookDAO.deleteById(id, options);
+  }
+}
+```
+
+By injecting `BookDAO`, this class abstracts DAO operations for easy controller access.
+
+Similarly, the `Bookmark` entity receives its service within the **'src/features/bookmark'** directory, with **'bookmark.service.ts'** mirroring the `BookService` in structure and functionality but utilizing `BookmarkDAO` for bookmark-specific operations:
+
+```ts title="src/features/bookmark/bookmark.service.ts"
+import { Injectable } from '@nestjs/common';
+import { FilterQuery, QueryOptions } from 'mongoose';
+import { BookmarkDAO } from './bookmark.dao';
+import { Bookmark, BookmarkDocument } from './bookmark.schema';
+
+@Injectable()
+export class BookService {
+  constructor(private readonly bookmarkDAO: BookmarkDAO) {}
+
+  async save(book: Bookmark) {
+    return this.bookmarkDAO.save(book);
+  }
+
+  async find(
+    filter: FilterQuery<BookmarkDocument>,
+    options?: QueryOptions<BookmarkDocument>,
+  ) {
+    return this.bookmarkDAO.find(filter, options);
+  }
+
+  async findOne(id: string, options?: QueryOptions<BookmarkDocument>) {
+    return this.bookmarkDAO.findById(id, options);
+  }
+
+  async updateOne(
+    id: string,
+    bookmark: Partial<Bookmark>,
+    options?: QueryOptions<BookmarkDocument>,
+  ) {
+    return this.bookmarkDAO.updateById(id, bookmark, options);
+  }
+
+  async deleteOne(id: string, options?: QueryOptions<BookmarkDocument>) {
+    return this.bookmarkDAO.deleteById(id, options);
+  }
+}
+```
+
+For these services to be injectable into controllers, they must be registered as `providers` in their respective modules. Thus, the **'book.module.ts'** and **'bookmark.module.ts'** files are updated to include `BookService` and `BookmarkService`, respectively:
+
+```ts {5,11} title="src/features/book/book.module.ts"
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Book, BookSchema } from './book.schema';
+import { BookDAO } from './book.dao';
+import { BookService } from './book.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }])
+  ],
+  providers: [BookDAO, BookService]
+})
+export class BookModule {}
+```
+
+```ts {5,11} title="src/features/bookmark/bookmark.module.ts"
+import { Module } from '@nestjs/common';
+import { Bookmark, BookmarkSchema } from './bookmark.schema';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BookmarkDAO } from './bookmark.dao';
+import { BookmarkService } from './bookmark.service';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Bookmark.name, schema: BookmarkSchema }])
+  ],
+  providers: [BookmarkDAO, BookmarkService],
+})
+export class BookmarkModule {}
+```
+
+<Callout>
+If you need to use a service across multiple modules, you can export it from the module and import it into the modules where it is needed. This approach ensures that the service is available for injection across the application.
+</Callout>
+
+These services act as the bridge, ensuring a clean separation of concerns. Next, we will explore how to create controllers to handle incoming requests and interact with these services to perform 
+operations on our books and bookmarks.
+
+## Handling Routes with Controllers
+Controllers handle requests and respond to clients by leveraging services to execute business logic and data manipulation, which decouples HTTP handling from the application's core logic.
+
+In the **'src/features/book'** directory, we start with a **'book.controller.ts'** file. This controller orchestrates API endpoints for book-related actions, relying on the `BookService` for CRUD operations:
+
+```ts title="src/features/book/book.controller.ts"
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { BookService } from './book.service';
+import { Book } from './book.schema';
+
+@Controller('books')
+export class BookController {
+  constructor(private readonly bookService: BookService) {}
+
+  @Post()
+  async createBook(@Body() bookData: Book) {
+    return this.bookService.createBook(bookData);
+  }
+
+  @Get()
+  async getAllBooks() {
+    return this.bookService.findAllBooks();
+  }
+
+  @Get(':id')
+  async getBookById(@Param('id') id: string) {
+    return this.bookService.findBookById(id);
+  }
+
+  @Put(':id')
+  async updateBook(@Param('id') id: string, @Body() bookData: Partial<Book>) {
+    return this.bookService.updateBook(id, bookData);
+  }
+
+  @Delete(':id')
+  async deleteBook(@Param('id') id: string) {
+    return this.bookService.deleteBook(id);
+  }
+}
+```
+
+The `@Controller` decorator signals that this class is a controller with a base route. Decorators like `@Get`, `@Post`, `@Put`, and `@Delete` designate handlers for various HTTP requests.
+
+<Callout>
+Read in greater detail about controllers and their decorators in the [NestJS documentation](https://docs.nestjs.com/controllers).
+</Callout>
+
+Similarly, the `Bookmark` entity:
+
+```ts title="src/features/bookmark/bookmark.controller.ts"
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { BookmarkService } from './bookmark.service';
+import { Bookmark } from './bookmark.schema';
+
+@Controller('bookmarks')
+export class BookmarkController {
+  constructor(private readonly bookmarkService: BookmarkService) {}
+
+  @Post()
+  async createBookmark(@Body() bookmarkData: Bookmark) {
+    return this.bookmarkService.createBookmark(bookmarkData);
+  }
+
+  @Get()
+  async getAllBookmarks() {
+    return this.bookmarkService.findAllBookmarks();
+  }
+
+  @Get(':id')
+  async getBookmarkById(@Param('id') id: string) {
+    return this.bookmarkService.findBookmarkById(id);
+  }
+
+  @Put(':id')
+  async updateBookmark(@Param('id') id: string, @Body() bookmarkData: Partial<Bookmark>) {
+    return this.bookmarkService.updateBookmark(id, bookmarkData);
+  }
+
+  @Delete(':id')
+  async deleteBookmark(@Param('id') id: string) {
+    return this.bookmarkService.deleteBookmark(id);
+  }
+}
+```
+
+<Callout type="TIP">
+Structure your controllers to reflect your application's operations, keeping them focused on handling request data, invoking service methods, and returning responses.
+</Callout>
+
+To function within NestJS, these controllers must be registered in their respective modules. Thus, the **'book.module.ts'** and **'bookmark.module.ts'** are updated to include `BookController` and `BookmarkController`, making them an integral part of the module setup.
+
+```ts {6,13} title="src/features/book/book.module.ts"
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Book, BookSchema } from './book.schema';
+import { BookDAO } from './book.dao';
+import { BookService } from './book.service';
+import { BookController } from './book.controllers';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Book.name, schema: BookSchema }]),
+  ],
+  providers: [BookDAO, BookService],
+  controllers: [BookController],
+})
+export class BookModule {}
+```
+
+```ts {6,13} title="src/features/bookmark/bookmark.module.ts"
+import { Module } from '@nestjs/common';
+import { Bookmark, BookmarkSchema } from './bookmark.schema';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BookmarkDAO } from './bookmark.dao';
+import { BookmarkService } from './bookmark.service';
+import { BookmarkController } from './bookmark.controllers';
+
+@Module({
+  imports: [
+    MongooseModule.forFeature([{ name: Bookmark.name, schema: BookmarkSchema }])
+  ],
+  providers: [BookmarkDAO, BookmarkService],
+  controllers: [BookmarkController],
+})
+export class BookmarkModule {}
+```
+
+With our controllers in place, we're ready to test our application's endpoints to ensure everything works as expected. Testing can be done using tools like Postman or Curl, where you can make HTTP requests to create, retrieve, update, and delete books and bookmarks, observing the responses from your NestJS application.
+
+Let's test two primary endpoints: `POST /books` to add a new book and `GET /books` to retrieve all books. (I will use [Httpie client](https://httpie.io/) for my testing)
+
+`POST /books`:
+
+<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/5.webp'} />
+
+`GET /books`:
+
+<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/6.webp'} />
+
+## Conclusion
+In this guide, we've explored the DAO pattern that helps separate business logic from data management. We created a new NestJS project and used Mongoose to develop data models. Then, we created DAOs to ensure efficient data access and crafted controllers and services to manage data flow.
+
+Our application's scalability and maintainability can be significantly improved by adopting DAOs. This approach creates a strong foundation for future development, leading us toward modularity, manageability, and scalability.
