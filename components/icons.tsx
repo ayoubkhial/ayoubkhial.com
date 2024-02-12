@@ -591,7 +591,7 @@ const MoonIcon = () => {
 
 const InfoIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-solitude-600 md:h-7 md:w-7 dark:fill-solitude-500">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-solitude-600 dark:fill-solitude-500 md:h-7 md:w-7">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -607,7 +607,7 @@ const InfoIcon = () => {
 
 const WarningIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-chablis-600 md:h-7 md:w-7 dark:fill-chablis-500">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-chablis-600 dark:fill-chablis-500 md:h-7 md:w-7">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -621,9 +621,17 @@ const WarningIcon = () => {
   );
 };
 
+const LightBulbIcon = () => {
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-madang-600 dark:fill-madang-500 md:h-7 md:w-7">
+      <path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7c0-3.9-3.1-7-7-7" />
+    </svg>
+  );
+};
+
 const QuestionIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-madang-600 md:h-7 md:w-7 dark:fill-madang-500">
+    <svg viewBox="0 0 24 24" className="h-6 w-6 fill-hawkes-blue-500 dark:fill-hawkes-blue-600 md:h-7 md:w-7">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -750,6 +758,7 @@ export {
   LinkIcon,
   InfoIcon,
   WarningIcon,
+  LightBulbIcon,
   QuestionIcon,
   SunIcon,
   MoonIcon,

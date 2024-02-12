@@ -55,8 +55,36 @@ const config: Config = {
           '900': 'var(--madang-900)',
           '950': 'var(--madang-950)'
         },
+        'hawkes-blue': {
+          // purple
+          '50': 'var(--hawkes-blue-50)',
+          '100': 'var(--hawkes-blue-100)',
+          '200': 'var(--hawkes-blue-200)',
+          '300': 'var(--hawkes-blue-300)',
+          '400': 'var(--hawkes-blue-400)',
+          '500': 'var(--hawkes-blue-500)',
+          '600': 'var(--hawkes-blue-600)',
+          '700': 'var(--hawkes-blue-700)',
+          '800': 'var(--hawkes-blue-800)',
+          '900': 'var(--hawkes-blue-900)',
+          '950': 'var(--hawkes-blue-950)'
+        },
+        'rice-cake': {
+          // yellow
+          '50': 'var(--rice-cake-50)',
+          '100': 'var(--rice-cake-100)',
+          '200': 'var(--rice-cake-200)',
+          '300': 'var(--rice-cake-300)',
+          '400': 'var(--rice-cake-400)',
+          '500': 'var(--rice-cake-500)',
+          '600': 'var(--rice-cake-600)',
+          '700': 'var(--rice-cake-700)',
+          '800': 'var(--rice-cake-800)',
+          '900': 'var(--rice-cake-900)',
+          '950': 'var(--rice-cake-950)'
+        },
         varden: {
-          // yellow - orange
+          // orange
           '50': '#fff6e0',
           '100': '#feeec7',
           '200': '#fddc8a',
@@ -83,20 +111,7 @@ const config: Config = {
           '900': '#83361a',
           '950': '#471908'
         },
-        'hawkes-blue': {
-          // purple
-          '50': 'var(--hawkes-blue-50)',
-          '100': 'var(--hawkes-blue-100)',
-          '200': 'var(--hawkes-blue-200)',
-          '300': 'var(--hawkes-blue-300)',
-          '400': 'var(--hawkes-blue-400)',
-          '500': 'var(--hawkes-blue-500)',
-          '600': 'var(--hawkes-blue-600)',
-          '700': 'var(--hawkes-blue-700)',
-          '800': 'var(--hawkes-blue-800)',
-          '900': 'var(--hawkes-blue-900)',
-          '950': 'var(--hawkes-blue-950)'
-        },
+
         'vivid-tangerine': {
           // orange
           '50': '#fef5f2',

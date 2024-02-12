@@ -51,6 +51,18 @@
   --hawkes-blue-800: #3f33a0;
   --hawkes-blue-900: #36307f;
   --hawkes-blue-950: #211c4a;
+  /* YELLOW */
+  --rice-cake-50: '#fffef0';
+  --rice-cake-100: '#fefac7';
+  --rice-cake-200: '#fdf58a';
+  --rice-cake-300: '#fcea4d';
+  --rice-cake-400: '#fbdc24';
+  --rice-cake-500: '#f5bd0b';
+  --rice-cake-600: '#d99306';
+  --rice-cake-700: '#b46a09';
+  --rice-cake-800: '#92520e';
+  --rice-cake-900: '#78430f';
+  --rice-cake-950: '#452303';
 }
 
 .dark {
@@ -148,7 +160,7 @@ html.light [data-theme='dark'] {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply rounded-t-md bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 md:text-sm  dark:bg-slate-800 dark:text-slate-200;
+  @apply rounded-t bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 dark:bg-[#182131] dark:text-slate-200 md:text-sm;
 }
 
 [data-rehype-pretty-code-title] + pre {
@@ -170,7 +182,7 @@ code[data-line-numbers] .line::before {
 }
 
 [data-rehype-pretty-code-fragment] .line.highlighted {
-  @apply rounded bg-slate-500 bg-opacity-10;
+  @apply rounded bg-slate-500 bg-opacity-10 dark:bg-slate-600;
 }
 
 [data-rehype-pretty-code-fragment] .line .word-highlighted {
