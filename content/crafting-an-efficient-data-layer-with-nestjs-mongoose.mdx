@@ -1,5 +1,5 @@
 ---
-title: 'Building an Efficient Data Layer with NestJS and Mongoose'
+title: 'Crafting an Efficient Data Layer with NestJS and Mongoose'
 publishedAt: '2024-02-12'
 description: "This guide offers a comprehensive walkthrough on creating a NestJS project from scratch, focusing on integrating DAOs to enhance data handling efficiency and maintainability."
 keywords: "nest.js(orange),mongoose(red)"
@@ -17,7 +17,7 @@ This approach allows greater flexibility in replacing or modifying the underlyin
 
 Below is a diagram that illustrates how a DAO fits into the main components of NestJS.
 
-<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/1.webp'} priority={true} />
+<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'crafting-an-efficient-data-layer-with-nestjs-mongoose/1.webp'} priority={true} />
 
 In a nutshell, DAOs are like your app's database traffic controllers. They provide a set of precise instructions that dictate how your app interacts with the database, including tasks like retrieving data, modifying records, and deleting them. By providing a consistent and structured approach, DAOs offer several benefits:
 
@@ -87,7 +87,7 @@ Choose folder names that make sense for your workflow. You may consider using de
 
 To clarify this concept, let's introduce two key components of our application: `Book` and `Bookmark` entities. Each of these entities will have a module that will demonstrate how we can systematically organize the features of our application.
 
-<AdaptiveImage alt={"Modular architecture - NestJS"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/2.webp'} />
+<AdaptiveImage alt={"Modular architecture - NestJS"} filename={'crafting-an-efficient-data-layer-with-nestjs-mongoose/2.webp'} />
 
 Navigate to the **'src'** folder and create a new folder called **'features'**. Create a file named **'features.module.ts'** inside this folder to declare the module. This module will act as a container for all the feature-specific modules, including ones for the `Book` and `Bookmark` entities.
 
@@ -169,7 +169,7 @@ While it is possible to use the Mongoose library directly, similar to how it is 
 
 Creating a separate module for database configuration is a good idea. This will help organize your code and make it more modular. By having a dedicated module to handle database connections and operations, you can easily reuse it in different parts of your application.
 
-<AdaptiveImage alt={"Modular architecture in nest.js"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/3.webp'} priority={true} />
+<AdaptiveImage alt={"Modular architecture in nest.js"} filename={'crafting-an-efficient-data-layer-with-nestjs-mongoose/3.webp'} />
 
 To start, go to the **'src'** folder and create a new **'core'** folder. This folder will help you organize core functionalities, such as database configurations. It will also make your application structure scalable. Once you've created the core folder, create a new file called **'core.module.ts'**. This file will manage the core functionalities.
 
@@ -238,7 +238,7 @@ export class CoreModule {}
 
 Upon launching the application, initialization logs will confirm the successful setup of modules, including `DatabaseModule`, `FeaturesModule`, and entity-specific modules.
 
-<AdaptiveImage alt={"NestJS logs for dependencies initialization"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/4.webp'} />
+<AdaptiveImage alt={"NestJS logs for dependencies initialization"} filename={'crafting-an-efficient-data-layer-with-nestjs-mongoose/4.webp'} />
 
 ## Schemas Definition
 It's time to create schemas for our entities, define the structure of MongoDB collection documents, and prepare for database interactions.
@@ -693,11 +693,11 @@ Let's test two primary endpoints: `POST /books` to add a new book and `GET /book
 
 `POST /books`:
 
-<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/5.webp'} />
+<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'crafting-an-efficient-data-layer-with-nestjs-mongoose/5.webp'} />
 
 `GET /books`:
 
-<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'building-an-efficient-data-layer-with-nestjs-mongoose/6.webp'} />
+<AdaptiveImage alt={"DAO Architectural Diagram illustrating a three-tiered application structure"} filename={'crafting-an-efficient-data-layer-with-nestjs-mongoose/6.webp'} />
 
 ## Conclusion
 In this guide, we've explored the DAO pattern that helps separate business logic from data management. We created a new NestJS project and used Mongoose to develop data models. Then, we created DAOs to ensure efficient data access and crafted controllers and services to manage data flow.
