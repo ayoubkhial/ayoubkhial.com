@@ -11,6 +11,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import SeriesNavigation from '@components/series-navigation';
 import Comment from '@components/comments';
+import SubscriptionForm from '@components/subscription-form';
 
 export function generateMetadata({ params }): Metadata {
   const { slug } = params;
@@ -78,26 +79,15 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="newsletter mx-4 mt-4 overflow-auto rounded-md border border-hawkes-blue-200 bg-hawkes-blue-50 p-4 md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8 dark:border-hawkes-blue-800 dark:bg-hawkes-blue-950">
-      <h4 className="mb-4 text-lg font-semibold text-hawkes-blue-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-hawkes-blue-100 dark:decoration-slate-700">
+    <aside className="newsletter mx-4 mt-4 overflow-auto rounded-md border border-solitude-200 bg-solitude-50 p-4 dark:border-solitude-800 dark:bg-solitude-950 md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8">
+      <h4 className="mb-4 text-lg font-semibold text-solitude-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-solitude-100 dark:decoration-slate-700">
         Subscribe to my newsletter
       </h4>
-      <p className="mb-4 text-sm leading-6 text-hawkes-blue-950 md:text-base md:leading-7 dark:text-hawkes-blue-300">
+      <p className="mb-4 text-sm leading-6 text-solitude-950 dark:text-solitude-300 md:text-base md:leading-7">
         Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found while
         surfing the web.
       </p>
-      <Link
-        href="https://ayoubkhial.substack.com/"
-        rel="noopener noreferrer"
-        target="_blank"
-        prefetch={false}
-        className="group mb-2 mr-2 w-11/12 rounded border border-hawkes-blue-300 bg-hawkes-blue-100 px-3 py-2 text-center text-base transition-colors duration-300 hover:border-hawkes-blue-400 xl:mx-auto xl:block dark:border-hawkes-blue-700 dark:bg-hawkes-blue-900 dark:hover:border-hawkes-blue-600"
-      >
-        <span className="font-medium text-hawkes-blue-950 dark:text-hawkes-blue-200">Subscribe</span>
-      </Link>
-      <span className="text-center text-xs leading-6 text-hawkes-blue-900 underline md:text-sm md:leading-7 xl:block dark:text-hawkes-blue-300">
-        No spam. I only send you relevant content. Unsubscribe at any time.
-      </span>
+      <SubscriptionForm></SubscriptionForm>
     </aside>
   );
 };
@@ -129,7 +119,7 @@ export default function Post(params) {
         <TOC headers={post?.headings} />
         <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] 2xl:mx-0">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-3 md:mb-4">
-            <div className="flex items-center gap-2 font-mono font-semibold tracking-tight text-slate-700 sm:text-xs md:text-sm dark:text-slate-400">
+            <div className="flex items-center gap-2 font-mono font-semibold tracking-tight text-slate-700 dark:text-slate-400 sm:text-xs md:text-sm">
               <div className="flex items-center gap-1">
                 <CalendarIcon />
                 <span>{getShortDate(new Date(post?.publishedAt))}</span>
@@ -154,14 +144,14 @@ export default function Post(params) {
               ))}
             </div>
           </div>
-          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] md:mb-4 md:text-4xl dark:from-solitude-100 dark:to-solitude-200">
+          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] dark:from-solitude-100 dark:to-solitude-200 md:mb-4 md:text-4xl">
             {post?.title}
           </h1>
-          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 md:mb-8 md:pb-4 md:text-base md:leading-7 dark:border-slate-700 dark:text-slate-400">
+          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 dark:border-slate-700 dark:text-slate-400 md:mb-8 md:pb-4 md:text-base md:leading-7">
             {post?.description}
           </p>
           {post?.series && <SeriesNavigation title={post?.series} articles={seriesPosts} current={post?.slug}></SeriesNavigation>}
-          <article className="article mb-8 border-b-2 border-solitude-50 pb-8 text-sm leading-6 md:text-base md:leading-7 dark:border-slate-700">
+          <article className="article mb-8 border-b-2 border-solitude-50 pb-8 text-sm leading-6 dark:border-slate-700 md:text-base md:leading-7">
             <Component components={MDXComponents} />
           </article>
           <Comment />

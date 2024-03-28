@@ -6,6 +6,7 @@ import HeroImage from '@public/img/hero.svg';
 import NewsletterImage from '@public/img/newsletter.svg';
 
 import Image from 'next/image';
+import SubscriptionForm from '@components/subscription-form';
 
 const HeroSection = () => {
   return (
@@ -142,29 +143,7 @@ const NewsletterSection = () => {
             Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found
             while surfing the web.
           </p>
-          <div className="flex flex-wrap items-center gap-2">
-            <Link
-              href="https://ayoubkhial.substack.com/"
-              rel="noopener noreferrer"
-              target="_blank"
-              prefetch={false}
-              className="group rounded border border-solitude-200 bg-solitude-100 px-2 py-1 transition-colors duration-300 hover:border-solitude-300  dark:border-solitude-700 dark:bg-solitude-900 dark:hover:border-solitude-600"
-            >
-              <span className="text-sm font-medium text-solitude-900 dark:text-solitude-300">Subscribe</span>
-            </Link>
-            <Link
-              href="https://ayoubkhial.substack.com/archive"
-              rel="noopener noreferrer"
-              target="_blank"
-              prefetch={false}
-              className="group rounded border border-solitude-200 px-2 py-1 transition-colors duration-300 hover:border-solitude-300 dark:border-solitude-700 dark:hover:border-solitude-600"
-            >
-              <span className="text-sm font-medium text-solitude-900 dark:text-solitude-200">Explore Previous Issues</span>
-            </Link>
-            <span className="ml-1 text-xs text-solitude-950 underline dark:text-solitude-200 lg:text-sm">
-              No spam. I only send you relevant content. Unsubscribe at any time.
-            </span>
-          </div>
+          <SubscriptionForm></SubscriptionForm>
         </div>
         <div className="hidden pr-4 lg:block lg:w-1/4">
           <Image src={NewsletterImage} alt="Subscribe to Ayoub's newsletter." className="w-full" />
