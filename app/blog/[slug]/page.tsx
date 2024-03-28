@@ -17,7 +17,7 @@ export function generateMetadata({ params }): Metadata {
   const { slug } = params;
   const post = allPosts.find((post) => post.slug.toLowerCase() === slug.toLowerCase());
   if (!post) return { title: slug };
-  const { title, description, publishedAt, keywords } = post!;
+  const { title, description, publishedAt, keywords, canonical } = post!;
   return {
     title,
     description,
@@ -47,7 +47,7 @@ export function generateMetadata({ params }): Metadata {
       }
     },
     alternates: {
-      canonical: `https://ayoubkhial.com/blog/${slug}`
+      canonical: canonical || `https://ayoubkhial.com/blog/${slug}`
     }
   };
 }

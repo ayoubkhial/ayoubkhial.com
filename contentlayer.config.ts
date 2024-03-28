@@ -33,6 +33,9 @@ const Post = defineDocumentType(() => ({
     },
     part: {
       type: 'number'
+    },
+    canonical: {
+      type: 'string'
     }
   },
   computedFields: {
