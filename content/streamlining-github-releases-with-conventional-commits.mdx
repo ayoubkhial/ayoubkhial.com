@@ -201,9 +201,9 @@ jobs:
 ```
 
 This workflow is set to activate whenever there is a push to the `main` branch. It requires permissions to write to the repository and manage pull requests. It consists of three steps:
-1. **Checkout code**: The first step in the job is to check out the code from the repository. This is done using the `actions/checkout@v3` action, which checks out the repository under `$GITHUB_WORKSPACE` so your workflow can access it.
-2. **Set up Node.js**: The second step sets up Node.js on the runner. The `actions/setup-node@v3` action is used to install Node.js version 20. This step is necessary if your project uses Node.js or if any subsequent steps in the workflow require Node.js.
-3. **Create Release**: Whenever the `release-please` action is activated, it scans the commit messages made since the last release. Based on this analysis, it determines what the next version number should be. After that, a new branch will be created that includes the updated `package.json` and `CHANGELOG.md` files. Then, it opens a pull request for this branch. Finally, when this pull request is merged, a new release is created, which includes the corresponding tag.
+- **Checkout code**: The first step in the job is to check out the code from the repository. This is done using the `actions/checkout@v3` action, which checks out the repository under `$GITHUB_WORKSPACE` so your workflow can access it.
+- **Set up Node.js**: The second step sets up Node.js on the runner. The `actions/setup-node@v3` action is used to install Node.js version 20. This step is necessary if your project uses Node.js or if any subsequent steps in the workflow require Node.js.
+- **Create Release**: Whenever the `release-please` action is activated, it scans the commit messages made since the last release. Based on this analysis, it determines what the next version number should be. After that, a new branch will be created that includes the updated `package.json` and `CHANGELOG.md` files. Then, it opens a pull request for this branch. Finally, when this pull request is merged, a new release is created, which includes the corresponding tag.
 
 Here's an illustration that simplifies this process:
 
@@ -246,9 +246,9 @@ After pushing the changes, navigate to the **Actions** tab in your repository. Y
 
 Once the workflow runs successfully, it performs several actions:
 
-1. **Branch Creation**: It creates a new branch with updated `package.json` and `CHANGELOG.md` files, reflecting the new version and changes.
-2. **Pull Request**: It opens a pull request from the new branch to the main branch, proposing the changes for merging.
-3. **Release and Tag**: A new release is generated with a corresponding tag upon merging the pull request. The release includes the log of commits, similar to the `CHANGELOG.md` file.
+- **Branch Creation**: It creates a new branch with updated `package.json` and `CHANGELOG.md` files, reflecting the new version and changes.
+- **Pull Request**: It opens a pull request from the new branch to the main branch, proposing the changes for merging.
+- **Release and Tag**: A new release is generated with a corresponding tag upon merging the pull request. The release includes the log of commits, similar to the `CHANGELOG.md` file.
 In this example, since the commit type was `fix`, the version in `package.json` should be bumped from `1.0.0` to `1.0.1` (a patch increment).
 
 Merge the pull request through your repository's interface. Once merged, a new release with the tag `v1.0.1` will be created, containing the commit log for that version.
