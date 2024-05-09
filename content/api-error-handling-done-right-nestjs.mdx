@@ -1,0 +1,719 @@
+---
+title: 'API Error Handling Done Right - Nest.js'
+publishedAt: '2024-05-09'
+description: "This guide delves into Nest.js's error handling capabilities, detailing how to manage API errors using built-in mechanisms, custom exceptions, and advanced validation strategies. Learn to enhance application reliability and user experience with practical insights and tools for effective error management in Nest.js."
+keywords: "nest.js(red),api(blue)"
+---
+
+## Introduction
+Effective error management is crucial for any application, particularly during high-stakes situations like a major sale on an e-commerce platform. A single mishap can disrupt operations, frustrate customers, and lead to lost sales. Therefore, handling errors smoothly and communicating them clearly is important, especially in service-oriented systems where dependable interactions are essential.
+
+[**Nest.js**](https://nestjs.com/), a prominent Node.js framework, enhances error handling with its modular architecture and extensive features. This guide will show you how to leverage Nest.js to manage API errors effectively. Mastering these techniques will boost your confidence in handling errors, making your applications more robust and user-friendly.
+
+We'll begin by exploring Nest.js's default error-handling mechanisms, which help reduce boilerplate code and increase the reliability of your applications from the outset.
+
+<Callout>
+This guide assumes you have a basic understanding of Nest.js and its core concepts. If you're new to Nest.js, consider reading the [**Nest.js First Steps documentation**](https://docs.nestjs.com/first-steps).
+</Callout>
+
+## Exploring Built-In Error Management Mechanisms
+Nest.js has a special layer designed to intercept unexpected errors in your application and prevent them from causing problems. This layer processes these errors and delivers a user-friendly response, ensuring your application remains reliable and straightforward for users.
+
+Consider the following example in a Nest.js controller:
+
+```ts
+import { Controller, Get } from '@nestjs/common';
+
+@Controller()
+export class AppController {
+  @Get('/users')
+  getUsers(): string {
+    throw new Error('An error has occurred');
+  }
+}
+```
+
+In the given example, the `getUsers()` method is designed to throw an error intentionally. If you try to access the route `localhost:3000/users`, Nest.js's built-in global exception filter ([more on exception filters later](##Optimizing-Error-Handling-with-Exception-Filters)) will catch this error. Since it is not a specific `HttpException` but a generic error, Nest.js considers it an unrecognized exception and sends a response with a `500 Internal Server Error`.
+
+```json
+{
+  "statusCode": 500,
+  "message": "Internal server error"
+}
+```
+
+Nest.js has a strong error management system that can handle different errors. It ensures that users always get a clear and helpful response, even in unexpected situations.
+
+## Built-in HTTP Exceptions for Precision Error Control
+Nest.js simplifies how you manage and report errors in standard HTTP with various built-in exceptions. These exceptions are derived from the core `HttpException` and enable developers to generate standardized HTTP responses with minimal effort, promoting consistency across client communications.
+
+<Callout>
+Please refer to [this page](https://nestjs-doc.exceptionfound.com/classes/httpexception.html) to view all the properties and methods that `HttpResponse` exposes.
+</Callout>
+
+<AdaptiveImage alt={"Nest.js built-in HTTP exceptions"} filename={'api-error-handling-done-right-nestjs/1.webp'} priority={true} />
+
+Consider the `NotFoundException`, a frequently used exception that indicates a missing requested resource. Nest.js allows you to throw this exception with or without additional parameters, giving you control over the level of detail provided. Here's a simple example:
+
+```ts {7}
+import { Controller, Get, NotFoundException } from '@nestjs/common';
+
+@Controller()
+export class AppController {
+  @Get('/users')
+  getUsers(): string {
+    throw new NotFoundException();
+  }
+}
+```
+
+This straightforward setup triggers a `404 Not Found` HTTP response:
+
+```json
+{
+  "message": "Not Found",
+  "statusCode": 404
+}
+```
+
+For more detailed feedback, you can include a custom message in the exception:
+
+```ts
+throw new NotFoundException('Resource not found');
+```
+
+This approach generates a more descriptive error message:
+
+```json
+{
+  "message": "Resource not found",
+  "error": "Not Found",
+  "statusCode": 404
+}
+```
+
+To deepen the context provided to the client, consider adding extra information through the `options` parameter in the exception constructor. This method is handy for specifying the cause or nature of the error:
+
+```ts
+throw new NotFoundException('Resource not found', {
+  cause: new Error(),
+  description: 'The list of users is empty.'
+});
+```
+
+The response now includes a detailed description, helping clients understand exactly why their request failed:
+
+```json
+{
+  "message": "Resource not found",
+  "error": "The list of users is empty.",
+  "statusCode": 404
+}
+```
+
+Moreover, Nest.js allows you to fully customize the structure of your error responses by specifying an object as the first argument in the exception constructor. This flexibility enables you to define custom properties such as `status`, `code`, and `message`:
+
+```ts {7-11}
+import { Controller, Get, HttpStatus, NotFoundException } from '@nestjs/common';
+
+@Controller()
+export class AppController {
+  @Get('/users')
+  getUsers(): string {
+    throw new NotFoundException({
+      status: HttpStatus.NOT_FOUND,
+      code: 'NOT_FOUND',
+      message: 'The list of users is empty.'
+    });
+  }
+}
+```
+
+Using `HttpStatus` ensures your application consistently applies correct HTTP codes — for instance, `HttpStatus.NOT_FOUND` sets the response to `404`, signaling that the requested resource couldn't be found.
+
+The final response, enriched with specific identifiers, can be leveraged programmatically on the client side:
+
+```json
+{
+  "status": 404,
+  "code": "NOT_FOUND",
+  "message": "The list of users is empty."
+}
+```
+
+Nest.js's suite of built-in HTTP exceptions addresses nearly all common HTTP status scenarios, such as:
+- `BadRequestException` for `400` errors, indicating malformed requests.
+- `UnauthorizedException` for `401` errors, signaling unauthorized access.
+- `ForbiddenException` for `403` errors, denoting forbidden resources.
+- `InternalServerErrorException` for 500 errors, reflecting general server errors.
+
+<Callout>
+Please refer to [the documentation to view the complete list of built-in exceptions provided by Nest.js](https://docs.nestjs.com/exception-filters#built-in-http-exceptions).
+</Callout>
+
+Like `NotFoundException`, each can be enhanced with additional details such as an error `cause` and a `description`.
+
+As we move on to the next section, we'll see how Nest.js supports standard exceptions and allows developers to create their own custom exceptions. This feature gives developers more flexibility and accuracy in handling errors, enabling them to tailor their responses to their specific application needs and requirements.
+
+## Customizing Error Responses with Tailored Exceptions
+Developers using Nest.js can create custom exceptions to better manage errors in complex applications. This allows for more precise error reporting and detailed feedback, which is crucial for meeting specific business needs. Custom exceptions provide a more thorough approach to error handling than the built-in options, making them particularly useful in complex applications.
+
+<AdaptiveImage alt={"Nest.js built-in HTTP exceptions"} filename={'api-error-handling-done-right-nestjs/2.webp'} />
+
+To illustrate the practical application of custom exceptions, let's consider a simple example of retrieving user data. We'll use hardcoded data for this demonstration, but for a more realistic scenario involving database interaction, you might want to refer to [my article on integrating Mongoose with Nest.js](https://www.ayoubkhial.com/blog/crafting-an-efficient-data-layer-with-nestjs-mongoose).
+
+```ts title="app.service.ts"
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+  getUsers(): { id: number; name: string; email: string; age: number }[] {
+    return [
+      { id: 1, name: 'Alice Smith', email: 'asmith@example.com', age: 25 },
+      { id: 2, name: 'Bob Johnson', email: 'bjohnson@example.com', age: 30 },
+      { id: 3, name: 'Carol Willy', email: 'cwilly@example.com', age: 22 },
+      { id: 4, name: 'Dave Jones', email: 'djones@example.com', age: 28 },
+      { id: 5, name: 'Eva Brown', email: 'ebrown@example.com', age: 31 },
+      { id: 6, name: 'Frank Davis', email: 'fdavis@example.com', age: 20 },
+      { id: 7, name: 'Grace Wilson', email: 'gwilson@example.com', age: 27 },
+      { id: 8, name: 'Henry Miller', email: 'hmiller@example.com', age: 29 },
+      { id: 9, name: 'Isabel Taylor', email: 'itaylor@example.com', age: 24 },
+      { id: 10, name: 'Jack Andre', email: 'jandre@example.com', age: 32 }
+    ];
+  }
+}
+```
+
+Consider a scenario where an API client requests a user by `id`, and that `id` doesn't match any user in our list. Typically, you might handle this using the built-in `NotFoundException`:
+
+```ts title="app.controller.ts"
+import { Controller, Get, HttpStatus, NotFoundException, Param } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/users/:id')
+  getUserById(@Param('id') id: string) {
+    const user = this.appService.getUsers().find((user) => user.id === parseInt(id, 10));
+    if (!user) {
+      throw new NotFoundException({
+        title: 'User Not Found',
+        status: HttpStatus.NOT_FOUND,
+        detail: `User with id '${id}' was not found`
+      });
+    }
+    return user;
+  }
+}
+```
+
+This method works well, but it can be cumbersome if you need to throw similar exceptions frequently across your application. Instead, creating a custom `NotFoundError` exception can streamline your code and provide more explicit, context-specific error messages:
+
+```ts title="exceptions/not-found.exception.ts"
+import { HttpException, HttpStatus } from '@nestjs/common';
+
+export default class NotFoundError extends HttpException {
+  constructor(resource: string, identifier: string) {
+    super({
+      title: 'Not Found',
+      status: HttpStatus.NOT_FOUND,
+      detail: 'The resource you requested could not be found.',
+      errors: [{
+        message: `${resource} with identifier '${identifier}' was not found`
+      }]
+    }, HttpStatus.NOT_FOUND);
+  }
+}
+```
+
+This custom exception class extends `HttpException` and is configured to take additional parameters such as `resource` and `identifier`, making the error message more informative and relevant to the specific context.
+
+Now, let's use this custom `NotFoundError` in our controller to handle situations where a user `id` doesn't match any user in our database:
+
+```ts
+import { Controller, Get, Param } from '@nestjs/common';
+import { AppService } from './app.service';
+import NotFoundError from './exceptions/not-found.exception';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/users/:id')
+  getUserById(@Param('id') id: string) {
+    const user = this.appService.getUsers().find(user => user.id === parseInt(id, 10));
+    if (!user) {
+      throw new NotFoundError('User', id);
+    }
+    return user;
+  }
+}
+```
+
+<Callout>
+I've applied the principles and guidelines from **RFC 9457** to improve the error handling in my application. For more information you can check out [the document here](https://www.rfc-editor.org/rfc/rfc9457.html).
+</Callout>
+
+
+In this example, if the `getUserById` method is called with an `id` that doesn't match any user, the custom `NotFoundError` provides a detailed error message that helps clients understand exactly what went wrong.
+
+For example, a request to this endpoint might look like:
+
+```bash
+GET /users/11
+```
+
+The response would be:
+
+```json
+{
+  "title": "Not Found",
+  "status": 404,
+  "detail": "The resource you requested could not be found.",
+  "errors": [
+    {
+      "message": "User with identifier '11' was not found"
+    }
+  ]
+}
+```
+
+To increase application robustness, we'll cover advanced error handling in Nest.js, including refined validation mechanisms and business logic checks. In the next section, we'll explore using **pipes** and the built-in `ValidationPipe` to gracefully handle and prevent errors.
+
+## Advancing Error Management with Proactive Techniques
+[Pipes](https://docs.nestjs.com/pipes) and the built-in [ValidationPipe](https://docs.nestjs.com/techniques/validation#using-the-built-in-validationpipe) are two powerful techniques that can help you handle errors more effectively. By validating and transforming data before it reaches your business logic, these tools can prevent errors from occurring, leading to a cleaner and more reliable application architecture. This approach not only prevents errors but also ensures a cleaner and more reliable application architecture.
+
+<AdaptiveImage alt={"Validation Pipes in Nest.js"} filename={'api-error-handling-done-right-nestjs/3.webp'} />
+
+### Streamlining Data Validation with Pipes
+[Pipes](https://docs.nestjs.com/pipes) in Nest.js are crucial for validating and transforming data before it reaches your business logic, acting as the first line of defense against wrong input.
+
+For a practical example, let's define a custom `BadRequestError` to manage validation failures. This exception will ensure that all input-related issues are communicated clearly and uniformly:
+
+```ts title="exceptions/bad-request.exception.ts"
+import { HttpException, HttpStatus } from '@nestjs/common';
+
+export default class BadRequestError extends HttpException {
+  constructor(messages: string | string[]) {
+    if (typeof messages === 'string') {
+      messages = [messages];
+    }
+    super({
+      title: 'Bad Request',
+      status: HttpStatus.BAD_REQUEST,
+      detail: 'The request could not be processed due to semantic errors. Please check your input and try again.',
+      errors: messages.map((message) => ({ message }))
+    }, HttpStatus.BAD_REQUEST);
+  }
+}
+```
+
+The constructor here takes a `messages` parameter that can be a single string or an array of strings, each representing different validation errors. This setup allows for flexible and effective handling of multiple validation issues.
+
+Next, we'll create a pipe called `ValidateIdPipe` that checks if an input `id` is a valid integer. This pipe plays a critical role in ensuring that IDs are legitimate before they're used in your application:
+
+<Callout>
+In fact, Nest.js comes equipped with several built-in validation pipes, including the `ParseIntPipe`, which could have been used to validate the ID. However, I want to show you how to create a custom pipe for this demonstration. [You can explore all available pipes here](https://docs.nestjs.com/techniques/validation).
+</Callout>
+
+```ts title="pipes/validate-id-pipe.ts"
+import { Injectable, PipeTransform } from '@nestjs/common';
+import BadRequestError from './exceptions/bad-request.exception';
+
+@Injectable()
+export class ValidateIdPipe implements PipeTransform<string> {
+  transform(value: string): number {
+    const num = parseInt(value);
+    if (!Number.isInteger(num)) {
+      throw new BadRequestError(`'${value}' is not a valid ID. ID must be an integer.`);
+    }
+    return num;
+  }
+}
+```
+
+Using `ValidateIdPipe`, any non-integer `id` triggers a `BadRequestError`, preventing further processing of invalid data. Here's how you can incorporate this pipe into a controller to validate before fetching data:
+
+```ts {11}
+import { Controller, Get, Param } from '@nestjs/common';
+import { AppService } from './app.service';
+import NotFoundError from './exceptions/not-found.exception';
+import ValidateIdPipe from './pipes/validate-id-pipe';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/users/:id')
+	getUserById(@Param('id', ValidateIdPipe) id: number) {
+	  const user = this.appService.getUsers().find(user => user.id === id);
+	  if (!user) {
+	    throw new NotFoundError('User', id);
+	  }
+	  return user;
+	}
+}
+```
+
+In this configuration, `getUserById` uses the `ValidateIdPipe` to ensure the `id` is a valid integer. If the `id` is valid but no user matches it, a `NotFoundError`  provides a clear and actionable error message:
+
+```json
+{
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "The request could not be processed due to semantic errors. Please check your input and try again.",
+  "errors": [
+    {
+      "message": "'a' is not a valid Id. Id must be an integer."
+    }
+  ]
+}
+```
+
+Since the pipe transforms the `id` from `string` to `number`, ensure that the `NotFoundError` is appropriately set up to handle a `number` type for the `identifier`:
+
+```ts
+export default class NotFound extends HttpException {
+  constructor(resource: string, identifier: number) {
+    ...
+  }
+}
+```
+
+Integrating custom pipes with exceptions prepares the foundation for advanced validation strategies, such as the ValidationPipe, which we will explore next. This comprehensive approach to error handling prevents errors and enhances data integrity across your application.
+
+### Enhancing Data Integrity with ValidationPipe
+The [ValidationPipe](https://docs.nestjs.com/techniques/validation#using-the-built-in-validationpipe) in Nest.js is a game-changer that effectively handles complex validation scenarios. It utilizes the [class-validator](https://github.com/typestack/class-validator) and [class-transformer](https://github.com/typestack/class-transformer) packages to ensure data meets your application's specifications before processing. This tool is essential for maintaining data integrity and enhancing security.
+
+Consider a scenario where you fetch users based on query parameters. Without proper validation, this could introduce risks, such as incorrect data handling or potential security vulnerabilities:
+
+```ts
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+
+interface FindQueryDTO {
+  name?: string;
+  email?: string;
+  age?: number;
+}
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/users')
+  getUsers(@Query() query: FindQueryDTO) {
+    return this.appService.getUsers().filter(
+      user =>
+        (!query.name || user.name === query.name) &&
+        (!query.email || user.email === query.email) &&
+        (!query.age || user.age === parseInt(query.age.toString(), 10))
+      );
+  }
+}
+```
+
+This approach poses a risk as it directly passes user input into the application logic, potentially leading to incorrect data handling or security vulnerabilities if inputs are not properly sanitized or validated.
+
+In the example above, even though the `age` field is defined as a `number` in the `FindQueryDTO`, it's received as a `string` from query parameters. This requires conversion back to a `number` for proper comparisons, which could lead to errors without explicit parsing.
+
+To address these challenges, we use the `ValidationPipe` alongside DTOs (Data Transfer Objects) to enforce strict validation rules and data transformations.
+
+Start by installing the necessary packages:
+
+```bash
+npm i class-validator class-transformer
+```
+
+Here's how to configure the `ValidationPipe` globally to ensure every request is validated and transformed:
+
+```ts title="main.ts"
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+The `transform: true` option is crucial as it uses the `class-transformer` to convert plain objects into instances of their respective classes automatically. This ensures the data types align with their TypeScript declarations, allowing for accurate type checking and method application.
+
+To ensure rigorous validation and accurate type handling for query parameters in your Nest.js applications, transform the `FindQueryDTO` into a `class` that uses validation rules provided by `class-validator` decorators. These decorators apply specific constraints to class properties, allowing for automated checks on incoming data according to defined rules:
+
+```ts title="dto/find-query.dto.ts"
+import { IsOptional, Matches, IsEmail, Min, IsInt, Transform } from 'class-validator';
+
+export class FindQueryDTO {
+  @IsOptional()
+  @Matches(/^[\p{L}\s'-]+$/u, { message: 'Name must be valid.' })
+  name?: string;
+
+  @IsOptional()
+  @IsEmail({}, { message: 'Email must be valid.' })
+  email?: string;
+
+  @IsOptional()
+  @Min(18)
+  @IsInt()
+  @Transform(({ value }) => parseInt(value, 10))
+  age?: number;
+}
+```
+
+Here's a breakdown of the decorators used:
+- `@IsOptional()`: This decorator indicates that the property is not required. If this decorator is omitted and the property is missing in the input, the validator will return an error. **It's crucial to use this if you have specified any other validation decorators on a property that is not guaranteed to be present in every request**.
+- `@Matches(regex, options)`: This function validates that the property matches the specified regular expression. In this case, it ensures that the `name` field consists only of letters, spaces, and certain punctuation characters. The options provide a custom error message if the validation fails.
+- `@IsEmail(options)`: Confirms that the property is a valid email format. Similar to `@Matches`, it allows for a custom error message.
+- `@Min(value, options)` and `@IsInt(options)`: These ensure the `age` is not only an integer but also meets the minimum value requirement. This is particularly useful for enforcing business rules directly in your data models.
+- `@Transform(transformer)`: This decorator from the class-transformer modifies the incoming data before the validator processes it. Here, it converts a potentially string-typed `age` parameter into a number, which is crucial for validation rules that expect a numeric type.
+
+<Callout>
+The `class-validator` package exposes many validation decorators; you can check out their [github repository for a comprehensive list](https://github.com/typestack/class-validator).
+</Callout>
+
+Implementing these DTOs in controller methods allows for effective filtering and validation of user inputs:
+
+```ts
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+import FindQueryDTO from './dto/find-query.dto.ts'
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get('/users')
+    getUsers(@Query() query: FindQueryDTO) {
+      console.log(typeof query.age); // —> number
+      return this.appService.getUsers().filter(
+        user =>
+          (!query.name || user.name === query.name) &&
+          (!query.email || user.email === query.email) &&
+          (!query.age || user.age === query.age)
+      );
+  }
+}
+```
+
+The `ValidationPipe` automatically converts the `age` parameter to a `number`, simplifying the filtering logic and ensuring data type consistency across operations.
+
+If validation fails, the `ValidationPipe` generates a detailed error response, guiding users to correct their input:
+
+```json
+{
+  "message": [
+    "Name must be a valid.",
+    "email must be an email",
+    "age must be an integer number",
+    "age must not be less than 18"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}
+```
+
+While detailed, this response format may not consistently match your API's custom error response format. To maintain consistency and ensure that all parts of your API deliver similar error responses, you can customize the output of validation errors using an `exceptionFactory` in the `ValidationPipe` options. This customization allows you to integrate your error handling structure, such as using a custom `BadRequestError`, which can be tailored to fit the exact needs of your application.
+
+Here's how you can modify the `ValidationPipe` to use a custom exception for handling validation errors:
+
+```ts
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import BadRequest from './exceptions/bad-request.exception';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    exceptionFactory: (errors) => {
+      const messages = errors.reduce((acc, error) => {
+        if (error.constraints) {
+          acc.push(...Object.values(error.constraints));
+        }
+        return acc;
+      }, []);
+      return new BadRequest(messages);
+    }
+  }));
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+By using the `exceptionFactory`, you can ensure that all validation errors are processed through your custom `BadRequestError`, which might look something like this:
+
+```json
+{
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "The request could not be processed due to semantic errors. Please check your input and try again.",
+  "errors": [
+    {
+      "message": "Name must be valid."
+    },
+    {
+      "message": "Email must be valid."
+    },
+    {
+      "message": "Age must be an integer."
+    },
+    {
+      "message": "Age must not be less than 18."
+    }
+  ]
+}
+```
+
+Next, we'll explore **exception filters** in Nest.js, which allow for even more refined control over error handling and response customization, ensuring that your API remains resilient and user-friendly.
+
+## Optimizing Error Handling with Exception Filters
+
+[Exception filters](https://docs.nestjs.com/exception-filters#exception-filters-1) in Nest.js unsure consistent and sophisticated error handling across your application. They intercept exceptions thrown by both your application and the Nest framework, allowing you to transform and standardize the error responses before they reach the client.
+
+<AdaptiveImage alt={"The role of interceptors in Nest.js"} filename={'api-error-handling-done-right-nestjs/4.webp'} />
+
+Let's create a custom `HttpExceptionFilter` that captures all exceptions derived from `HttpException`. This filter standardizes the error response structure, adding useful properties like a `timestamp` and the request `path` to help in debugging and providing more context to the client. Here’s how to set it up:
+
+
+```ts title="exceptions/filters/http-exception-filter.ts"
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
+import { Request, Response } from 'express';
+
+interface HttpErrorResponse extends HttpException {
+  title: string;
+  detail: string;
+  errors: { message: string }[];
+}
+
+@Catch(HttpException)
+export default class HttpExceptionFilter implements ExceptionFilter {
+  catch(exception: HttpErrorResponse, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse<Response>();
+    const request = ctx.getRequest<Request>();
+    const status = exception.getStatus();
+
+    response.status(status).json({
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      ...(exception.getResponse() as HttpErrorResponse)
+    });
+  }
+}
+```
+
+To apply this `HttpExceptionFilter` globally, configure it during the application's initialization phase. This ensures uniform error handling across your entire application:
+
+
+```ts
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import BadRequest from './exceptions/bad-request.exception';
+import AnyExceptionFilter from './exceptions/filters/any-exception-filter';
+import HttpExceptionFilter from './exceptions/filters/http-exception-filter';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      exceptionFactory(errors) {
+        // ...
+      }
+    })
+  );
+  app.useGlobalFilters(new HttpExceptionFilter());
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+This `HttpExceptionFilter` efficiently handles exceptions by extracting essential details and constructing a JSON response that includes the HTTP a `timestamp` and the `path` where the error occurred, supplemented with any additional information from the exception:
+
+```json
+{
+  "timestamp": "2024-04-14T02:18:21.151Z",
+  "path": "/users?name=1&email=a&age=a",
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "The request could not be processed due to semantic errors. Please check your input and try again.",
+  "errors": [
+    {
+      "message": "Name must be a valid."
+    },
+    {
+      "message": "email must be an email"
+    },
+    {
+      "message": "age must be an integer number"
+    },
+    {
+      "message": "age must not be less than 18"
+    }
+  ]
+}
+```
+
+Sometimes, you may encounter exceptions that do not inherit from `HttpException`. To address these, you can implement a catch-all filter like the `AnyExceptionFilter` Below:
+
+```ts title="exceptions/filters/any-exception-filter.ts"
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
+import { Request, Response } from 'express';
+
+@Catch()
+export default class AnyExceptionFilter implements ExceptionFilter {
+  catch(exception: unknown, host: ArgumentsHost): void {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse<Response>();
+    const request = ctx.getRequest<Request>();
+    const status = exception instanceof HttpException
+                   ? exception.getStatus()
+                   : HttpStatus.INTERNAL_SERVER_ERROR;
+
+    response.status(status).json({
+      timestamp: new Date().toISOString(),
+      instance: request.url,
+      title: 'Internal Server Error',
+      status,
+      detail: 'An unexpected error occurred. Please try again later.'
+    });
+  }
+}
+```
+
+This response strategy ensures that any exception, whether a specific `HttpException` or an `unexpected error` type, receives a `timestamp` and a `path` indicating when and where the exception occurred.
+
+```json
+{
+  "timestamp": "2024-04-14T02:20:23.111Z",
+  "path": "/users",
+  "title": "Internal Server Error",
+  "status": 500,
+  "detail": "An unexpected error occurred. Please try again later."
+}
+```
+
+Nest.js provides a robust framework for managing errors by implementing these exception filters. It ensures that all exceptions are handled predictably and transparently, thus maintaining the integrity and reliability of your API.
+
+## Conclusion
+Effective error handling is a technical necessity and a cornerstone of building reliable and user-friendly applications. Throughout this article, we've explored how Nest.js equips developers with powerful tools to handle errors gracefully, ensuring applications remain robust under adverse conditions and provide clear, actionable feedback to users.
+
+By implementing Nest.js's built-in functionalities, like HTTP exceptions and the ValidationPipe, and utilizing custom exceptions and exception filters, developers can create a sophisticated error handling system that not only catches errors but also enhances applications' overall security and integrity.
+
+These strategies are vital for maintaining the high quality and reliability of modern software applications. They ensure that errors are not just caught and logged but are handled in a way that contributes to a seamless user experience. The ability to define precise error responses and manage exceptions consistently across your entire application underscores the robustness that Nest.js offers.
+
+<Callout type="RESOURCES">
+- [Read more about Nest.js Exceptions](https://docs.nestjs.com/exception-filters)
+- [Read more about Nest.js Validation](https://docs.nestjs.com/techniques/validation)
+- [class-validator package documentation](https://github.com/typestack/class-validator)
+- [class-transformer package documentation](https://github.com/typestack/class-transformer)
+- [The RFC9457 guideline for HTTP error responses](https://www.rfc-editor.org/rfc/rfc9457.html)
+</Callout>
