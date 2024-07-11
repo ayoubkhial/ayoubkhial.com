@@ -156,7 +156,7 @@ const NewsletterSection = () => {
             . S
           </div> */}
         </div>
-        <Image src={NewsletterImage} alt="newsletter image" width={300} height={0} />
+        <Image className="hidden w-[200px] md:block lg:w-[300px]" src={NewsletterImage} alt="newsletter image" width={300} height={0} />
       </section>
     </>
   );
