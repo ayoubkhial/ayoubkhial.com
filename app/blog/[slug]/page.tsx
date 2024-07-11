@@ -79,9 +79,9 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="newsletter mx-4 mt-4 overflow-auto rounded-md border border-solitude-200 bg-solitude-50 p-4 dark:border-solitude-800 dark:bg-solitude-950 md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8">
-      <h4 className="mb-4 text-lg font-semibold text-solitude-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-solitude-100 dark:decoration-slate-700">
-        Subscribe to my newsletter
+    <aside className="mx-4 mt-4 overflow-auto rounded-md border border-slate-200 border-solitude-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8">
+      <h4 className="mb-4 font-semibold text-solitude-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-solitude-100 dark:decoration-slate-700">
+        Get more updates...
       </h4>
       <p className="mb-4 text-sm leading-6 text-solitude-950 dark:text-solitude-300 md:text-base md:leading-7">
         Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found while

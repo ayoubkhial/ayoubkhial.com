@@ -134,20 +134,29 @@ const BlogSection = () => {
 const NewsletterSection = () => {
   return (
     <>
-      <section className="mx-2 rounded-lg bg-solitude-50 dark:bg-solitude-900 lg:flex lg:items-center lg:gap-4 xl:mx-0 xl:w-[1280px]">
-        <div className="p-4 lg:w-3/4 lg:p-8 lg:pr-0">
-          <h2 className="mb-4 text-xl font-semibold tracking-tight text-solitude-950 underline decoration-slate-200 decoration-4 underline-offset-4 dark:text-solitude-200 dark:decoration-slate-700 lg:mb-6 lg:text-2xl">
-            Subscribe to my newsletter
-          </h2>
-          <p className="mb-3 text-sm leading-relaxed text-solitude-900 dark:text-solitude-300 lg:mb-6 lg:text-base lg:leading-7">
+      <section className="flex w-[98%] items-center justify-between rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-6 lg:p-8 xl:mx-0 xl:w-[1280px]">
+        <div>
+          <h3 className="mb-3 text-xl font-semibold tracking-tight underline decoration-slate-200 decoration-4 underline-offset-4 dark:decoration-slate-700 lg:text-2xl">
+            Get more updates...
+          </h3>
+          <p className="leading-txt mb-6 text-sm leading-relaxed text-slate-600 dark:text-slate-400 lg:mb-8 lg:text-base lg:leading-7">
             Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found
             while surfing the web.
           </p>
-          <SubscriptionForm></SubscriptionForm>
+          <SubscriptionForm />
+          {/* <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+            By subscribing, you agree with ConvertKit's{' '}
+            <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">
+              Terms of Service
+            </a>{' '}
+            and{' '}
+            <a className="text-blue-600 hover:underline dark:text-blue-500" href="#">
+              Privacy Policy
+            </a>
+            . S
+          </div> */}
         </div>
-        <div className="hidden pr-4 lg:block lg:w-1/4">
-          <Image src={NewsletterImage} alt="Subscribe to Ayoub's newsletter." className="w-full" />
-        </div>
+        <Image src={NewsletterImage} alt="newsletter image" width={300} height={0} />
       </section>
     </>
   );
