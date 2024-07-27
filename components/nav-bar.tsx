@@ -6,52 +6,52 @@ const navItems = [
     name: 'Home',
     path: '/',
     image: HomeIcon,
-    link: 'md:hidden hover:bg-madang-50 dark:hover:bg-madang-900',
-    text: 'group-hover:text-madang-900 decoration-madang-200 dark:group-hover:text-madang-300 dark:decoration-madang-700',
-    tooltip: 'bg-madang-50 text-madang-800 -ml-5 dark:bg-madang-900 dark:text-madang-300'
+    link: 'md:hidden hover:bg-madang-50',
+    text: 'group-hover:text-madang-900 decoration-madang-200',
+    tooltip: 'bg-madang-50 text-madang-800 -ml-5'
   },
   {
     name: 'Writing',
     path: '/blog',
     image: WritingIcon,
-    link: 'hover:bg-solitude-50 dark:hover:bg-solitude-900',
-    text: 'group-hover:text-solitude-900 decoration-solitude-200 dark:group-hover:text-solitude-300 dark:decoration-solitude-700',
-    tooltip: 'bg-solitude-50 dark:bg-solitude-900 text-solitude-800 dark:text-solitude-300 -ml-6'
+    link: 'hover:bg-solitude-50',
+    text: 'group-hover:text-solitude-900 decoration-solitude-200',
+    tooltip: 'bg-solitude-50 -ml-6'
   },
   {
     name: 'Github',
     path: 'https://www.github.com/ayoubkhial',
     image: GithubIcon,
-    link: 'hidden md:block hover:bg-gray-100 dark:hover:bg-gray-700',
-    text: 'group-hover:text-gray-900 decoration-gray-200 dark:group-hover:text-gray-300 dark:decoration-gray-700'
+    link: 'hidden md:block hover:bg-gray-100',
+    text: 'group-hover:text-gray-900 decoration-gray-200'
   },
   {
     name: 'Twitter',
     path: 'https://www.twitter.com/ayoubkhial',
     image: TwitterIcon,
-    link: 'hidden md:block hover:bg-slate-100 dark:hover:bg-slate-700',
-    text: 'group-hover:text-slate-900 decoration-slate-200 dark:group-hover:text-slate-300 dark:decoration-slate-700'
+    link: 'hidden md:block hover:bg-slate-100',
+    text: 'group-hover:text-slate-900 decoration-slate-200'
   },
   {
     name: 'LinkedIn',
     path: 'https://www.linkedin.com/in/akhial',
     image: LinkedInIcon,
-    link: 'hidden md:block hover:bg-solitude-50 dark:hover:bg-solitude-900',
-    text: 'group-hover:text-solitude-900 decoration-solitude-200 dark:group-hover:text-solitude-300 dark:decoration-solitude-700'
+    link: 'hidden md:block hover:bg-solitude-50',
+    text: 'group-hover:text-solitude-900 decoration-solitude-200'
   },
   {
     name: 'Say Hello',
     path: 'mailto:ayouub.khial@gmail.com',
     image: MessageIcon,
-    link: 'hidden lg:block hover:bg-chablis-50 dark:hover:bg-chablis-900',
-    text: 'group-hover:text-chablis-900 decoration-chablis-200 dark:group-hover:text-chablis-300 dark:decoration-chablis-700'
+    link: 'hidden lg:block hover:bg-chablis-50',
+    text: 'group-hover:text-chablis-900 decoration-chablis-200'
   },
   {
     name: 'Resume',
     path: 'https://www.ayoubkhial.com/resume.pdf',
     image: LinkIcon,
-    link: 'hidden md:block hover:bg-madang-50 dark:hover:bg-madang-900',
-    text: 'group-hover:text-madang-900 decoration-madang-200 dark:group-hover:text-madang-300 dark:decoration-madang-700'
+    link: 'hidden md:block hover:bg-madang-50',
+    text: 'group-hover:text-madang-900 decoration-madang-200'
   }
 ];
 

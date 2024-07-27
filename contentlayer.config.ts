@@ -79,7 +79,6 @@ const Post = defineDocumentType(() => ({
 }));
 const rehypeOptions = {
   theme: {
-    dark: 'github-dark',
     light: 'github-light'
   },
   keepBackground: true,

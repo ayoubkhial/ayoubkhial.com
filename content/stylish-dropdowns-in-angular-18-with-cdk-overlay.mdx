@@ -1,20 +1,92 @@
 ---
-title: 'API Error Handling Done Right - Nest.js'
-publishedAt: '2024-05-09'
+title: 'Stylish Dropdowns in Angular 18 with CDK Overlay'
+publishedAt: '2024-07-25'
 description: "This guide delves into Nest.js's error handling capabilities, detailing how to manage API errors using built-in mechanisms, custom exceptions, and advanced validation strategies. Learn to enhance application reliability and user experience with practical insights and tools for effective error management in Nest.js."
-keywords: "nest.js(red),api(blue)"
+keywords: "angular(red),tailwind(blue)"
 ---
 
 ## Introduction
-Effective error management is crucial for any application, particularly during high-stakes situations like a major sale on an e-commerce platform. A single mishap can disrupt operations, frustrate customers, and lead to lost sales. Therefore, handling errors smoothly and communicating them clearly is important, especially in service-oriented systems where dependable interactions are essential.
+Angular 18, the latest version of Google's popular framework, is here, and it's packed with powerful tools that empower us to create dynamic and efficient web applications. This version brings exciting new features like zoneless mode, signals, event coalescing, [and more](https://blog.angular.dev/angular-v18-is-now-available-e79d5ac0affe), making our development process even smoother.
 
-[**Nest.js**](https://nestjs.com/), a prominent Node.js framework, enhances error handling with its modular architecture and extensive features. This guide will show you how to leverage Nest.js to manage API errors effectively. Mastering these techniques will boost your confidence in handling errors, making your applications more robust and user-friendly.
+Angular continues to shine with its robust CLI, modular architecture, and rich ecosystem. These elements simplify development, ensure scalability, and offer plenty of resources and integrations.
 
-We'll begin by exploring Nest.js's default error-handling mechanisms, which help reduce boilerplate code and increase the reliability of your applications from the outset.
+However, creating dynamic and interactive UI components like dropdowns, tooltips, and modals can still be a bit tricky. That's where the [Angular Component Dev Kit (CDK)](https://material.angular.io/cdk/categories) comes in. The CDK provides foundational libraries for building custom components with a sense of control and precision. One of its standout features is the [Overlay Module](https://material.angular.io/cdk/overlay/overview), which makes it a breeze to create floating panels with precise control over their positioning, visibility, and behavior.
 
-<Callout>
-This guide assumes you have a basic understanding of Nest.js and its core concepts. If you're new to Nest.js, consider reading the [**Nest.js First Steps documentation**](https://docs.nestjs.com/first-steps).
-</Callout>
+In this article, I'll show you how to create a functional and stylish language selector dropdown using Angular CDK's Overlay Module. This example will help you enhance your web applications with sophisticated UI elements that provide a better user experience.
+
+
+## Angular Material and Angular CDK: When to Choose Which?
+When building user interfaces in Angular, developers have two powerful tools: [Angular Material](https://material.angular.io/components/categories) and [Angular Component Dev Kit (CDK)](https://material.angular.io/cdk/categories). While both are invaluable, they serve different purposes and are suited to different kinds of projects.
+
+Angular Material is a comprehensive library of pre-built UI components based on Google's Material Design. It offers a wide range of high-quality components like date pickers, tabs, spinners, and autocompletes, all pre-styled and ready to use. These components provide a consistent look and feel, perfect for quickly developing applications that adhere to Material Design principles.
+
+Here are some key features of Angular Material:
+- **Consistency**: Components come pre-styled according to Material Design guidelines, ensuring a uniform look across your application.
+- **Ease of Use**: Ready-made components accelerate development, allowing you to focus on functionality rather than design.
+- **High Quality**: Components are well-tested and optimized for performance.
+
+However, customizing Angular Material components to fit specific design requirements can be challenging. It often requires extensive CSS tweaks or functional modifications, leading to maintenance headaches and potential bugs.
+
+On the other hand, Angular CDK is more flexible, it provides low-level utilities for building custom components without enforcing any specific design language. This allows for precise control over component behavior and appearance, making it highly adaptable to various project requirements.
+
+Notable CDK modules include:
+- **Accessibility**: to improve keyboard interaction and focus management.
+- **Clipboard**: for working with the system clipboard.
+- **Drag and Drop**: for creating intuitive drag-and-drop interfaces.
+- **Overlay**: for creating floating panels, which we'll focus on in this tutorial.
+- **Portal**: A system for dynamically rendering content.
+- **Scrolling**: Helpers for reacting to scroll events.
+- **Text Field**: Utilities for working with text input fields.
+
+The choice between Angular Material and Angular CDK depends on your project requirements. Use Angular Material if you need a library of pre-built, styled-components that follow Material Design guidelines. It's ideal for rapid prototyping or building applications with a consistent look and feel, especially if your team prefers pre-styled components to focus on functionality.
+
+Conversely, use Angular CDK if your project has unique design requirements beyond Material Design constraints. If you need greater control over component behavior and appearance or want to build custom components from scratch, Angular CDK is the better choice. It provides the low-level utilities necessary for maximum flexibility and customization.
+
+<Table
+  headers={['', 'Angular Material', 'Angular CDK']}
+  rows={[
+    ['Purpose', 'Pre-built UI components based on Material Design', 'Low-level utilities for building custom components'],
+    ['Design Guidelines', 'Follows Material Design guidelines', 'No enforced design language'],
+    ['Ease of Use', 'Ready-made components for quick development', 'Provides flexibility and control for custom implementations'],
+    ['Customizability', 'Can be challenging to customize', 'Highly customizable and adaptable'],
+    ['Component Examples', 'Date pickers, tabs, spinners, autocompletes', 'Accessibility, clipboard, drag and drop, overlay, portal'],
+    ['Ideal For', 'Rapid prototyping, consistent look and feel', 'Projects with unique design requirements, custom behaviors'],
+    ['Performance', 'Additional overhead due to pre-styled components', 'Lighter, better performance without the extra overhead'],
+  ]}
+/>
+
+To help visualize the decision-making process, here is a flowchart that guides users on when to choose Angular Material or Angular CDK based on their project requirements:
+
+<Image alt={"Angular Material and Angular CDK: what to choose?"} filename={'stylish-dropdowns-in-angular-18-with-cdk-overlay/1.webp'} priority={true} />
+
+For our language selector dropdown, Angular CDK is the preferred choice for several reasons. Our dropdown requires a custom design that may not fit within Material Design constraints. Angular CDK offers complete control over the component's appearance and behavior, making it ideal for this purpose. The Overlay Module's advanced features, such as dynamic positioning and scroll handling, are crucial for creating a robust and user-friendly dropdown.
+
+Additionally, using Angular CDK avoids the additional overhead of Angular Material, resulting in a lighter application and better performance. Finally, building the dropdown from scratch with Angular CDK provides a valuable learning opportunity, offering more profound insights into overlays and dynamic components, which can be applied to other custom components and use cases, and encourages you to experiment and integrate these techniques into your projects.
+
+By leveraging Angular CDK's powerful features, we can create sophisticated, responsive dropdown components that enhance user experience.
+
+# Understanding the Overlay Module
+Creating dynamic UI components like dropdowns, tooltips, and modals requires more control than standard HTML elements offer. For example, the standard HTML `<select>` element, though functional, is notoriously hard to style and customize. Developers often need a more flexible solution to meet specific design and interaction requirements.
+
+One of the standout modules within Angular CDK is the Overlay Module. It provides a powerful API for creating and managing floating panels and pop-up elements like tooltips, dialogs, and dropdowns. The Overlay Module offers various features to control the placement, visibility, and behavior of these elements, making it an essential tool for developing dynamic and interactive UIs.
+
+<Image alt={"Angular CDK (Overlay module) VS Native select element"} filename={'stylish-dropdowns-in-angular-18-with-cdk-overlay/2.webp'} priority={true} />
+
+Some of the key features of the Overlay module are:
+- **Dynamic Positioning**: You can precisely control where an overlay appears relative to a target element or the viewport. This is particularly useful for dropdowns that adjust their position based on the user's scroll and viewport size.
+- **Scroll and Resize Handling**: This feature automatically adjusts the overlay's position when the viewport is scrolled or resized, ensuring it stays in the correct position for a seamless user experience.
+- **Backdrop Support**: Built-in functionality to add backdrops and handle user interactions, such as clicking outside the overlay to close it. This enhances the user experience by providing a clear visual distinction between the overlay and the rest of the page.
+
+The Overlay Module is highly customizable, allowing developers to build components that fit specific design requirements. For instance, a dropdown menu can reposition itself based on the viewport's scroll position or change direction depending on the available space. This level of control is invaluable for creating polished, user-friendly interfaces.
+
+By understanding the Angular CDK and its Overlay Module, you can see why it is the preferred choice for building custom, dynamic dropdowns in our project. This flexibility and control allow us to create sophisticated and responsive UI components.
+
+
+
+
+
+
+
 
 ## Exploring Built-In Error Management Mechanisms
 Nest.js has a special layer designed to intercept unexpected errors in your application and prevent them from causing problems. This layer processes these errors and delivers a user-friendly response, ensuring your application remains reliable and straightforward for users.

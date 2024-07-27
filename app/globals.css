@@ -65,58 +65,6 @@
   --rice-cake-950: '#452303';
 }
 
-.dark {
-  /* BLUE */
-  --solitude-50: #f3f7fc;
-  --solitude-100: #e6eff8;
-  --solitude-200: #c8ddef;
-  --solitude-300: #97c0e2;
-  --solitude-400: #609fd0;
-  --solitude-500: #3b83bc;
-  --solitude-600: #2b689e;
-  --solitude-700: #245480;
-  --solitude-800: #21476b;
-  --solitude-900: #1c354e;
-  --solitude-950: #15273c;
-  /* GREEN */
-  --madang-50: #f3faf4;
-  --madang-100: #e5f3e8;
-  --madang-200: #cbe7d1;
-  --madang-300: #a2d3ad;
-  --madang-400: #72b682;
-  --madang-500: #4e9960;
-  --madang-600: #3c7d4b;
-  --madang-700: #32633d;
-  --madang-800: #2b5034;
-  --madang-900: #223d29;
-  --madang-950: #102315;
-  /* RED */
-  --chablis-50: #fbf4f7;
-  --chablis-100: #f8ebf0;
-  --chablis-200: #f2d8e2;
-  --chablis-300: #e9b8ca;
-  --chablis-400: #da8ca6;
-  --chablis-500: #cb6987;
-  --chablis-600: #b74b67;
-  --chablis-700: #9d3950;
-  --chablis-800: #823243;
-  --chablis-900: #57242f;
-  --chablis-950: #41161f;
-
-  /* Purple */
-  --hawkes-blue-50: #f2f6fc;
-  --hawkes-blue-100: #e2ebf7;
-  --hawkes-blue-200: #cbdcf2;
-  --hawkes-blue-300: #a8c6e8;
-  --hawkes-blue-400: #7ea8dc;
-  --hawkes-blue-500: #608ad1;
-  --hawkes-blue-600: #4c71c4;
-  --hawkes-blue-700: #425fb3;
-  --hawkes-blue-800: #3b4f92;
-  --hawkes-blue-900: #334475;
-  --hawkes-blue-950: #262f4e;
-}
-
 *,
 *::after,
 *::before {
@@ -142,15 +90,6 @@ strong {
   font-weight: 500;
 }
 
-html.dark [data-theme='light'],
-html.light [data-theme='dark'] {
-  display: none;
-}
-
-.dark img {
-  opacity: 0.7;
-}
-
 .article img {
   opacity: unset;
 }
@@ -160,7 +99,7 @@ html.light [data-theme='dark'] {
 }
 
 [data-rehype-pretty-code-title] {
-  @apply rounded-t bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 dark:bg-[#182131] dark:text-slate-200 md:text-sm;
+  @apply rounded-t bg-slate-200 px-4 py-3 font-mono text-xs font-bold text-slate-800 md:text-sm;
 }
 
 [data-rehype-pretty-code-title] + pre {
@@ -182,7 +121,7 @@ code[data-line-numbers] .line::before {
 }
 
 [data-rehype-pretty-code-fragment] .line.highlighted {
-  @apply rounded bg-slate-500 bg-opacity-10 dark:bg-slate-600;
+  @apply rounded bg-slate-500 bg-opacity-10;
 }
 
 [data-rehype-pretty-code-fragment] .line .word-highlighted {
@@ -194,9 +133,9 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  @apply rounded-lg bg-slate-100 dark:bg-slate-700;
+  @apply rounded-lg bg-slate-100;
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply rounded-lg bg-slate-300 dark:bg-slate-500;
+  @apply rounded-lg bg-slate-300;
 }

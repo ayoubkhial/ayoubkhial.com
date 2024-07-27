@@ -55,7 +55,7 @@ export function generateMetadata({ params }): Metadata {
 const TOC = ({ headers }) => {
   return (
     <aside className="hidden max-h-[97vh] 2xl:sticky 2xl:top-4 2xl:ml-8 2xl:block 2xl:flex-1 2xl:self-start">
-      <h4 className="mb-2 text-lg font-semibold text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-slate-100 dark:decoration-slate-700">
+      <h4 className="mb-2 text-lg font-semibold text-slate-900 underline decoration-slate-200 decoration-2 underline-offset-4">
         Table of contents
       </h4>
       <ul className="list-inside list-none">
@@ -63,7 +63,7 @@ const TOC = ({ headers }) => {
           return (
             <li key={`#${header.slug}`}>
               <a
-                className="text-sm font-medium leading-7 text-slate-900 hover:text-slate-950 data-[level=three]:pl-3 data-[level=three]:font-normal data-[level=three]:text-slate-700 data-[level=three]:before:absolute data-[level=three]:before:-ml-3 data-[level=three]:before:text-slate-400 data-[level=three]:before:content-['\2013'] data-[level=three]:hover:text-slate-950 dark:text-slate-300 dark:hover:text-slate-100 dark:data-[level=three]:text-slate-400 dark:data-[level=three]:hover:text-slate-100"
+                className="text-sm font-medium leading-7 text-slate-900 hover:text-slate-950 data-[level=three]:pl-3 data-[level=three]:font-normal data-[level=three]:text-slate-700 data-[level=three]:before:absolute data-[level=three]:before:-ml-3 data-[level=three]:before:text-slate-400 data-[level=three]:before:content-['\2013'] data-[level=three]:hover:text-slate-950"
                 data-level={header.level}
                 href={`#${header.slug}`}
               >
@@ -79,11 +79,11 @@ const TOC = ({ headers }) => {
 
 const NewsLetter = () => {
   return (
-    <aside className="mx-4 mt-4 overflow-auto rounded-md border border-slate-200 border-solitude-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8">
-      <h4 className="mb-4 font-semibold text-solitude-950 underline decoration-slate-200 decoration-2 underline-offset-4 dark:text-solitude-100 dark:decoration-slate-700">
+    <aside className="-800 mx-4 mt-4 overflow-auto rounded-md border border-slate-200 border-solitude-200 bg-white p-4 shadow-sm md:mt-8 lg:min-w-[1000px] lg:max-w-[100px] xl:sticky xl:top-4 xl:mr-4 xl:mt-0 xl:min-w-0 xl:max-w-none xl:flex-1 xl:self-start 2xl:mx-0 2xl:mr-8">
+      <h4 className="mb-4 font-semibold text-solitude-950 underline decoration-slate-200 decoration-2 underline-offset-4 ">
         Get more updates...
       </h4>
-      <p className="mb-4 text-sm leading-6 text-solitude-950 dark:text-solitude-300 md:text-base md:leading-7">
+      <p className="mb-4 text-sm leading-6 text-solitude-950  md:text-base md:leading-7">
         Get notified whenever I share new articles by subscribing to my newsletter. Also, I share exciting tools and resources I found while
         surfing the web.
       </p>
@@ -119,7 +119,7 @@ export default function Post(params) {
         <TOC headers={post?.headings} />
         <section className="mx-4 lg:min-w-[1000px] lg:max-w-[100px] 2xl:mx-0">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-3 md:mb-4">
-            <div className="flex items-center gap-2 font-mono font-semibold tracking-tight text-slate-700 dark:text-slate-400 sm:text-xs md:text-sm">
+            <div className="flex items-center gap-2 font-mono font-semibold tracking-tight text-slate-700  sm:text-xs md:text-sm">
               <div className="flex items-center gap-1">
                 <CalendarIcon />
                 <span>{getShortDate(new Date(post?.publishedAt))}</span>
@@ -135,7 +135,7 @@ export default function Post(params) {
                 </Suspense>
               </div>
             </div>
-            <div className="h-[1.5px] w-auto flex-grow bg-gradient-to-r from-solitude-100 to-solitude-50 dark:from-slate-600 dark:to-slate-700"></div>
+            <div className="h-[1.5px] w-auto flex-grow bg-gradient-to-r from-solitude-100 to-solitude-50"></div>
             <div className="flex justify-end gap-1 font-mono text-xs font-medium tracking-tight md:text-sm">
               {tags?.map((tag) => (
                 <span key={tag?.name} className={`${tag?.style} rounded px-2 py-1`}>
@@ -144,14 +144,14 @@ export default function Post(params) {
               ))}
             </div>
           </div>
-          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] dark:from-solitude-100 dark:to-solitude-200 md:mb-4 md:text-4xl">
+          <h1 className="mb-2 bg-gradient-to-r from-solitude-950 to-solitude-900 bg-clip-text text-xl font-extrabold text-[transparent] md:mb-4 md:text-4xl">
             {post?.title}
           </h1>
-          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600 dark:border-slate-700 dark:text-slate-400 md:mb-8 md:pb-4 md:text-base md:leading-7">
+          <p className="mb-4 border-b-2 border-solitude-50 pb-2 text-sm font-medium text-slate-600  md:mb-8 md:pb-4 md:text-base md:leading-7">
             {post?.description}
           </p>
           {post?.series && <SeriesNavigation title={post?.series} articles={seriesPosts} current={post?.slug}></SeriesNavigation>}
-          <article className="article mb-8 border-b-2 border-solitude-50 pb-8 text-sm leading-6 dark:border-slate-700 md:text-base md:leading-7">
+          <article className="article mb-8 border-b-2 border-solitude-50 pb-8 text-sm leading-6  md:text-base md:leading-7">
             <Component components={MDXComponents} />
           </article>
           <Comment />

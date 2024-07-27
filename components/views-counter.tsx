@@ -20,7 +20,6 @@ const ViewsCounter = async ({ slug }) => {
   const supabase = createClient();
 
   const { data, error } = await supabase.from('PostInfo').select('views').eq('slug', slug).maybeSingle();
-  console.log('ViewsCounter - data:', data);
   if (!data) {
     await supabase.from('PostInfo').insert([{ slug, views: 1 }]);
     post = { views: 1 };

@@ -17,7 +17,6 @@ export const addSubscriber = async (formState: FormState, formData: FormData) =>
     return { success: false, message: 'Please provide a valid email.' };
   }
 
-  console.log('addSubscriber - email:', email);
   const { data, error } = await supabase.from('subscribers').select('email').eq('email', email);
   if (error) {
     return { success: false, message: 'An error occurred. Please try again later.' };
